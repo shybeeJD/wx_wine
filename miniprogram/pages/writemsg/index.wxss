@@ -1,0 +1,57 @@
+
+/*捎话wx.css  */
+.section{
+  width:96%;
+  height:220rpx;
+  margin-left:5px;
+  }
+  .message1{
+    width:96%;
+    height:210rpx;
+    margin-top: 30rpx;
+    font-size: 90%;
+    margin-left:20px;
+  }
+  .circle{
+    height:35rpx;
+    width:35rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display:inline-block;
+    margin:28rpx 45rpx auto 50rpx;
+   
+  }
+  .fast{
+    position:relative;
+    top:-50rpx;
+    font-size:90%;
+    background:#f4f4f4;
+    line-height:100rpx;
+    text-indent:2em;
+  }
+  .item{
+  position:relative;
+  border-bottom:1px solid #f4f4f4;
+  padding-bottom:10px;
+  top: -60rpx;
+  }
+  .message_font{
+    font-size:80%;
+    font-family:"微软雅黑";
+    font-weight:blod;
+    display:inline-block;
+    position:relative;
+    top:-5rpx;
+  }
+  .submit{
+    width:100%;
+    height: 100rpx;
+    background: #fed1d6;
+    position: relative;
+    top:168rpx;
+    line-height: 100rpx;
+  }
+  button::after{
+    border:none;
+    }
+  

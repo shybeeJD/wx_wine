@@ -1,0 +1,11 @@
+<view class='section'>
+  <textarea class='message1' type='text' placeholder="请选择或者输入捎话(60字以内)" maxlength='80' style="word- wrap:break-word"   bindinput="bindInput"></textarea>
+</view>
+<view class='fast'>快速捎话：{{neirong}}</view>
+ 
+<view class="item" wx:for="{{msgData}}" wx:key="{{index}}">
+<view class='circle'></view>
+  <text data-nr='{{item.msg}}' class='message_font' bindtap='clickMe'>{{item.msg}}</text>
+</view> 
+ 
+  <button class='submit' bindtap='subMsg' >捎话</button>
