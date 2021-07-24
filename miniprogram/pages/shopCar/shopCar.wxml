@@ -16,5 +16,8 @@
         <view class = "input_back_view_style">
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view>
+        
     </scroll-view>
+    
+
 </view>
