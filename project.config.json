@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "appid": "wx63d8c34b231cc106",
-  "projectname": "miniprogram-1",
+  "projectname": "wx_wine",
   "libVersion": "2.14.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {

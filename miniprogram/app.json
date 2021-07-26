@@ -6,7 +6,8 @@
     "pages/group/group",
     "pages/shopDetail/shopDetail",
     "pages/me/me",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/search/search"
   ],
   "permission": {
     "scope.userLocation": {
