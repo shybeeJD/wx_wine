@@ -1,10 +1,88 @@
 .mini_ShopCar {
     height: 120rpx;
     width: 100%;
-
-    background-color: red;
-
     position: absolute;
     bottom: 0px;
     z-index: 100;
+    background-color: #eff0ef;
+
+    display: flex;
+    .img_view {
+        background-color: #feffff;
+
+        position: relative; //加了这个徽章才会在img_view范围内
+        border-radius: 100rpx;
+
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        // margin-bottom: -20rpx;
+        flex: 16;
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            width: 40rpx;
+            height: 40rpx;
+            border-radius: 100rpx;
+            background-color: #e40050;
+            font-size: 20rpx;
+            color: white;
+
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+        }
+        .img {
+
+            width: 65rpx;
+        }
+    }
+    .content {
+        flex: 84;
+        // background-color: rgb(10, 242, 37);
+        display: flex;
+        align-items: center; /* 垂直居中 */
+        .priceView {
+            flex: 3;
+            display: flex;
+            margin-left: 20rpx;
+
+            .price {
+                font-size: x-large;
+            }
+            .marketPriceView {
+                display: flex;
+                align-items: center; /* 垂直居中 */
+                margin-left: 20rpx;
+
+                font-size: small;
+                color: #888888;
+                text-decoration: line-through;
+
+                .RMB_marketPrice {
+                }
+                .marketPrice {
+                }
+            }
+        }
+        .buyButton {
+            // background-color: rgb(31, 84, 37);
+
+            flex: 2;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            margin-right: 20rpx;
+
+            font-size: medium;
+            color: #ffffff;
+
+            height: 80rpx;
+            border-radius: 50rpx;
+            background-color: #e40055;
+        }
+    }
 }

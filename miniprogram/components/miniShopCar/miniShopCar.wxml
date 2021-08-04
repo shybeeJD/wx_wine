@@ -1,3 +1,19 @@
 <view class="mini_ShopCar">
-  <text>components/miniShopCar/miniShopCar.wxml</text>
+  <view class="img_view" hover-class="none" hover-stop-propagation="false">
+    <text class="badge">2</text>
+    <image class="img" mode="widthFix" src="../../pages/resource/shopcarHight.png" />
+  </view>
+
+  <view class="content" hover-class="none" hover-stop-propagation="false">
+    <view class="priceView">
+      <text>￥</text>
+      <text class="price">22.00</text>
+
+      <view class="marketPriceView">
+        <text class="RMB_marketPrice">￥</text>
+        <text class="marketPrice">24.00</text>
+      </view>
+    </view>
+    <view class="buyButton">结算</view>
+  </view>
 </view>
