@@ -1,0 +1,87 @@
+.mini_ShopCar {
+    height: 120rpx;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    background-color: #eff0ef;
+    display: flex;
+    align-items: center;
+    display: flex;
+    .img_view {
+        position: relative; //加了这个徽章才会在img_view范围内
+
+        background-color: #feffff;
+        height: 100%;
+        border-radius: 50%;
+        padding: 30rpx;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 16;
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            width: 40rpx;
+            height: 40rpx;
+            border-radius: 100rpx;
+            background-color: #e40050;
+            font-size: 20rpx;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .img {
+            width: 65rpx;
+        }
+    }
+    .content {
+        flex: 84;
+
+        display: flex;
+        align-items: center;
+        .priceView {
+            flex: 3;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10rpx;
+
+            .price {
+                font-size: large;
+            }
+            .marketPriceView {
+                display: flex;
+                align-items: center;
+                margin-left: 10rpx;
+
+                font-size: small;
+                color: #888888;
+                text-decoration: line-through;
+
+                .RMB_marketPrice {
+                }
+                .marketPrice {
+                }
+            }
+        }
+        .buyButton {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20rpx;
+
+            font-size: medium;
+            color: #ffffff;
+
+            height: 80rpx;
+            border-radius: 50rpx;
+            background-color: #e40055;
+        }
+    }
+}

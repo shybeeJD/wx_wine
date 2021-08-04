@@ -43,19 +43,19 @@ App({
       
 
 
-      console.log(this.globalData)
+      // console.log(this.globalData)
       
     }
 
   },
   onShow:function(){
-    this.getUserInfo()
+    // this.getUserInfo()
     var that = this;
       wx.getStorage({
       key: 'globalData',
       success: function(res){
         this.globalData = res.data;
-        console.log(that.globalData);
+        // console.log(that.globalData);
       },
       fail: function() {
       },
@@ -194,25 +194,31 @@ App({
     })
    
  },
- // 添加商品到购物车车
- addGoodToShopCar:function(good){
-   var tempGood = this.globalData.shopCarGoods[good._id];
-   if(tempGood != null){
-       tempGood.buy = good.buy;
-       this.globalData.shopCarGoods[good._id] = tempGood;
-   }else{
-     this.globalData.shopCarGoods[good._id] = good
-   }
- },
+  // 添加商品到购物车车
+  addGoodToShopCar: function (good) {
+    // console.log(this.globalData.shopCarGoods)
+    // 获取购物车中的对应id的商品设置为临时商品
+    var tempGood = this.globalData.shopCarGoods[good._id];
+    // 若临时商品为空,则在购物车中对应id的位置添加商品
+    // 不为空就把购买数量+1
+    if (tempGood != null) {
+      tempGood.buy = good.buy;
+      this.globalData.shopCarGoods[good._id] = tempGood;
+    } else {
+      this.globalData.shopCarGoods[good._id] = good
+    }
+  },
  // 从购物车减少商品
  reduceGoodFromShopCar:function(good){
-       console.log(this.globalData.shopCarGoods)
+    //  console.log(this.globalData.shopCarGoods)
+    // 若数量=0则删除它
    if(good.buy == 0){
      delete(this.globalData.shopCarGoods[good._id])
-     console.log("删除")
-     console.log(this.globalData.shopCarGoods)
+    //  console.log("删除")
+    //  console.log(this.globalData.shopCarGoods)
      return;
    }
+  //  不等于0则修改数量
    var tempGood = this.globalData.shopCarGoods[good._id];
    if(tempGood){
      tempGood.buy = good.buy;
@@ -220,6 +226,6 @@ App({
    }else{
      this.globalData.shopCarGoods[good._id] = good
    }
-   console.log(this.globalData.shopCarGoods[good._id])
+  //  console.log(this.globalData.shopCarGoods[good._id])
  }
 })

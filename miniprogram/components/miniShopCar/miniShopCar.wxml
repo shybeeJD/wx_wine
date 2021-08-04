@@ -1,0 +1,22 @@
+<view class="mini_ShopCar">
+  <!-- 购物车图片区 -->
+  <view class="img_view" hover-class="none" hover-stop-propagation="false">
+    <text class="badge">{{num}}</text>
+    <image class="img" mode="widthFix" src="../../pages/resource/shopcarHight.png" />
+  </view>
+  <!-- 价格结算区 -->
+  <view class="content" hover-class="none" hover-stop-propagation="false">
+    <view class="priceView">
+      <!-- 实付金额 -->
+      <text>￥</text>
+      <text class="price">{{price}}</text>
+      <!-- 市场价 -->
+      <view class="marketPriceView">
+        <text class="RMB_marketPrice">￥</text>
+        <text class="marketPrice">{{marketPrice}}</text>
+      </view>
+    </view>
+    <!-- 结算按钮 -->
+    <view class="buyButton" bindtap="getShopCarGoods">结算</view>
+  </view>
+</view>

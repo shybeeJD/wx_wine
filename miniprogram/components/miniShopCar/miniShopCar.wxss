@@ -1,0 +1,72 @@
+.mini_ShopCar {
+  height: 120rpx;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  z-index: 100;
+  background-color: #eff0ef;
+  align-items: center;
+  display: flex;
+}
+.mini_ShopCar .img_view {
+  position: relative;
+  background-color: #feffff;
+  height: 100%;
+  border-radius: 50%;
+  padding: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 16;
+}
+.mini_ShopCar .img_view .badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 100rpx;
+  background-color: #e40050;
+  font-size: 20rpx;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mini_ShopCar .img_view .img {
+  width: 65rpx;
+}
+.mini_ShopCar .content {
+  flex: 84;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .content .priceView {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10rpx;
+}
+.mini_ShopCar .content .priceView .price {
+  font-size: large;
+}
+.mini_ShopCar .content .priceView .marketPriceView {
+  display: flex;
+  align-items: center;
+  margin-left: 10rpx;
+  font-size: small;
+  color: #888888;
+  text-decoration: line-through;
+}
+.mini_ShopCar .content .buyButton {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+  font-size: medium;
+  color: #ffffff;
+  height: 80rpx;
+  border-radius: 50rpx;
+  background-color: #e40055;
+}
