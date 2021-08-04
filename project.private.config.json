@@ -20,7 +20,8 @@
           "partialCompile": {
             "enabled": true,
             "pages": [
-              "pages/shopCar/shopCar"
+              "pages/shopCar/shopCar",
+              "pages/shopDetail/shopDetail"
             ]
           }
         }

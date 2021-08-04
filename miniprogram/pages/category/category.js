@@ -10,7 +10,7 @@ Page({
           marketPrice:2099, //原始价格
           specification:'青岛优选',
           stock:10, //库存数量
-          buy:0, //添加到购物车的数量
+             buy:0, //添加到购物车的数量
           id:1 //商品id
         }
       ],
@@ -20,7 +20,7 @@ Page({
       rightItemWidth:0,
       envId:''
   },
-  onLoad:function(options){
+     onLoad:function(options){
     // 生命周期函数--监听页面加载
     var app=getApp()
     this.setData({
