@@ -49,8 +49,8 @@ Page({
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
   },
-  onShareAppMessage: function() {
     // 用户点击右上角分享
+  onShareAppMessage: function() {
     return {
       title: '酒运达', // 分享标题
       desc: '酒运达，即刻达达，喝酒就上酒运达', // 分享描述
@@ -88,6 +88,7 @@ Page({
     })
     this.updataRightData()
   },
+  //更新右侧数据
   updataRightData:function(){
     if(this.data.allDataSource == null){
       return;
@@ -142,7 +143,6 @@ Page({
     app.addGoodToShopCar(data)
   },
 
-
 // 获取数据
   requestDataFromServe(){
     var that = this;
@@ -150,32 +150,30 @@ Page({
       title: '',
     })
     console.log(this.data.envId)
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: this.data.envId
-      },
-      data: {
-        type: 'getAllWine',
-        userInfo:{
-          openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
-        }
-        
-      }
-    }).then((res) => {
-      console.log(res.result)
-      that.updateData(res.result);
+    // 从云函数获取数据
+    // wx.cloud.callFunction({
+    //   name: 'quickstartFunctions',
+    //   config: {
+    //     env: this.data.envId
+    //   },
+    //   data: {
+    //     type: 'getAllWine',
+    //     userInfo:{
+    //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
+    //     }
+    //   }
+    // }).then((res) => {
+    //   console.log("res.result")
+    //   console.log(res.result)
+    //   that.updateData(res.result);
       wx.hideLoading()
-    }).catch((e) => {
-      console.log(e)
-     
-    })
-    
-
-  
+    // }).catch((e) => {
+    //   console.log(e)
+    // })
   },
   //更新数据
   updateData:function(data){
+    //更新左侧数据
     var leftData = new Array;
     for (var key in data.category_contitions){
       var str = data.category_contitions[key][0].category_name;
@@ -184,6 +182,7 @@ Page({
     this.setData({
         leftDataSource : leftData,
     })
+    //更新右侧数据
     var allData = new Array;
     for(var index in data.product_list){
       var good = data.product_list[index]; 

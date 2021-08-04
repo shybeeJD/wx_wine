@@ -43,7 +43,7 @@ App({
       
 
 
-      console.log(this.globalData)
+      // console.log(this.globalData)
       
     }
 
@@ -55,7 +55,7 @@ App({
       key: 'globalData',
       success: function(res){
         this.globalData = res.data;
-        console.log(that.globalData);
+        // console.log(that.globalData);
       },
       fail: function() {
       },
@@ -206,7 +206,7 @@ App({
  },
  // 从购物车减少商品
  reduceGoodFromShopCar:function(good){
-       console.log(this.globalData.shopCarGoods)
+      //  console.log(this.globalData.shopCarGoods)
    if(good.buy == 0){
      delete(this.globalData.shopCarGoods[good._id])
      console.log("删除")
@@ -220,6 +220,6 @@ App({
    }else{
      this.globalData.shopCarGoods[good._id] = good
    }
-   console.log(this.globalData.shopCarGoods[good._id])
+  //  console.log(this.globalData.shopCarGoods[good._id])
  }
 })
