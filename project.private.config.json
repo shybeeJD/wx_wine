@@ -16,7 +16,13 @@
           "name": "分类",
           "pathName": "pages/category/category",
           "query": "",
-          "scene": null
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": [
+              "pages/shopCar/shopCar"
+            ]
+          }
         }
       ]
     }

@@ -33,7 +33,6 @@
                 <text class = "good_buy_number">{{item.buy}}</text>
                 <image src="../resource/reduce.png" class = "reduce_image_style" id = "{{index}}" bindtap = "reduceImageClick"></image>
             </view>
-
             <view class = "right_line"></view>
         </view>
     </scroll-view>

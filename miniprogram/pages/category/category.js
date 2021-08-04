@@ -2,16 +2,16 @@ Page({
   data:{
       "rightDataSource":[
         {
-          category_name:'啤酒',
-          thumb_url:'cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png',
-          title:'青岛',
+          category_name:'啤酒',//分类名称
+          thumb_url:'cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png', //展示图片
+          title:'青岛',//商品名
           sale_count:5,
-          price:1499,
-          marketPrice:2099,
+          price:1499, //现在价格
+          marketPrice:2099, //原始价格
           specification:'青岛优选',
-          stock:10,
-          buy:0,
-          id:1
+          stock:10, //库存数量
+          buy:0, //添加到购物车的数量
+          id:1 //商品id
         }
       ],
       "leftDataSource":['啤酒','葡萄酒','白酒'],
@@ -110,7 +110,7 @@ Page({
         rightDataSource:selectData,
     })
   },
-// 减少上平
+// 减少商品
   reduceImageClick(par){
       var index = parseInt(par.currentTarget.id);
       var data = this.data.rightDataSource[index];
@@ -123,10 +123,14 @@ Page({
       var app = getApp();
       app.reduceGoodFromShopCar(data)
     },
-    // 添加
+    // 添加商品
   addImageDidClick(par){
+    // console.log(par)
+    // 获取点击的商品索引
     var index = parseInt(par.currentTarget.id);
+    // 在右侧数据里搜索对应索引的商品
     var data = this.data.rightDataSource[index];
+    // 比较是否超过库存
     if (data.buy < data.stock){
       data.buy += 1;
     }else{
