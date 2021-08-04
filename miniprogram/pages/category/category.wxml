@@ -1,10 +1,11 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
-  <miniShopCar></miniShopCar>
+  <miniShopCar id="myComponent"></miniShopCar>
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view
       wx:for-items="{{leftDataSource}}"
+      wx:key="*this"
       class="left_list_item_style"
       id="{{index}}"
       bindtap="rightListClick"
@@ -31,7 +32,7 @@
     scroll-x="{{false}}"
     scroll-y="{{true}}"
   >
-    <view wx:for-items="{{rightDataSource}}" class="right_list_item">
+    <view wx:for-items="{{rightDataSource}}" wx:key="*this" class="right_list_item">
       <!-- 商品主图 -->
       <image
         src="{{item.thumb_url}}"
