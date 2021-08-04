@@ -1,35 +1,27 @@
 // components/miniShopCar/miniShopCar.js
 Component({
-    /**
-     * 组件的属性列表
-     */
+    //  组件的属性列表
     properties: {},
-
-    /**
-     * 组件的初始数据
-     */
+    // 组件的初始数据
     data: {
-        dataSource: null,
-        num: 0,
-        price: 0,
-        marketPrice: 0,
-        timer: null,
+        dataSource: null, //购物车数据
+        num: 0, //数量
+        price: 0, //实付价
+        marketPrice: 0, //市场价
     },
     // 生命周期
     lifetimes: {
         attached: function () {
             let that = this;
-            that.getShopCarGoods();
+            that.getShopCarGoods(); //创建完先更新一下
         },
     },
-
-    /**
-     * 组件的方法列表
-     */
+    //   组件的方法列表
     methods: {
+        //获取globalData的购物车数据
+        //并执行getGoodsNum更新显示的数据
         getShopCarGoods: function () {
             let that = this;
-            // console.log(222222222222);
             let app = getApp();
             var data = new Array();
             for (var key in app.globalData.shopCarGoods) {

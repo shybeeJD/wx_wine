@@ -127,8 +127,9 @@ Page({
         var app = getApp();
         app.reduceGoodFromShopCar(data);
 
+        // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+        myComponent.getShopCarGoods();
     },
     // 添加商品
     addImageDidClick(par) {
@@ -154,6 +155,7 @@ Page({
         var app = getApp();
         app.addGoodToShopCar(data);
 
+        // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
         myComponent.getShopCarGoods(); // 调用自定义组件中的方法
     },
@@ -164,7 +166,7 @@ Page({
         wx.showLoading({
             title: "",
         });
-        console.log(this.data.envId);
+        // console.log(this.data.envId);
         // 从云函数获取数据
         // wx.cloud.callFunction({
         //   name: 'quickstartFunctions',
