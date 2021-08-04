@@ -109,6 +109,10 @@
                 line-height: 10px;
                 border-radius: 3px;
                 margin-left: 5px;
+                /* 我加的,为了好看点 */
+                padding: 2px;
+                text-align: center;
+                /* 我加的,为了好看点 */
                 height: 10px;
                 float: left;
             }
