@@ -1,6 +1,7 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
   <miniShopCar id="myComponent"></miniShopCar>
+
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view
@@ -10,21 +11,22 @@
       id="{{index}}"
       bindtap="rightListClick"
     >
+
       <view class="flag_line_color_size flag_line_select" wx:if="{{leftListSelectItem == index}}" />
+
       <view class="flag_line_color_size flag_line_nomal" wx:if="{{leftListSelectItem != index}}" />
-      <text class="left_list_text left_list_text_select" wx:if="{{leftListSelectItem == index}}"
-        >{{item}}</text
-      >
-      <text class="left_list_text left_list_text_nomal" wx:if="{{leftListSelectItem != index}}"
-        >{{item}}</text
-      >
+
+      <text class="left_list_text left_list_text_select" wx:if="{{leftListSelectItem == index}}">{{item}}</text>
+      <text class="left_list_text left_list_text_nomal" wx:if="{{leftListSelectItem != index}}">{{item}}</text>
       <view class="line_color_size" />
       <view
         class="flag_line_color_size"
         style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;"
       />
+
     </view>
   </scroll-view>
+
   <!-- 右详细 -->
   <scroll-view
     class="right_list_style"
