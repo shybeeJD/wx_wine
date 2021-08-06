@@ -14,4 +14,4 @@ $RECYCLE.BIN/
 node_modules/
 
 # vscode
-.vscode/*
+.vscode/
