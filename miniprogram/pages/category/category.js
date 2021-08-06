@@ -4,8 +4,9 @@ Page({
             //字符
             {
                 category_name: "啤酒", //分类名称
+                //展示图片
                 thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
+                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png",
                 title: "青岛", //商品名
                 sale_count: 5,
                 price: 1499, //现在价格
@@ -14,6 +15,19 @@ Page({
                 stock: 10, //库存数量
                 buy: 0, //添加到购物车的数量
                 id: 1, //商品id
+            },
+            {
+                category_name: "白酒", //分类名称
+                thumb_url:
+                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
+                title: "二锅头", //商品名
+                sale_count: 5,
+                price: 15, //现在价格
+                marketPrice: 20, //原始价格
+                specification: "青岛优选",
+                stock: 5, //库存数量
+                buy: 0, //添加到购物车的数量
+                id: 2, //商品id
             },
         ],
         leftDataSource: ["啤酒", "葡萄酒", "白酒"], //字符
