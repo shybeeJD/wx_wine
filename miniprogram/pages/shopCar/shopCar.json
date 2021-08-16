@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "购物车",
-    "usingComponents":{
-        "miniShopCar":"../../components/miniShopCar/miniShopCar"
+    "usingComponents": {
+        "miniShopCar": "../../components/miniShopCar/miniShopCar"
     }
 }

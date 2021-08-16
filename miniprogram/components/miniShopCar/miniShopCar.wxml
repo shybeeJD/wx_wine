@@ -1,7 +1,7 @@
 <view class="mini_ShopCar">
   <!-- 购物车图片区 -->
   <view class="img_view" hover-class="none" hover-stop-propagation="false">
-    <text class="badge">{{num}}</text>
+    <mp-badge class="badge" content="{{num}}"/>
     <image class="img" mode="widthFix" src="../../pages/resource/shopcarHight.png" />
   </view>
   <!-- 价格结算区 -->
