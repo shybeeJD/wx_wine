@@ -9,6 +9,7 @@
         id="{{index}}"
         bindtap="addButtonClick"
       ></image>
+      
       <input class="good_buy_number" value="{{item.buy}}" />
       <image
         src="../resource/reduce.png"
