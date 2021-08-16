@@ -1,7 +1,6 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
   <miniShopCar id="myComponent"></miniShopCar>
-
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view

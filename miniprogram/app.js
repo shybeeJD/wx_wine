@@ -203,10 +203,11 @@ App({
     // 不为空就把购买数量+1
     if (tempGood != null) {
       tempGood.buy = good.buy;
-      this.globalData.shopCarGoods[good._id] = tempGood;
+      this.globalData.shopCarGoods[good.id] = tempGood;
     } else {
-      this.globalData.shopCarGoods[good._id] = good
+      this.globalData.shopCarGoods[good.id] = good
     }
+    console.log(this.globalData.shopCarGoods);
   },
  // 从购物车减少商品
  reduceGoodFromShopCar:function(good){

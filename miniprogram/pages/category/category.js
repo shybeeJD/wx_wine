@@ -98,9 +98,28 @@ Page({
     },
     // 右侧列表被点击
     rightListClick(par) {
+        //更新rightdatasource
         var index = parseInt(par.currentTarget.id);
+
+        var rightDataSource = [
+            //字符
+            {
+                category_name: "白酒", //分类名称
+                thumb_url:
+                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
+                title: "二锅头", //商品名
+                sale_count: 5,
+                price: 15, //现在价格
+                marketPrice: 20, //原始价格
+                specification: "青岛优选",
+                stock: 5, //库存数量
+                buy: 0, //添加到购物车的数量
+                id: 2, //商品id
+            },
+        ];
         this.setData({
             leftListSelectItem: index,
+            rightDataSource: rightDataSource,
         });
         this.updataRightData();
     },
