@@ -53,6 +53,7 @@
         <text class="right_list_item_price">¥{{item.price}}</text>
         <text class="right_list_item_market_price">{{item.marketPrice}}</text>
       </view>
+      
       <!-- 加减号 -->
       <view>
         <image
