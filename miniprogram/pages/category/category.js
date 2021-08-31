@@ -2,35 +2,10 @@ Page({
     data: {
         rightDataSource: [
             //字符
-            {
-                category_name: "啤酒", //分类名称
-                //展示图片
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png",
-                title: "青岛", //商品名
-                sale_count: 5,
-                price: 1499, //现在价格
-                marketPrice: 2099, //原始价格
-                specification: "青岛优选",
-                stock: 10, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 1, //商品id
-            },
-            {
-                category_name: "白酒", //分类名称
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
-                title: "二锅头", //商品名
-                sale_count: 5,
-                price: 15, //现在价格
-                marketPrice: 20, //原始价格
-                specification: "青岛优选",
-                stock: 5, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 2, //商品id
-            },
+            
         ],
-        leftDataSource: ["啤酒", "葡萄酒", "白酒"], //字符
+        //rightDataSourceAll:[],
+        leftDataSource: ["啤酒", "葡萄酒"], //字符
         allDataSouce: null,
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
@@ -42,11 +17,15 @@ Page({
         this.setData({
             envId: app.globalData.envId,
         });
+        this.getWineTypes();
+        this.getAllwines();
+        this.updataRightData();
         this.requestDataFromServe();
         this.renderControl();
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
+        
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
@@ -96,35 +75,70 @@ Page({
             complete: function () {},
         });
     },
+    getWineTypes: function(){
+        var app = getApp();
+        console.log(app.globalData.envId)
+        wx.cloud.callFunction({
+            name: 'quickstartFunctions',
+            config: {
+              env: app.globalData.envId
+            },
+            data: {
+              type: 'selectWinTypes'
+            }
+          }).then((resp) => {
+            var res=(resp.result.data[0]['type'])
+            this.setData({
+                leftDataSource:res.split(",")
+            })
+            wx.hideLoading()
+          }).catch((e) => {
+            console.log(e)
+            
+            wx.hideLoading()
+          })
+            
+    },
+    getAllwines: function(){
+        var app = getApp();
+        console.log(app.globalData.envId)
+        wx.cloud.callFunction({
+            name: 'quickstartFunctions',
+            config: {
+              env: app.globalData.envId
+            },
+            data: {
+              type: 'selectWineItems'
+            }
+          }).then((resp) => {
+            this.setData({
+                allDataSource:resp.result.data,
+            })
+
+            this.updataRightData()
+            wx.hideLoading()
+          }).catch((e) => {
+            console.log(e)
+            
+            wx.hideLoading()
+          })
+          this.updataRightData();
+            
+    },
     // 右侧列表被点击
     rightListClick(par) {
         //更新rightdatasource
         var index = parseInt(par.currentTarget.id);
-
-        var rightDataSource = [
-            //字符
-            {
-                category_name: "白酒", //分类名称
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
-                title: "二锅头", //商品名
-                sale_count: 5,
-                price: 15, //现在价格
-                marketPrice: 20, //原始价格
-                specification: "青岛优选",
-                stock: 5, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 2, //商品id
-            },
-        ];
         this.setData({
             leftListSelectItem: index,
-            rightDataSource: rightDataSource,
         });
         this.updataRightData();
     },
     //更新右侧数据
     updataRightData: function () {
+
+        console.log(this.data.leftListSelectItem)
+        console.log(this.data.allDataSource)
         if (this.data.allDataSource == null) {
             return;
         }
@@ -134,6 +148,8 @@ Page({
         var app = getApp();
         for (var index in this.data.allDataSource) {
             var good = this.data.allDataSource[index];
+            console.log(good)
+            console.log(selectClassStr)
             if (good.category_name == selectClassStr) {
                 var tempGood = app.globalData.shopCarGoods[good.id];
                 if (tempGood != null) {
@@ -194,6 +210,7 @@ Page({
     },
 
     // 获取数据
+
     requestDataFromServe() {
         var that = this;
         wx.showLoading({
