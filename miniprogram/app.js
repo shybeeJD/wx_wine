@@ -195,8 +195,20 @@ App({
     })
    
  },
-  // 添加商品到购物车车
+  // 添加商品到购物车
   addGoodToShopCar: function (good) {
+    
+    let cart = wx.getStorageSync("cart")||[]
+    let index = cart.findIndex(v=>v.goods_id===good._id)// todo: 查看商品详情的格式,来确定是哪个id属性
+    // 如果缓存中没有,则push当前商品
+    // 否则更新对应位置的商品信息
+    if(index ===-1){
+      cart.push(good)
+    }else{
+      cart[index]=good
+    }
+
+
     // console.log(this.globalData.shopCarGoods)
     // 获取购物车中的对应id的商品设置为临时商品
     var tempGood = this.globalData.shopCarGoods[good._id];

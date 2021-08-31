@@ -6,20 +6,24 @@ Page({
         ],
         //rightDataSourceAll:[],
         leftDataSource: ["啤酒", "葡萄酒"], //字符
-        allDataSouce: null,
+        // allDataSouce: null, //好像没用了
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
         envId: "",
     },
     onLoad: function (options) {
-        // 生命周期函数--监听页面加载
         var app = getApp();
         this.setData({
             envId: app.globalData.envId,
         });
         this.getAllwines();
-        this.requestDataFromServe();
+
+        // 这个好像没有用了,被getAllwines()代替了
+        // this.requestDataFromServe();
+
         this.renderControl();
+
+
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
@@ -76,8 +80,8 @@ Page({
 
     getAllwines: function(){
         var app = getApp();
-        console.log(app.globalData)
-        console.log(app.globalData.userInfo)
+        // console.log(app.globalData)
+        // console.log(app.globalData.userInfo)
         wx.cloud.callFunction({
             name: 'quickstartFunctions',
             config: {
@@ -111,8 +115,6 @@ Page({
     },
     //更新右侧数据
     updataRightData: function () {
-
-
         if (this.data.allDataSource == null) {
             return;
         }
@@ -170,6 +172,7 @@ Page({
             });
             return;
         }
+        // todo: 这个setdate是不是有问题,右边是不是应该改成data
         this.setData({
             rightDataSource: this.data.rightDataSource,
         });
@@ -184,34 +187,33 @@ Page({
     },
 
     // 获取数据
-
-    requestDataFromServe() {
-        var that = this;
-        wx.showLoading({
-            title: "",
-        });
-        // console.log(this.data.envId);
-        // 从云函数获取数据
-        // wx.cloud.callFunction({
-        //   name: 'quickstartFunctions',
-        //   config: {
-        //     env: this.data.envId
-        //   },
-        //   data: {
-        //     type: 'getAllWine',
-        //     userInfo:{
-        //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
-        //     }
-        //   }
-        // }).then((res) => {
-        //   console.log("res.result")
-        //   console.log(res.result)
-        //   that.updateData(res.result);
-        wx.hideLoading();
-        // }).catch((e) => {
-        //   console.log(e)
-        // })
-    },
+    // requestDataFromServe() {
+    //     var that = this;
+    //     wx.showLoading({
+    //         title: "",
+    //     });
+    //     // console.log(this.data.envId);
+    //     // 从云函数获取数据
+    //     // wx.cloud.callFunction({
+    //     //   name: 'quickstartFunctions',
+    //     //   config: {
+    //     //     env: this.data.envId
+    //     //   },
+    //     //   data: {
+    //     //     type: 'getAllWine',
+    //     //     userInfo:{
+    //     //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
+    //     //     }
+    //     //   }
+    //     // }).then((res) => {
+    //     //   console.log("res.result")
+    //     //   console.log(res.result)
+    //     //   that.updateData(res.result);
+    //     wx.hideLoading();
+    //     // }).catch((e) => {
+    //     //   console.log(e)
+    //     // })
+    // },
     //更新数据
     updateData: function (data) {
         //更新左侧数据
