@@ -10,7 +10,7 @@ Page({
   onLoad:function(options){
     // 如果用户没有登录需要用户登录
     var that=this
-    app=getApp()
+    var app=getApp()
     if (app.globalData.islogin){
       that.setData({
         islogin:true,
@@ -62,6 +62,7 @@ Page({
   // 去登陆
   gotologin:function(){
     var that=this
+    var app=getApp();
     wx.getUserProfile({
       desc: '用于完善会员资料', 
       success: function (res) {
@@ -71,8 +72,9 @@ Page({
           user_nickname:res.userInfo.nickName,
           avatar_url:res.userInfo.avatarUrl
         })
+
         console.log(res)
-        console.log(that.data)
+        console.log(app.data)
         wx.cloud.callFunction({
           name: 'quickstartFunctions',
           config: {

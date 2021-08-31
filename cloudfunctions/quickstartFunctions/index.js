@@ -8,8 +8,7 @@ const writeMsg = require('./writeMsg/index')
 const login = require('./login/index')
 const getAllWine = require('./selectMethods/getAllWine/index')
 const selectIcon = require('./selectMethods/selectIcon/index')
-const selectWinTypes=require('./getCateGory/getTypes/index')
-const selectWineItems=require('./getCateGory/getAllItems/index')
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log(event.type)

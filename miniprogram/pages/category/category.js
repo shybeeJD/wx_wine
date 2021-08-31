@@ -17,9 +17,7 @@ Page({
         this.setData({
             envId: app.globalData.envId,
         });
-        this.getWineTypes();
         this.getAllwines();
-        this.updataRightData();
         this.requestDataFromServe();
         this.renderControl();
     },
@@ -75,47 +73,24 @@ Page({
             complete: function () {},
         });
     },
-    getWineTypes: function(){
-        var app = getApp();
-        console.log(app.globalData.envId)
-        wx.cloud.callFunction({
-            name: 'quickstartFunctions',
-            config: {
-              env: app.globalData.envId
-            },
-            data: {
-              type: 'selectWinTypes'
-            }
-          }).then((resp) => {
-            var res=(resp.result.data[0]['type'])
-            this.setData({
-                leftDataSource:res.split(",")
-            })
-            wx.hideLoading()
-          }).catch((e) => {
-            console.log(e)
-            
-            wx.hideLoading()
-          })
-            
-    },
+
     getAllwines: function(){
         var app = getApp();
-        console.log(app.globalData.envId)
+        console.log(app.globalData)
+        console.log(app.globalData.userInfo)
         wx.cloud.callFunction({
             name: 'quickstartFunctions',
             config: {
               env: app.globalData.envId
             },
             data: {
-              type: 'selectWineItems'
+              type: 'getAllWine',
+              userInfo:app.globalData.userInfo
             }
           }).then((resp) => {
-            this.setData({
-                allDataSource:resp.result.data,
-            })
-
-            this.updataRightData()
+              console.log(resp.result)
+        
+            this.updateData(resp.result)
             wx.hideLoading()
           }).catch((e) => {
             console.log(e)
@@ -137,8 +112,7 @@ Page({
     //更新右侧数据
     updataRightData: function () {
 
-        console.log(this.data.leftListSelectItem)
-        console.log(this.data.allDataSource)
+
         if (this.data.allDataSource == null) {
             return;
         }
@@ -148,8 +122,6 @@ Page({
         var app = getApp();
         for (var index in this.data.allDataSource) {
             var good = this.data.allDataSource[index];
-            console.log(good)
-            console.log(selectClassStr)
             if (good.category_name == selectClassStr) {
                 var tempGood = app.globalData.shopCarGoods[good.id];
                 if (tempGood != null) {
@@ -187,6 +159,7 @@ Page({
         var index = parseInt(par.currentTarget.id);
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
+        console.log(data)
         // 比较是否超过库存
         if (data.buy < data.stock) {
             data.buy += 1;
@@ -202,6 +175,7 @@ Page({
         });
 
         var app = getApp();
+        console.log(data)
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -242,9 +216,9 @@ Page({
     updateData: function (data) {
         //更新左侧数据
         var leftData = new Array();
-        for (var key in data.category_contitions) {
-            var str = data.category_contitions[key][0].category_name;
-            leftData.push(str);
+        for (var i=0; i<data.category_contitions.length;i++) {
+            
+            leftData.push(data.category_contitions[i]);
         }
         this.setData({
             leftDataSource: leftData,

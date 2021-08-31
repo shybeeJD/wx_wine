@@ -49,7 +49,7 @@ App({
 
   },
   onShow:function(){
-    // this.getUserInfo()
+     this.getUserInfo()
     var that = this;
       wx.getStorage({
       key: 'globalData',
@@ -182,6 +182,7 @@ App({
         save: false
       }
     }).then((resp) => {
+      console.log(resp.result)
       if(resp.result.data.length>0){
         that.globalData.islogin=true
         that.globalData.userInfo=resp.result.data[0]
@@ -203,9 +204,9 @@ App({
     // 不为空就把购买数量+1
     if (tempGood != null) {
       tempGood.buy = good.buy;
-      this.globalData.shopCarGoods[good.id] = tempGood;
+      this.globalData.shopCarGoods[good._id] = tempGood;
     } else {
-      this.globalData.shopCarGoods[good.id] = good
+      this.globalData.shopCarGoods[good._id] = good
     }
     console.log(this.globalData.shopCarGoods);
   },
