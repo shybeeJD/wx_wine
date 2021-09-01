@@ -145,6 +145,10 @@ Page({
                 rightDataSource: this.data.rightDataSource,
             });
         }
+        // todo: 购物车加入到缓存
+
+        let cart = wx.wx.getStorageSync("cart") || [];
+        // let good_index=cart.findIndex(v=>)
 
         var app = getApp();
         app.reduceGoodFromShopCar(data);
