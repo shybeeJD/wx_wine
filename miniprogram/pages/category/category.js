@@ -2,47 +2,21 @@ Page({
     data: {
         rightDataSource: [
             //字符
-            {
-                category_name: "啤酒", //分类名称
-                //展示图片
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png",
-                title: "青岛", //商品名
-                sale_count: 5,
-                price: 1499, //现在价格
-                marketPrice: 2099, //原始价格
-                specification: "青岛优选",
-                stock: 10, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 1, //商品id
-            },
-            {
-                category_name: "白酒", //分类名称
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
-                title: "二锅头", //商品名
-                sale_count: 5,
-                price: 15, //现在价格
-                marketPrice: 20, //原始价格
-                specification: "青岛优选",
-                stock: 5, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 2, //商品id
-            },
         ],
-        leftDataSource: ["啤酒", "葡萄酒", "白酒"], //字符
-        allDataSouce: null,
+        //rightDataSourceAll:[],
+        leftDataSource: ["啤酒", "葡萄酒"], //字符
+        // allDataSouce: null, //好像没用了
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
         envId: "",
     },
     onLoad: function (options) {
-        // 生命周期函数--监听页面加载
         var app = getApp();
         this.setData({
             envId: app.globalData.envId,
         });
-        this.requestDataFromServe();
+        this.getAllwines();
+        // this.requestDataFromServe(); // 这个好像没有用了,被getAllwines()代替了
         this.renderControl();
     },
     onReady: function () {
@@ -51,6 +25,10 @@ Page({
     onShow: function () {
         // 生命周期函数--监听页面显示
         this.updataRightData();
+
+        // 调用自定义组件中的方法,更新底栏购物车
+        let myComponent = this.selectComponent("#myComponent");
+        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -96,30 +74,41 @@ Page({
             complete: function () {},
         });
     },
+
+    getAllwines: function () {
+        var app = getApp();
+        // console.log(app.globalData)
+        // console.log(app.globalData.userInfo)
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: app.globalData.envId,
+                },
+                data: {
+                    type: "getAllWine",
+                    userInfo: app.globalData.userInfo,
+                },
+            })
+            .then((resp) => {
+                console.log(resp.result);
+
+                this.updateData(resp.result);
+                wx.hideLoading();
+            })
+            .catch((e) => {
+                console.log(e);
+
+                wx.hideLoading();
+            });
+        this.updataRightData();
+    },
     // 右侧列表被点击
     rightListClick(par) {
         //更新rightdatasource
         var index = parseInt(par.currentTarget.id);
-
-        var rightDataSource = [
-            //字符
-            {
-                category_name: "白酒", //分类名称
-                thumb_url:
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png", //展示图片
-                title: "二锅头", //商品名
-                sale_count: 5,
-                price: 15, //现在价格
-                marketPrice: 20, //原始价格
-                specification: "青岛优选",
-                stock: 5, //库存数量
-                buy: 0, //添加到购物车的数量
-                id: 2, //商品id
-            },
-        ];
         this.setData({
             leftListSelectItem: index,
-            rightDataSource: rightDataSource,
         });
         this.updataRightData();
     },
@@ -175,6 +164,7 @@ Page({
         var index = parseInt(par.currentTarget.id);
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
+        console.log(data);
         // 比较是否超过库存
         if (data.buy < data.stock) {
             data.buy += 1;
@@ -190,6 +180,7 @@ Page({
         });
 
         var app = getApp();
+        console.log(data);
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -198,40 +189,39 @@ Page({
     },
 
     // 获取数据
-    requestDataFromServe() {
-        var that = this;
-        wx.showLoading({
-            title: "",
-        });
-        // console.log(this.data.envId);
-        // 从云函数获取数据
-        // wx.cloud.callFunction({
-        //   name: 'quickstartFunctions',
-        //   config: {
-        //     env: this.data.envId
-        //   },
-        //   data: {
-        //     type: 'getAllWine',
-        //     userInfo:{
-        //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
-        //     }
-        //   }
-        // }).then((res) => {
-        //   console.log("res.result")
-        //   console.log(res.result)
-        //   that.updateData(res.result);
-        wx.hideLoading();
-        // }).catch((e) => {
-        //   console.log(e)
-        // })
-    },
+    // requestDataFromServe() {
+    //     var that = this;
+    //     wx.showLoading({
+    //         title: "",
+    //     });
+    //     // console.log(this.data.envId);
+    //     // 从云函数获取数据
+    //     // wx.cloud.callFunction({
+    //     //   name: 'quickstartFunctions',
+    //     //   config: {
+    //     //     env: this.data.envId
+    //     //   },
+    //     //   data: {
+    //     //     type: 'getAllWine',
+    //     //     userInfo:{
+    //     //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
+    //     //     }
+    //     //   }
+    //     // }).then((res) => {
+    //     //   console.log("res.result")
+    //     //   console.log(res.result)
+    //     //   that.updateData(res.result);
+    //     wx.hideLoading();
+    //     // }).catch((e) => {
+    //     //   console.log(e)
+    //     // })
+    // },
     //更新数据
     updateData: function (data) {
         //更新左侧数据
         var leftData = new Array();
-        for (var key in data.category_contitions) {
-            var str = data.category_contitions[key][0].category_name;
-            leftData.push(str);
+        for (var i = 0; i < data.category_contitions.length; i++) {
+            leftData.push(data.category_contitions[i]);
         }
         this.setData({
             leftDataSource: leftData,
@@ -248,5 +238,30 @@ Page({
             allDataSource: allData,
         });
         this.updataRightData();
+        this.upDataFromStorage();
+    },
+    upDataFromStorage: function () {
+        let rightDataSource = this.data.rightDataSource;
+        console.log("assssssssssssssssssss");
+
+        let cart = wx.getStorageSync("cart") || [];
+        for (let i in cart) {
+            let index = rightDataSource.findIndex((v) => v._id === cart[i]._id);
+            if (index === -1) {
+            } else {
+                rightDataSource[index].buy = cart[i].buy;
+            }
+            // console.log('key=', i, 'value=', cart[i])
+        }
+
+        this.setData({
+            rightDataSource: rightDataSource,
+        });
+        // let index = cart.findIndex((v) => v._id === good._id);
+        // if (index === -1) {
+        //     good.buy = 0;
+        // } else {
+        //     good.buy = cart[index].buy;
+        // }
     },
 });

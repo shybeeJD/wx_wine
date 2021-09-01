@@ -18,19 +18,15 @@ Component({
     },
     //   组件的方法列表
     methods: {
-        //获取globalData的购物车数据
+        //获取缓存的购物车数据
         //并执行getGoodsNum更新显示的数据
         getShopCarGoods: function () {
-            let that = this;
-            let app = getApp();
-            var data = new Array();
-            for (var key in app.globalData.shopCarGoods) {
-                data.push(app.globalData.shopCarGoods[key]);
-            }
-            that.setData({
+            var data = wx.getStorageSync("cart");
+
+            this.setData({
                 dataSource: data,
             });
-            that.getGoodsNum();
+            this.getGoodsNum();
         },
         getGoodsNum: function () {
             let that = this;

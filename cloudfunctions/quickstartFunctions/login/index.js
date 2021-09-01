@@ -12,9 +12,10 @@ exports.main = async (event, context) => {
   // console.log 的内容可以在云开发云函数调用日志查看
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
   if (!event.save){
-    console.log(event.userInfo.openId)
+    var userInfo=cloud.getWXContext()
+    console.log(userInfo)
     return await db.collection('users').where({
-      openId: event.userInfo.openId,
+      OPENID: userInfo.OPENID,
     }).get({
       success: function(res) {
         // res.data 包含该记录的数据
@@ -25,10 +26,13 @@ exports.main = async (event, context) => {
     })
   }else{
     console.log(event)
-    data=Object.assign(event.userInfoDetial,event.userInfo)
+    var userInfo=cloud.getWXContext()
+    console.log(userInfo)
+    data=Object.assign(event.userInfoDetial,userInfo)
     console.log(data)
-    await db.collection('todos').where({
-      openId: event.userInfo.openId
+    console.log(userInfo.openId)
+    await db.collection('users').where({
+      OPENID: userInfo.OPENID
     }).remove()
     await db.collection('users').add({
       // data 字段表示需新增的 JSON 数据

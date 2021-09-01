@@ -9,6 +9,10 @@ Page({
     onShow: function () {
         // 生命周期函数--监听页面显示
         this.renderData();
+
+        // 调用自定义组件中的方法,更新底栏购物车
+        let myComponent = this.selectComponent("#myComponent");
+        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -31,11 +35,8 @@ Page({
         };
     },
     renderData: function () {
-        var app = getApp();
-        var data = new Array();
-        for (var key in app.globalData.shopCarGoods) {
-            data.push(app.globalData.shopCarGoods[key]);
-        }
+        var data = wx.getStorageSync("cart");
+
         this.setData({
             dataSource: data,
         });
