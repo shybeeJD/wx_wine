@@ -31,11 +31,8 @@ Page({
         };
     },
     renderData: function () {
-        var app = getApp();
-        var data = new Array();
-        for (var key in app.globalData.shopCarGoods) {
-            data.push(app.globalData.shopCarGoods[key]);
-        }
+        var data = wx.getStorageSync("cart");
+
         this.setData({
             dataSource: data,
         });

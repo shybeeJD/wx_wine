@@ -2,7 +2,6 @@ Page({
     data: {
         rightDataSource: [
             //字符
-            
         ],
         //rightDataSourceAll:[],
         leftDataSource: ["啤酒", "葡萄酒"], //字符
@@ -17,17 +16,11 @@ Page({
             envId: app.globalData.envId,
         });
         this.getAllwines();
-
-        // 这个好像没有用了,被getAllwines()代替了
-        // this.requestDataFromServe();
-
+        // this.requestDataFromServe(); // 这个好像没有用了,被getAllwines()代替了
         this.renderControl();
-
-
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
-        
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
@@ -78,31 +71,33 @@ Page({
         });
     },
 
-    getAllwines: function(){
+    getAllwines: function () {
         var app = getApp();
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
-        wx.cloud.callFunction({
-            name: 'quickstartFunctions',
-            config: {
-              env: app.globalData.envId
-            },
-            data: {
-              type: 'getAllWine',
-              userInfo:app.globalData.userInfo
-            }
-          }).then((resp) => {
-              console.log(resp.result)
-        
-            this.updateData(resp.result)
-            wx.hideLoading()
-          }).catch((e) => {
-            console.log(e)
-            
-            wx.hideLoading()
-          })
-          this.updataRightData();
-            
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: app.globalData.envId,
+                },
+                data: {
+                    type: "getAllWine",
+                    userInfo: app.globalData.userInfo,
+                },
+            })
+            .then((resp) => {
+                console.log(resp.result);
+
+                this.updateData(resp.result);
+                wx.hideLoading();
+            })
+            .catch((e) => {
+                console.log(e);
+
+                wx.hideLoading();
+            });
+        this.updataRightData();
     },
     // 右侧列表被点击
     rightListClick(par) {
@@ -161,7 +156,7 @@ Page({
         var index = parseInt(par.currentTarget.id);
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
-        console.log(data)
+        console.log(data);
         // 比较是否超过库存
         if (data.buy < data.stock) {
             data.buy += 1;
@@ -172,13 +167,12 @@ Page({
             });
             return;
         }
-        // todo: 这个setdate是不是有问题,右边是不是应该改成data
         this.setData({
             rightDataSource: this.data.rightDataSource,
         });
 
         var app = getApp();
-        console.log(data)
+        console.log(data);
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -218,8 +212,7 @@ Page({
     updateData: function (data) {
         //更新左侧数据
         var leftData = new Array();
-        for (var i=0; i<data.category_contitions.length;i++) {
-            
+        for (var i = 0; i < data.category_contitions.length; i++) {
             leftData.push(data.category_contitions[i]);
         }
         this.setData({
@@ -237,5 +230,30 @@ Page({
             allDataSource: allData,
         });
         this.updataRightData();
+        this.upDataFromStorage();
+    },
+    upDataFromStorage: function () {
+        let rightDataSource = this.data.rightDataSource;
+        console.log("assssssssssssssssssss");
+
+        let cart = wx.getStorageSync("cart") || [];
+        for (let i in cart) {
+            let index = rightDataSource.findIndex((v) => v._id === cart[i]._id);
+            if (index === -1) {
+            } else {
+                rightDataSource[index].buy = cart[i].buy;
+            }
+            // console.log('key=', i, 'value=', cart[i])
+        }
+
+        this.setData({
+            rightDataSource: rightDataSource,
+        });
+        // let index = cart.findIndex((v) => v._id === good._id);
+        // if (index === -1) {
+        //     good.buy = 0;
+        // } else {
+        //     good.buy = cart[index].buy;
+        // }
     },
 });
