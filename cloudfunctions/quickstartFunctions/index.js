@@ -10,6 +10,10 @@ const getAllWine = require('./selectMethods/getAllWine/index')
 const selectIcon = require('./selectMethods/selectIcon/index')
 const getOrderInfo =require('./selectMethods/getOrderInfo/index')
 const createOrder = require('./createMethods/createOrder/index')
+const closeOrder = require('./updateMethods/closeOrder/index')
+const createAddress =require('./createMethods/createAddress/index')
+const getAddress = require('./selectMethods/getAddress')
+const deleteAddress =require('./deleteMethods/deleteAddress')
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log(event.type)
@@ -40,6 +44,14 @@ exports.main = async (event, context) => {
       return await getOrderInfo.main(event,context)
     case 'createOrder':
       return await createOrder.main(event,context)
+    case 'createAddress':
+      return await createAddress.main(event,context)
+    case 'getAddress':
+      return await getAddress.main(event,context)
+    case 'closeOrder':
+      return await closeOrder.main(event,context)
+    case 'deleteAddress':
+      return await deleteAddress.main(event,context)
     case 'writeMsg':{
       return await writeMsg.main(event, context)
     }

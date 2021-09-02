@@ -1,3 +1,4 @@
+
 const cloud = require('wx-server-sdk')
 
 
@@ -5,11 +6,16 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 const db = cloud.database()
-
-
-// 查询数据库集合云函数入口函数
 exports.main = async (event, context) => {
   var userInfo=cloud.getWXContext()
-  var id = event.id
-  
+
+  await db.collection('address').where({
+    userId:userInfo.OPENID,
+    _id:event._id
+  })
+  .remove({
+    success: function(res) {
+      return res.data
+    }
+  })
 }

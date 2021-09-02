@@ -8,7 +8,9 @@
     "pages/me/me",
     "pages/login/login",
     "pages/search/search",
-    "pages/settlement/settlement"
+    "pages/settlement/settlement",
+    "pages/address/address",
+    "pages/address/addressList"
   ],
   "permission": {
     "scope.userLocation": {
