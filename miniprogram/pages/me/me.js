@@ -59,6 +59,11 @@ Page({
       path: 'path' // 分享路径
     }
   },
+  manageAddress:function(){
+    wx.navigateTo({
+      url: '../address/addressList',
+    })
+  },
   // 去登陆
   gotologin:function(){
     var that=this
