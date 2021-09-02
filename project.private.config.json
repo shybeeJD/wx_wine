@@ -24,6 +24,18 @@
               "pages/shopDetail/shopDetail"
             ]
           }
+        },
+        {
+          "name": "购物车",
+          "pathName": "pages/shopCar/shopCar",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/settlement/settlement",
+          "pathName": "pages/settlement/settlement",
+          "query": "",
+          "scene": null
         }
       ]
     }
