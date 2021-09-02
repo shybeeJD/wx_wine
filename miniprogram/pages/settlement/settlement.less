@@ -1,4 +1,12 @@
-@list_height: 84rpx;
+@title_listHeight: 56px;
+@list_height: 42px;
+@white: #FFFFFF;
+@n_font: medium;
+@theme_color: #FF585A;
+
+#container {
+  font-size: @n_font;
+}
 
 .c1 {
   display: flex;
@@ -8,7 +16,8 @@
 
   overflow: auto;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf, ;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: @white;
 }
 
 .underLine {
@@ -17,8 +26,9 @@
   display: inline;
   padding-top: 10upx;
   margin: 0 auto;
-  border-bottom: 1px solid rgb(163, 162, 162);
+  border-bottom: 1px solid #F7F7F7;
 }
+
 .c2 {
   display: flex;
   flex-direction: column;
@@ -27,28 +37,25 @@
 
   overflow: auto;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf, ;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: @white;
 
   .c2_title {
-    background-color: #F1F1F1;
     flex: 1;
     padding: 0px 10px 0px 10px;
     display: flex;
     align-items: center;
 
-    font-size: 12pt;
     font-weight: bold;
-    min-height: @list_height;
+    min-height: @title_listHeight;
   }
 
 
 
   .c2_goodsList {
-    background-color: #E2E2E2;
     display: flex;
     align-items: center;
     flex: 1;
-    font-size: 12pt;
 
     .list {
       display: flex;
@@ -63,9 +70,8 @@
         display: flex;
         align-items: center;
         flex: 1;
-        // border-bottom: solid;
-        // border-width: 1px;
         min-height: @list_height;
+        font-size: small;
 
         .title {
           flex: 2;
@@ -74,28 +80,41 @@
         .num {
           flex: 1;
           text-align: right;
+          font-size: smaller;
         }
 
         .price {
           flex: 1;
           text-align: right;
+          font-size: medium;
         }
       }
     }
   }
 
   .c2_discount {
-    background-color: #F1F1F1;
     display: flex;
     align-items: center;
     flex: 1;
     padding: 0px 10px 0px 10px;
 
     min-height: @list_height;
+
+    display: flex;
+    flex-direction: row;
+
+    .title {
+      flex: 1;
+    }
+
+    .value {
+      flex: 1;
+      text-align: right;
+      color: gray;
+    }
   }
 
   .c2_total {
-    background-color: #E2E2E2;
     display: flex;
     height: @list_height;
     align-items: center;
@@ -104,29 +123,74 @@
 
     min-height: @list_height;
     margin-left: auto;
+
+    .text {
+      font-size: small;
+      color: gray;
+    }
+
+    .price {
+      color: red;
+      font-size: large;
+    }
   }
 }
 
 .notes {
-  background: #E2E2E2;
   min-height: @list_height;
   margin: 10px;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0px 10px 0px 10px;
 
   overflow: auto;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf, ;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: @white;
+
+  .tips {
+    color: gray;
+
+    .arrow {
+      color: black;
+    }
+  }
 }
 
 .Submit {
   width: 100%;
-  background: #d1d1d1;
-  min-height: @list_height;
+  min-height: @title_listHeight;
   position: absolute;
   bottom: 0;
+
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  background-color: @white;
+
+  .price {
+    color: red;
+    flex: 2;
+    font-size: large;
+
+    margin-left: 10px;
+  }
+
+  .btn {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+
+    background-color: @theme_color;
+    color: white;
+    height: @title_listHeight*0.8;
+    border-radius: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

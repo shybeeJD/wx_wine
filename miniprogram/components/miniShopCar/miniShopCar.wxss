@@ -68,5 +68,5 @@
   color: #ffffff;
   height: 80rpx;
   border-radius: 50rpx;
-  background-color: #e40055;
+  background-color: #FF585A;
 }

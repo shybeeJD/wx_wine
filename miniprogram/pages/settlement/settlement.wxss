@@ -1,3 +1,6 @@
+#container {
+  font-size: medium;
+}
 .c1 {
   display: flex;
   flex-direction: column;
@@ -6,6 +9,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #FFFFFF;
 }
 .underLine {
   width: 100%;
@@ -13,7 +17,7 @@
   display: inline;
   padding-top: 10upx;
   margin: 0 auto;
-  border-bottom: 1px solid #a3a2a2;
+  border-bottom: 1px solid #F7F7F7;
 }
 .c2 {
   display: flex;
@@ -23,28 +27,25 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #FFFFFF;
 }
 .c2 .c2_title {
-  background-color: #F1F1F1;
   flex: 1;
   padding: 0px 10px 0px 10px;
   display: flex;
   align-items: center;
-  font-size: 12pt;
   font-weight: bold;
-  min-height: 84rpx;
+  min-height: 56px;
 }
 .c2 .c2_goodsList {
-  background-color: #E2E2E2;
   display: flex;
   align-items: center;
   flex: 1;
-  font-size: 12pt;
 }
 .c2 .c2_goodsList .list {
   display: flex;
   flex-direction: column;
-  min-height: 84rpx;
+  min-height: 42px;
   padding: 0 10px 0 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -53,7 +54,8 @@
   display: flex;
   align-items: center;
   flex: 1;
-  min-height: 84rpx;
+  min-height: 42px;
+  font-size: small;
 }
 .c2 .c2_goodsList .list .item .title {
   flex: 2;
@@ -61,46 +63,89 @@
 .c2 .c2_goodsList .list .item .num {
   flex: 1;
   text-align: right;
+  font-size: smaller;
 }
 .c2 .c2_goodsList .list .item .price {
   flex: 1;
   text-align: right;
+  font-size: medium;
 }
 .c2 .c2_discount {
-  background-color: #F1F1F1;
-  display: flex;
   align-items: center;
   flex: 1;
   padding: 0px 10px 0px 10px;
-  min-height: 84rpx;
+  min-height: 42px;
+  display: flex;
+  flex-direction: row;
+}
+.c2 .c2_discount .title {
+  flex: 1;
+}
+.c2 .c2_discount .value {
+  flex: 1;
+  text-align: right;
+  color: gray;
 }
 .c2 .c2_total {
-  background-color: #E2E2E2;
   display: flex;
-  height: 84rpx;
+  height: 42px;
   align-items: center;
   flex: 1;
   padding: 0px 10px 0px 10px;
-  min-height: 84rpx;
+  min-height: 42px;
   margin-left: auto;
 }
+.c2 .c2_total .text {
+  font-size: small;
+  color: gray;
+}
+.c2 .c2_total .price {
+  color: red;
+  font-size: large;
+}
 .notes {
-  background: #E2E2E2;
-  min-height: 84rpx;
+  min-height: 42px;
   margin: 10px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0px 10px 0px 10px;
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #FFFFFF;
+}
+.notes .tips {
+  color: gray;
+}
+.notes .tips .arrow {
+  color: black;
 }
 .Submit {
   width: 100%;
-  background: #d1d1d1;
-  min-height: 84rpx;
+  min-height: 56px;
   position: absolute;
   bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+}
+.Submit .price {
+  color: red;
+  flex: 2;
+  font-size: large;
+  margin-left: 10px;
+}
+.Submit .btn {
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
+  background-color: #FF585A;
+  color: white;
+  height: 44.8px;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
