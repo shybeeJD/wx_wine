@@ -1,7 +1,25 @@
 Page({
   data:{
-    "carousel_list" : null,//轮播头信息
-    "icon_list" : null, //icon
+    "carousel_list" : [{img:'../resource/logintop.png'}
+        ],//轮播头信息
+    "icon_list" : [{
+      name:'啤酒',
+      pic:"../resource/beer.png"
+    },
+    {
+      name:'白酒',
+      pic:"../resource/rice-wine.png"
+    },
+    {
+      name:'葡萄酒',
+      pic:"../resource/wine.png"
+    },
+    {
+      name:'洋酒',
+      pic:"../resource/yangjiu.png"
+    },
+  
+  ], //icon
     "sec_kill_round_info" : null,//秒杀
     "host_good_list":null,//热卖商品列表
     "style":{
@@ -141,6 +159,7 @@ Page({
     wx.showLoading({
       title: '',
     })
+    /*
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -161,6 +180,7 @@ Page({
       })
       wx.hideLoading()
     })
+    */
        wx.request({
           url: 'http://www.jiuyunda.net:90/api/v2/home_page/index',
           data: {
