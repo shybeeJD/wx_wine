@@ -62,10 +62,11 @@ Page({
   createOrder: function (event) {
     let goods = []
     for (let i in this.data.goodsList) {
-      let i_id = this.data.goodsList[i]._id
+      // todo: 提交订单
+      let asd = this.data.goodsList[i]._id
       let i_buy = this.data.goodsList[i].buy
       let i_info = {
-        i_id: i_buy
+        asd: i_buy
       }
       goods.push(i_info)
     }
