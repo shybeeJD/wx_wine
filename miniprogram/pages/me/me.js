@@ -5,7 +5,7 @@ Page({
     avatar_url:null,
     order_list:[{"image":"../resource/ToBePaid.png","title":"待支付"},{"image":"../resource/Deliveries.png","title":"配送中"},{"image":"../resource/ItHasShipped.png","title":"已配送"},{"image":"../resource/Completed.png","title":"待评价"}],
     money_list:[{"image":"../resource/JKSetUpJiFen.png","title":"积分"},{"image":"../resource/JKMSYSetUpWineLib.png","title":"酒库"},{"image":"../resource/JKMSYSetUpRecommend.png","title":"优惠券"},{"image":"../resource/JKMSYSetUpWineRecommend.png","title":"酒券"}],
-    other_list:["推荐有奖","意见反馈","客服热线","酒运达"]
+    other_list:["推荐有奖","地址管理","客服热线","意见反馈"]
   },
   onLoad:function(options){
     // 如果用户没有登录需要用户登录
