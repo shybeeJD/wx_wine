@@ -1,26 +1,31 @@
 <!--miniprogram/pages/address/addressList.wxml-->
 
 <scroll-view class="scroll" scroll-y="true">
-  <view wx:for="{{addressList}}">
-    <view class="product-name-wrap">
+  <view wx:for="{{addressList}}" wx:key="*this">
+    <view class="product-name-wrap" data-id="{{item._id}}" bindtap="setAddress">
+
       <view class="ui-list-item-info">{{item.receiver}}
         <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{item.phone}}
       </view>
+
       <view class="ui-list-item-address">
+        <!-- {{item}} -->
         {{item.region[0]}}{{item.region[1]}}{{item.region[2]}}
       </view>
+
       <view class="ui-list-item-time">
         <p>{{item.detail}}</p>
         <p class="ui-list-item-edit" data-id="{{index}}" bindtap="editAddress">修改</p>
         <p class="ui-list-item-del" data-id="{{index}}" bindtap="delAddress">删除</p>
       </view>
+
       <view class="separate"></view>
     </view>
-    
+
 
 
   </view>
 </scroll-view>
 <view class="add-address" bindtap="addAddress">
-  <image class="add-img"  src="../../images/add.png"></image>新增地址
+  <image class="add-img" src="../../images/add.png"></image>新增地址
 </view>

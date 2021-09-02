@@ -1,8 +1,8 @@
-@title_listHeight: 56px;
-@list_height: 42px;
-@white: #FFFFFF;
+@title_listHeight: 72px;
+@list_height: 56px;
+@white: #ffffff;
 @n_font: medium;
-@theme_color: #FF585A;
+@theme_color: #ff585a;
 
 #container {
   font-size: @n_font;
@@ -10,14 +10,70 @@
 
 .c1 {
   display: flex;
-  flex-direction: column;
-  min-height: 150px;
+  flex-direction: row;
+  min-height: @title_listHeight;
   margin: 10px;
 
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
   background-color: @white;
+
+  // .icon {
+  //   // background-color: gray;
+  //   flex: 1;
+  //   padding-left: 10px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+
+  //   .i{
+  //     width: 40px;
+  //     height: 40px;
+  //   }
+  // }
+  .address_content {
+    display: flex;
+    flex: 10;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+
+    .info {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      .name {
+
+
+        display: flex;
+        align-items: center;
+      }
+      .block{
+        width: 10px;
+      }
+      .tel {
+        display: flex;
+
+        font-size: small;
+
+        display: flex;
+        align-items: center;
+        color: gray;
+      }
+    }
+    .address {
+      display: flex;
+      flex: 1;
+      font-size: small;
+      // min-height: @title_listHeight/2;
+    }
+  }
+  .arrow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    color: gray;
+  }
 }
 
 .underLine {
@@ -26,7 +82,7 @@
   display: inline;
   padding-top: 10upx;
   margin: 0 auto;
-  border-bottom: 1px solid #F7F7F7;
+  border-bottom: 1px solid #f7f7f7;
 }
 
 .c2 {
@@ -47,10 +103,8 @@
     align-items: center;
 
     font-weight: bold;
-    min-height: @title_listHeight;
+    min-height: @list_height;
   }
-
-
 
   .c2_goodsList {
     display: flex;
@@ -64,7 +118,6 @@
       padding: 0 10px 0 10px;
       margin-bottom: 10px;
       width: 100%;
-
 
       .item {
         display: flex;
@@ -161,7 +214,7 @@
 
 .Submit {
   width: 100%;
-  min-height: @title_listHeight;
+  min-height: @list_height;
   position: absolute;
   bottom: 0;
 
@@ -186,7 +239,7 @@
 
     background-color: @theme_color;
     color: white;
-    height: @title_listHeight*0.8;
+    height: @list_height*0.7;
     border-radius: 60px;
 
     display: flex;

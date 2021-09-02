@@ -1,10 +1,20 @@
 <view id="container">
 
-  <!-- <view class="c1">
-    <view style="background-color: #F1F1F1; flex: 1;">地址</view>
-    <view style="background-color: #E6E6E6; flex: 1;">取货时间</view>
-    <view style="background-color: #F1F1F1; flex: 1;">取货方式</view>
-  </view> -->
+  <view class="c1" bindtap="selectAddress">
+    <!-- <view class="icon">
+      <image class="i" src="../resource/address.png"></image>
+    </view> -->
+
+    <view class="address_content">
+      <view class="info">
+        <view class="name">{{address.receiver}}</view>
+        <view class="block"></view>
+        <view class="tel">{{address.phone}}</view>
+      </view>
+      <view class="address">{{address.region}}</view>
+    </view>
+    <view class="arrow">></view>
+  </view>
 
   <view class="c2">
     <view class="c2_title">商品明细

@@ -3,13 +3,48 @@
 }
 .c1 {
   display: flex;
-  flex-direction: column;
-  min-height: 150px;
+  flex-direction: row;
+  min-height: 72px;
   margin: 10px;
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+}
+.c1 .address_content {
+  display: flex;
+  flex: 10;
+  flex-direction: column;
+  padding: 10px 10px 0 10px;
+}
+.c1 .address_content .info {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+.c1 .address_content .info .name {
+  display: flex;
+  align-items: center;
+}
+.c1 .address_content .info .block {
+  width: 10px;
+}
+.c1 .address_content .info .tel {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+.c1 .address_content .address {
+  display: flex;
+  flex: 1;
+  font-size: small;
+}
+.c1 .arrow {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: gray;
 }
 .underLine {
   width: 100%;
@@ -17,7 +52,7 @@
   display: inline;
   padding-top: 10upx;
   margin: 0 auto;
-  border-bottom: 1px solid #F7F7F7;
+  border-bottom: 1px solid #f7f7f7;
 }
 .c2 {
   display: flex;
@@ -27,7 +62,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .c2 .c2_title {
   flex: 1;
@@ -45,7 +80,7 @@
 .c2 .c2_goodsList .list {
   display: flex;
   flex-direction: column;
-  min-height: 42px;
+  min-height: 56px;
   padding: 0 10px 0 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -54,7 +89,7 @@
   display: flex;
   align-items: center;
   flex: 1;
-  min-height: 42px;
+  min-height: 56px;
   font-size: small;
 }
 .c2 .c2_goodsList .list .item .title {
@@ -74,7 +109,7 @@
   align-items: center;
   flex: 1;
   padding: 0px 10px 0px 10px;
-  min-height: 42px;
+  min-height: 56px;
   display: flex;
   flex-direction: row;
 }
@@ -88,11 +123,11 @@
 }
 .c2 .c2_total {
   display: flex;
-  height: 42px;
+  height: 56px;
   align-items: center;
   flex: 1;
   padding: 0px 10px 0px 10px;
-  min-height: 42px;
+  min-height: 56px;
   margin-left: auto;
 }
 .c2 .c2_total .text {
@@ -104,7 +139,7 @@
   font-size: large;
 }
 .notes {
-  min-height: 42px;
+  min-height: 56px;
   margin: 10px;
   display: flex;
   align-items: center;
@@ -113,7 +148,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .notes .tips {
   color: gray;
@@ -129,7 +164,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .Submit .price {
   color: red;
@@ -141,9 +176,9 @@
   flex: 1;
   text-align: right;
   margin-right: 10px;
-  background-color: #FF585A;
+  background-color: #ff585a;
   color: white;
-  height: 44.8px;
+  height: 39.2px;
   border-radius: 60px;
   display: flex;
   align-items: center;

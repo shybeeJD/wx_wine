@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-      this.getAddress()
+    this.getAddress()
   },
 
   /**
@@ -63,70 +63,77 @@ Page({
   onShareAppMessage: function () {
 
   },
-  addAddress:function(){
+  addAddress: function () {
     wx.redirectTo({
       url: 'address',
     })
   },
-  editAddress:function(e){
-    var id= e.currentTarget.dataset.id
-    var address=this.data.addressList[id]
+  editAddress: function (e) {
+    var id = e.currentTarget.dataset.id
+    var address = this.data.addressList[id]
     wx.redirectTo({
       url: 'address?current=' + JSON.stringify(address),
     })
   },
   delAddress: function (e) {
-    var id= e.currentTarget.dataset.id
-    var address=this.data.addressList[id]
+    var id = e.currentTarget.dataset.id
+    var address = this.data.addressList[id]
     console.log(address)
     this.data.addressList.splice(e.target.id.substring(3), 1);
     // 更新data数据对象  
-      this.setData({
-        addressList: this.data.addressList
+    this.setData({
+      addressList: this.data.addressList
+    })
+    var app = getApp()
+    wx.cloud.callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: app.globalData.envId,
+        },
+        data: {
+          type: "deleteAddress",
+          _id: address._id
+        },
       })
-    var app=getApp()
-     wx.cloud.callFunction({
-                name: "quickstartFunctions",
-                config: {
-                    env:app.globalData.envId,
-                },
-                data: {
-                    type: "deleteAddress",
-                     _id:address._id
-                },
-            })
       .then((resp) => {
         console.log(resp.result)
-       
-    })
-    .catch((e) => {
+
+      })
+      .catch((e) => {
         console.log(e);
 
         wx.hideLoading();
-    });
+      });
   },
-  getAddress:function(){
-    var app=getApp()
-     wx.cloud.callFunction({
-                name: "quickstartFunctions",
-                config: {
-                    env:app.globalData.envId,
-                },
-                data: {
-                    type: "getAddress",
-                },
-            })
+  getAddress: function () {
+    var app = getApp()
+    wx.cloud.callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: app.globalData.envId,
+        },
+        data: {
+          type: "getAddress",
+        },
+      })
       .then((resp) => {
         console.log(resp.result)
         this.setData({
-          addressList:resp.result.data
+          addressList: resp.result.data
         })
         console.log(this.data.addressList)
-    })
-    .catch((e) => {
+      })
+      .catch((e) => {
         console.log(e);
 
         wx.hideLoading();
-    });
+      });
+  },
+  setAddress: function (e) {
+    console.log("eeeeeee");
+    console.log(e.currentTarget.dataset.id);
+    
+    wx.setStorageSync("address_id", e.currentTarget.dataset.id)
+    wx.navigateBack()
   }
 })

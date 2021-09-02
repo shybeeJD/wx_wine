@@ -5,6 +5,8 @@ Page({
    */
   data: {
     envId: null,
+    address: null,
+    goodsList: null,
   },
 
   /**
@@ -15,6 +17,8 @@ Page({
     this.setData({
       envId: app.globalData.envId,
     });
+
+
   },
 
   /**
@@ -25,7 +29,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.updateAdress();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -68,8 +74,47 @@ Page({
           packingsPrice: 0,
         },
       }).then(res => {
-        console.log(res.result) 
+        console.log(res.result)
       })
       .catch(console.error)
   },
+
+  selectAddress: function () {
+    wx.navigateTo({
+      url: '../address/addressList',
+    })
+  },
+  updateAdress: function () {
+
+    let address_id = wx.getStorageSync("address_id")
+    console.log(wx.getStorageSync("address_id"));
+    
+    wx.cloud.callFunction({
+      name: "quickstartFunctions",
+      config: {
+        env: this.data.envId,
+      },
+      data: {
+        type: "getAddress",
+      },
+    }).then((resp) => {
+      for (let i in resp.result.data) {
+        let address_item = resp.result.data[i]
+        if (address_item._id == address_id) {
+          this.setData({
+            address: address_item
+          })
+        } else {
+          console.log("未成功找到缓存中的地址id");
+        }
+      }
+      console.log(this.data.addressList)
+    }).catch((e) => {
+      console.log(e);
+
+      wx.hideLoading();
+    });
+
+
+  }
 });
