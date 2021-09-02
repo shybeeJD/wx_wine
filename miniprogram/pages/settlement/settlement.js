@@ -7,6 +7,7 @@ Page({
     envId: null,
     address: null,
     goodsList: null,
+    totalPrice: null,
   },
 
   /**
@@ -31,6 +32,7 @@ Page({
    */
   onShow: function () {
     this.updateAdress();
+    this.updateGoods();
   },
 
   /**
@@ -58,25 +60,39 @@ Page({
    */
   onShareAppMessage: function () {},
   createOrder: function (event) {
-    wx.cloud.callFunction({
-        name: "quickstartFunctions",
-        config: {
-          env: this.data.envId,
-        },
-        data: {
-          type: "createOrder",
-          goods: {
-            "79550af260fb6de22905a79f046fe0c9": 1,
-          }, //购物车商品,key为wine._id, value为购买数量
-          delivery_price: 5,
-          address: "asdfasdfasdf",
-          discount: 2,
-          packingsPrice: 0,
-        },
-      }).then(res => {
-        console.log(res.result)
-      })
-      .catch(console.error)
+    let goods = []
+    for (let i in this.data.goodsList) {
+      let i_id = this.data.goodsList[i]._id
+      let i_buy = this.data.goodsList[i].buy
+      let i_info = {
+        i_id: i_buy
+      }
+      goods.push(i_info)
+    }
+    console.log("-------------------------");
+
+
+
+
+    // wx.cloud.callFunction({
+    //     name: "quickstartFunctions",
+    //     config: {
+    //       env: this.data.envId,
+    //     },
+    //     data: {
+    //       type: "createOrder",
+    //       goods: {
+    //         "79550af260fb6de22905a79f046fe0c9": 1,
+    //       }, //购物车商品,key为wine._id, value为购买数量
+    //       delivery_price: 5,
+    //       address: "asdfasdfasdf",
+    //       discount: 2,
+    //       packingsPrice: 0,
+    //     },
+    //   }).then(res => {
+    //     console.log(res.result)
+    //   })
+    //   .catch(console.error)
   },
 
   selectAddress: function () {
@@ -85,7 +101,6 @@ Page({
     })
   },
   updateAdress: function () {
-
     let address_id = wx.getStorageSync("address_id")
     console.log(wx.getStorageSync("address_id"));
 
@@ -116,5 +131,18 @@ Page({
     });
 
 
+  },
+  updateGoods: function () {
+    let goodsList = wx.getStorageSync("cart")
+
+
+    let p = 0
+    for (let i in goodsList) {
+      p += goodsList[i].price * goodsList[i].buy
+    }
+    this.setData({
+      goodsList: goodsList,
+      totalPrice: p
+    })
   }
 });

@@ -134,6 +134,9 @@
   font-size: small;
   color: gray;
 }
+.c2 .c2_total .block {
+  width: 10px;
+}
 .c2 .c2_total .price {
   color: red;
   font-size: large;

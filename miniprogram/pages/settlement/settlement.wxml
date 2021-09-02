@@ -1,5 +1,4 @@
 <view id="container">
-
   <view class="c1" bindtap="selectAddress">
     <!-- <view class="icon">
       <image class="i" src="../resource/address.png"></image>
@@ -17,32 +16,21 @@
   </view>
 
   <view class="c2">
-    <view class="c2_title">商品明细
-
-    </view>
+    <view class="c2_title">商品明细 </view>
     <view class="underLine"></view>
-    <view class="c2_goodsList">
 
+    <view class="c2_goodsList">
       <view class="list">
-        <view class="item">
-          <view class="title">大圣代</view>
-          <view class="num">x1</view>
-          <view class="price">￥6</view>
-        </view>
-        <view class="item">
-          <view class="title">大圣代</view>
-          <view class="num">x1</view>
-          <view class="price">￥6</view>
-        </view>
-        <view class="item">
-          <view class="title">大圣代</view>
-          <view class="num">x1</view>
-          <view class="price">￥6</view>
+        <view class="item" wx:for="{{goodsList}}" wx:key="*this">
+          <view class="title">{{item.title}}</view>
+          <view class="num">x{{item.buy}}</view>
+          <view class="price">￥{{item.price * item.buy}}</view>
         </view>
       </view>
-
     </view>
+
     <view class="underLine"></view>
+
     <view class="c2_discount">
       <view class="title">优惠券</view>
       <view class="value">暂无可用</view>
@@ -50,7 +38,8 @@
     <view class="underLine"></view>
     <view class="c2_total">
       <view class="text">共x件商品,小计:</view>
-      <view class="price">¥6</view>
+      <view class="block"></view>
+      <view class="price">¥{{totalPrice}}</view>
     </view>
   </view>
 </view>
@@ -60,9 +49,9 @@
     <i class="arrow">></i>
   </view>
 </view>
-<view class="Submit" bindtap="createOrder">
-  <view class="price">¥66</view>
-  <view class="btn" type="primary">
+<view class="Submit">
+  <view class="price">¥{{totalPrice}}</view>
+  <view class="btn" bindtap="createOrder">
     支付
   </view>
 </view>
