@@ -8,6 +8,16 @@ const db = cloud.database()
 exports.main = async (event, context) => {
 
   var userInfo=cloud.getWXContext()
+  if (event.default!=undefined && event.default==true){
+      await db.collection('address').where({
+      userId:userInfo.OPENID
+    }).update({
+      data:{
+        default:false
+      }
+    })
+
+  }
 
   data={
     receiver:event.receiver,
@@ -15,7 +25,8 @@ exports.main = async (event, context) => {
     region:event.region,
     detail:event.detail,
     userId:userInfo.OPENID,
-    label:event.label
+    label:event.label,
+    default:event.default
   }
   if (event._id !=undefined && event._id!=null){
     return await db.collection('address')

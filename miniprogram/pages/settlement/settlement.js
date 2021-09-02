@@ -8,6 +8,7 @@ Page({
     address: null,
     goodsList: null,
     totalPrice: null,
+    freight:0,
   },
 
   /**
@@ -15,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     var app = getApp();
+    this.getFreight()
     this.setData({
       envId: app.globalData.envId,
     });
@@ -31,6 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     this.updateAdress();
     this.updateGoods();
   },
@@ -59,6 +62,27 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {},
+  getFreight:function(){
+    wx.cloud.callFunction({
+      name: "quickstartFunctions",
+      config: {
+        env: this.data.envId,
+      },
+      data: {
+        type: "getFreight",
+      },
+    }).then((resp) => {
+      this.setData({
+        freight:resp.result.data[0].price
+      })
+      console.log(resp.result.data[0].price)
+    }).catch((e) => {
+      console.log(e);
+
+      wx.hideLoading();
+    });
+
+  },
   createOrder: function (event) {
     let goods = {}
     for (let i in this.data.goodsList) {
@@ -97,8 +121,6 @@ Page({
     })
   },
   updateAdress: function () {
-    let address_id = wx.getStorageSync("address_id")
-    console.log(wx.getStorageSync("address_id"));
 
     wx.cloud.callFunction({
       name: "quickstartFunctions",
@@ -111,7 +133,7 @@ Page({
     }).then((resp) => {
       for (let i in resp.result.data) {
         let address_item = resp.result.data[i]
-        if (address_item._id == address_id) {
+        if (address_item.default==true) {
           this.setData({
             address: address_item
           })
@@ -130,13 +152,19 @@ Page({
   },
   updateGoods: function () {
     let goodsList = wx.getStorageSync("cart")
+    
 
     let p = 0
+    let pack=0
     for (let i in goodsList) {
+      console.log(goodsList[i].packingsPrice)
       p += goodsList[i].price * goodsList[i].buy
+      pack += goodsList[i].packingsPrice * goodsList[i].buy
     }
+    console.log(this.data.freight)
     this.setData({
       goodsList: goodsList,
+      packingsPrice:pack,
       totalPrice: p
     })
   }

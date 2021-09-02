@@ -66,6 +66,7 @@ exports.main = async (event, context) => {
     }).get()
     console.log(result)
     var money=0
+    var packaging=0
     for(var i=0;i<result.data.length;i++){
       good=result.data[i]
       console.log(good)
@@ -78,6 +79,7 @@ exports.main = async (event, context) => {
         }
       }
       money=money+good.price*goods[good._id]
+      packaging=packaging+good.packingsPrice*goods[good._id]
     }
     for(var key in goods){
       console.log("key: " + key + " ,value: " + goods[key]);
@@ -87,28 +89,33 @@ exports.main = async (event, context) => {
       .update({data:{stock:_.inc(desc)}})
     }
     await transaction.commit()
-  
+
   if (success){
     try {
+      var f = await db.collection('winTypes').where({
+        name:'freight'
+      }).get()
       now.setMinutes(now.getMinutes()+15)
+      console.log(f.data)
       // 创建集合
       data={
         status:5,
         userId:userInfo.OPENID,
         addTime:now,
-        delivery_price:event.delivery_price,
+        delivery_price:f.data[0].price,
         address: event.address,
         discount: event.discount,
-        packingsPrice: event.packingsPrice,
+        packingsPrice: packaging,
         paymentChannels:0,
         id:orderCode,
         goods:goods,
-        money:money+event.delivery_price+event.packingsPrice-event.discount
+        money:money+packaging+f.data[0].price
       }
-      await db.collection('order').add({
+      var res = await db.collection('order').add({
         // data 字段表示需新增的 JSON 数据
         data: data
       })
+      console.log(res)
   
     return {
       success: true,
@@ -116,6 +123,7 @@ exports.main = async (event, context) => {
     }
     } catch (e) {
       // 这里catch到的是该collection已经存在，从业务逻辑上来说是运行成功的，所以catch返回success给前端，避免工具在前端抛出异常
+      console.log(e)
       return {
         success: true,
         data: 'create collection success'

@@ -35,11 +35,19 @@
       <view class="title">优惠券</view>
       <view class="value">暂无可用</view>
     </view>
+    <view class="c2_discount">
+      <view class="title">包装费</view>
+      <view class="value">￥{{packingsPrice}}</view>
+    </view>
+    <view class="c2_discount">
+      <view class="title">配送费</view>
+      <view class="value">￥{{freight}}</view>
+    </view>
     <view class="underLine"></view>
     <view class="c2_total">
       <view class="text">共x件商品,小计:</view>
       <view class="block"></view>
-      <view class="price">¥{{totalPrice}}</view>
+      <view class="price">¥{{totalPrice + packingsPrice +freight}}</view>
     </view>
   </view>
 </view>
@@ -50,7 +58,7 @@
   </view>
 </view>
 <view class="Submit">
-  <view class="price">¥{{totalPrice}}</view>
+  <view class="price">¥{{totalPrice+ packingsPrice +freight}}</view>
   <view class="btn" bindtap="createOrder">
     支付
   </view>
