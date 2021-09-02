@@ -60,40 +60,35 @@ Page({
    */
   onShareAppMessage: function () {},
   createOrder: function (event) {
-    let goods = []
+    let goods = {}
     for (let i in this.data.goodsList) {
-      // todo: 提交订单
-      let asd = this.data.goodsList[i]._id
+      let i_id = this.data.goodsList[i]._id
       let i_buy = this.data.goodsList[i].buy
-      let i_info = {
-        asd: i_buy
-      }
-      goods.push(i_info)
+      goods[i_id] = i_buy
     }
-    console.log("-------------------------");
 
-
-
-
-    // wx.cloud.callFunction({
-    //     name: "quickstartFunctions",
-    //     config: {
-    //       env: this.data.envId,
-    //     },
-    //     data: {
-    //       type: "createOrder",
-    //       goods: {
-    //         "79550af260fb6de22905a79f046fe0c9": 1,
-    //       }, //购物车商品,key为wine._id, value为购买数量
-    //       delivery_price: 5,
-    //       address: "asdfasdfasdf",
-    //       discount: 2,
-    //       packingsPrice: 0,
-    //     },
-    //   }).then(res => {
-    //     console.log(res.result)
-    //   })
-    //   .catch(console.error)
+    wx.cloud.callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: this.data.envId,
+        },
+        data: {
+          type: "createOrder",
+          // goods: {
+          //   "79550af260fb6de22905a79f046fe0c9": 1,
+          // }, //购物车商品,key为wine._id, value为购买数量
+          goods: goods,
+          delivery_price: 5,
+          address: "asdfasdfasdf",
+          discount: 2,
+          packingsPrice: 0,
+        },
+      }).then(res => {
+        // todo:该写提交订单成功后的操作了,弹窗提示并跳转到待支付页面
+        console.log(res.result)
+        
+      })
+      .catch(console.error)
   },
 
   selectAddress: function () {
@@ -135,7 +130,6 @@ Page({
   },
   updateGoods: function () {
     let goodsList = wx.getStorageSync("cart")
-
 
     let p = 0
     for (let i in goodsList) {
