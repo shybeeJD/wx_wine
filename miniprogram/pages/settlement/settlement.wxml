@@ -7,7 +7,10 @@
   </view> -->
 
   <view class="c2">
-    <view class="c2_title">商品明细</view>
+    <view class="c2_title">商品明细
+
+    </view>
+    <view class="underLine"></view>
     <view class="c2_goodsList">
 
       <view class="list">
@@ -29,7 +32,9 @@
       </view>
 
     </view>
+    <view class="underLine"></view>
     <view class="c2_discount">优惠券</view>
+    <view class="underLine"></view>
     <view class="c2_total">共x件商品,小计:xx元</view>
   </view>
 </view>
