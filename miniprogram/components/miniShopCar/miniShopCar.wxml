@@ -1,7 +1,7 @@
 <view class="mini_ShopCar">
   <!-- 购物车图片区 -->
   <view class="img_view" hover-class="none" hover-stop-propagation="false">
-    <mp-badge class="badge" content="{{num}}"/>
+    <mp-badge class="badge" content="{{num}}" />
     <image class="img" mode="widthFix" src="../../pages/resource/shopcarHight.png" />
   </view>
   <!-- 价格结算区 -->
@@ -17,6 +17,8 @@
       </view>
     </view>
     <!-- 结算按钮 -->
-    <view class="buyButton" bindtap="getShopCarGoods">结算</view>
+    <view class="buyButton">
+      <navigator url="../../pages/settlement/settlement" open-type="navigate">结算</navigator>
+    </view>
   </view>
 </view>

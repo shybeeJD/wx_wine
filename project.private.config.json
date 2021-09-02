@@ -24,6 +24,12 @@
               "pages/shopDetail/shopDetail"
             ]
           }
+        },
+        {
+          "name": "购物车",
+          "pathName": "pages/shopCar/shopCar",
+          "query": "",
+          "scene": null
         }
       ]
     }
