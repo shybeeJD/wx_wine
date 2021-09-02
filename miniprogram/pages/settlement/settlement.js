@@ -81,14 +81,14 @@ Page({
 
   selectAddress: function () {
     wx.navigateTo({
-      url: '../address/addressList',
+      url: '../address/selectAddress',
     })
   },
   updateAdress: function () {
 
     let address_id = wx.getStorageSync("address_id")
     console.log(wx.getStorageSync("address_id"));
-    
+
     wx.cloud.callFunction({
       name: "quickstartFunctions",
       config: {

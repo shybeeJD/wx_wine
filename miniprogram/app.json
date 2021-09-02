@@ -10,7 +10,8 @@
     "pages/search/search",
     "pages/settlement/settlement",
     "pages/address/address",
-    "pages/address/addressList"
+    "pages/address/addressList",
+    "pages/address/selectAddress"
   ],
   "permission": {
     "scope.userLocation": {
