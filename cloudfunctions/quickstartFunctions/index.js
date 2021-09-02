@@ -9,7 +9,7 @@ const login = require('./login/index')
 const getAllWine = require('./selectMethods/getAllWine/index')
 const selectIcon = require('./selectMethods/selectIcon/index')
 const getOrderInfo =require('./selectMethods/getOrderInfo/index')
-
+const createOrder = require('./createMethods/createOrder/index')
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log(event.type)
@@ -38,6 +38,8 @@ exports.main = async (event, context) => {
       return await selectWinTypes.main(event,context)
     case 'getOrderInfo':
       return await getOrderInfo.main(event,context)
+    case 'createOrder':
+      return await createOrder.main(event,context)
     case 'writeMsg':{
       return await writeMsg.main(event, context)
     }

@@ -8,7 +8,9 @@ const db = cloud.database()
 // 查询数据库集合云函数入口函数
 exports.main = async (event, context) => {
   console.log(event)
+  var userInfo=cloud.getWXContext()
   var num,offset
+  var status=[1]
   if(event.num!=undefined){
     num=event.num
   }else{
@@ -19,5 +21,16 @@ exports.main = async (event, context) => {
   }else{
     offset=0
   }
-  return await db.collection('order').orderBy('addTime','desc').limit(num).skip(offset).get()
+  if(event.status != undefined){
+    status=event.status
+  }
+  const _ = db.command
+  var resp = await db.collection('order')
+  .where({
+    userId:userInfo.OPENID,
+    status: _.in(status),
+  })
+  .orderBy('addTime','desc').limit(num).skip(offset).get()
+  resp['offset']=offset
+  return resp
 }

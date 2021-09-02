@@ -10,7 +10,7 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   try {
     // 创建集合
-   await db.createCollection('sales')
+
    await db.collection('sales').add({
     // data 字段表示需新增的 JSON 数据
     data: {
