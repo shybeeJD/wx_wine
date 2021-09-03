@@ -130,10 +130,10 @@ Page({
       });
   },
   setAddress: function (e) {
-    console.log("eeeeeee");
-    console.log(e.currentTarget.dataset.id);
+    // console.log("eeeeeee");
+    // console.log(e.currentTarget.dataset.id);
     
-    wx.setStorageSync("address_id", e.currentTarget.dataset.id)
+    wx.setStorageSync("temporaryAddress_id", e.currentTarget.dataset.id)
     wx.navigateBack()
   }
 })
