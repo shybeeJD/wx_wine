@@ -2,15 +2,18 @@
 
 <scroll-view class="scroll" scroll-y="true">
   <view wx:for="{{addressList}}" wx:key="*this">
-    <view class="product-name-wrap" data-id="{{item._id}}" bindtap="setAddress">
+    <view class="product-name-wrap" data-id="{{item._id}}">
 
-      <view class="ui-list-item-info">{{item.receiver}}
-        <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{item.phone}}
-      </view>
+      <view class="address-detail" bindtap="setAddress">
+        <view class="ui-list-item-info">{{item.receiver}}
+          <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{item.phone}}
+        </view>
 
-      <view class="ui-list-item-address">
-        <!-- {{item}} -->
-        {{item.region[0]}}{{item.region[1]}}{{item.region[2]}}
+        <view class="ui-list-item-address">
+          <!-- {{item}} -->
+          {{item.region[0]}}{{item.region[1]}}{{item.region[2]}}
+        </view>
+        
       </view>
 
       <view class="ui-list-item-time">
