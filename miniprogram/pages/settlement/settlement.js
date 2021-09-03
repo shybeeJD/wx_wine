@@ -9,6 +9,7 @@ Page({
     goodsList: null,
     totalPrice: null,
     freight:0,
+    address_list:null,
   },
 
   /**
@@ -20,6 +21,7 @@ Page({
     this.setData({
       envId: app.globalData.envId,
     });
+    this.updateAdress();
 
 
   },
@@ -33,8 +35,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-    this.updateAdress();
+    
+    this.updateSelectedAddress()
     this.updateGoods();
   },
 
@@ -120,6 +122,23 @@ Page({
       url: '../address/selectAddress',
     })
   },
+  updateSelectedAddress:function(){
+    let id= wx.getStorageSync('address_id')
+    let address_list=wx.getStorageSync('address_list')
+    console.log(address_list)
+    console.log(id)
+    for (let i in address_list) {
+      let address_item = address_list[i]
+      if (address_item._id==id) {
+        this.setData({
+          address:address_item
+        })
+      } else {
+        console.log("未成功找到缓存中的地址id");
+      }
+    }
+    
+  },
   updateAdress: function () {
 
     wx.cloud.callFunction({
@@ -131,9 +150,11 @@ Page({
         type: "getAddress",
       },
     }).then((resp) => {
+      wx.setStorageSync("address_list", resp.result.data)
       for (let i in resp.result.data) {
         let address_item = resp.result.data[i]
         if (address_item.default==true) {
+          wx.setStorageSync("address_id", address_item._id)
           this.setData({
             address: address_item
           })
@@ -141,7 +162,7 @@ Page({
           console.log("未成功找到缓存中的地址id");
         }
       }
-      console.log(this.data.addressList)
+      console.log(this.data.address_list)
     }).catch((e) => {
       console.log(e);
 
