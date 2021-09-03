@@ -162,7 +162,7 @@
 .Submit {
   width: 100%;
   min-height: 56px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -186,4 +186,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.bottom_block {
+  min-height: 56px;
 }

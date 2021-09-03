@@ -50,16 +50,19 @@
       <view class="price">¥{{totalPrice + packingsPrice +freight}}</view>
     </view>
   </view>
-</view>
-<view class="notes">
-  <view class="text">备注</view>
-  <view class="tips">口味、偏好等要求
-    <i class="arrow">></i>
+
+  <view class="notes">
+    <view class="text">备注</view>
+    <view class="tips"
+      >口味、偏好等要求
+      <i class="arrow">></i>
+    </view>
   </view>
-</view>
-<view class="Submit">
-  <view class="price">¥{{totalPrice+ packingsPrice +freight}}</view>
-  <view class="btn" bindtap="createOrder">
-    支付
+  <view class="Submit">
+    <view class="price">¥{{totalPrice+ packingsPrice +freight}}</view>
+    <view class="btn" bindtap="createOrder">
+      支付
+    </view>
   </view>
+  <view class="bottom_block"></view>
 </view>
