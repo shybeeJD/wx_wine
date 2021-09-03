@@ -204,6 +204,7 @@ Page({
           complete: function() {
           }
     });
+    wx.hideLoading()
   },///获取轮播图 icon信息
   // 获取热卖商品列表
   getHostGoodList:function(re){

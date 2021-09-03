@@ -175,6 +175,7 @@ App({
             .catch((e) => {
                 console.log(e);
             });
+            
         wx.hideLoading();
 
     },

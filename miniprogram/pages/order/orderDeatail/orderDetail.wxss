@@ -1,1 +1,3 @@
-/* pages/order/orderDeatail/orderDetail.wxss */
+.container .addressContainer {
+  width: 100%;
+}
