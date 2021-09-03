@@ -9,13 +9,17 @@
     </view> -->
 
     <view class="address_content">
+
       <view class="info">
         <view class="name">{{address.receiver}}</view>
         <view class="block"></view>
         <view class="tel">{{address.phone}}</view>
       </view>
+      
       <view class="address">{{address.region}}</view>
+      
     </view>
+
     <view class="arrow">></view>
   </view>
 

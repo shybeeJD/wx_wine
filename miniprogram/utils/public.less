@@ -1,5 +1,46 @@
 @title_listHeight: 72px;
 @list_height: 56px;
 @white: #ffffff;
-@n_font: medium;
 @theme_color: #ff585a;
+
+// 圆角矩形
+.roundedRectangle {
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+    background-color: @white;
+}
+
+// flex
+.flexContainerCol {
+    display: flex;
+    flex-direction: column;
+}
+.flexContainerRow {
+    display: flex;
+    flex-direction: row;
+}
+
+// 居中
+.align_centerContainer {
+    // 水平 
+    display: flex;
+    align-items: center;
+}
+
+.justify_centerContainer {
+    // 垂直
+    display: flex;
+    justify-content: center;
+}
+
+.allCenterContainer {
+    // 垂直水平
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.padding_l_r_10px {
+    padding: 0px 10px 0px 10px;
+}

@@ -1,0 +1,30 @@
+.roundedRectangle {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.flexContainerCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.align_centerContainer {
+  display: flex;
+  align-items: center;
+}
+.justify_centerContainer {
+  display: flex;
+  justify-content: center;
+}
+.allCenterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.padding_l_r_10px {
+  padding: 0px 10px 0px 10px;
+}

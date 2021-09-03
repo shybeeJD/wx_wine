@@ -1,3 +1,198 @@
+.roundedRectangle {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.flexContainerCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.align_centerContainer {
+  display: flex;
+  align-items: center;
+}
+.justify_centerContainer {
+  display: flex;
+  justify-content: center;
+}
+.allCenterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.padding_l_r_10px {
+  padding: 0px 10px 0px 10px;
+}
 .container .addressContainer {
   width: 100%;
+  min-height: 72px;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+}
+.container .addressContainer .content {
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px 0px 10px;
+}
+.container .addressContainer .content .info {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.container .addressContainer .content .info .name {
+  display: flex;
+  align-items: center;
+}
+.container .addressContainer .content .info .tel {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+.container .addressContainer .content .address {
+  display: flex;
+  flex: 1;
+  font-size: small;
+}
+.container .addressContainer .arrow {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+.container .goodsContainer {
+  width: 100%;
+  min-height: 72px;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 224px;
+  margin: 10px;
+}
+.container .goodsContainer .c2_title {
+  flex: 1;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  min-height: 56px;
+}
+.container .goodsContainer .c2_goodsList {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.container .goodsContainer .c2_goodsList .list {
+  display: flex;
+  flex-direction: column;
+  min-height: 56px;
+  padding: 0 10px 0 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.container .goodsContainer .c2_goodsList .list .item {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 56px;
+  font-size: small;
+}
+.container .goodsContainer .c2_goodsList .list .item .title {
+  flex: 2;
+}
+.container .goodsContainer .c2_goodsList .list .item .num {
+  flex: 1;
+  text-align: right;
+  font-size: smaller;
+}
+.container .goodsContainer .c2_goodsList .list .item .price {
+  flex: 1;
+  text-align: right;
+  font-size: medium;
+}
+.container .goodsContainer .c2_discount {
+  align-items: center;
+  flex: 1;
+  padding: 0px 10px 0px 10px;
+  min-height: 56px;
+  display: flex;
+  flex-direction: row;
+}
+.container .goodsContainer .c2_discount .title {
+  flex: 1;
+}
+.container .goodsContainer .c2_discount .value {
+  flex: 1;
+  text-align: right;
+  color: gray;
+}
+.container .goodsContainer .c2_total {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  flex: 1;
+  padding: 0px 10px 0px 10px;
+  min-height: 56px;
+  margin-left: auto;
+}
+.container .goodsContainer .c2_total .text {
+  font-size: small;
+  color: gray;
+}
+.container .goodsContainer .c2_total .block {
+  width: 10px;
+}
+.container .goodsContainer .c2_total .price {
+  color: red;
+  font-size: large;
+}
+.container .orderContainer {
+  width: 100%;
+  min-height: 72px;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.container .orderContainer .title {
+  flex: 2;
+  padding: 0px 10px 0px 10px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  min-height: 56px;
+}
+.container .orderContainer .orderDetail {
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+}
+.container .orderContainer .orderDetail .orderDetail_title {
+  flex: 1;
+  padding: 0px 10px 0px 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.container .orderContainer .orderDetail .orderDetail_value {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
 }
