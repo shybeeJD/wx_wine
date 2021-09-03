@@ -76,7 +76,7 @@
                     display: flex;
                     align-items: center;
                     flex: 1;
-                    min-height: @list_height;
+                    min-height: @small_listHeight;
                     font-size: small;
 
                     .title {
@@ -104,10 +104,12 @@
             flex: 1;
             padding: 0px 10px 0px 10px;
 
-            min-height: @list_height;
+            height: @small_listHeight;
 
             display: flex;
             flex-direction: row;
+
+            font-size: small;
 
             .title {
                 flex: 1;
@@ -155,22 +157,21 @@
             flex: 2;
 
             .padding_l_r_10px;
-            .justify_centerContainer;
-            .flexContainerCol;
+            .align_centerContainer;
 
             font-weight: bold;
             min-height: @list_height;
         }
         .orderDetail {
             .flexContainerRow;
-
             font-size: small;
 
             .orderDetail_title {
                 flex: 1;
                 .padding_l_r_10px;
-                .align_centerContainer;
+                // .justify_centerContainer;
                 .flexContainerCol;
+                // text-align: left;
             }
             .orderDetail_value {
                 flex: 2;
@@ -179,6 +180,52 @@
         }
     }
 
+    .bottom_block {
+        min-height: @list_height;
+    }
+
     .toolbar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        height: @small_listHeight;
+        width: 100%;
+        .roundedRectangle;
+
+        .align_centerContainer;
+
+        .content {
+            width: 100%;
+            height: @smaller_listHeight;
+            .flexContainerRow;
+
+            .toolbar_item {
+                border-radius: 20px;
+
+                // background-color: gray;
+                border: 1px solid gray;
+                width: 72px;
+                font-size: small;
+
+                .allCenterContainer;
+            }
+
+            #c1 {
+                flex: 1;
+                #more {
+                    color: gray;
+                    border: 0px;
+                    height: 24px;
+                }
+            }
+            #c2 {
+                .flexContainerRow;
+
+                #pay {
+                    border: 1px solid @theme_color;
+                    color: @theme_color;
+                }
+            }
+        }
     }
 }
