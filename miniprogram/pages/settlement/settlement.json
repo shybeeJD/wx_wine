@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "订单结算",
   "usingComponents": {
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }

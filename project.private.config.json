@@ -36,6 +36,12 @@
           "pathName": "pages/settlement/settlement",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "orderDetail",
+          "pathName": "pages/order/orderDeatail/orderDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

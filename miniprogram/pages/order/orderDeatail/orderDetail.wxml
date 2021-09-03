@@ -1,0 +1,10 @@
+<view class="container">
+  <!-- 地址栏 -->
+  <view class="addressContainer"></view>
+  <!-- 商品栏 -->
+  <view class="goodsContainer"></view>
+  <!-- 订单信息栏 -->
+  <view class="orderContainer"></view>
+  <!-- 底部工具栏 -->
+  <view class="toolbar"></view>
+</view>
