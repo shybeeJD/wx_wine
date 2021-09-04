@@ -1,17 +1,25 @@
 <view id="container">
+  <mp-dialog title="请添加地址" show="{{dialogShow}}" bindbuttontap="tapDialogButton"
+    buttons="{{ [{text: '放弃付款'},{text: '确认'}] }}">
+    <view>test content</view>
+  </mp-dialog>
   <view class="c1" bindtap="selectAddress">
     <!-- <view class="icon">
       <image class="i" src="../resource/address.png"></image>
     </view> -->
 
     <view class="address_content">
+
       <view class="info">
         <view class="name">{{address.receiver}}</view>
         <view class="block"></view>
         <view class="tel">{{address.phone}}</view>
       </view>
+      
       <view class="address">{{address.region}}</view>
+      
     </view>
+
     <view class="arrow">></view>
   </view>
 
@@ -50,16 +58,18 @@
       <view class="price">¥{{totalPrice + packingsPrice +freight}}</view>
     </view>
   </view>
-</view>
-<view class="notes">
-  <view class="text">备注</view>
-  <view class="tips">口味、偏好等要求
-    <i class="arrow">></i>
+
+  <view class="notes">
+    <view class="text">备注</view>
+    <view class="tips">口味、偏好等要求
+      <i class="arrow">></i>
+    </view>
   </view>
-</view>
-<view class="Submit">
-  <view class="price">¥{{totalPrice+ packingsPrice +freight}}</view>
-  <view class="btn" bindtap="createOrder">
-    支付
+  <view class="Submit">
+    <view class="price">¥{{totalPrice+ packingsPrice +freight}}</view>
+    <view class="btn" bindtap="createOrder">
+      支付
+    </view>
   </view>
+  <view class="bottom_block"></view>
 </view>

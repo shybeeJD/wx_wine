@@ -3,7 +3,11 @@ App({
     globalData: {
         userInfo: null, //用户信息
         location: null, //经纬度信息
-        city: { city: "郑州", province: "河南", district: "" }, //用户城市信息
+        city: {
+            city: "郑州",
+            province: "河南",
+            district: ""
+        }, //用户城市信息
         bid: null, //用户bid
         systemInfo: null, //系统信息
         shopCarGoods: {}, //购物车商品
@@ -170,9 +174,10 @@ App({
             })
             .catch((e) => {
                 console.log(e);
-
-                wx.hideLoading();
             });
+            
+        wx.hideLoading();
+
     },
     // 添加商品到购物车
     addGoodToShopCar: function (good) {

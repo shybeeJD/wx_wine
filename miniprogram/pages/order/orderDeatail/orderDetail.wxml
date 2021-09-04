@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 地址栏 -->
+  <view class="addressContainer">
+    <!-- <view class="icon"></view> -->
+    <view class="content">
+      <view class="info">
+        <view class="name">{{address.name}}</view>
+        <view class="tel">{{address.tel}}</view>
+      </view>
+      <view class="address">{{address.detail}}</view>
+    </view>
+
+    <view class="arrow">></view>
+  </view>
+  <!-- 商品栏 -->
+  <view class="goodsContainer">
+    <view class="c2_title">商品明细 </view>
+    <view class="underLine"></view>
+
+    <view class="c2_goodsList">
+      <view class="list">
+        <view class="item" wx:for="{{goodsList}}" wx:key="*this">
+          <view class="title">{{item.title}}</view>
+          <view class="num">x{{item.buy}}</view>
+          <view class="price">￥{{item.price * item.buy}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="underLine"></view>
+
+    <view class="c2_discount">
+      <view class="title">优惠券</view>
+      <view class="value">暂无可用</view>
+    </view>
+    <view class="c2_discount">
+      <view class="title">包装费</view>
+      <view class="value">￥{{packingsPrice}}</view>
+    </view>
+    <view class="c2_discount">
+      <view class="title">配送费</view>
+      <view class="value">￥{{freight}}</view>
+    </view>
+    <view class="underLine"></view>
+    <view class="c2_total">
+      <view class="text">共x件商品,小计:</view>
+      <view class="block"></view>
+      <view class="price">¥{{totalPrice + packingsPrice +freight}}</view>
+    </view>
+  </view>
+  <!-- 订单信息栏 -->
+  <view class="orderContainer">
+    <view class="title">订单信息</view>
+
+    <view class="orderDetail">
+      <view class="orderDetail_title">
+        <view class="orderDetail_title_item">
+          订单编号:
+        </view>
+        <view class="orderDetail_title_item">
+          创建时间:
+        </view>
+      </view>
+
+      <view class="orderDetail_value">
+        <view class="orderDetail_value_item">{{orderDetail._id}}</view>
+        <view class="orderDetail_value_item">{{orderDetail.createTime}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 底栏占位 -->
+  <view class="bottom_block"></view>
+  <!-- 底部工具栏 -->
+  <view class="toolbar">
+    <view class="content">
+      <view id="c1">
+        <view id="more" class="toolbar_item">更多</view>
+      </view>
+      <view id="c2">
+        <view id="pay" class="toolbar_item">修改地址</view>
+
+        <view id="pay" class="toolbar_item">付款</view>
+      </view>
+    </view>
+  </view>
+</view>

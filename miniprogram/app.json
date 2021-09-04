@@ -12,6 +12,7 @@
     "pages/address/address",
     "pages/address/addressList",
     "pages/address/selectAddress",
+    "pages/order/orderDeatail/orderDetail",
     "pages/shopMap/shopMap"
   ],
   "permission": {
