@@ -15,6 +15,9 @@ const createAddress =require('./createMethods/createAddress/index')
 const getAddress = require('./selectMethods/getAddress')
 const deleteAddress =require('./deleteMethods/deleteAddress')
 const getFreight =require ('./selectMethods/getFreight/index')
+const updateStatus = require('./updateStatus/index')
+const createWine = require('./createMethods/createWine/index')
+const refuseOrder =require ('./updateMethods/refuseOrder/index')
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log(event.type)
@@ -55,6 +58,12 @@ exports.main = async (event, context) => {
       return await deleteAddress.main(event,context)
     case 'getFreight':
       return await getFreight.main(event,context)
+    case 'updateStatus':(event,context)
+      return await updateStatus.main(event,context)
+    case 'createWine':
+      return await createWine.main(event,context)
+    case 'refuseOrder':
+      return await refuseOrder.main(event,context)
     case 'writeMsg':{
       return await writeMsg.main(event, context)
     }

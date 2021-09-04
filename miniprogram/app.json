@@ -11,7 +11,8 @@
     "pages/settlement/settlement",
     "pages/address/address",
     "pages/address/addressList",
-    "pages/address/selectAddress"
+    "pages/address/selectAddress",
+    "pages/shopMap/shopMap"
   ],
   "permission": {
     "scope.userLocation": {
