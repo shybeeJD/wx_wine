@@ -79,7 +79,8 @@ Page({
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
     console.log(address)
-    this.data.addressList.splice(e.target.id.substring(3), 1);
+    this.data.addressList.splice(id, 1);
+
     // 更新data数据对象  
     this.setData({
       addressList: this.data.addressList
