@@ -13,6 +13,7 @@ Page({
         address_list: null,
         addressSelectState: 0, //地址选择状态,值为0创建订单的时候用的是默认地址,值为1用的是选择的地址
         dialogShow: false,
+        orderID: null, //创建完成后生成的订单ID
     },
 
     /**
@@ -132,7 +133,7 @@ Page({
                         // }, //购物车商品,key为wine._id, value为购买数量
                         goods: goods,
                         delivery_price: 5,
-                        address: "asdfasdfasdf",
+                        address: this.data.address,
                         discount: 2,
                         packingsPrice: 0,
                     },
@@ -142,6 +143,7 @@ Page({
                     console.log(res.result);
                     this.setData({
                         dialogShow: true,
+                        orderID: res.result.data.id,
                     });
                 })
                 .catch(console.error);
@@ -235,9 +237,9 @@ Page({
         if (e.detail.index == 1) {
             console.log("点击确认按钮啦", "");
         } else {
-            console.log("点击取消按钮啦", "");
-            wx.navigateTo({
-                url: "../order/orderDeatail/orderDetail",
+            console.log("点击放弃付款按钮啦", "");
+            wx.redirectTo({
+                url: "../order/orderDeatail/orderDetail?id=" + this.data.orderID,
             });
         }
     },

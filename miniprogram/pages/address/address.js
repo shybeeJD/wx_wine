@@ -8,11 +8,13 @@ Page({
     animationAddressMenu: {},
     addressMenuIsShow: false,
     value: [0, 0, 0],
+
     provinces: [],
     citys: [],
     areas: [],
-    region: ["北京市", "北京市", "东城区"],
+    region: ["北京市", "北京市", "东城区"],//所在地区
     storeAddress:null,
+    
     consigneeName: "", 
     phone: "",
     consigneeRegion: "",
@@ -239,7 +241,7 @@ Page({
 
                   },
               }) .then((resp) => {
-          wx.redirectTo({
+          wx.navigateBack({
             url: 'addressList',
           })
          

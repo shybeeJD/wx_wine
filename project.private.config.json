@@ -40,7 +40,7 @@
         {
           "name": "orderDetail",
           "pathName": "pages/order/orderDeatail/orderDetail",
-          "query": "",
+          "query": "id=20210904122741415391",
           "scene": null
         }
       ]

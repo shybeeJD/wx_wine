@@ -19,14 +19,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getAddress()
+    // this.getAddress()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getAddress()
   },
 
   /**
@@ -64,14 +64,14 @@ Page({
 
   },
   addAddress: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'address',
     })
   },
   editAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'address?current=' + JSON.stringify(address),
     })
   },
@@ -79,7 +79,8 @@ Page({
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
     console.log(address)
-    this.data.addressList.splice(e.target.id.substring(3), 1);
+    this.data.addressList.splice(id, 1);
+
     // 更新data数据对象  
     this.setData({
       addressList: this.data.addressList
