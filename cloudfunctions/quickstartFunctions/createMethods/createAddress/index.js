@@ -18,7 +18,8 @@ exports.main = async (event, context) => {
     })
 
   }
-
+  var latitude = event.latitude
+  var longitude = event.longitude
   data={
     receiver:event.receiver,
     phone:event.phone,
@@ -26,7 +27,9 @@ exports.main = async (event, context) => {
     detail:event.detail,
     userId:userInfo.OPENID,
     label:event.label,
-    default:event.default
+    default:event.default,
+    title:event.title,
+    location: db.Geo.Point(longitude, latitude)
   }
   if (event._id !=undefined && event._id!=null){
     return await db.collection('address')

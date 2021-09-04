@@ -53,7 +53,6 @@ exports.main = async (event, context) => {
       .update({data:{stock:_.inc(order.goods[key])}})
       console.log(res)
     }
-
   }
 
     var wine=[]

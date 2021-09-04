@@ -12,6 +12,7 @@ Page({
     citys: [],
     areas: [],
     region: ["北京市", "北京市", "东城区"],
+    storeAddress:null,
     consigneeName: "", 
     phone: "",
     consigneeRegion: "",
@@ -170,6 +171,11 @@ Page({
     this.setData({ region: e.detail.value });
   },
   // 处理省市县联动逻辑
+  changeAddress:function(e){
+    wx.navigateTo({
+      url: '../shopMap/shopMap',
+    })
+  },
 
   submit: function() {
     var consigneeName = this.data.consigneeName;
@@ -194,7 +200,7 @@ Page({
       })
       return false
     }
-    else if (region == "") {
+    else if (this.data.storeAddress == null) {
       wx: wx.showToast({
         title: '请选择所在地区',
         image: "../../../img/icon/icon-reminder.png"
@@ -210,6 +216,7 @@ Page({
     }
     else {
       var app =getApp()
+      var region = [this.data.storeAddress.province,this.data.storeAddress.city,this.data.storeAddress.district]
       wx.cloud.callFunction({
                   name: "quickstartFunctions",
                   config: {
@@ -223,7 +230,11 @@ Page({
                       region:region,
                       detail:detailedAddress,
                       default:this.data.isChecked,
-                      label:this.data.labelList[this.data.labelDefault]
+                      label:this.data.labelList[this.data.labelDefault],
+                      latitude:this.data.storeAddress.latitude,
+                      longitude:this.data.storeAddress.longitude,
+                      title:this.data.storeAddress.title,
+
                   },
               }) .then((resp) => {
           wx.redirectTo({
