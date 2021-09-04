@@ -181,6 +181,7 @@ Page({
     // 然后显示默认的地址
     updateAddress: function () {
         var app =getApp()
+        console.log(app.globalData)
       wx.cloud.callFunction({
         name: "quickstartFunctions",
         config: {

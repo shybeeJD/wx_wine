@@ -118,7 +118,8 @@ exports.main = async (event, context) => {
   
     return {
       success: true,
-      data:data
+      data:data,
+      res:res,
     }
     } catch (e) {
       // 这里catch到的是该collection已经存在，从业务逻辑上来说是运行成功的，所以catch返回success给前端，避免工具在前端抛出异常
