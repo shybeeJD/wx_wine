@@ -221,6 +221,7 @@
   border: 1px solid gray;
   width: 72px;
   font-size: small;
+  margin-left: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,8 +237,13 @@
 .container .toolbar .content #c2 {
   display: flex;
   flex-direction: row;
+  padding-left: 10px;
 }
 .container .toolbar .content #c2 #pay {
+  border: 1px solid #ff585a;
+  color: #ff585a;
+}
+.container .toolbar .content #c2 #confirmReceipt {
   border: 1px solid #ff585a;
   color: #ff585a;
 }

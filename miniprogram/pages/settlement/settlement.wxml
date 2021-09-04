@@ -1,7 +1,7 @@
 <view id="container">
-  <mp-dialog title="创建订单成功" show="{{dialogShow}}" bindbuttontap="tapDialogButton"
+  <mp-dialog title="请添加地址" show="{{dialogShow}}" bindbuttontap="tapDialogButton"
     buttons="{{ [{text: '放弃付款'},{text: '确认'}] }}">
-    <!-- <view>test content</view> -->
+    <view>test content</view>
   </mp-dialog>
   <view class="c1" bindtap="selectAddress">
     <!-- <view class="icon">
