@@ -13,6 +13,8 @@ App({
         shopCarGoods: {}, //购物车商品
         islogin: false, //是否登录
         envId: "shybeejd-5gv8sqyv03b56093",
+        shopList:[],
+        shopNow:null,
     },
     permission: {
         "scope.userLocation": {
@@ -133,10 +135,26 @@ App({
             return;
         }
         wx.getLocation({
-            type: "gcj02", // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+            type: "wgs84", // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
             success: function (location) {
                 that.globalData.location = location;
-                res(that.globalData.location);
+                console.log(location)
+                wx.cloud.callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: "shybeejd-5gv8sqyv03b56093",
+                },
+                data: {
+                    type: "getShop",
+                    latitude:location.latitude,
+                    longitude:location.longitude,
+                },
+            })
+            .then((resp) => {
+                console.log(resp.result.list);
+                that.globalData.shopList=resp.result.list
+                that.globalData.shopNow=resp.result.list[0]
+            })
             },
             fail: function () {
                 wx.showToast({

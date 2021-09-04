@@ -107,26 +107,29 @@ Page({
   },
   getAddress: function () {
     var app = getApp()
+    console.log(app.globalData)
     wx.cloud.callFunction({
-        name: "quickstartFunctions",
-        config: {
-          env: app.globalData.envId,
-        },
-        data: {
-          type: "getAddress",
-        },
+      name: "quickstartFunctions",
+      config: {
+        env: app.globalData.envId,
+      },
+      data: {
+        type: "getAddress",
+        shopLatitude:app.globalData.shopNow.location.coordinates[1],
+        shopLongitude:app.globalData.shopNow.location.coordinates[0],
+      },
+    })
+    .then((resp) => {
+      console.log(resp.result)
+      this.setData({
+        addressList: resp.result.list
       })
-      .then((resp) => {
-        console.log(resp.result)
-        this.setData({
-          addressList: resp.result.data
-        })
-        console.log(this.data.addressList)
-      })
-      .catch((e) => {
-        console.log(e);
+      console.log(this.data.addressList)
+    })
+    .catch((e) => {
+      console.log(e);
 
-        wx.hideLoading();
-      });
+      wx.hideLoading();
+    });
   }
 })

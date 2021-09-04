@@ -107,6 +107,7 @@ Page({
   },
   getAddress: function () {
     var app = getApp()
+    console.log(app.globalData)
     wx.cloud.callFunction({
         name: "quickstartFunctions",
         config: {
@@ -114,12 +115,14 @@ Page({
         },
         data: {
           type: "getAddress",
+          shopLatitude:app.globalData.shopNow.location.coordinates[1],
+          shopLongitude:app.globalData.shopNow.location.coordinates[0],
         },
       })
       .then((resp) => {
         console.log(resp.result)
         this.setData({
-          addressList: resp.result.data
+          addressList: resp.result.list
         })
         console.log(this.data.addressList)
       })
