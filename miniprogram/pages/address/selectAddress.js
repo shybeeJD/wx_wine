@@ -71,6 +71,7 @@ Page({
   editAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
+    console.log(address)
     wx.redirectTo({
       url: 'address?current=' + JSON.stringify(address),
     })
@@ -133,6 +134,7 @@ Page({
       });
   },
   setAddress: function (e) {
+    console.log( e)
     wx.setStorageSync("address_id", e.currentTarget.dataset.id)
     wx.navigateBack()
   }
