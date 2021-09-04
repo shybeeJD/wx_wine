@@ -64,14 +64,14 @@ Page({
 
   },
   addAddress: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'address',
     })
   },
   editAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'address?current=' + JSON.stringify(address),
     })
   },
