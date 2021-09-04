@@ -4,8 +4,8 @@ Page({
             //字符
         ],
         //rightDataSourceAll:[],
-        leftDataSource: ["啤酒", "葡萄酒"], //字符
-        // allDataSouce: null, //好像没用了
+        leftDataSource: ["啤酒","白酒","葡萄酒","洋酒"], //字符
+        allDataSouce: null, 
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
         envId: "",
@@ -24,7 +24,20 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        var app = getApp()
+        var cate= app.globalData.cate
+        console.log(cate)
+        console.log(this.data.leftDataSource)
+        for(var i=0;i<this.data.leftDataSource.length;i++){
+            if(this.data.leftDataSource[i]==cate){
+                this.setData({
+                    leftListSelectItem:i
+                })
+                break
+            }
+        }
         this.updataRightData();
+        
 
         // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");

@@ -50,7 +50,7 @@ exports.main = async (event, context) => {
     for(var key in order.goods){
       var res=await transaction.collection('wine')
       .where({_id:key})
-      .update({data:{stock:_.inc(order.goods[key])}})
+      .update({data:{stock:_.inc(order.goods[key].num)}})
       console.log(res)
     }
   }
@@ -69,7 +69,7 @@ exports.main = async (event, context) => {
     for(var i=0;i<result.data.length;i++){
       good=result.data[i]
       console.log(good)
-      if(good.stock<goods[good._id]){
+      if(good.stock<goods[good._id].num){
         success=0
         await transaction.rollback()
         return {
@@ -77,12 +77,12 @@ exports.main = async (event, context) => {
           msg: "库存不足"
         }
       }
-      money=money+good.price*goods[good._id]
-      packaging=packaging+good.packingsPrice*goods[good._id]
+      money=money+good.price*goods[good._id].num
+      packaging=packaging+good.packingsPrice*goods[good._id].num
     }
     for(var key in goods){
       console.log("key: " + key + " ,value: " + goods[key]);
-      var desc=-1*goods[key]
+      var desc=-1*goods[key].num
       var res= await transaction.collection('wine')
       .where({_id:key})
       .update({data:{stock:_.inc(desc)}})

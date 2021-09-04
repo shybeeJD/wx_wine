@@ -15,6 +15,7 @@ App({
         envId: "shybeejd-5gv8sqyv03b56093",
         shopList:[],
         shopNow:null,
+        cate:null
     },
     permission: {
         "scope.userLocation": {

@@ -225,6 +225,13 @@ Page({
       }
     })
   },/// 获取热卖商品列表
+  redirectToWine:function(e){
+    var app =getApp()
+    app.globalData.cate=e.currentTarget.dataset.id
+    wx.switchTab({
+      url: '../../pages/category/category',
+    })
+  },
   dataControl:function(data){
     if(data == null){
       return;
