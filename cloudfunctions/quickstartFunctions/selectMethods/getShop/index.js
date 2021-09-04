@@ -9,22 +9,21 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   // 返回数据库查询结果
   var userInfo=cloud.getWXContext()
-  var shopLatitude = event.shopLatitude
-  var shopLongitude = event.shopLongitude
-  console.log(shopLatitude)
-  var res =await db.collection('address').aggregate()
+  var latitude = event.latitude
+  var longitude = event.longitude
+  const $ = db.command.aggregate
+  var res =await db.collection('shop').aggregate()
   .geoNear({
     distanceField: 'distance', // 输出的每个记录中 distance 即是与给定点的距离
     spherical: true,
     distanceMultiplier:6100,
-    near: db.Geo.Point(shopLongitude, shopLatitude),
+    near: db.Geo.Point(longitude, latitude),
     query: {
-      userId:userInfo.OPENID
     },
     key: 'location', // 若只有 location 一个地理位置索引的字段，则不需填
     includeLocs: 'location', // 若只有 location 一个是地理位置，则不需填
   })
   .end()
-  return (res)
-
+  console.log(res)
+  return res
 }

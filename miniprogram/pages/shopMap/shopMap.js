@@ -41,6 +41,7 @@ Page({
     //定位
     wx.getLocation({
       type: 'wgs84',
+      isHighAccuracy:true,
       success(res) {
         //console.log(res)
         const latitude = res.latitude

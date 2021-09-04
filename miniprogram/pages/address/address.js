@@ -38,7 +38,9 @@ Page({
       consigneeName:data.receiver,
       phone:data.phone,
       detailedAddress:data.detail,
-      labelDefault:data.label
+      labelDefault:data.label ,
+      storeAddress:{province:data.region[0],city:data.region[1],
+        district:data.region[2],title:data.title}
     })
   },
 
