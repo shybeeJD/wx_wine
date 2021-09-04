@@ -9,8 +9,7 @@ Page({
             tel: "13623711670",
             detail: "地球中国河南郑州",
         },
-        goodsList: [
-            {
+        goodsList: [{
                 title: "我是大烧饼",
                 buy: 10,
                 price: 3.5,
@@ -26,9 +25,9 @@ Page({
                 price: 300.5,
             },
         ],
-        packingsPrice: 5,
-        freight: 6,
-        totalPrice: 1000,
+        packingsPrice: 5, //打包费
+        freight: 6, //配送费
+        totalPrice: 1000, //总价格
         orderDetail: {
             _id: 123123123123,
             createTime: "2020/1/29",
@@ -74,4 +73,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {},
+
+    // 
 });

@@ -170,9 +170,9 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
 .container .orderContainer .title {
-  flex: 2;
   padding: 0px 10px 0px 10px;
   display: flex;
   align-items: center;
