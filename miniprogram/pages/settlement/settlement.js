@@ -224,7 +224,6 @@ Page({
         }
         console.log(this.data.freight);
         this.setData({
-
             goodsList: goodsList,
             packingsPrice: pack,
             totalPrice: p,
