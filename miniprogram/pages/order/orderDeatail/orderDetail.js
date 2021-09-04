@@ -4,6 +4,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        orderId: null,
         address: {
             name: "名字是啥",
             tel: "13623711670",
@@ -38,7 +39,12 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {},
+    onLoad: function (options) {
+        this.setData({
+            orderId: options.id,
+        });
+        // this.getData();
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -75,5 +81,40 @@ Page({
      */
     onShareAppMessage: function () {},
 
-    // 
+    getData: function (options) {
+        console.log(options)
+    },
+    getOrderData: function (params) {
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: this.data.envId,
+                },
+                data: {
+                    type: "getAddress",
+                },
+            })
+            .then((resp) => {
+                wx.setStorageSync("address_list", resp.result.data);
+
+                // 下面这堆东西是设置默认的地址
+                for (let i in resp.result.data) {
+                    let address_item = resp.result.data[i];
+                    if (address_item.default == true) {
+                        wx.setStorageSync("address_id", address_item._id);
+                        this.setData({
+                            address: address_item,
+                        });
+                    } else {
+                        console.log("未成功找到缓存中的地址id");
+                    }
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+
+                wx.hideLoading();
+            });
+    }
 });
