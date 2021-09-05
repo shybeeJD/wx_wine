@@ -15,6 +15,8 @@ App({
         envId: "shybeejd-5gv8sqyv03b56093",
         shopList:[],
         shopNow:null,
+        shopChanged:false,
+        cate:null
     },
     permission: {
         "scope.userLocation": {
@@ -154,6 +156,8 @@ App({
                 console.log(resp.result.list);
                 that.globalData.shopList=resp.result.list
                 that.globalData.shopNow=resp.result.list[0]
+                if(that.shopNowCallback)
+                that.shopNowCallback(resp.result.list[0])
             })
             },
             fail: function () {

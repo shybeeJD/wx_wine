@@ -1,5 +1,5 @@
 <view class="content">
-    
+    <view class="shop_ui" bindtap="changeShop">{{shopNow.name}} ></view>
     <scroll-view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
         <!-- 轮播图的位置被设置成了absolute填满整个页面，所以只能暂时放在轮播图内 -->
         <!-- 轮播图 -->
@@ -11,7 +11,7 @@
         <!-- icon -->
         <view class="icon-back-style">
             <view class="icon_back_size">
-                <view wx:for-items="{{icon_list}}" wx:key="*this" wx:if="{{index < 4}}" class="one_icon_back_view">
+                <view wx:for-items="{{icon_list}}" wx:key="*this" wx:if="{{index < 4}}" class="one_icon_back_view" bindtap="redirectToWine" data-id="{{item.name}}">
                     <image src="{{item.pic}}" class="icon_size"></image>
                     <text class="icon_title">{{item.name}}</text>
                 </view>

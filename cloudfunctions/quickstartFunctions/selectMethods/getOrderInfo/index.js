@@ -25,6 +25,13 @@ exports.main = async (event, context) => {
     status=event.status
   }
   const _ = db.command
+  if(event._id!=undefined,event._id!=null){
+    return await db.collection('order')
+    .where({
+      userId:userInfo.OPENID,
+      _id:event._id
+    }).get()
+  }
   var resp = await db.collection('order')
   .where({
     userId:userInfo.OPENID,

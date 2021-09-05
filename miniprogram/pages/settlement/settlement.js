@@ -104,7 +104,8 @@ Page({
         for (let i in this.data.goodsList) {
             let i_id = this.data.goodsList[i]._id;
             let i_buy = this.data.goodsList[i].buy;
-            goods[i_id] = i_buy;
+            let i_normal = this.data.goodsList[i].normal;
+            goods[i_id] = { num: i_buy, normal: i_normal };
         }
         // todo:添加订单时候选择的地址
         let id = wx.getStorageSync("address_id");
@@ -160,9 +161,9 @@ Page({
                             dialogShow: true,
                             orderID: res.result.res._id,
                         });
-                        
+
                         //提交订单后清除购物车缓存
-                        wx.setStorageSync('cart', [])
+                        wx.setStorageSync("cart", []);
                     }
                 })
                 .catch(console.error);
@@ -199,6 +200,7 @@ Page({
     // 然后显示默认的地址
     updateAddress: function () {
         var app = getApp();
+
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -207,8 +209,10 @@ Page({
                 },
                 data: {
                     type: "getAddress",
-                    shopLatitude: app.globalData.shopNow.location.coordinates[1],
-                    shopLongitude: app.globalData.shopNow.location.coordinates[0],
+                    shopLatitude:
+                        app.globalData.shopNow.location.coordinates[1],
+                    shopLongitude:
+                        app.globalData.shopNow.location.coordinates[0],
                 },
             })
             .then((resp) => {
@@ -258,7 +262,8 @@ Page({
         } else {
             console.log("点击放弃付款按钮啦", "");
             wx.redirectTo({
-                url: "../order/orderDeatail/orderDetail?id=" + this.data.orderID,
+                url:
+                    "../order/orderDeatail/orderDetail?id=" + this.data.orderID,
             });
         }
     },

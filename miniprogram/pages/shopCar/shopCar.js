@@ -47,6 +47,7 @@ Page({
         var good = this.data.dataSource[index];
         if (good.buy < good.stock) {
             good.buy++;
+            good.normal++;
         } else {
             wx.showToast({
                 title: "库存不足",
@@ -77,6 +78,9 @@ Page({
         } else {
             if (good.buy > 1) {
                 good.buy--;
+            }
+            if(good.normal>0){
+                good.normal--;
             }
             this.setData({
                 dataSource: this.data.dataSource,

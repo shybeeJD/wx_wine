@@ -10,12 +10,27 @@
 }
 .ui-list-item-info{
   margin: 5px 0px;
+  font-weight: bold;
 }
 .ui-list-item-address{
   color: #585c64;
+  font-weight: bold;
 }
 .ui-list-item-time{
   margin: 5px 0px;
+  font-weight: bold;
+}
+.ui-list-item-info2{
+  margin: 5px 0px;
+  font-weight: lighter;
+}
+.ui-list-item-address2{
+  color: #585c64;
+  font-weight: lighter;
+}
+.ui-list-item-time2{
+  margin: 5px 0px;
+  font-weight: lighter;
 }
 .ui-list-item-del{
   position: absolute;

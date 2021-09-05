@@ -6,10 +6,13 @@ page{
     height: 100%;
 }
 /*背景滚动试图*/
+.shop_ui{
+    z-index: 10;
+}
 .scroll-content{
     background-color: #F5F5F5;
     position: absolute;
-    top: 0;
+    top: 50rpx;
     bottom: 0;
     left: 0;
     right: 0;

@@ -1,0 +1,9 @@
+<!--miniprogram/pages/shopList/shopList.wxml-->
+
+<view wx:for="{{shopList}}" wx:key="*this">
+<view bindtap="setShop"  data-id="{{item}}">
+  <view>{{item.address}}</view>
+  <view>{{item.name}}</view>
+</view>
+ 
+</view>

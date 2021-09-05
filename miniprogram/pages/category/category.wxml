@@ -1,6 +1,8 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
-  <miniShopCar id="myComponent"></miniShopCar>
+  <view wx:if="{{ showModalStatus ==false}}">
+  <miniShopCar id="myComponent" ></miniShopCar>
+</view>
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view
@@ -62,17 +64,47 @@
           src="../resource/add.png"
           class="add_image_style"
           id="{{index}}"
-          bindtap="addImageDidClick"
+          bindtap="openDetail"
         />
         <text class="good_buy_number">{{item.buy}}</text>
         <image
           src="../resource/reduce.png"
           class="reduce_image_style"
           id="{{index}}"
-          bindtap="reduceImageClick"
+          bindtap="openDetail"
         />
       </view>
       <view class="right_line" />
     </view>
   </scroll-view>
+</view>
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="detail-box" wx:if="{{showModalStatus}}">
+    <view class="goods-img-box">
+      <image src="{{rightDataSource[selectedWineindex].thumb_url}}" class="goods-img"></image>
+      <view class='right-side'>
+        <view class='price'>¥{{rightDataSource[selectedWineindex].price}}</view>
+        <view class='type'>已选：{{selTypeList}}</view>
+        <view class='inventory'>库存：{{rightDataSource[selectedWineindex].stock}}</view>
+      </view>
+    </view>
+    <view class="number-box">
+      <view class="control {{plusBan}}" bindtap='plus'>+</view>
+      <view class="control num">{{tmpBuyNum}}</view>
+      <view class="control {{minusBan}}" bindtap='minus'>-</view>  
+    </view>
+    <view class="tui-content">
+      <view class="tui-slider-head">温度:常温{{tmpNormal}},冰冻{{ tmpBuyNum - tmpNormal }}</view>
+      <view class="tui-slider-left">冰冻</view>
+      
+      <view class="tui-slider-box">
+        <slider bindchange="changeSlider" min="0" max="{{tmpBuyNum}}" value="{{tmpNormal}}" />
+      </view>
+      <view class="tui-slider-left">常温</view>
+    </view>
+
+ 
+    <view class="confirm-btn {{btnType}}" bindtap='confirm'>确认</view>
+    <view class="cancel-btn {{btnType}}" bindtap='hideModal'>取消</view>
+
 </view>

@@ -30,7 +30,7 @@ exports.main = async (event, context) => {
     for(var key in order.goods){
       var res=await transaction.collection('wine')
       .where({_id:key})
-      .update({data:{stock:_.inc(order.goods[key])}})
+      .update({data:{stock:_.inc(order.goods[key].num)}})
       console.log(res)
     }
   }

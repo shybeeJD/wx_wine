@@ -39,6 +39,20 @@ Page({
   onShow:function(){
     // 生命周期函数--监听页面显示
     this.dataControl(this.data.host_good_list);
+    var app =getApp()
+    console.log(app.globalData)
+    if(app.globalData.shopNow){
+      this.setData({
+        shopNow:app.globalData.shopNow
+      })
+    }
+    else{
+      app.shopNowCallback = (shopNow) => {
+        this.setData({ 
+          shopNow:shopNow
+        })
+    }
+  }
   },
   onHide:function(){
     // 生命周期函数--监听页面隐藏
@@ -79,6 +93,11 @@ Page({
     wx.showToast({
       title:"对不起暂无此专区",
       duration:350,
+    })
+  },
+  changeShop:function(){
+    wx.navigateTo({
+      url: '../shopList/shopList',
     })
   },
   // 跳转到商品详情
@@ -225,6 +244,13 @@ Page({
       }
     })
   },/// 获取热卖商品列表
+  redirectToWine:function(e){
+    var app =getApp()
+    app.globalData.cate=e.currentTarget.dataset.id
+    wx.switchTab({
+      url: '../../pages/category/category',
+    })
+  },
   dataControl:function(data){
     if(data == null){
       return;
