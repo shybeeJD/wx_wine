@@ -15,7 +15,9 @@ exports.main = async (event, context) => {
 
   var userInfo=cloud.getWXContext()
 
-  wine=await db.collection('wine').get({
+  wine=await db.collection('wine').where({
+    shop:event.shopNow
+  }).get({
     //若成功获取,异步操作注意异常
     success: res=>{
         //打印记录中第一条里goodName属性

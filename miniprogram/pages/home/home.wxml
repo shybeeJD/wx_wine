@@ -1,5 +1,5 @@
 <view class="content">
-    
+    <view class="shop_ui" bindtap="changeShop">{{shopNow.name}} ></view>
     <scroll-view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
         <!-- 轮播图的位置被设置成了absolute填满整个页面，所以只能暂时放在轮播图内 -->
         <!-- 轮播图 -->

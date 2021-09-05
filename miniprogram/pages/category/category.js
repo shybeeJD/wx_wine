@@ -16,6 +16,7 @@ Page({
         var app = getApp();
         this.setData({
             envId: app.globalData.envId,
+            shopNow:app.globalData.shopNow
         });
         this.getAllwines();
         // this.requestDataFromServe(); // 这个好像没有用了,被getAllwines()代替了
@@ -37,6 +38,10 @@ Page({
                 })
                 break
             }
+        }
+        if(app.globalData.shopChanged){
+            this.getAllwines()
+            app.globalData.shopChanged=false
         }
         this.updataRightData();
         
@@ -144,6 +149,7 @@ Page({
                 data: {
                     type: "getAllWine",
                     userInfo: app.globalData.userInfo,
+                    shopNow:app.globalData.shopNow._id
                 },
             })
             .then((resp) => {
