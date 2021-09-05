@@ -53,7 +53,7 @@ App({
         wx.getStorage({
             key: "globalData",
             success: function (res) {
-                this.globalData = res.data;
+                that.globalData = res.data;
                 // console.log(that.globalData);
             },
             fail: function () {},

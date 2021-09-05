@@ -1,8 +1,8 @@
 <view  class = "content">
     <scroll-view scroll-x = "{{false}}" scroll-y = "{{true}}">
-        <swiper  style = "height:{{loop_image_height}}px" autoplay = "{{true}}" indicator-dots= "{{true}}" interval="1000" duration="350">
+        <swiper  style = "height:{{loop_image_height}}px" autoplay = "{{true}}" indicator-dots= "{{true}}" interval="2000" duration="350">
             <swiper-item wx:for-items = "{{good_detail.product_info.pic_array }}">
-                <image src="{{item}}" class = "loop_image_style"></image>
+                <image src="{{item}}" bindtap="previewTopImage" data-id="{{item}}" class = "loop_image_style"></image>
             </swiper-item>
         </swiper>
         <view style = "background-color:#F5F5F5;height:1px;width:100%"></view>
@@ -84,7 +84,7 @@
         </view>
         <view style = "background-color:#F5F5F5;height:1px;width:100%"></view>
         <view wx:for="{{good_detail.product_info.product_desc_url}}" wx:for-index="idx" wx:for-item="item">
-        <image src="{{item}}" bindload = "imageLoad" style = "width:100%;height:{{good_detail_image_height}}px"></image>
+        <image src="{{item}}" bindload = "imageLoad" bindtap="previewImage" data-id="{{item}}" style = "width:100%;height:{{good_detail_image_height}}px"></image>
     </view>
     </scroll-view>
 </view>

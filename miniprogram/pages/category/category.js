@@ -14,13 +14,24 @@ Page({
     },
     onLoad: function (options) {
         var app = getApp();
-        this.setData({
-            envId: app.globalData.envId,
-            shopNow:app.globalData.shopNow
-        });
-        this.getAllwines();
-        // this.requestDataFromServe(); // 这个好像没有用了,被getAllwines()代替了
-        this.renderControl();
+        if(app.globalData.shopNow){
+            this.setData({
+                envId: app.globalData.envId,
+                shopNow:app.globalData.shopNow
+            });
+            this.getAllwines();
+            this.renderControl();
+        }else{
+            app.shopNowCallback = (shopNow) => {
+                this.setData({ 
+                    envId: app.globalData.envId,
+                    shopNow:app.globalData.shopNow
+                })
+            }
+            this.getAllwines();
+            this.renderControl();
+        }
+       
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成

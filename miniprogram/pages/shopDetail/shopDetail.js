@@ -64,6 +64,20 @@ Page({
       good_detail_image_height:imageHeight
     }) 
   },
+  previewImage:function(image){
+    var url=image.currentTarget.dataset.id
+    wx.previewImage({
+      current: url, // 当前显示图片的http链接
+      urls: this.data.good_detail.product_info.product_desc_url // 需要预览的图片http链接列表
+    })
+  },
+  previewTopImage:function(image){
+    var url=image.currentTarget.dataset.id
+    wx.previewImage({
+      current: url, // 当前显示图片的http链接
+      urls: this.data.good_detail.product_info.pic_array // 需要预览的图片http链接列表
+    })
+  },
   onHide:function(){
     // 生命周期函数--监听页面隐藏
     
