@@ -155,18 +155,25 @@
     text-decoration: line-through;
 }
 /*+号按钮*/
-.add_image_style {
+.shopCar {
     width: 20px;
     height: 20px;
     position: relative;
     top: 60px;
     right: 5px;
     float: right;
+    background-color: red;
+    border-radius: 50px;
+    margin: 5px;
+    .allCenterContainer;
+    .shopCarImage {
+        width: 20px;
+    }
 }
 /*——号按钮*/
 .reduce_image_style {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     position: relative;
     top: 60px;
     right: 12px;
@@ -199,14 +206,15 @@
     width: 100%;
     background-color: rgb(252, 246, 246);
     .flexContainerCol;
+    .roundedRectangle;
 }
 .tui-content {
     .padding_l_r_10px;
+    font-size: smaller;
 }
 .tui-slider-head {
     height: 80rpx;
     line-height: 80rpx;
-    font-size: 35rpx;
     color: #666;
     width: 100%;
 
@@ -215,11 +223,11 @@
     .temText {
         flex: 1;
         .allCenterContainer;
-        .justifyContentRight;
+        .justifyContentLeft;
     }
     .temNum {
         flex: 1;
-        .justifyContentLeft;
+        .justifyContentRight;
         .temNumBold {
             color: @cold;
         }
@@ -236,19 +244,18 @@
     }
     .tui-slider-right {
         flex: 1;
+        .justifyContentRight;
     }
 }
 .tui-slider-left {
     height: 80rpx;
     line-height: 80rpx;
-    font-size: 35rpx;
     float: left;
     color: #666;
 }
 .tui-slider-right {
     height: 80rpx;
     line-height: 80rpx;
-    font-size: 35rpx;
     float: right;
     color: #666;
 }
@@ -262,19 +269,22 @@
 }
 
 .numLine {
+    .padding_l_r_10px;
     .flexContainerRow;
 
     justify-content: space-between;
     .text {
-        flex: 2;
+        flex: 1;
         white-space: nowrap;
         .allCenterContainer;
+        font-size: small;
+        .justifyContentLeft;
     }
     .number-box {
-        flex: 10;
+        flex: 1;
         .flexContainerRow;
         // text-align: right;
-        .justifyContentLeft;
+        .justifyContentRight;
 
         #tmpBuyNum {
             .allCenterContainer;

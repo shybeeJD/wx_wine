@@ -31,11 +31,11 @@
 }
 .justifyContentLeft {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .justifyContentRight {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 .padding_l_10px {
   padding: 0px 10px 0px 10px;
@@ -199,18 +199,27 @@
   text-decoration: line-through;
 }
 /*+号按钮*/
-.add_image_style {
+.shopCar {
   width: 20px;
   height: 20px;
   position: relative;
   top: 60px;
   right: 5px;
   float: right;
+  background-color: red;
+  border-radius: 50px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shopCar .shopCarImage {
+  width: 20px;
 }
 /*——号按钮*/
 .reduce_image_style {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   position: relative;
   top: 60px;
   right: 12px;
@@ -243,14 +252,18 @@
   background-color: #fcf6f6;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
 }
 .tui-content {
   padding: 0px 10px 0px 10px;
+  font-size: smaller;
 }
 .tui-slider-head {
   height: 80rpx;
   line-height: 80rpx;
-  font-size: 35rpx;
   color: #666;
   width: 100%;
   display: flex;
@@ -284,18 +297,18 @@
 }
 .sliderBox .tui-slider-right {
   flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 .tui-slider-left {
   height: 80rpx;
   line-height: 80rpx;
-  font-size: 35rpx;
   float: left;
   color: #666;
 }
 .tui-slider-right {
   height: 80rpx;
   line-height: 80rpx;
-  font-size: 35rpx;
   float: right;
   color: #666;
 }
@@ -308,19 +321,22 @@
   width: 50%;
 }
 .numLine {
+  padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .numLine .text {
-  flex: 2;
+  flex: 1;
   white-space: nowrap;
-  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: small;
+  display: flex;
+  justify-content: flex-start;
 }
 .numLine .number-box {
-  flex: 10;
+  flex: 1;
   flex-direction: row;
   display: flex;
   justify-content: flex-end;

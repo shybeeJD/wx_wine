@@ -59,20 +59,20 @@
       </view>
 
       <!-- 加减号 -->
-      <view>
+      <view class="shopCar">
         <image
-          src="../resource/add.png"
-          class="add_image_style"
-          id="{{index}}"
+          src="../resource/white_shopCar.png"
+          id="{{index}}" class="shopCarImage"
           bindtap="openDetail"
+          mode="widthFix"
         />
-        <text class="good_buy_number">{{item.buy}}</text>
-        <image
+        <!-- <text class="good_buy_number">{{item.buy}}</text> -->
+        <!-- <image
           src="../resource/reduce.png"
           class="reduce_image_style"
           id="{{index}}"
           bindtap="openDetail"
-        />
+        /> -->
       </view>
       <view class="right_line" />
     </view>
@@ -88,7 +88,7 @@
     <view class="right-side">
       <view class="price">¥{{rightDataSource[selectedWineindex].price}}</view>
       <!-- todo:已选不会显示 -->
-      <view class="type">已选：{{selTypeList}}</view>
+      <view class="type">已选：{{tmpBuyNum}}</view>
       <view class="inventory">库存：{{rightDataSource[selectedWineindex].stock}}</view>
     </view>
   </view>

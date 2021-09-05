@@ -31,11 +31,11 @@
 }
 .justifyContentLeft {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .justifyContentRight {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 .padding_l_10px {
   padding: 0px 10px 0px 10px;
