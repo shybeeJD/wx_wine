@@ -83,6 +83,8 @@
             <text class = "comment_order_title">商品详情</text>
         </view>
         <view style = "background-color:#F5F5F5;height:1px;width:100%"></view>
-        <image src="{{good_detail.product_desc_url}}" bindload = "imageLoad" style = "width:100%;height:{{good_detail_image_height}}px"></image>
+        <view wx:for="{{good_detail.product_info.product_desc_url}}" wx:for-index="idx" wx:for-item="item">
+        <image src="{{item}}" bindload = "imageLoad" style = "width:100%;height:{{good_detail_image_height}}px"></image>
+    </view>
     </scroll-view>
 </view>

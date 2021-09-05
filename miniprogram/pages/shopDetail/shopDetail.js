@@ -17,15 +17,23 @@ Page({
         },
         comment_count:500,
         comment_scale:500,
-        product_desc_url:'cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png'
+        product_desc_url:['cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png','cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png']
       },//商品详情数据
       loop_image_height:0,//轮播图高
       good_detail_image_height:0//商品详情图高
   },
   onLoad:function(options){
     // 生命周期函数--监听页面加载
+    var data = JSON.parse(options.good)
+    data.comment_count=0
+    data.comment_scale=0
+    let good_detail={
+      product_info:data
+    }
+    good_detail.comment_count=0
+    good_detail.comment_scale=0
     this.setData({
-        product_id:options.product_id,
+      good_detail:good_detail,
     })
     //
     wx.setNavigationBarTitle({

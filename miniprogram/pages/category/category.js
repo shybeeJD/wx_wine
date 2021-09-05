@@ -39,11 +39,17 @@ Page({
                 break
             }
         }
-        if(app.globalData.shopChanged){
+        console.log(this.data.allDataSouce)
+        if(app.globalData.shopChanged || this.data.allDataSouce==null){
+            this.setData({
+                envId: app.globalData.envId,
+                shopNow:app.globalData.shopNow
+            });
             this.getAllwines()
             app.globalData.shopChanged=false
         }
         this.updataRightData();
+        this.renderControl();
         
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -126,10 +132,7 @@ Page({
         var good = this.data.rightDataSource[index];
         wx.navigateTo({
             url:
-                "../shopDetail/shopDetail?product_id=" +
-                good.id +
-                "&title=" +
-                good.title,
+                "../shopDetail/shopDetail?good=" +JSON.stringify(good),
             success: function (res) {},
             fail: function () {},
             complete: function () {},
@@ -140,6 +143,19 @@ Page({
         var app = getApp();
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
+        if(app.globalData.shopNow){
+            this.setData({
+              shopNow:app.globalData.shopNow
+            })
+          }
+          else{
+            app.shopNowCallback = (shopNow) => {
+              this.setData({ 
+                shopNow:shopNow
+              })
+          }
+          
+        }
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -149,7 +165,7 @@ Page({
                 data: {
                     type: "getAllWine",
                     userInfo: app.globalData.userInfo,
-                    shopNow:app.globalData.shopNow._id
+                    shopNow:this.data.shopNow._id
                 },
             })
             .then((resp) => {
