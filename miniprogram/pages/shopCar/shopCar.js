@@ -8,11 +8,17 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+       
+        var app = getApp()
+        console.log(app.globalData)
+        this.setData({
+            shopNow:app.globalData.shopNow
+        })
         this.renderData();
 
         // 调用自定义组件中的方法,更新底栏购物车
         let miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(); // 调用自定义组件中的方法
+        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -35,7 +41,7 @@ Page({
         };
     },
     renderData: function () {
-        var data = wx.getStorageSync("cart");
+        var data = wx.getStorageSync(this.data.shopNow._id);
 
         this.setData({
             dataSource: data,
@@ -62,7 +68,7 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         var miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(); // 调用自定义组件中的方法
+        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     // 减少按钮被点击
     reduceButtonClick: function (tap) {
@@ -91,6 +97,6 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         var miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(); // 调用自定义组件中的方法
+        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
 });

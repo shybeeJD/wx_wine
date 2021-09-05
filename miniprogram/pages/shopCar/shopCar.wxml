@@ -31,5 +31,5 @@
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
-  <miniShopCar id="miniShopCar"></miniShopCar>
+  <miniShopCar id="miniShopCar" _id="{{ shopNow._id }}"></miniShopCar>
 </view>

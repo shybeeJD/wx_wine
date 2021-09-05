@@ -31,6 +31,9 @@ Page({
             this.getAllwines();
             this.renderControl();
         }
+        this.setData({
+            miniShopCar: this.selectComponent("#myComponent")
+        })
        
     },
     onReady: function () {
@@ -65,7 +68,7 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+        myComponent.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -236,7 +239,7 @@ Page({
             });
         }
 
-        let cart = wx.wx.getStorageSync("cart") || [];
+        let cart = wx.wx.getStorageSync(this.data.shopNow._id) || [];
         // let good_index=cart.findIndex(v=>)
 
         var app = getApp();
@@ -244,7 +247,7 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods();
+        myComponent.getShopCarGoods(this.data.shopNow._id);
     },
     // 添加商品
     openDetail:function(par){
@@ -292,7 +295,7 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+        myComponent.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     plus:function(){
         var index=this.data.selectedWineindex
@@ -349,8 +352,7 @@ Page({
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
-        let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+        
         
     },
     changeSlider:function(e){
@@ -415,7 +417,7 @@ Page({
         let rightDataSource = this.data.rightDataSource;
         console.log("assssssssssssssssssss");
 
-        let cart = wx.getStorageSync("cart") || [];
+        let cart = wx.getStorageSync(this.data.shopNow._id) || [];
         for (let i in cart) {
             let index = rightDataSource.findIndex((v) => v._id === cart[i]._id);
             if (index === -1) {

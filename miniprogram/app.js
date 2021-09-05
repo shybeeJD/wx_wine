@@ -213,7 +213,7 @@ App({
     },
     // 添加商品到购物车
     addGoodToShopCar: function (good) {
-        let cart = wx.getStorageSync("cart") || [];
+        let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
         let index = cart.findIndex((v) => v._id === good._id);
         // 如果缓存中没有,则push当前商品
         // 否则更新对应位置的商品信息
@@ -222,7 +222,7 @@ App({
         } else {
             cart[index] = good;
         }
-        wx.setStorageSync("cart", cart);
+        wx.setStorageSync(this.globalData.shopNow._id, cart);
 
         // console.log(this.globalData.shopCarGoods)
         // 获取购物车中的对应id的商品设置为临时商品
@@ -239,7 +239,7 @@ App({
     },
     // 从购物车减少商品
     reduceGoodFromShopCar: function (good) {
-        let cart = wx.getStorageSync("cart") || [];
+        let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
         let index = cart.findIndex((v) => v._id === good._id);
         // 如果缓存中没有,则push当前商品
         // 否则更新对应位置的商品信息
@@ -252,7 +252,7 @@ App({
                 cart[index] = good;
             }
         }
-        wx.setStorageSync("cart", cart);
+        wx.setStorageSync(this.globalData.shopNow._id, cart);
 
         //  console.log(this.globalData.shopCarGoods)
         // 若数量=0则删除它

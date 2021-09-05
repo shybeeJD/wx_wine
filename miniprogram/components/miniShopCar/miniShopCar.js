@@ -1,7 +1,9 @@
 // components/miniShopCar/miniShopCar.js
 Component({
     //  组件的属性列表
-    properties: {},
+    properties: {
+        _id:String
+    },
     // 组件的初始数据
     data: {
         dataSource: null, //购物车数据
@@ -13,16 +15,19 @@ Component({
     lifetimes: {
         attached: function () {
             let that = this;
-            that.getShopCarGoods(); //创建完先更新一下
+            var app =getApp()
+            var _id =app.globalData.shopNow._id
+            that.getShopCarGoods(_id); //创建完先更新一下
         },
     },
     //   组件的方法列表
     methods: {
         //获取缓存的购物车数据
         //并执行getGoodsNum更新显示的数据
-        getShopCarGoods: function () {
-            var data = wx.getStorageSync("cart");
-
+        getShopCarGoods: function (_id) {
+            
+            var data = wx.getStorageSync(_id);
+            console.log(data)
             this.setData({
                 dataSource: data,
             });

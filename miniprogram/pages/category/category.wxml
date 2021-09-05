@@ -1,7 +1,7 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
   <view wx:if="{{ showModalStatus ==false}}">
-    <miniShopCar id="myComponent"></miniShopCar>
+    <miniShopCar id="myComponent" _id="{{ shopNow._id }}"></miniShopCar>
   </view>
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
