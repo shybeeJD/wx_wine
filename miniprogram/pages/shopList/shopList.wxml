@@ -1,9 +1,18 @@
 <!--miniprogram/pages/shopList/shopList.wxml-->
 
-<view wx:for="{{shopList}}" wx:key="*this">
-<view bindtap="setShop"  data-id="{{item}}">
-  <view>{{item.address}}</view>
-  <view>{{item.name}}</view>
-</view>
- 
+<view class="container">
+  <view class="cardGroup">
+    <view wx:for="{{shopList}}" wx:key="*this">
+      <view bindtap="setShop" data-id="{{item}}" class="card">
+        <view class="content">
+          <view id="title">
+            <view id="name">{{item.name}}</view>
+            <view id="distance">距离{{item.distance}}公里</view>
+          </view>
+          <view id="address">{{item.address}}</view>
+        </view>
+        <view class="arrow">></view>
+      </view>
+    </view>
+  </view>
 </view>

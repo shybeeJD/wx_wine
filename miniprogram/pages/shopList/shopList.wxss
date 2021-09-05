@@ -1,1 +1,68 @@
-/* miniprogram/pages/shopList/shopList.wxss */
+.roundedRectangle {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.flexContainerCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.align_centerContainer {
+  display: flex;
+  align-items: center;
+}
+.justify_centerContainer {
+  display: flex;
+  justify-content: center;
+}
+.allCenterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.padding_l_10px {
+  padding: 0px 10px 0px 10px;
+}
+.padding_l_r_10px {
+  padding: 0px 10px 0px 10px;
+}
+.container .cardGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 10;
+}
+.container .cardGroup .card {
+  flex: 1;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+  padding: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+}
+.container .cardGroup .card .content {
+  padding: 0px 10px 0px 10px;
+  flex: 11;
+  display: flex;
+  flex-direction: column;
+}
+.container .cardGroup .card .content #title {
+  display: flex;
+}
+.container .cardGroup .card .content #title #distance {
+  color: gray;
+  font-size: smaller;
+}
+.container .cardGroup .card .arrow {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

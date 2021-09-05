@@ -42,6 +42,12 @@
           "pathName": "pages/order/orderDeatail/orderDetail",
           "query": "id=cd045e7561337f270ac67ecb260e0452",
           "scene": null
+        },
+        {
+          "name": "hopList",
+          "pathName": "pages/shopList/shopList",
+          "query": "",
+          "scene": null
         }
       ]
     }

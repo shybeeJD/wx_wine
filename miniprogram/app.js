@@ -157,9 +157,16 @@ App({
                         console.log(resp.result.list);
                         that.globalData.shopList = resp.result.list;
                         that.globalData.shopNow = resp.result.list[0];
-                        that.globalData.shopNow.distance = Math.round(
-                            that.globalData.shopNow.distance
-                        );
+
+                        for (let i in that.globalData.shopList) {
+                            that.globalData.shopList[i].distance =
+                                Math.round(
+                                    that.globalData.shopList[i].distance * 100
+                                ) / 100;
+                        }
+                        that.globalData.shopNow.distance =
+                            Math.round(that.globalData.shopNow.distance * 100) /
+                            100;
                         if (that.shopNowCallback)
                             that.shopNowCallback(resp.result.list[0]);
                     });
