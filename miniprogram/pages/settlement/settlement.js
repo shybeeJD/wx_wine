@@ -96,7 +96,9 @@ Page({
         for (let i in this.data.goodsList) {
             let i_id = this.data.goodsList[i]._id;
             let i_buy = this.data.goodsList[i].buy;
-            goods[i_id] = {num:i_buy};
+            let i_normal = this.data.goodsList[i].normal;
+            goods[i_id] = {num:i_buy,
+                            normal:i_normal};
         }
         // todo:添加订单时候选择的地址
         let id = wx.getStorageSync("address_id");

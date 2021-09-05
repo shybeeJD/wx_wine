@@ -9,6 +9,8 @@ Page({
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
         envId: "",
+        showModalStatus:false,
+        selectedWine:null,
     },
     onLoad: function (options) {
         var app = getApp();
@@ -71,6 +73,47 @@ Page({
             rightItemWidth: width,
         });
     },
+    showModal: function () {
+        // 显示遮罩层
+        var animation = wx.createAnimation({
+          duration: 200,
+          timingFunction: "linear",
+          delay: 0
+        })
+        this.animation = animation
+        animation.translateY(300).step()
+        this.setData({
+          animationData: animation.export(),
+          showModalStatus: true
+        })
+        setTimeout(function () {
+          animation.translateY(0).step()
+          this.setData({
+            animationData: animation.export()
+          })
+        }.bind(this), 200)
+      },
+      hideModal: function () {
+        // 隐藏遮罩层
+        var animation = wx.createAnimation({
+          duration: 200,
+          timingFunction: "linear",
+          delay: 0
+        })
+        this.animation = animation
+        animation.translateY(300).step()
+        this.setData({
+          animationData: animation.export(),
+        })
+        setTimeout(function () {
+          animation.translateY(0).step()
+          this.setData({
+            animationData: animation.export(),
+            showModalStatus: false
+          })
+        }.bind(this), 200)
+      },
+
 
     // 跳转到商品详情
     pushGoodDetail: function (tap) {
@@ -150,7 +193,8 @@ Page({
     },
     // 减少商品
     reduceImageClick(par) {
-        var index = parseInt(par.currentTarget.id);
+        //var index = parseInt(par.currentTarget.id);
+        var index=this.data.selectedWineindex
         var data = this.data.rightDataSource[index];
         if (data.buy > 0) {
             data.buy -= 1;
@@ -170,10 +214,28 @@ Page({
         myComponent.getShopCarGoods();
     },
     // 添加商品
+    openDetail:function(par){
+        this.showModal()
+        var index = parseInt(par.currentTarget.id);
+        // 在右侧数据里搜索对应索引的商品
+        var data = this.data.rightDataSource[index];
+        console.log(data)
+        var normal=data.normal
+        if(!normal){
+            normal=0
+        }
+        console.log(normal)
+        this.setData({
+            selectedWineindex:index,
+            tmpBuyNum:data.buy,
+            tmpNormal: normal,
+        })
+    },
     addImageDidClick(par) {
         // console.log(par)
         // 获取点击的商品索引
-        var index = parseInt(par.currentTarget.id);
+        //var index = parseInt(par.currentTarget.id);
+        var index=this.data.selectedWineindex
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
         console.log(data);
@@ -198,6 +260,70 @@ Page({
         // 调用自定义组件中的方法,更新底栏购物车
         let myComponent = this.selectComponent("#myComponent");
         myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+    },
+    plus:function(){
+        var index=this.data.selectedWineindex
+        // 在右侧数据里搜索对应索引的商品
+        var tmpbuy=this.data.tmpBuyNum
+        var tmpnormal=this.data.tmpNormal
+        var data = this.data.rightDataSource[index];
+        if (tmpbuy< data.stock) {
+            tmpbuy += 1;
+            tmpnormal +=1;
+        } else {
+            wx.showToast({
+                title: "库存不足",
+                duration: 2000,
+            });
+            return;
+        }
+
+        this.setData({
+            tmpBuyNum:tmpbuy,
+            tmpNormal:tmpnormal
+        })
+        console.log(this.data.tmpNormal)
+    },
+    minus:function(){
+        var tmpbuy=this.data.tmpBuyNum
+        var tmpnormal=this.data.tmpNormal
+        if (tmpbuy >0){
+            tmpbuy -=1;
+        }
+        if(tmpnormal >0){
+            tmpnormal -=1;
+        }
+        this.setData({
+            tmpBuyNum:tmpbuy,
+            tmpNormal:tmpnormal
+        })
+    },
+    confirm:function(){
+        var index=this.data.selectedWineindex
+        // 在右侧数据里搜索对应索引的商品
+        var tmpbuy=this.data.tmpBuyNum
+        var tmpnormal=this.data.tmpNormal
+         this.data.rightDataSource[index].buy=tmpbuy
+         this.data.rightDataSource[index].normal=tmpnormal
+        this.setData({
+            rightDataSource: this.data.rightDataSource,
+        });
+        var data= this.data.rightDataSource[index]
+        console.log(data)
+        this.hideModal()
+
+        var app = getApp();
+        app.addGoodToShopCar(data);
+
+        // 调用自定义组件中的方法,更新底栏购物车
+        let myComponent = this.selectComponent("#myComponent");
+        myComponent.getShopCarGoods(); // 调用自定义组件中的方法
+        
+    },
+    changeSlider:function(e){
+        this.setData({
+            tmpNormal: e.detail.value 
+        })
     },
 
     // 获取数据
@@ -262,6 +388,7 @@ Page({
             if (index === -1) {
             } else {
                 rightDataSource[index].buy = cart[i].buy;
+                rightDataSource[index].normal = cart[i].normal;
             }
             // console.log('key=', i, 'value=', cart[i])
         }
