@@ -6,6 +6,7 @@ Page({
    */
   data: {
     //addressList=[],
+    distance:15,
   },
 
   /**
