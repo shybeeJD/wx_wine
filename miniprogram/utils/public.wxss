@@ -25,6 +25,21 @@
   align-items: center;
   justify-content: center;
 }
+.justifyContentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+.justifyContentLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+.justifyContentRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.padding_l_10px {
+  padding: 0px 10px 0px 10px;
+}
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
 }

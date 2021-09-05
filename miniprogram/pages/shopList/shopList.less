@@ -1,0 +1,38 @@
+@import "../../utils/public.less";
+@import "../../utils/public.less";
+
+.container {
+    .cardGroup {
+        .flexContainerCol;
+        width: 100%;
+        flex: 10;
+
+        .card {
+            flex: 1;
+            .roundedRectangle;
+            padding: 10px 0 10px 0;
+            .flexContainerRow;
+
+            .content {
+                .padding_l_r_10px;
+
+                flex: 11;
+                .flexContainerCol;
+
+                #title {
+                    display: flex;
+                    #distance {
+                        color: gray;
+                        font-size: smaller;
+                    }
+                }
+                #address {
+                }
+            }
+            .arrow {
+                flex: 1;
+                .allCenterContainer;
+            }
+        }
+    }
+}

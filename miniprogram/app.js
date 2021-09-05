@@ -6,17 +6,17 @@ App({
         city: {
             city: "郑州",
             province: "河南",
-            district: ""
+            district: "",
         }, //用户城市信息
         bid: null, //用户bid
         systemInfo: null, //系统信息
         shopCarGoods: {}, //购物车商品
         islogin: false, //是否登录
         envId: "shybeejd-5gv8sqyv03b56093",
-        shopList:[],
-        shopNow:null,
-        shopChanged:false,
-        cate:null
+        shopList: [],
+        shopNow: null,
+        shopChanged: false,
+        cate: null,
     },
     permission: {
         "scope.userLocation": {
@@ -140,25 +140,36 @@ App({
             type: "wgs84", // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
             success: function (location) {
                 that.globalData.location = location;
-                console.log(location)
-                wx.cloud.callFunction({
-                name: "quickstartFunctions",
-                config: {
-                    env: "shybeejd-5gv8sqyv03b56093",
-                },
-                data: {
-                    type: "getShop",
-                    latitude:location.latitude,
-                    longitude:location.longitude,
-                },
-            })
-            .then((resp) => {
-                console.log(resp.result.list);
-                that.globalData.shopList=resp.result.list
-                that.globalData.shopNow=resp.result.list[0]
-                if(that.shopNowCallback)
-                that.shopNowCallback(resp.result.list[0])
-            })
+                console.log(location);
+                wx.cloud
+                    .callFunction({
+                        name: "quickstartFunctions",
+                        config: {
+                            env: "shybeejd-5gv8sqyv03b56093",
+                        },
+                        data: {
+                            type: "getShop",
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                        },
+                    })
+                    .then((resp) => {
+                        console.log(resp.result.list);
+                        that.globalData.shopList = resp.result.list;
+                        that.globalData.shopNow = resp.result.list[0];
+
+                        for (let i in that.globalData.shopList) {
+                            that.globalData.shopList[i].distance =
+                                Math.round(
+                                    that.globalData.shopList[i].distance * 100
+                                ) / 100;
+                        }
+                        that.globalData.shopNow.distance =
+                            Math.round(that.globalData.shopNow.distance * 100) /
+                            100;
+                        if (that.shopNowCallback)
+                            that.shopNowCallback(resp.result.list[0]);
+                    });
             },
             fail: function () {
                 wx.showToast({
@@ -197,9 +208,8 @@ App({
             .catch((e) => {
                 console.log(e);
             });
-            
-        wx.hideLoading();
 
+        wx.hideLoading();
     },
     // 添加商品到购物车
     addGoodToShopCar: function (good) {

@@ -5,6 +5,9 @@ Page({
      */
     data: {
         orderId: null,
+        enId: null,
+        orderInfo: null,
+        
         address: {
             name: "名字是啥",
             tel: "13623711670",
@@ -40,10 +43,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading({
+            title: "加载中",
+        });
+
+        let app = getApp();
         this.setData({
             orderId: options.id,
+            enId: app.globalData.envId
         });
-        // this.getData();
+
+        this.getData();
+
+        wx.hideLoading();
     },
 
     /**
@@ -82,39 +94,61 @@ Page({
     onShareAppMessage: function () {},
 
     getData: function (options) {
-        console.log(options)
+        this.getOrderData();
     },
+    // 获取订单数据
     getOrderData: function (params) {
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
                 config: {
-                    env: this.data.envId,
+                    env: this.data.enId,
                 },
                 data: {
-                    type: "getAddress",
+                    type: "getOrderInfo",
+                    _id: this.data.orderId,
                 },
             })
-            .then((resp) => {
-                wx.setStorageSync("address_list", resp.result.data);
-
-                // 下面这堆东西是设置默认的地址
-                for (let i in resp.result.data) {
-                    let address_item = resp.result.data[i];
-                    if (address_item.default == true) {
-                        wx.setStorageSync("address_id", address_item._id);
-                        this.setData({
-                            address: address_item,
-                        });
-                    } else {
-                        console.log("未成功找到缓存中的地址id");
-                    }
-                }
+            .then((res) => {
+                this.setData({
+                    // todo:刚获取到了数据
+                    orderInfo: res.result.data[0]
+                })
+                console.log(res);
             })
             .catch((e) => {
                 console.log(e);
-
-                wx.hideLoading();
             });
-    }
+        // wx.cloud
+        //     .callFunction({
+        //         name: "quickstartFunctions",
+        //         config: {
+        //             env: this.data.envId,
+        //         },
+        //         data: {
+        //             type: "getAddress",
+        //         },
+        //     })
+        //     .then((resp) => {
+        //         wx.setStorageSync("address_list", resp.result.data);
+
+        //         // 下面这堆东西是设置默认的地址
+        //         for (let i in resp.result.data) {
+        //             let address_item = resp.result.data[i];
+        //             if (address_item.default == true) {
+        //                 wx.setStorageSync("address_id", address_item._id);
+        //                 this.setData({
+        //                     address: address_item,
+        //                 });
+        //             } else {
+        //                 console.log("未成功找到缓存中的地址id");
+        //             }
+        //         }
+        //     })
+        //     .catch((e) => {
+        //         console.log(e);
+
+        //         wx.hideLoading();
+        //     });
+    },
 });

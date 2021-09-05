@@ -54,5 +54,19 @@ Component({
                 marketPrice: marketPrice,
             });
         },
+        buyButton: function () {
+            let goodsNum = this.data.num;
+            if (goodsNum <= 0) {
+                wx.showToast({
+                    title: "购物车为空",
+                    icon: "error",
+                    duration: 1000,
+                });
+            } else {
+                wx.navigateTo({
+                    url: "../../pages/settlement/settlement",
+                });
+            }
+        },
     },
 });

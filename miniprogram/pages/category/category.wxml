@@ -1,8 +1,8 @@
 <view style="background-color:#F5F5F5">
   <!-- 底部小购物车 -->
   <view wx:if="{{ showModalStatus ==false}}">
-  <miniShopCar id="myComponent" ></miniShopCar>
-</view>
+    <miniShopCar id="myComponent"></miniShopCar>
+  </view>
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view
@@ -59,52 +59,73 @@
       </view>
 
       <!-- 加减号 -->
-      <view>
+      <view class="shopCar">
         <image
-          src="../resource/add.png"
-          class="add_image_style"
-          id="{{index}}"
+          src="../resource/white_shopCar.png"
+          id="{{index}}" class="shopCarImage"
           bindtap="openDetail"
+          mode="widthFix"
         />
-        <text class="good_buy_number">{{item.buy}}</text>
-        <image
+        <!-- <text class="good_buy_number">{{item.buy}}</text> -->
+        <!-- <image
           src="../resource/reduce.png"
           class="reduce_image_style"
           id="{{index}}"
           bindtap="openDetail"
-        />
+        /> -->
       </view>
       <view class="right_line" />
     </view>
   </scroll-view>
 </view>
 <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+
+<!-- 弹窗 -->
 <view animation="{{animationData}}" class="detail-box" wx:if="{{showModalStatus}}">
-    <view class="goods-img-box">
-      <image src="{{rightDataSource[selectedWineindex].thumb_url}}" class="goods-img"></image>
-      <view class='right-side'>
-        <view class='price'>¥{{rightDataSource[selectedWineindex].price}}</view>
-        <view class='type'>已选：{{selTypeList}}</view>
-        <view class='inventory'>库存：{{rightDataSource[selectedWineindex].stock}}</view>
-      </view>
+  <view class="goods-img-box">
+    <image src="{{rightDataSource[selectedWineindex].thumb_url}}" class="goods-img"></image>
+
+    <view class="right-side">
+      <view class="price">¥{{rightDataSource[selectedWineindex].price}}</view>
+      <!-- todo:已选不会显示 -->
+      <view class="type">已选：{{tmpBuyNum}}</view>
+      <view class="inventory">库存：{{rightDataSource[selectedWineindex].stock}}</view>
     </view>
+  </view>
+  <!-- 总数量选择 -->
+  <view class="numLine">
+    <view class="text">数量</view>
     <view class="number-box">
-      <view class="control {{plusBan}}" bindtap='plus'>+</view>
-      <view class="control num">{{tmpBuyNum}}</view>
-      <view class="control {{minusBan}}" bindtap='minus'>-</view>  
+      <view class="control {{minusBan}}" bindtap="minus">-</view>
+      <view id="tmpBuyNum" class="control num">{{tmpBuyNum}}</view>
+      <view class="control {{plusBan}}" bindtap="plus">+</view>
     </view>
-    <view class="tui-content">
-      <view class="tui-slider-head">温度:常温{{tmpNormal}},冰冻{{ tmpBuyNum - tmpNormal }}</view>
+  </view>
+  <!-- 常低温的数量 -->
+  <view class="tui-content">
+    <!-- 显示信息 -->
+    <view class="tui-slider-head">
+      <view class="temText">温度</view>
+      <view class="temNum">
+        共<span class="temNumBold"> {{tmpBuyNum}}</span>瓶,冰冻<span class="temNumBold"
+          >{{ tmpBuyNum - tmpNormal }}</span
+        >
+        瓶,常温<span class="temNumBold"> {{tmpNormal}}</span>瓶</view
+      >
+    </view>
+    <!-- 滑动条控制数量 -->
+    <view class="sliderBox">
       <view class="tui-slider-left">冰冻</view>
-      
+
       <view class="tui-slider-box">
-        <slider bindchange="changeSlider" min="0" max="{{tmpBuyNum}}" value="{{tmpNormal}}" />
+        <slider bindchanging="changeSlider" min="0" max="{{tmpBuyNum}}" value="{{tmpNormal}}" />
       </view>
-      <view class="tui-slider-left">常温</view>
+      <view class="tui-slider-right">常温</view>
     </view>
-
- 
-    <view class="confirm-btn {{btnType}}" bindtap='confirm'>确认</view>
-    <view class="cancel-btn {{btnType}}" bindtap='hideModal'>取消</view>
-
+  </view>
+  <!-- 按钮组 -->
+  <view class="btnGroup">
+    <view class="confirm-btn {{btnType}}" bindtap="confirm">确认</view>
+    <view class="cancel-btn {{btnType}}" bindtap="hideModal">取消</view>
+  </view>
 </view>
