@@ -4,7 +4,7 @@
     <!-- <view class="icon"></view> -->
     <view class="content">
       <view class="info">
-        <view class="name">{{address.name}}</view>
+        <view class="name">{{orderInfo.address.receiver}}</view>
         <view class="tel">{{address.tel}}</view>
       </view>
       <view class="address">{{address.detail}}</view>

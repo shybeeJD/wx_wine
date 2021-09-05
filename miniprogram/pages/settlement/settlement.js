@@ -1,6 +1,5 @@
 // pages/settlement/settlement.js
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -20,14 +19,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading({
+            title: "加载中",
+        });
+
         var app = getApp();
         this.getFreight();
         this.setData({
             envId: app.globalData.envId,
         });
-
         this.updateAddress();
         this.updateGoods();
+
+        wx.hideLoading();
     },
 
     /**
@@ -92,6 +96,10 @@ Page({
     },
     // 创建订单
     createOrder: function (event) {
+        wx.showLoading({
+            title: "加载中",
+        });
+
         let goods = {};
         for (let i in this.data.goodsList) {
             let i_id = this.data.goodsList[i]._id;
@@ -101,6 +109,7 @@ Page({
         // todo:添加订单时候选择的地址
         let id = wx.getStorageSync("address_id");
         if (id == "") {
+            wx.hideLoading();
             wx.showToast({
                 title: "地址不能为空",
                 icon: "error",
@@ -141,12 +150,23 @@ Page({
                 .then((res) => {
                     // todo:该写提交订单成功后的操作了,弹窗提示并跳转到待支付页面
                     console.log(res.result);
-                    this.setData({
-                        dialogShow: true,
-                        orderID: res.result.data.id,
-                    });
+                    if (res.result.success == false) {
+                        wx.showToast({
+                            title: res.result.msg,
+                            icon: "error",
+                        });
+                    } else {
+                        this.setData({
+                            dialogShow: true,
+                            orderID: res.result.res._id,
+                        });
+                        
+                        //提交订单后清除购物车缓存
+                        wx.setStorageSync('cart', [])
+                    }
                 })
                 .catch(console.error);
+            wx.hideLoading();
         }
     },
 
@@ -156,51 +176,50 @@ Page({
         });
     },
     // 从缓存中更新已选择的地址
-    updateSelectedAddress:function(){
-      let id= wx.getStorageSync('address_id')
-      let address_list=wx.getStorageSync('address_list')
-      console.log(address_list)
-      console.log(id)
-      for (let i in address_list) {
-        let address_item = address_list[i]
-        console.log(i)
-        if (address_item._id==id) {
-          
-          this.setData({
-            address:address_item
-          })
-          break
-        } else {
-          console.log("未成功找到缓存中的地址id");
+    updateSelectedAddress: function () {
+        let id = wx.getStorageSync("address_id");
+        let address_list = wx.getStorageSync("address_list");
+        console.log(address_list);
+        console.log(id);
+        for (let i in address_list) {
+            let address_item = address_list[i];
+            console.log(i);
+            if (address_item._id == id) {
+                this.setData({
+                    address: address_item,
+                });
+                break;
+            } else {
+                console.log("未成功找到缓存中的地址id");
+            }
         }
-      }
-      
     },
 
     // 云函数获取地址列表,并添加到缓存
     // 然后显示默认的地址
     updateAddress: function () {
-        var app =getApp()
-      wx.cloud.callFunction({
-        name: "quickstartFunctions",
-        config: {
-          env: this.data.envId,
-        },
-        data: {
-          type: "getAddress",
-          shopLatitude:app.globalData.shopNow.location.coordinates[1],
-         shopLongitude:app.globalData.shopNow.location.coordinates[0],
-          
-        },
-      }).then((resp) => {
-        wx.setStorageSync("address_list", resp.result.list)
-        for (let i in resp.result.list) {
-          let address_item = resp.result.list[i]
-          if (address_item.default==true) {
-            wx.setStorageSync("address_id", address_item._id)
-            this.setData({
-              address: address_item
+        var app = getApp();
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: this.data.envId,
+                },
+                data: {
+                    type: "getAddress",
+                    shopLatitude: app.globalData.shopNow.location.coordinates[1],
+                    shopLongitude: app.globalData.shopNow.location.coordinates[0],
+                },
             })
+            .then((resp) => {
+                wx.setStorageSync("address_list", resp.result.list);
+                for (let i in resp.result.list) {
+                    let address_item = resp.result.list[i];
+                    if (address_item.default == true) {
+                        wx.setStorageSync("address_id", address_item._id);
+                        this.setData({
+                            address: address_item,
+                        });
                     } else {
                         console.log("未成功找到缓存中的地址id");
                     }
