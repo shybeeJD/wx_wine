@@ -43,17 +43,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log(this.data.address_list)
+        console.log(this.data.address_list);
         this.updateSelectedAddress();
         this.updateGoods();
-        if(this.data.address_list){
+        if (this.data.address_list) {
             this.coumputeDeliveryPrice();
             this.updateGoods();
-        }else{
-            this.getAddressCallback= (loginInfo) =>{
+        } else {
+            this.getAddressCallback = (loginInfo) => {
                 this.updateSelectedAddress();
                 this.updateGoods();
-            }
+            };
         }
     },
 
@@ -112,17 +112,16 @@ Page({
 
         let goods = {};
         for (let i in this.data.goodsList) {
-            if(this.data.goodsList[i].isSelect){
+            if (this.data.goodsList[i].isSelect) {
                 let i_id = this.data.goodsList[i]._id;
                 let i_buy = this.data.goodsList[i].buy;
                 let i_normal = this.data.goodsList[i].normal;
                 goods[i_id] = { num: i_buy, normal: i_normal };
             }
-            
         }
         // todo:添加订单时候选择的地址
-        let address =this.data.address;
-        if (address==undefined || address==null) {
+        let address = this.data.address;
+        if (address == undefined || address == null) {
             wx.hideLoading();
             wx.showToast({
                 title: "地址不能为空",
@@ -131,7 +130,6 @@ Page({
             });
             return;
         } else {
-            
             wx.cloud
                 .callFunction({
                     name: "quickstartFunctions",
@@ -172,25 +170,23 @@ Page({
             wx.hideLoading();
         }
     },
-    coumputeDeliveryPrice:function(){
-        
-        var distance=this.data.address.distance
-        var app=getApp()
+    coumputeDeliveryPrice: function () {
+        var distance = this.data.address.distance;
+        var app = getApp();
 
-        console.log(app.globalData.shopNow)
-        console.log(distance)
-        var freight=app.globalData.shopNow.freight
-        var dprice=0
-        for(var key in freight){
-            if(distance>parseFloat(key)){
-                dprice=freight[key]
+        console.log(app.globalData.shopNow);
+        console.log(distance);
+        var freight = app.globalData.shopNow.freight;
+        var dprice = 0;
+        for (var key in freight) {
+            if (distance > parseFloat(key)) {
+                dprice = freight[key];
             }
         }
         this.setData({
-            freight:dprice
-        })
-        console.log(this.data.freight)
-        
+            freight: dprice,
+        });
+        console.log(this.data.freight);
     },
 
     selectAddress: function () {
@@ -199,15 +195,21 @@ Page({
         });
     },
     // 从缓存中更新已选择的地址
-    updateSelectedAddress: function () {
-       
-    },
+    updateSelectedAddress: function () {},
 
     // 云函数获取地址列表,并添加到缓存
     // 然后显示默认的地址
     updateAddress: function () {
         var app = getApp();
+<<<<<<< HEAD
         var that=this
+=======
+        var that = this;
+        // tag:什么玩意,有这一行就会报错
+        // if (app.globalData.address_list){
+        //     break;
+        // }
+>>>>>>> d14381601ec9f979f77bb5b8f067b966d5840db9
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -223,32 +225,33 @@ Page({
                 },
             })
             .then((resp) => {
-                var app =getApp()
+                var app = getApp();
                 for (let i in resp.result.list) {
                     let address_item = resp.result.list[i];
-                    console.log(address_item)
-                    if(address_item.distance> app.globalData.shopNow.postRange){
-                        break
+                    console.log(address_item);
+                    if (
+                        address_item.distance > app.globalData.shopNow.postRange
+                    ) {
+                        break;
                     }
                     if (address_item.default == true) {
                         wx.setStorageSync("address_id", address_item._id);
                         that.setData({
                             address: address_item,
                         });
-                        
-                        break
+
+                        break;
                     }
-                   
                 }
                 that.setData({
-                    address_list:resp.result.list
+                    address_list: resp.result.list,
                 });
                 if (this.getAddressCallback) {
-                    this.getAddressCallback(null)
+                    this.getAddressCallback(null);
                 }
-            
-                that.coumputeDeliveryPrice()
-                console.log(that.data)
+
+                that.coumputeDeliveryPrice();
+                console.log(that.data);
             })
             .catch((e) => {
                 console.log(e);
@@ -259,19 +262,18 @@ Page({
 
     // 更新商品数据
     updateGoods: function () {
-        var app =getApp()
+        var app = getApp();
         let goodsList = wx.getStorageSync(app.globalData.shopNow._id);
-        console.log(goodsList)
+        console.log(goodsList);
 
         let p = 0;
         let pack = 0;
         for (let i in goodsList) {
-            if(goodsList[i].isSelect){
+            if (goodsList[i].isSelect) {
                 console.log(goodsList[i].packingsPrice);
                 p += goodsList[i].price * goodsList[i].buy;
                 pack += goodsList[i].packingsPrice * goodsList[i].buy;
             }
-            
         }
         console.log(this.data.freight);
         this.setData({
