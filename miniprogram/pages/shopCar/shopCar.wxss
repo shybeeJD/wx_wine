@@ -153,6 +153,9 @@
   display: flex;
   flex-direction: row;
 }
+.list_item_style .list_item_right .img {
+  flex: 3s;
+}
 .list_item_style .list_item_right .info_text {
   flex: 4;
   align-items: center;
@@ -178,7 +181,6 @@
 }
 /*商品主图*/
 .good_main_image {
-  flex: 3;
   width: 80px;
   height: 80px;
   top: 5px;
@@ -242,9 +244,9 @@
 }
 /*售价*/
 .right_list_item_price {
-  width: 100%;
   color: #ff6261;
   font-size: 16px;
+  margin-right: 5px;
 }
 /*市场价*/
 .right_list_item_market_price {
@@ -252,4 +254,7 @@
   color: #333333;
   margin-left: 3px;
   text-decoration: line-through;
+}
+.small_text {
+  padding-left: 5px;
 }

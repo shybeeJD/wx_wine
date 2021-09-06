@@ -13,14 +13,16 @@
       </view>
       <!-- 商品详情 -->
       <view class="list_item_right">
-        <image class="good_main_image" src="{{item.thumb_url}}"></image>
+        <view class="img">
+          <image class="good_main_image" mode="scaleToFill" src="{{item.thumb_url}}"></image>
+        </view>
 
         <view class="info_text">
           <text class="item_good_title">{{item.title}}</text>
           <!-- 价格 -->
           <view class="price_back_view">
             <text class="right_list_item_price">¥{{item.price}}</text>
-            <!-- <text class="right_list_item_market_price">{{item.marketPrice}}</text> -->
+            <text class="right_list_item_market_price">{{item.marketPrice}}</text>
           </view>
         </view>
 
@@ -55,7 +57,7 @@
       src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}"
     />
     <text class="small_text">全选</text>
-    <text>合计:￥ </text>
+    <text class="small_text">合计: </text>
     <text class="price">{{totalMoney}}</text>
     <!-- 价格结算区 -->
     <view class="content" hover-class="none" hover-stop-propagation="false">
