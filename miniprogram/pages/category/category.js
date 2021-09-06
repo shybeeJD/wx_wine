@@ -359,6 +359,9 @@ Page({
             tmpNormal: e.detail.value 
         })
     },
+    closeDetail:function(){
+        this.hideModal()
+    },
     onPullDownRefresh(){
         console.log('下拉刷新')
         this.data.pageList=[]

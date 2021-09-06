@@ -17,6 +17,7 @@ App({
         shopNow: null,
         shopChanged: false,
         cate: null,
+        postRange:20
     },
     permission: {
         "scope.userLocation": {
@@ -36,6 +37,7 @@ App({
                 traceUser: true,
             });
             var that = this;
+            this.getAllType()
             // 获取用户定位信息
             this.getUserLocation(function (res) {});
 
@@ -169,6 +171,8 @@ App({
                             100;
                         if (that.shopNowCallback)
                             that.shopNowCallback(that.globalData.shopNow);
+                        if (that.shopNowCallback2)
+                            that.shopNowCallback2(that.globalData.shopNow);
                     });
             },
             fail: function () {
@@ -210,6 +214,25 @@ App({
             });
 
         wx.hideLoading();
+    },
+    getAllType:function(){
+        var that=this
+        wx.cloud.callFunction({
+            name: "quickstartFunctions",
+            config: {
+                env: "shybeejd-5gv8sqyv03b56093",
+            },
+            data: {
+                type: "getAllType",
+            },
+        })
+        .then((resp) => {
+            console.log(resp.result.data[0].type);
+            that.globalData.allType=resp.result.data[0].type.split(",")
+        })
+        .catch((e) => {
+            console.log(e);
+        });
     },
     // 添加商品到购物车
     addGoodToShopCar: function (good) {

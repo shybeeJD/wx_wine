@@ -4,10 +4,10 @@
     <!-- <view class="icon"></view> -->
     <view class="content">
       <view class="info">
-        <view class="name">{{orderInfo.address.receiver}}</view>
-        <view class="tel">{{address.tel}}</view>
+        <view class="name">{{address.receiver}}</view>
+        <view class="tel">{{address.phone}}</view>
       </view>
-      <view class="address">{{address.detail}}</view>
+      <view class="address">{{address.title}}</view>
     </view>
 
     <view class="arrow">></view>
@@ -45,7 +45,7 @@
     <view class="c2_total">
       <view class="text">共x件商品,小计:</view>
       <view class="block"></view>
-      <view class="price">¥{{totalPrice + packingsPrice +freight}}</view>
+      <view class="price">¥{{ money}}</view>
     </view>
   </view>
   <!-- 订单信息栏 -->
@@ -63,8 +63,8 @@
       </view>
 
       <view class="orderDetail_value">
-        <view class="orderDetail_value_item">{{orderDetail._id}}</view>
-        <view class="orderDetail_value_item">{{orderDetail.createTime}}</view>
+        <view class="orderDetail_value_item">{{id}}</view>
+        <view class="orderDetail_value_item">{{createTime}}</view>
       </view>
     </view>
   </view>

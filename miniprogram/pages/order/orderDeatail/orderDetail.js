@@ -9,9 +9,9 @@ Page({
         orderInfo: null,
         
         address: {
-            name: "名字是啥",
-            tel: "13623711670",
-            detail: "地球中国河南郑州",
+            receiver: "名字是啥",
+            phone: "13623711670",
+            title: "地球中国河南郑州",
         },
         goodsList: [{
                 title: "我是大烧饼",
@@ -110,9 +110,26 @@ Page({
                 },
             })
             .then((res) => {
+                var goodsList=[]
+                for(var key in res.result.data[0].goods){
+                    var tmp={
+                        title: res.result.data[0].goods[key].brand,
+                        buy: res.result.data[0].goods[key].num,
+                        price: res.result.data[0].goods[key].price,
+                        normal: res.result.data[0].goods[key].normal
+                    }
+                    goodsList.push(tmp)
+                }
                 this.setData({
                     // todo:刚获取到了数据
-                    orderInfo: res.result.data[0]
+                    orderInfo: res.result.data[0],
+                    address: res.result.data[0].address,
+                    packingsPrice : res.result.data[0].packingsPrice,
+                    freight : res.result.data[0].delivery_price,
+                    money:  res.result.data[0].money,
+                    goodsList:goodsList,
+                    id : res.result.data[0].id,
+                    createTime: res.result.data[0].addTime
                 })
                 console.log(res);
             })

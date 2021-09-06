@@ -1,4 +1,4 @@
-<view style="background-color:#F5F5F5">
+<view style="background-color:#F5F5F5" bindtap="closeDetail">
   <!-- 底部小购物车 -->
   <view wx:if="{{ showModalStatus ==false}}">
     <miniShopCar id="myComponent" _id="{{ shopNow._id }}"></miniShopCar>
@@ -63,7 +63,7 @@
         <image
           src="../resource/white_shopCar.png"
           id="{{index}}" class="shopCarImage"
-          bindtap="openDetail"
+          catchtap="openDetail"
           mode="widthFix"
         />
         <!-- <text class="good_buy_number">{{item.buy}}</text> -->

@@ -111,12 +111,18 @@ Page({
         });
 
         let goods = {};
+        let goodsLeft=[];
         for (let i in this.data.goodsList) {
             if (this.data.goodsList[i].isSelect) {
                 let i_id = this.data.goodsList[i]._id;
                 let i_buy = this.data.goodsList[i].buy;
                 let i_normal = this.data.goodsList[i].normal;
-                goods[i_id] = { num: i_buy, normal: i_normal };
+                let brand= this.data.goodsList[i].brand
+                let price = this.data.goodsList[i].price
+                goods[i_id] = { num: i_buy, normal: i_normal, brand:brand, price:price};
+            }
+            else{
+                goodsLeft.push(this.data.goodsList[i])
             }
         }
         // todo:添加订单时候选择的地址
@@ -130,6 +136,7 @@ Page({
             });
             return;
         } else {
+            console.log(this.data.freight)
             wx.cloud
                 .callFunction({
                     name: "quickstartFunctions",
@@ -161,9 +168,9 @@ Page({
                             dialogShow: true,
                             orderID: res.result.res._id,
                         });
-
+                        var app =getApp()
                         //提交订单后清除购物车缓存
-                        wx.setStorageSync("cart", []);
+                        wx.setStorageSync(app.globalData.shopNow._id, goodsLeft);
                     }
                 })
                 .catch(console.error);
@@ -201,15 +208,7 @@ Page({
     // 然后显示默认的地址
     updateAddress: function () {
         var app = getApp();
-<<<<<<< HEAD
         var that=this
-=======
-        var that = this;
-        // tag:什么玩意,有这一行就会报错
-        // if (app.globalData.address_list){
-        //     break;
-        // }
->>>>>>> d14381601ec9f979f77bb5b8f067b966d5840db9
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",

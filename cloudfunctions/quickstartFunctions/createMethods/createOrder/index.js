@@ -91,24 +91,21 @@ exports.main = async (event, context) => {
 
   if (success){
     try {
-      var f = await db.collection('winTypes').where({
-        name:'freight'
-      }).get()
+
       now.setMinutes(now.getMinutes()+15)
-      console.log(f.data)
       // 创建集合
       data={
         status:5,
         userId:userInfo.OPENID,
         addTime:now,
-        delivery_price:f.data[0].price,
+        delivery_price:event.delivery_price,
         address: event.address,
         discount: event.discount,
         packingsPrice: packaging,
         paymentChannels:0,
         id:orderCode,
         goods:goods,
-        money:money+packaging+f.data[0].price
+        money:money+packaging+event.delivery_price
       }
       var res = await db.collection('order').add({
         // data 字段表示需新增的 JSON 数据
