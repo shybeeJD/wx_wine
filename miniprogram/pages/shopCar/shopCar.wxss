@@ -162,6 +162,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding-left: 10px;
 }
 .list_item_style .list_item_right .smallBtn {
   flex: 4;
