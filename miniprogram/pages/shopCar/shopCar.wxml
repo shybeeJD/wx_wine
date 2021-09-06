@@ -1,59 +1,73 @@
 <view>
   <scroll-view class="scrol_view_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view wx:for-items="{{dataSource}}" wx:key="*this" class="list_item_style">
-      <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" src="{{item.isSelect?'../resource/selected.png':'../resource/unchecked-checkbox.png'}}" />
+      <!-- 商品详情 -->
+      <view class="list_item_left">
+        <image class="good_main_image" src="{{item.thumb_url}}"></image>
+        <text class="item_good_title">{{item.title}}</text>
+        <image
+          src="../resource/add.png"
+          class="add_image_style"
+          id="{{index}}"
+          bindtap="addButtonClick"
+        ></image>
+        <input class="good_buy_number" value="{{item.buy}}" />
+        <image
+          src="../resource/reduce.png"
+          class="reduce_image_style"
+          id="{{index}}"
+          bindtap="reduceButtonClick"
+        ></image>
 
-      <image src="{{item.thumb_url}}" class="good_main_image"></image>
-      <text class="item_good_title">{{item.title}}</text>
-      <image
-        src="../resource/add.png"
-        class="add_image_style"
-        id="{{index}}"
-        bindtap="addButtonClick"
-      ></image>
-      
-      <input class="good_buy_number" value="{{item.buy}}" />
-      <image
-        src="../resource/reduce.png"
-        class="reduce_image_style"
-        id="{{index}}"
-        bindtap="reduceButtonClick"
-      ></image>
-      <view class="price_back_view">
-        <text class="right_list_item_price">¥{{item.price}}</text>
-        <text class="right_list_item_market_price">{{item.marketPrice}}</text>
+        <!-- 价格 -->
+        <view class="price_back_view">
+          <text class="right_list_item_price">¥{{item.price}}</text>
+          <text class="right_list_item_market_price">{{item.marketPrice}}</text>
+        </view>
       </view>
-      <view
-        style="position:absolute;bottom:0px;left:0px;right:0px;height:1px;background-color:#D3D3D3"
-      ></view>
+
+      <!-- 选择框 -->
+      <view class="list_item_right">
+        <image
+          class="item-select"
+          bindtap="switchSelect"
+          data-index="{{index}}"
+          data-id="{{index}}"
+          src="{{item.isSelect?'../resource/selected.png':'../resource/unchecked-checkbox.png'}}"
+        />
+      </view>
     </view>
-    <view style="height:10px;background-color:#F5F5F5;width:100%"></view>
+    <!-- <view style="height:10px;background-color:#F5F5F5;width:100%"></view> -->
     <!-- 留言注释掉了 -->
     <!-- <view class = "input_back_view_style">
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
   <view class="mini_ShopCar">
-  <image class="item-allselect" bindtap="allSelect" src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}" />
+    <image
+      class="item-allselect"
+      bindtap="allSelect"
+      src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}"
+    />
     <text class="small_text">全选</text>
     <text>合计:￥ </text>
     <text class="price">{{totalMoney}}</text>
-  <!-- 价格结算区 -->
-  <view class="content" hover-class="none" hover-stop-propagation="false">
-    <view class="priceView">
-      <!-- 实付金额 -->
-      <text>￥</text>
-      <text class="price">{{price}}</text>
-      <!-- 市场价 -->
-      <view class="marketPriceView">
-        <text class="RMB_marketPrice">￥</text>
-        <text class="marketPrice">{{marketPrice}}</text>
+    <!-- 价格结算区 -->
+    <view class="content" hover-class="none" hover-stop-propagation="false">
+      <view class="priceView">
+        <!-- 实付金额 -->
+        <text>￥</text>
+        <text class="price">{{price}}</text>
+        <!-- 市场价 -->
+        <view class="marketPriceView">
+          <text class="RMB_marketPrice">￥</text>
+          <text class="marketPrice">{{marketPrice}}</text>
+        </view>
+      </view>
+      <!-- 结算按钮 -->
+      <view class="buyButton" bindtap="buyButton">
+        结算
       </view>
     </view>
-    <!-- 结算按钮 -->
-    <view class="buyButton" bindtap="buyButton">
-      结算
-    </view>
   </view>
-</view>
 </view>
