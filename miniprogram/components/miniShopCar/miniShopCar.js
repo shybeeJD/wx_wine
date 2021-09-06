@@ -14,10 +14,7 @@ Component({
     // 生命周期
     lifetimes: {
         attached: function () {
-            let that = this;
-            var app =getApp()
-            var _id =app.globalData.shopNow._id
-            that.getShopCarGoods(_id); //创建完先更新一下
+
         },
     },
     //   组件的方法列表

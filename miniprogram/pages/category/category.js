@@ -11,29 +11,40 @@ Page({
         envId: "",
         showModalStatus:false,
         selectedWine:null,
+        pageList:[],
+        typeDataSource:[],
+        page:0,
+        pageSize:1,
     },
     onLoad: function (options) {
         var app = getApp();
         if(app.globalData.shopNow){
             this.setData({
                 envId: app.globalData.envId,
-                shopNow:app.globalData.shopNow
+                shopNow:app.globalData.shopNow,
+                leftDataSource:app.globalData.shopNow.category.split(',')
             });
+            for (var i = 0; i < this.data.leftDataSource.length; i++) {
+                this.data.pageList.push(0)
+                this.data.typeDataSource.push(null)
+             }
             this.getAllwines();
             this.renderControl();
         }else{
             app.shopNowCallback = (shopNow) => {
                 this.setData({ 
                     envId: app.globalData.envId,
-                    shopNow:app.globalData.shopNow
+                    shopNow:app.globalData.shopNow,
+                    leftDataSource:app.globalData.shopNow.category.split(',')
                 })
+                for (var i = 0; i < this.data.leftDataSource.length; i++) {
+                    this.data.pageList.push(0)
+                    this.data.typeDataSource.push(null)
+                 }
+                this.getAllwines();
+                this.renderControl();
             }
-            this.getAllwines();
-            this.renderControl();
         }
-        this.setData({
-            miniShopCar: this.selectComponent("#myComponent")
-        })
        
     },
     onReady: function () {
@@ -43,8 +54,6 @@ Page({
         // 生命周期函数--监听页面显示
         var app = getApp()
         var cate= app.globalData.cate
-        console.log(cate)
-        console.log(this.data.leftDataSource)
         for(var i=0;i<this.data.leftDataSource.length;i++){
             if(this.data.leftDataSource[i]==cate){
                 this.setData({
@@ -53,22 +62,43 @@ Page({
                 break
             }
         }
-        console.log(this.data.allDataSouce)
-        if(app.globalData.shopChanged || this.data.allDataSouce==null){
+        if(app.globalData.shopChanged){
             this.setData({
                 envId: app.globalData.envId,
-                shopNow:app.globalData.shopNow
+                shopNow:app.globalData.shopNow,
+                leftDataSource:app.globalData.shopNow.category.split(',')
             });
+            var list=[]
+            var pageList=[]
+            for(var i=0;i<this.data.leftDataSource.length;i++){
+                list.push(null)
+                pageList.push(0)
+            }
+            this.setData({
+                typeDataSource:list,
+                pageList:pageList
+            })
             this.getAllwines()
             app.globalData.shopChanged=false
         }
         this.updataRightData();
         this.renderControl();
-        
-
+        if(app.globalData.shopNow){
+            let myComponent = this.selectComponent("#myComponent");
+            myComponent.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        } else{
+            app.shopNowCallback2 = (shopNow) => {
+                this.setData({ 
+                    shopNow:app.globalData.shopNow
+                })
+                let myComponent = this.selectComponent("#myComponent");
+                myComponent.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+            }
+            
+        }
+    
         // 调用自定义组件中的方法,更新底栏购物车
-        let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+       
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -143,7 +173,7 @@ Page({
     // 跳转到商品详情
     pushGoodDetail: function (tap) {
         var index = tap.currentTarget.id;
-        var good = this.data.rightDataSource[index];
+        var good = this.data.typeDataSource[this.data.leftListSelectItem][index];
         wx.navigateTo({
             url:
                 "../shopDetail/shopDetail?good=" +JSON.stringify(good),
@@ -155,23 +185,11 @@ Page({
 
     getAllwines: function () {
         var app = getApp();
+        var that=this
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
-        if(app.globalData.shopNow){
-            this.setData({
-              shopNow:app.globalData.shopNow
-            })
-          }
-          else{
-            app.shopNowCallback = (shopNow) => {
-              this.setData({ 
-                shopNow:shopNow
-              })
-          }
-          
-        }
-        wx.cloud
-            .callFunction({
+
+        wx.cloud.callFunction({
                 name: "quickstartFunctions",
                 config: {
                     env: app.globalData.envId,
@@ -179,7 +197,10 @@ Page({
                 data: {
                     type: "getAllWine",
                     userInfo: app.globalData.userInfo,
-                    shopNow:this.data.shopNow._id
+                    shopNow:that.data.shopNow._id,
+                    num:that.data.pageSize,
+                    offset:that.data.pageList[that.data.leftListSelectItem]*that.data.pageSize,
+                    category:that.data.leftDataSource[that.data.leftListSelectItem]
                 },
             })
             .then((resp) => {
@@ -193,6 +214,7 @@ Page({
 
                 wx.hideLoading();
             });
+            this.data.pageList[that.data.leftListSelectItem]+=1
         this.updataRightData();
     },
     // 右侧列表被点击
@@ -202,53 +224,30 @@ Page({
         this.setData({
             leftListSelectItem: index,
         });
-        this.updataRightData();
+        if(this.data.typeDataSource[this.data.leftListSelectItem]==null){
+            this.getAllwines()
+        }
+        this.updataRightData()
     },
     //更新右侧数据
     updataRightData: function () {
-        if (this.data.allDataSource == null) {
-            return;
-        }
-        var selectClassStr =
-            this.data.leftDataSource[this.data.leftListSelectItem];
+
         var selectData = new Array();
         var app = getApp();
-        for (var index in this.data.allDataSource) {
-            var good = this.data.allDataSource[index];
-            if (good.category_name == selectClassStr) {
-                var tempGood = app.globalData.shopCarGoods[good.id];
+        for (var index in this.data.typeDataSource[this.data.leftListSelectItem]) {
+            var good = this.data.typeDataSource[this.data.leftListSelectItem][index];   
+                var tempGood = app.globalData.shopCarGoods[good._id];
                 if (tempGood != null) {
                     good["buy"] = tempGood.buy;
                 }
                 selectData.push(good);
-            }
+            
         }
         this.setData({
             rightDataSource: selectData,
         });
     },
-    // 减少商品
-    reduceImageClick(par) {
-        //var index = parseInt(par.currentTarget.id);
-        var index=this.data.selectedWineindex
-        var data = this.data.rightDataSource[index];
-        if (data.buy > 0) {
-            data.buy -= 1;
-            this.setData({
-                rightDataSource: this.data.rightDataSource,
-            });
-        }
-
-        let cart = wx.wx.getStorageSync(this.data.shopNow._id) || [];
-        // let good_index=cart.findIndex(v=>)
-
-        var app = getApp();
-        app.reduceGoodFromShopCar(data);
-
-        // 调用自定义组件中的方法,更新底栏购物车
-        let myComponent = this.selectComponent("#myComponent");
-        myComponent.getShopCarGoods(this.data.shopNow._id);
-    },
+ 
     // 添加商品
     openDetail:function(par){
         this.showModal()
@@ -360,6 +359,23 @@ Page({
             tmpNormal: e.detail.value 
         })
     },
+    onPullDownRefresh(){
+        console.log('下拉刷新')
+        this.data.pageList=[]
+        this.data.typeDataSource=[]
+        for (var i = 0; i < this.data.leftDataSource.length; i++) {
+            this.data.pageList.push(0)
+            this.data.typeDataSource.push(null)
+         }
+         this.getAllwines()
+        
+        　　
+    },
+    onReachBottom(){
+        console.log('上拉加载')
+        this.getAllwines()
+
+    },
 
     // 获取数据
     // requestDataFromServe() {
@@ -392,13 +408,8 @@ Page({
     //更新数据
     updateData: function (data) {
         //更新左侧数据
-        var leftData = new Array();
-        for (var i = 0; i < data.category_contitions.length; i++) {
-            leftData.push(data.category_contitions[i]);
-        }
-        this.setData({
-            leftDataSource: leftData,
-        });
+        var app =getApp()
+
         //更新右侧数据
         var allData = new Array();
         for (var index in data.product_list) {
@@ -407,14 +418,19 @@ Page({
             good.buy = 0;
             allData.push(good);
         }
+        var product_list =data.product_list
+        if(this.data.typeDataSource[this.data.leftListSelectItem]!=null){
+            product_list=this.data.typeDataSource[this.data.leftListSelectItem].concat(product_list)
+        }
+        var key = 'typeDataSource['+this.data.leftListSelectItem+']'
         this.setData({
-            allDataSource: allData,
+            [key]:product_list
         });
         this.updataRightData();
         this.upDataFromStorage();
     },
     upDataFromStorage: function () {
-        let rightDataSource = this.data.rightDataSource;
+        let rightDataSource = this.data.typeDataSource[this.data.leftListSelectItem];
         console.log("assssssssssssssssssss");
 
         let cart = wx.getStorageSync(this.data.shopNow._id) || [];

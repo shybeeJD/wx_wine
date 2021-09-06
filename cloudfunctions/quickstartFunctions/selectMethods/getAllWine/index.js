@@ -16,8 +16,9 @@ exports.main = async (event, context) => {
   var userInfo=cloud.getWXContext()
 
   wine=await db.collection('wine').where({
-    shop:event.shopNow
-  }).get({
+    shop:event.shopNow,
+    category_name:event.category
+  }).limit(event.num).skip(event.offset).get({
     //若成功获取,异步操作注意异常
     success: res=>{
         //打印记录中第一条里goodName属性
@@ -38,13 +39,7 @@ exports.main = async (event, context) => {
     data['product_list']=wine.data
     data['category_contitions']=[]
     data['test']="test"
-    var type=await db.collection('winTypes').where({
-      name:'type'
-    }).get()
-    console.log(type.data)
-    var type_list=type.data[0]['type'].split(",")
-    console.log(type_list)
-    data['category_contitions']=type_list
+ 
 
     console.log(data)
   return data

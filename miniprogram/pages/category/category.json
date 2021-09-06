@@ -2,5 +2,7 @@
     "navigationBarTitleText": "分类",
     "usingComponents":{
         "miniShopCar":"../../components/miniShopCar/miniShopCar"
-    }
+    },
+    "enablePullDownRefresh": true,
+    "onReachBottom":true
 }

@@ -6,6 +6,7 @@ const updateRecord = require('./updateRecord/index')
 const sumRecord = require('./sumRecord/index')
 const writeMsg = require('./writeMsg/index')
 const login = require('./login/index')
+const getAllType= require('./selectMethods/getAllType/index')
 const getAllWine = require('./selectMethods/getAllWine/index')
 const selectIcon = require('./selectMethods/selectIcon/index')
 const getOrderInfo =require('./selectMethods/getOrderInfo/index')
@@ -39,6 +40,8 @@ exports.main = async (event, context) => {
       return await sumRecord.main(event, context)
     case 'login':
       return await login.main(event, context)
+    case 'getAllType':
+      return await getAllType.main(event,context)
     case 'selectIcon':
       return await selectIcon.main(event, context)
     case 'getAllWine':

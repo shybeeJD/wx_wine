@@ -145,7 +145,7 @@ Page({
                         // }, //购物车商品,key为wine._id, value为购买数量
                         goods: goods,
                         delivery_price: this.data.freight,
-                        address: this.data.address._id,
+                        address: this.data.address,
                         discount: 2,
                         packingsPrice: 0,
                     },
@@ -208,9 +208,6 @@ Page({
     updateAddress: function () {
         var app = getApp();
         var that=this
-        if (app.globalData.address_list){
-            break
-        }
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
