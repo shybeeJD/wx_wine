@@ -19,7 +19,16 @@
 
         <view class="info_text">
           <text class="item_good_title">{{item.title}}</text>
-          <view class="specification">{{item.specification}}</view>
+          <view class="specification">
+            <view class="s1">
+              {{item.specification}}
+            </view>
+            <view class="s2">
+              <span class="n" wx:if="{{item.normal>0}}"> 常温{{item.normal}}</span>
+              <span wx:if="{{item.buy-item.normal>0 && item.normal>0}}">，</span>
+              <span class="c" wx:if="{{item.buy-item.normal>0}}">冰冻{{item.buy-item.normal}}</span>
+            </view>
+          </view>
           <!-- 价格 -->
           <view class="price_back_view">
             <text class="right_list_item_price">¥{{item.price}}</text>
