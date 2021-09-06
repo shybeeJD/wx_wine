@@ -6,13 +6,17 @@ Page({
    */
   data: {
     //addressList=[],
-    distance:15,
+    distance:30,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app = getApp()
+    this.setData({
+      distance:app.globalData.shopNow.postRange
+    })
 
   },
 
@@ -136,7 +140,16 @@ Page({
   },
   setAddress: function (e) {
     console.log( e)
+    let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
+    let prevPage = pages[pages.length - 2]; 
+    prevPage.setData({
+      address: this.data.addressList[e.currentTarget.dataset.id],
+      address_list:this.data.addressList
+    })
+    console.log(prevPage.data)
     wx.setStorageSync("address_id", e.currentTarget.dataset.id)
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

@@ -40,7 +40,8 @@ Page({
       detailedAddress:data.detail,
       labelDefault:data.label ,
       storeAddress:{province:data.region[0],city:data.region[1],
-        district:data.region[2],title:data.title}
+        district:data.region[2],title:data.title,
+        longitude:data.location.coordinates[0],latitude:data.location.coordinates[1]}
     })
   },
 
@@ -221,6 +222,7 @@ Page({
     else {
       var app =getApp()
       var region = [this.data.storeAddress.province,this.data.storeAddress.city,this.data.storeAddress.district]
+      console.log(this.data.storeAddress)
       wx.cloud.callFunction({
                   name: "quickstartFunctions",
                   config: {

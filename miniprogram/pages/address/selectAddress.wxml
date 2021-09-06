@@ -4,7 +4,7 @@
   <view wx:for="{{addressList}}" wx:key="*this">
     <view class="product-name-wrap" data-id="{{item._id}}" wx:if="{{ item.distance<=distance}}">
 
-      <view class="address-detail" bindtap="setAddress" data-id="{{item._id}}">
+      <view class="address-detail" bindtap="setAddress" data-id="{{index}}">
         <view class="ui-list-item-info">{{item.receiver}}
           <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> {{item.phone}}
         </view>
