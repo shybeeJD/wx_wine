@@ -145,6 +145,7 @@
   width: 100%;
   background: white;
   border-bottom: 1px solid #d3d3d3;
+  padding: 5px 0 5px 0;
   display: flex;
   flex-direction: row;
 }
@@ -161,8 +162,13 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding-left: 10px;
+}
+.list_item_style .list_item_right .info_text .specification {
+  font-size: xx-small;
+  width: 100%;
+  color: gray;
 }
 .list_item_style .list_item_right .smallBtn {
   flex: 4;

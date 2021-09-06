@@ -19,6 +19,7 @@
 
         <view class="info_text">
           <text class="item_good_title">{{item.title}}</text>
+          <view class="specification">{{item.specification}}</view>
           <!-- 价格 -->
           <view class="price_back_view">
             <text class="right_list_item_price">¥{{item.price}}</text>
