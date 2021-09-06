@@ -1,6 +1,7 @@
 Page({
     data: {
         dataSource: null,
+        lower_price:5000,
     },
     onLoad: function (options) {},
     onReady: function () {
@@ -17,8 +18,7 @@ Page({
         this.renderData();
 
         // 调用自定义组件中的方法,更新底栏购物车
-        let miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -68,14 +68,20 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         var miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     // 减少按钮被点击
 
     switchSelect: function(tap){
-        var id = parseInt(tap.currentTarget.id);
-        var good = this.data.dataSource[id];
-        good.isSelect=true
+        var id = parseInt(tap.currentTarget.dataset.id);
+        this.data.dataSource[id].isSelect=!this.data.dataSource[id].isSelect
+        this.setData({
+            dataSource:this.data.dataSource
+        })
+        var app = getApp();
+        app.reduceGoodFromShopCar(this.data.dataSource[id]);
+        var miniShopCar = this.selectComponent("#miniShopCar");
+        this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     reduceButtonClick: function (tap) {
         var id = parseInt(tap.currentTarget.id);
@@ -103,6 +109,89 @@ Page({
 
         // 调用自定义组件中的方法,更新底栏购物车
         var miniShopCar = this.selectComponent("#miniShopCar");
-        miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+    },
+    getShopCarGoods: function (_id) {
+          
+        var data = this.data.dataSource
+        console.log(data)
+        this.setData({
+            dataSource: data,
+        });
+        this.getGoodsNum();
+    },
+    getGoodsNum: function () {
+        let that = this;
+
+        let DS = that.data.dataSource;
+
+        let num = 0;
+        let price = 0;
+        let marketPrice = 0;
+
+        for (var i = 0; i < DS.length; ++i) {
+          if(DS[i].isSelect){
+            let buy = 0;
+            num += DS[i].buy;
+            buy = DS[i].buy;
+            price += DS[i].price * buy;
+            marketPrice += DS[i].marketPrice * buy;
+          }  
+        }
+
+        price = price.toFixed(2);
+        marketPrice = marketPrice.toFixed(2);
+        console.log(price)
+
+        that.setData({
+            num: num,
+            price: price,
+            marketPrice: marketPrice,
+        });
+    },
+    buyButton: function () {
+        let goodsNum = this.data.num;
+        if (goodsNum <= 0) {
+            wx.showToast({
+                title: "购物车为空",
+                icon: "error",
+                duration: 1000,
+            });
+        } else if(this.data.price<this.data.lower_price){
+            wx.showToast({
+                title: "不够起送费",
+                icon: "error",
+                duration: 1000,
+            });
+        }
+        else {
+            wx.navigateTo({
+                url: "../../pages/settlement/settlement",
+            });
+        }
+    },
+    allSelect:function(){
+        var data = wx.getStorageSync(this.data.shopNow._id);
+        var isAllSelect=this.data.isAllSelect
+        if(isAllSelect){
+            isAllSelect=false
+            for(var i=0;i<data.length;i++){
+                data[i].isSelect=false
+            }
+        }else{
+            isAllSelect=true
+            for(var i=0;i<data.length;i++){
+                data[i].isSelect=true
+            }
+        }
+       
+        this.setData({
+            dataSource: data,
+            isAllSelect:isAllSelect
+        });
+        console.log(this.data.dataSource)
+        wx.setStorageSync(this.data.shopNow._id, data);
+        this.getShopCarGoods(this.data.shopNow._id);
+
     },
 });

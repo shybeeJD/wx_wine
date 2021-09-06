@@ -168,7 +168,7 @@ App({
                             Math.round(that.globalData.shopNow.distance * 100) /
                             100;
                         if (that.shopNowCallback)
-                            that.shopNowCallback(resp.result.list[0]);
+                            that.shopNowCallback(that.globalData.shopNow);
                     });
             },
             fail: function () {

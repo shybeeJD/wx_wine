@@ -33,5 +33,27 @@
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
-  <miniShopCar id="miniShopCar" _id="{{ shopNow._id }}"></miniShopCar>
+  <view class="mini_ShopCar">
+  <image class="item-allselect" bindtap="allSelect" src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}" />
+    <text class="small_text">全选</text>
+    <text>合计:￥ </text>
+    <text class="price">{{totalMoney}}</text>
+  <!-- 价格结算区 -->
+  <view class="content" hover-class="none" hover-stop-propagation="false">
+    <view class="priceView">
+      <!-- 实付金额 -->
+      <text>￥</text>
+      <text class="price">{{price}}</text>
+      <!-- 市场价 -->
+      <view class="marketPriceView">
+        <text class="RMB_marketPrice">￥</text>
+        <text class="marketPrice">{{marketPrice}}</text>
+      </view>
+    </view>
+    <!-- 结算按钮 -->
+    <view class="buyButton" bindtap="buyButton">
+      结算
+    </view>
+  </view>
+</view>
 </view>

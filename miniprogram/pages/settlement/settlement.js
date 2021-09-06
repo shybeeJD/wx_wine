@@ -102,10 +102,13 @@ Page({
 
         let goods = {};
         for (let i in this.data.goodsList) {
-            let i_id = this.data.goodsList[i]._id;
-            let i_buy = this.data.goodsList[i].buy;
-            let i_normal = this.data.goodsList[i].normal;
-            goods[i_id] = { num: i_buy, normal: i_normal };
+            if(this.data.goodsList[i].isSelect){
+                let i_id = this.data.goodsList[i]._id;
+                let i_buy = this.data.goodsList[i].buy;
+                let i_normal = this.data.goodsList[i].normal;
+                goods[i_id] = { num: i_buy, normal: i_normal };
+            }
+            
         }
         // todo:添加订单时候选择的地址
         let id = wx.getStorageSync("address_id");
@@ -238,14 +241,19 @@ Page({
 
     // 更新商品数据
     updateGoods: function () {
-        let goodsList = wx.getStorageSync("cart");
+        var app =getApp()
+        let goodsList = wx.getStorageSync(app.globalData.shopNow._id);
+        console.log(goodsList)
 
         let p = 0;
         let pack = 0;
         for (let i in goodsList) {
-            console.log(goodsList[i].packingsPrice);
-            p += goodsList[i].price * goodsList[i].buy;
-            pack += goodsList[i].packingsPrice * goodsList[i].buy;
+            if(goodsList[i].isSelect){
+                console.log(goodsList[i].packingsPrice);
+                p += goodsList[i].price * goodsList[i].buy;
+                pack += goodsList[i].packingsPrice * goodsList[i].buy;
+            }
+            
         }
         console.log(this.data.freight);
         this.setData({
