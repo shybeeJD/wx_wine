@@ -71,6 +71,12 @@ Page({
         miniShopCar.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     // 减少按钮被点击
+
+    switchSelect: function(tap){
+        var id = parseInt(tap.currentTarget.id);
+        var good = this.data.dataSource[id];
+        good.isSelect=true
+    },
     reduceButtonClick: function (tap) {
         var id = parseInt(tap.currentTarget.id);
         var good = this.data.dataSource[id];
