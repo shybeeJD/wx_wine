@@ -107,37 +107,52 @@
 
     .flexContainerRow;
 
-    .list_item_left {
-        flex: 10;
-    }
     .list_item_right {
-        flex: 1;
+        flex: 10;
+        .flexContainerRow;
 
+        .info_text {
+            flex: 4;
+            .align_centerContainer;
+            .flexContainerCol;
+            justify-content: space-around;
+        }
+        .smallBtn {
+            flex: 4;
+            .allCenterContainer;
+        }
+    }
+    .list_item_left {
+        flex: 1;
         .allCenterContainer;
 
         .item-select {
-            width: 30px;
-            height: 30px;
+            width: @smallBtn;
+            height: @smallBtn;
             // background-color: red;
         }
     }
 }
 /*商品主图*/
 .good_main_image {
+    flex: 3;
     width: 80px;
     height: 80px;
-    position: absolute;
+    // position: absolute;
     top: 5px;
     left: 5px;
+
+    .align_centerContainer;
 }
 /*商品名称*/
 .item_good_title {
+    width: 100%;
     text-align: left;
     display: block;
     font-size: 16px;
     height: 20px;
     line-height: 20px;
-    position: absolute;
+    // position: absolute;
     left: 100px;
     top: 10px;
     right: 5px;
@@ -153,34 +168,25 @@
 }
 /*+号按钮*/
 .add_image_style {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    top: 30px;
-    right: 10px;
-    float: right;
+    width: @smallBtn;
+    height: @smallBtn;
+    .padding_l_r_10px;
 }
 /*——号按钮*/
 .reduce_image_style {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    top: 30px;
-    right: 10px;
-    float: right;
+    width: @smallBtn;
+    height: @smallBtn;
+    .padding_l_r_10px;
 }
 /*购买数量*/
 .good_buy_number {
     height: 30px;
-    position: relative;
-    top: 30px;
-    right: 10px;
+
     width: 50px;
     text-align: center;
-    float: right;
+
     font-size: 16px;
-    margin-right: 3px;
-    margin-left: 3px;
+
     border-width: 1px;
     border-color: #d3d3d3;
     border-style: solid;
@@ -189,13 +195,17 @@
 /*价钱的背景试图*/
 .price_back_view {
     height: 20px;
-    position: absolute;
+    // position: absolute;
     bottom: 10px;
     left: 100px;
     right: 5px;
+    width: 100%;
+
+    .align_centerContainer;
 }
 /*售价*/
 .right_list_item_price {
+    width: 100%;
     color: #ff6261;
     font-size: 16px;
 }
