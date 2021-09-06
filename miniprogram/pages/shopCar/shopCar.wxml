@@ -1,6 +1,8 @@
 <view>
   <scroll-view class="scrol_view_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view wx:for-items="{{dataSource}}" wx:key="*this" class="list_item_style">
+      <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" src="{{item.isSelect?'../resource/selected.png':'../resource/unchecked-checkbox.png'}}" />
+
       <image src="{{item.thumb_url}}" class="good_main_image"></image>
       <text class="item_good_title">{{item.title}}</text>
       <image
