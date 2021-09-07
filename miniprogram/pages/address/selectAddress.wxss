@@ -1,43 +1,44 @@
-/* miniprogram/pages/address/addressList.wxss */page{  
-  display: flex;  
-  flex-direction: column;  
-  height: 100%;  
-}  
-.product-name-wrap{
+/* miniprogram/pages/address/addressList.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.product-name-wrap {
   margin: 0px 10px;
   font-size: 14px;
   color: #404040;
 }
-.ui-list-item-info{
+.ui-list-item-info {
   margin: 5px 0px;
   font-weight: bold;
 }
-.ui-list-item-address{
+.ui-list-item-address {
   color: #585c64;
   font-weight: bold;
 }
-.ui-list-item-time{
+.ui-list-item-time {
   margin: 5px 0px;
   font-weight: bold;
 }
-.ui-list-item-info2{
+.ui-list-item-info2 {
   margin: 5px 0px;
   font-weight: lighter;
 }
-.ui-list-item-address2{
+.ui-list-item-address2 {
   color: #585c64;
   font-weight: lighter;
 }
-.ui-list-item-time2{
+.ui-list-item-time2 {
   margin: 5px 0px;
   font-weight: lighter;
 }
-.ui-list-item-del{
+.ui-list-item-del {
   position: absolute;
   right: 10px;
   color: #585c64;
 }
-.ui-list-item-edit{
+.ui-list-item-edit {
   position: absolute;
   right: 45px;
   color: #585c64;
@@ -48,7 +49,7 @@
   height: 2rpx;
   background-color: #f2f2f2;
 }
-.add-address{
+.add-address {
   margin: 0 auto;
   margin-top: 30px;
   width: 150px;
@@ -58,19 +59,17 @@
   text-align: center;
   color: #000;
   border-radius: 5rpx;
-      display: block;
+  display: block;
 }
-.add-img{
+.add-img {
   margin-right: 15rpx;
   width: 15px;
   height: 15px;
 }
-
 .container {
   font-size: 12px;
   background-color: white;
 }
-
 .section {
   height: 100rpx;
   border-bottom: 1px lightgrey solid;
@@ -78,12 +77,10 @@
   align-items: center;
   margin: 0 30rpx;
 }
-
 .btn-area {
   display: flex;
   justify-content: center;
 }
-
 button {
   width: 90%;
   position: fixed;
@@ -91,9 +88,7 @@ button {
   color: #fff;
   background-color: #fc0;
 }
-
 .picker {
   width: 600rpx;
   height: 100%;
 }
-
