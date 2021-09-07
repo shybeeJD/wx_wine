@@ -257,10 +257,15 @@ Page({
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
         let cart = wx.getStorageSync(app.globalData.shopNow._id) || [];
-        index = cart.findIndex((v) => v._id === data._id);
-        data = cart[index]
+        var index2 = cart.findIndex((v) => v._id === data._id);
+        data = cart[index2]
+        if(data == undefined){
+            data = this.data.rightDataSource[index];
+            data.buy=0
+            data.normal=0
+        }
         console.log(data)
-        var normal=data.normal
+        var normal=data.normal || 0
         if(!normal){
             normal=0
         }

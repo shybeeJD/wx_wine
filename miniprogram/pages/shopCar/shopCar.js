@@ -88,6 +88,7 @@ Page({
         var good = this.data.dataSource[id];
         if (good.buy == 1) {
             good.buy = 0;
+            good.normal = 0;
             var tempData = this.data.dataSource;
             tempData.splice(id, 1);
             this.setData({
@@ -104,6 +105,7 @@ Page({
                 dataSource: this.data.dataSource,
             });
         }
+        console.log(good)
         var app = getApp();
         app.reduceGoodFromShopCar(good);
 
