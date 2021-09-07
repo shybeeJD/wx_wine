@@ -63,84 +63,43 @@
       </view> -->
     </view>
     <!-- 热卖商品 -->
-    <view
-      class="host_good_back"
-      wx:for-items="{{host_good_list}}"
-      wx:key="index"
-      wx:if="{{index % 2 == 0}}"
-      style="height:{{host_good_back_height}}px"
-    >
-      <view style="width:100%;background-color:#F5F5F5;height:5px;"></view>
-      <view
-        class="host_good_left_right_back"
-        style="width:{{host_good_back_width}}px;height:{{host_good_back_height - 5}}px;"
-      >
+    <view class="hot_good">
+      <view class="hot_good_card" wx:for-items="{{host_good_list}}" wx:key="index">
         <image
+          class="hot_good_img"
+          mode="widthFix"
           src="{{host_good_list[index].thumb_url}}"
-          class="host_good_main_image"
-          style="width:{{host_good_image_width}}px;height:{{host_good_image_width}}px"
-          id="{{index}}"
           bindtap="pushGoodDetail"
-        ></image>
-        <text class="host_good_title">{{host_good_list[index].title}}</text>
-        <!-- tags -->
-        <view class="host_tags_back">
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
+        />
+        <view class="hot_good_name">{{host_good_list[index].title}}</view>
+        <view class="tag">
+          <view class="host_tags_back">
+            <text class="host_good_tags">精选</text>
+            <text class="host_good_tags">精选</text>
+            <text class="host_good_tags">精选</text>
+          </view>
         </view>
+        <view class="hot_good_info">
+          <view class="hot_info_price">
+            <text class="host_price">¥{{host_good_list[index].price}}</text>
+            <text class="host_mark_price"> {{host_good_list[index].marketPrice}}</text>
+          </view>
 
-        <view class="shopCar">
-          <image
-            src="../resource/shopcarHight.png"
-            id="{{index}}"
-            class="shopCarImage"
-            catchtap="openDetail"
-            mode="widthFix"
-          />
+          <view class="hot_info_shopcar">
+            <view class="img_back">
+              <image
+                class="hot_info_shopcar_img"
+                src="../resource/white_shopCar.png"
+                mode="widthFix"
+                id="{{index}}"
+                catchtap="openDetail"
+              />
+            </view>
+          </view>
         </view>
-        <text catchtap="openDetail" id="{{index}}">test</text>
-
-        <text class="host_price">¥{{host_good_list[index].price}}</text>
-        <text class="host_mark_price">{{host_good_list[index].marketPrice}}</text>
-      </view>
-      <!-- 商品中间的间隔线 -->
-      <view
-        style="width:5px;background-color:#F5F5F5;height:{{host_good_back_height}}px;float:left;height:{{host_good_back_height}}px"
-      >
-      </view>
-      <view
-        class="host_good_left_right_back"
-        style="width:{{host_good_back_width}}px;height:{{host_good_back_height - 5}}px; float:right"
-      >
-        <image
-          src="{{host_good_list[index + 1].thumb_url}}"
-          class="host_good_main_image"
-          style="width:{{host_good_image_width - 5}}px;height:{{host_good_image_width}}px"
-          id="{{index + 1}}"
-          bindtap="pushGoodDetail"
-        ></image>
-        <text class="host_good_title">{{host_good_list[index + 1].title}}</text>
-        <!-- tags -->
-        <view class="host_tags_back">
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-        </view>
-        <view class="shopCar">
-          <image
-            src="../resource/shopcarHight.png"
-            id="{{index +1}}"
-            class="shopCarImage"
-            catchtap="openDetail"
-            mode="widthFix"
-          />
-        </view>
-        <text class="host_price">¥{{host_good_list[index + 1].price}}</text>
-        <text class="host_mark_price">{{host_good_list[index + 1].marketPrice}}</text>
+        <view style="height:5px;width:100%"> </view>
       </view>
     </view>
-    <view style="background-color:#F5F5F5;height:5px;width:100%"></view>
   </scroll-view>
 </view>
 
