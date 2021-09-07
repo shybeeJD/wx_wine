@@ -129,13 +129,9 @@ Page({
     },
     // 跳转到商品详情
     pushGoodDetail: function (tap) {
-        var index = tap.currentTarget.id;
-        var good = this.data.host_good_list[index];
+        var good_id = tap.currentTarget.dataset._id;
         wx.navigateTo({
-            url: "../shopDetail/shopDetail?good=" + JSON.stringify(good),
-            success: function (res) {},
-            fail: function () {},
-            complete: function () {},
+            url: "../shopDetail/shopDetail?good_id=" + good_id,
         });
     },
     // 添加按钮被点击
@@ -193,7 +189,7 @@ Page({
         app.getUserBid(function (re) {
             console.log("call");
             that.getCarouselIcon();
-            that.getHostGoodList(re);
+            // that.getHostGoodList(re);
         });
     },
     // 获取轮播图，iconn 信息
@@ -254,6 +250,10 @@ Page({
         var that = this;
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
+        console.log(
+            "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
+        );
+        console.log(this.data.shopNow);
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -264,6 +264,7 @@ Page({
                     type: "getAllWine",
                     userInfo: app.globalData.userInfo,
                     shopNow: that.data.shopNow._id,
+                    // shopNow: "8937eaa961332b5808b4657835d39257",
                     num: 30,
                     offset: 0,
                     recommend: true,

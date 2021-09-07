@@ -69,6 +69,7 @@
           class="hot_good_img"
           mode="widthFix"
           src="{{host_good_list[index].thumb_url}}"
+          data-_id="{{host_good_list[index]._id}}"
           bindtap="pushGoodDetail"
         />
         <view class="hot_good_name">{{host_good_list[index].title}}</view>
@@ -110,7 +111,6 @@
 
     <view class="right-side">
       <view class="price">¥{{host_good_list[selectedWineindex].price}}</view>
-      <!-- todo:已选不会显示 -->
       <view class="type">已选：{{tmpBuyNum}}</view>
       <view class="inventory">库存：{{host_good_list[selectedWineindex].stock}}</view>
     </view>

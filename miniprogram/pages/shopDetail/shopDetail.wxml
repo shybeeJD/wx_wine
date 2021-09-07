@@ -56,7 +56,7 @@
             <text class = "comment_good_title">好评</text>
         </view>
         <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
-        <view class = "comment_list" wx:for-items = "{{good_detail.comment_list}}" wx:for-item = "comment">
+        <view class = "comment_list" wx:for-items = "{{good_detail.comment_list}}"  wx:for-item = "comment">
             <view class = "comment_list_userinfo_back">
                 <view>
                     <image src="{{comment.avatar_url}}" class = "comment_user_image"></image>
