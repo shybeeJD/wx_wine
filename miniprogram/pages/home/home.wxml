@@ -61,7 +61,7 @@
     <view
       class="host_good_back"
       wx:for-items="{{host_good_list}}"
-      wx:key="*this"
+      wx:key="index"
       wx:if="{{index % 2 == 0}}"
       style="height:{{host_good_back_height}}px"
     >
@@ -84,19 +84,17 @@
           <text class="host_good_tags">精选</text>
           <text class="host_good_tags">精选</text>
         </view>
+       
+        <view class="shopCar">
         <image
-          src="../resource/add.png"
-          class="add_image_style"
-          id="{{index}}"
-          bindtap="addButtonClick"
-        ></image>
-        <text class="buy_good_number">{{host_good_list[index].buy}}</text>
-        <image
-          src="../resource/reduce.png"
-          class="reduce_image_style"
-          id="{{index}}"
-          bindtap="reduceButtonClick"
-        ></image>
+          src="../resource/shopcarHight.png"
+          id="{{index}}" class="shopCarImage"
+          catchtap="openDetail"
+          mode="widthFix"
+        />
+      </view>
+      <text catchtap="openDetail" id="{{index}}">test</text>
+        
         <text class="host_price">¥{{host_good_list[index].price}}</text>
         <text class="host_mark_price">{{host_good_list[index].marketPrice}}</text>
       </view>
@@ -122,19 +120,14 @@
           <text class="host_good_tags">精选</text>
           <text class="host_good_tags">精选</text>
         </view>
+        <view class="shopCar">
         <image
-          src="../resource/add.png"
-          class="add_image_style"
-          id="{{index + 1}}"
-          bindtap="addButtonClick"
-        ></image>
-        <text class="buy_good_number">{{host_good_list[index + 1].buy}}</text>
-        <image
-          src="../resource/reduce.png"
-          class="reduce_image_style"
-          id="{{index + 1}}"
-          bindtap="reduceButtonClick"
-        ></image>
+          src="../resource/shopcarHight.png"
+          id="{{index +1}}" class="shopCarImage"
+          catchtap="openDetail"
+          mode="widthFix"
+        />
+      </view>
         <text class="host_price">¥{{host_good_list[index + 1].price}}</text>
         <text class="host_mark_price">{{host_good_list[index + 1].marketPrice}}</text>
       </view>
@@ -142,3 +135,56 @@
     <view style="background-color:#F5F5F5;height:5px;width:100%"></view>
   </scroll-view>
 </view>
+
+
+
+<!-- 弹窗 -->
+<view animation="{{animationData}}" class="detail-box" wx:if="{{showModalStatus}}">
+  <view class="goods-img-box">
+    <image src="{{host_good_list[selectedWineindex].thumb_url}}" class="goods-img"></image>
+
+    <view class="right-side">
+      <view class="price">¥{{host_good_list[selectedWineindex].price}}</view>
+      <!-- todo:已选不会显示 -->
+      <view class="type">已选：{{tmpBuyNum}}</view>
+      <view class="inventory">库存：{{host_good_list[selectedWineindex].stock}}</view>
+    </view>
+  </view>
+  <!-- 总数量选择 -->
+  <view class="numLine">
+    <view class="text">数量</view>
+    <view class="number-box">
+      <view class="control {{minusBan}}" bindtap="minus">-</view>
+      <view id="tmpBuyNum" class="control num">{{tmpBuyNum}}</view>
+      <view class="control {{plusBan}}" bindtap="plus">+</view>
+    </view>
+  </view>
+  <!-- 常低温的数量 -->
+  <view class="tui-content">
+    <!-- 显示信息 -->
+    <view class="tui-slider-head">
+      <view class="temText">温度</view>
+      <view class="temNum">
+        共<span class="temNumBold"> {{tmpBuyNum}}</span>瓶,冰冻<span class="temNumBold"
+          >{{ tmpBuyNum - tmpNormal }}</span
+        >
+        瓶,常温<span class="temNumBold"> {{tmpNormal}}</span>瓶</view
+      >
+    </view>
+    <!-- 滑动条控制数量 -->
+    <view class="sliderBox">
+      <view class="tui-slider-left">冰冻</view>
+
+      <view class="tui-slider-box">
+        <slider bindchanging="changeSlider" min="0" max="{{tmpBuyNum}}" value="{{tmpNormal}}" />
+      </view>
+      <view class="tui-slider-right">常温</view>
+    </view>
+  </view>
+  <!-- 按钮组 -->
+  <view class="btnGroup">
+    <view class="confirm-btn {{btnType}}" bindtap="confirm">确认</view>
+    <view class="cancel-btn {{btnType}}" bindtap="hideModal">取消</view>
+  </view>
+</view>
+

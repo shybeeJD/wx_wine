@@ -171,6 +171,23 @@ page {
   margin-left: auto;
   padding-top: 5px;
 }
+.shopCar {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 60px;
+  right: 5px;
+  float: right;
+  background-color: red;
+  border-radius: 50px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shopCar .shopCarImage {
+  width: 20px;
+}
 /*价钱*/
 .host_price {
   font-size: 16px;
@@ -214,4 +231,213 @@ page {
   font-size: 16px;
   margin-right: 3px;
   margin-left: 3px;
+}
+
+.detail-box {
+  position: fixed;
+  z-index: 10;
+  bottom: 0rpx;
+  width: 100%;
+  background-color: #fcf6f6;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.tui-content {
+  padding: 0px 10px 0px 10px;
+  font-size: smaller;
+}
+.tui-slider-head {
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #666;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.tui-slider-head .temText {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
+}
+.tui-slider-head .temNum {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.tui-slider-head .temNum .temNumBold {
+  color: #5c93c9;
+}
+.sliderBox {
+  display: flex;
+  flex-direction: row;
+}
+.sliderBox .tui-slider-left {
+  flex: 1;
+}
+.sliderBox .tui-slider-box {
+  flex: 3;
+  width: 100%;
+}
+.sliderBox .tui-slider-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.tui-slider-left {
+  height: 80rpx;
+  line-height: 80rpx;
+  float: left;
+  color: #666;
+}
+.tui-slider-right {
+  height: 80rpx;
+  line-height: 80rpx;
+  float: right;
+  color: #666;
+}
+.tui-slider-box {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #666;
+  margin: auto;
+  width: 50%;
+}
+.numLine {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.numLine .text {
+  flex: 1;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  display: flex;
+  justify-content: flex-start;
+}
+.numLine .number-box {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+}
+.numLine .number-box #tmpBuyNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.number-box {
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  border-top: solid 1rpx #e3e3e3;
+}
+.control {
+  margin-top: 14rpx;
+  float: right;
+  height: 52rpx;
+  width: 52rpx;
+  background-color: #e3e3e3;
+  text-align: center;
+  line-height: 52rpx;
+  color: #666;
+  font-size: 36rpx;
+  border-radius: 5rpx;
+  margin-left: 4rpx;
+}
+.ban {
+  background-color: #f0f0f0;
+}
+.num {
+  width: 100rpx;
+  font-size: 26rpx;
+  background-color: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.btnGroup {
+  display: flex;
+  flex-direction: row;
+}
+.confirm-btn {
+  flex: 1;
+  height: 100rpx;
+  background-color: #e40112;
+  text-align: center;
+  line-height: 100rpx;
+  float: right;
+  color: #fff;
+  width: 50%;
+  font-size: 30rpx;
+}
+.cancel-btn {
+  flex: 1;
+  height: 100rpx;
+  background-color: #f1a43e;
+  text-align: center;
+  line-height: 100rpx;
+  float: left;
+  color: #fff;
+  width: 50%;
+  font-size: 30rpx;
+}.goods-img-box {
+  height: 240rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  border-bottom: solid 1rpx #e3e3e3;
+}
+.goods-img {
+  height: 192rpx;
+  width: 192rpx;
+  float: left;
+}
+.right-side {
+  float: left;
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+}
+.price {
+  font-size: 32rpx;
+  color: #e40112;
+  font-weight: bold;
+}
+.type {
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.inventory {
+  font-size: 24rpx;
+  color: #999;
+}
+.detail-box.number-box {
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  border-top: solid 1rpx #e3e3e3;
+}
+.ban {
+  background-color: #f0f0f0;
+}
+.num {
+  width: 100rpx;
+  font-size: 26rpx;
+  background-color: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
 }

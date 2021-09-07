@@ -101,6 +101,7 @@ Page({
        
     },
     onHide: function () {
+        this.hideModal()
         // 生命周期函数--监听页面隐藏
     },
     onUnload: function () {
@@ -251,9 +252,13 @@ Page({
     // 添加商品
     openDetail:function(par){
         this.showModal()
+        var app =getApp()
         var index = parseInt(par.currentTarget.id);
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
+        let cart = wx.getStorageSync(app.globalData.shopNow._id) || [];
+        index = cart.findIndex((v) => v._id === data._id);
+        data = cart[index]
         console.log(data)
         var normal=data.normal
         if(!normal){

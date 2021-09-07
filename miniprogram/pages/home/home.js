@@ -26,12 +26,22 @@ Page({
           "host_good_image_width":0,//商品主图宽
           "host_good_back_width":0,//商品背景宽
           "host_good_back_height":0,//商品背景高
-    }
+    },
+    tmpBuyNum:1,
+    tmpNormal:1,
   },
   onLoad:function(options){
     // 获取轮播图等信息
     this.getDataFromServer();
     this.renderControl();
+    var app =getApp()
+    if (app.globalData.shopNow){
+      this.getHostGoodList()
+    }else{
+      app.homeCallback= (shopNow) => {
+        this.getHostGoodList()
+      }
+    }
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -105,7 +115,7 @@ Page({
     var index = tap.currentTarget.id;
     var good = this.data.host_good_list[index];
     wx.navigateTo({
-      url: '../shopDetail/shopDetail?product_id='+ good.id + "&title=" + good.title,
+      url: '../shopDetail/shopDetail?good='+ JSON.stringify(good),
       success: function(res){
       },
       fail: function() {
@@ -227,23 +237,147 @@ Page({
   },///获取轮播图 icon信息
   // 获取热卖商品列表
   getHostGoodList:function(re){
-    var that = this;
-    wx.request({
-      url: 'http://www.jiuyunda.net:90/api/v2/product/list_by_sales?id=56c45924c2fb4e2050000022',
-      data: {
-        id:re._id
-      },
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
-        that.dataControl(res.data);       
-      },
-      fail: function() {
-      },
-      complete: function() {
-      }
-    })
+    var app = getApp();
+    var that=this
+    // console.log(app.globalData)
+    // console.log(app.globalData.userInfo)
+    wx.cloud.callFunction({
+            name: "quickstartFunctions",
+            config: {
+                env: app.globalData.envId,
+            },
+            data: {
+                type: "getAllWine",
+                userInfo: app.globalData.userInfo,
+                shopNow:that.data.shopNow._id,
+                num:30,
+                offset:0,
+                recommend:true
+            },
+        })
+        .then((resp) => {
+            console.log(resp.result);
+            this.setData({
+              host_good_list:resp.result.product_list.concat(resp.result.product_list)
+            })
+            wx.hideLoading();
+        })
+        .catch((e) => {
+            console.log(e);
+            wx.hideLoading();
+        });
   },/// 获取热卖商品列表
+  openDetail:function(par){
+    this.showModal()
+    var index = parseInt(par.currentTarget.id);
+    // 在右侧数据里搜索对应索引的商品
+    this.setData({
+        selectedWineindex:index,
+    })
+},
+showModal: function () {
+  // 显示遮罩层
+  var animation = wx.createAnimation({
+    duration: 200,
+    timingFunction: "linear",
+    delay: 0
+  })
+  this.animation = animation
+  animation.translateY(300).step()
+  this.setData({
+    animationData: animation.export(),
+    showModalStatus: true
+  })
+  setTimeout(function () {
+    animation.translateY(0).step()
+    this.setData({
+      animationData: animation.export()
+    })
+  }.bind(this), 200)
+},
+hideModal: function () {
+  // 隐藏遮罩层
+  var animation = wx.createAnimation({
+    duration: 200,
+    timingFunction: "linear",
+    delay: 0
+  })
+  this.animation = animation
+  animation.translateY(300).step()
+  this.setData({
+    animationData: animation.export(),
+  })
+  setTimeout(function () {
+    animation.translateY(0).step()
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus: false
+    })
+  }.bind(this), 200)
+},
+plus:function(){
+  var index=this.data.selectedWineindex
+  // 在右侧数据里搜索对应索引的商品
+  var tmpbuy=this.data.tmpBuyNum
+  var tmpnormal=this.data.tmpNormal
+  var data = this.data.host_good_list[index];
+  if (tmpbuy< data.stock) {
+      tmpbuy += 1;
+      tmpnormal +=1;
+  } else {
+      wx.showToast({
+          title: "库存不足",
+          duration: 2000,
+      });
+      return;
+  }
+  this.setData({
+      tmpBuyNum:tmpbuy,
+      tmpNormal:tmpnormal
+  })
+  console.log(this.data.tmpNormal)
+},
+minus:function(){
+  var tmpbuy=this.data.tmpBuyNum
+  var tmpnormal=this.data.tmpNormal
+  if (tmpbuy >0){
+      tmpbuy -=1;
+  }
+  if(tmpnormal >0){
+      tmpnormal -=1;
+  }
+  this.setData({
+      tmpBuyNum:tmpbuy,
+      tmpNormal:tmpnormal
+  })
+},
+changeSlider:function(e){
+  this.setData({
+      tmpNormal: e.detail.value 
+  })
+},
+confirm:function(){
+  var index=this.data.selectedWineindex
+  // 在右侧数据里搜索对应索引的商品
+  var tmpBuyNum=this.data.tmpBuyNum
+  var tmpNormal=this.data.tmpNormal
+  this.data.host_good_list[index].buy=tmpBuyNum
+  this.data.host_good_list[index].normal=tmpNormal
+  this.setData({
+    tmpBuyNum:1,
+    tmpBuy:1
+  })
+  var data= this.data.host_good_list[index]
+  console.log(data)
+  this.hideModal()
+
+  var app = getApp();
+  app.addGoodToShopCar(data,true);
+
+  // 调用自定义组件中的方法,更新底栏购物车
+  
+  
+},
   redirectToWine:function(e){
     var app =getApp()
     app.globalData.cate=e.currentTarget.dataset.id

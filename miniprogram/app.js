@@ -173,6 +173,9 @@ App({
                             that.shopNowCallback(that.globalData.shopNow);
                         if (that.shopNowCallback2)
                             that.shopNowCallback2(that.globalData.shopNow);
+                        if (that.homeCallback){
+                            that.homeCallback(that.globalData.shopNow);
+                        }
                     });
             },
             fail: function () {
@@ -235,7 +238,7 @@ App({
         });
     },
     // 添加商品到购物车
-    addGoodToShopCar: function (good) {
+    addGoodToShopCar: function (good,plus) {
         let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
         let index = cart.findIndex((v) => v._id === good._id);
         // 如果缓存中没有,则push当前商品
@@ -243,7 +246,13 @@ App({
         if (index === -1) {
             cart.push(good);
         } else {
-            cart[index] = good;
+            if(plus){
+                cart[index].buy += good.buy;
+                cart[index].normal += good.normal
+            }else{
+                cart[index] = good;
+            }
+            
         }
         wx.setStorageSync(this.globalData.shopNow._id, cart);
 

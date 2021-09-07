@@ -17,7 +17,8 @@ exports.main = async (event, context) => {
 
   wine=await db.collection('wine').where({
     shop:event.shopNow,
-    category_name:event.category
+    category_name:event.category,
+    recommend:event.recommend
   }).limit(event.num).skip(event.offset).get({
     //若成功获取,异步操作注意异常
     success: res=>{
