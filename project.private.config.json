@@ -48,6 +48,12 @@
           "pathName": "pages/shopList/shopList",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/shopDetail/shopDetail",
+          "pathName": "pages/shopDetail/shopDetail",
+          "query": "good_id=8937eaa961332b5808b4657835d39257",
+          "scene": null
         }
       ]
     }

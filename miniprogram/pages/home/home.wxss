@@ -25,11 +25,93 @@
   align-items: center;
   justify-content: center;
 }
+.justifyContentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+.justifyContentLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+.justifyContentRight {
+  display: flex;
+  justify-content: flex-end;
+}
 .padding_l_10px {
   padding: 0px 10px 0px 10px;
 }
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
+}
+.hot_good {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.hot_good .hot_good_card {
+  width: 50%;
+  height: 275px;
+  background-color: white;
+  margin: auto;
+  box-sizing: border-box;
+  border: 5px solid #f5f5f5;
+}
+.hot_good .hot_good_card .hot_good_img {
+  width: 100%;
+}
+.hot_good .hot_good_card .hot_good_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  font-size: 16px;
+  line-height: 19px;
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+}
+.hot_good .hot_good_card .tag {
+  height: 20px;
+}
+.hot_good .hot_good_card .hot_good_info {
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_price {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_price .host_price {
+  font-size: 16px;
+  color: red;
+  margin-left: 5%;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_price .host_mark_price {
+  font-size: 13px;
+  color: #333333;
+  margin-left: 3px;
+  text-decoration: line-through;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_shopcar {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_shopcar .img_back {
+  margin-right: 5%;
+  background-color: #ff585a;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hot_good .hot_good_card .hot_good_info .hot_info_shopcar .img_back .hot_info_shopcar_img {
+  width: 18px;
 }
 .shop_ui {
   height: 56px;
@@ -71,7 +153,6 @@ page {
 }
 .content {
   width: 100%;
-  height: 100%;
 }
 /*背景滚动试图*/
 .shop_ui {
@@ -171,38 +252,6 @@ page {
   margin-left: auto;
   padding-top: 5px;
 }
-.shopCar {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  top: 60px;
-  right: 5px;
-  float: right;
-  background-color: red;
-  border-radius: 50px;
-  margin: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.shopCar .shopCarImage {
-  width: 20px;
-}
-/*价钱*/
-.host_price {
-  font-size: 16px;
-  color: red;
-  margin-top: 10px;
-  margin-left: 5%;
-}
-/*商品市场价*/
-.host_mark_price {
-  font-size: 13px;
-  color: #333333;
-  margin-top: 10px;
-  margin-left: 3px;
-  text-decoration: line-through;
-}
 /*加号*/
 .add_image_style {
   width: 30px;
@@ -232,7 +281,16 @@ page {
   margin-right: 3px;
   margin-left: 3px;
 }
-
+.underDevelopmentContainer {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.underDevelopmentContainer .underDevelopment {
+  font-size: 24px;
+}
 .detail-box {
   position: fixed;
   z-index: 10;
@@ -389,7 +447,8 @@ page {
   color: #fff;
   width: 50%;
   font-size: 30rpx;
-}.goods-img-box {
+}
+.goods-img-box {
   height: 240rpx;
   box-sizing: border-box;
   padding: 24rpx;

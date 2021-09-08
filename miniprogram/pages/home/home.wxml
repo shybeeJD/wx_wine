@@ -5,11 +5,11 @@
       <view class="block">></view>
     </view>
     <view class="shopInfo">
-      <view class="distance"
-        >距离您{{shopNow.distance}}km</view
-      >
+      <view class="distance">距离您{{shopNow.distance}}km</view>
     </view>
-    <view class="moreInfo"><view class="text">更多信息</view></view>
+    <view class="moreInfo">
+      <view class="text">更多信息</view>
+    </view>
   </view>
   <scroll-view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
     <!-- 轮播图的位置被设置成了absolute填满整个页面，所以只能暂时放在轮播图内 -->
@@ -47,96 +47,62 @@
       </view>
       <view class="icon_back_size">
         <view
-          wx:for-items="{{icon_list}}"
+          wx:for-items="{{icon_list2}}"
           wx:key="*this"
-          wx:if="{{index >= 4}}"
+          wx:if="{{index < 4}}"
           class="one_icon_back_view"
+          bindtap="redirectToWine"
+          data-id="{{item.name}}"
         >
           <image src="{{item.pic}}" class="icon_size"></image>
           <text class="icon_title">{{item.name}}</text>
         </view>
       </view>
+      <!-- <view class="underDevelopmentContainer">
+        <view class="underDevelopment"><text>开发中...</text></view>
+      </view> -->
     </view>
     <!-- 热卖商品 -->
-    <view
-      class="host_good_back"
-      wx:for-items="{{host_good_list}}"
-      wx:key="index"
-      wx:if="{{index % 2 == 0}}"
-      style="height:{{host_good_back_height}}px"
-    >
-      <view style="width:100%;background-color:#F5F5F5;height:5px;"></view>
-      <view
-        class="host_good_left_right_back"
-        style="width:{{host_good_back_width}}px;height:{{host_good_back_height - 5}}px;"
-      >
+    <view class="hot_good">
+      <view class="hot_good_card" wx:for-items="{{host_good_list}}" wx:key="index">
         <image
+          class="hot_good_img"
+          mode="widthFix"
           src="{{host_good_list[index].thumb_url}}"
-          class="host_good_main_image"
-          style="width:{{host_good_image_width}}px;height:{{host_good_image_width}}px"
-          id="{{index}}"
+          data-id="{{index}}"
           bindtap="pushGoodDetail"
-        ></image>
-        <text class="host_good_title">{{host_good_list[index].title}}</text>
-        <!-- tags -->
-        <view class="host_tags_back">
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-        </view>
-       
-        <view class="shopCar">
-        <image
-          src="../resource/shopcarHight.png"
-          id="{{index}}" class="shopCarImage"
-          catchtap="openDetail"
-          mode="widthFix"
         />
-      </view>
-      <text catchtap="openDetail" id="{{index}}">test</text>
-        
-        <text class="host_price">¥{{host_good_list[index].price}}</text>
-        <text class="host_mark_price">{{host_good_list[index].marketPrice}}</text>
-      </view>
-      <!-- 商品中间的间隔线 -->
-      <view
-        style="width:5px;background-color:#F5F5F5;height:{{host_good_back_height}}px;float:left;height:{{host_good_back_height}}px"
-      ></view>
-      <view
-        class="host_good_left_right_back"
-        style="width:{{host_good_back_width}}px;height:{{host_good_back_height - 5}}px; float:right"
-      >
-        <image
-          src="{{host_good_list[index + 1].thumb_url}}"
-          class="host_good_main_image"
-          style="width:{{host_good_image_width - 5}}px;height:{{host_good_image_width}}px"
-          id="{{index + 1}}"
-          bindtap="pushGoodDetail"
-        ></image>
-        <text class="host_good_title">{{host_good_list[index + 1].title}}</text>
-        <!-- tags -->
-        <view class="host_tags_back">
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
-          <text class="host_good_tags">精选</text>
+        <view class="hot_good_name">{{host_good_list[index].title}}</view>
+        <view class="tag">
+          <view class="host_tags_back">
+            <text class="host_good_tags">精选</text>
+            <text class="host_good_tags">精选</text>
+            <text class="host_good_tags">精选</text>
+          </view>
         </view>
-        <view class="shopCar">
-        <image
-          src="../resource/shopcarHight.png"
-          id="{{index +1}}" class="shopCarImage"
-          catchtap="openDetail"
-          mode="widthFix"
-        />
-      </view>
-        <text class="host_price">¥{{host_good_list[index + 1].price}}</text>
-        <text class="host_mark_price">{{host_good_list[index + 1].marketPrice}}</text>
+        <view class="hot_good_info">
+          <view class="hot_info_price">
+            <text class="host_price">¥{{host_good_list[index].price}}</text>
+            <text class="host_mark_price"> {{host_good_list[index].marketPrice}}</text>
+          </view>
+
+          <view class="hot_info_shopcar">
+            <view class="img_back">
+              <image
+                class="hot_info_shopcar_img"
+                src="../resource/white_shopCar.png"
+                mode="widthFix"
+                id="{{index}}"
+                catchtap="openDetail"
+              />
+            </view>
+          </view>
+        </view>
+        <view style="height:5px;width:100%"> </view>
       </view>
     </view>
-    <view style="background-color:#F5F5F5;height:5px;width:100%"></view>
   </scroll-view>
 </view>
-
-
 
 <!-- 弹窗 -->
 <view animation="{{animationData}}" class="detail-box" wx:if="{{showModalStatus}}">
@@ -145,7 +111,6 @@
 
     <view class="right-side">
       <view class="price">¥{{host_good_list[selectedWineindex].price}}</view>
-      <!-- todo:已选不会显示 -->
       <view class="type">已选：{{tmpBuyNum}}</view>
       <view class="inventory">库存：{{host_good_list[selectedWineindex].stock}}</view>
     </view>
@@ -187,4 +152,3 @@
     <view class="cancel-btn {{btnType}}" bindtap="hideModal">取消</view>
   </view>
 </view>
-
