@@ -22,6 +22,9 @@ Page({
         wx.showLoading({
             title: "加载中",
         });
+        if(options.good){
+            this.data.goodTemp= JSON.parse(options.good);
+        }
 
         var app = getApp();
         this.getFreight();
@@ -60,7 +63,9 @@ Page({
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function () {},
+    onHide: function () {
+        this.data.goodTemp=null
+    },
 
     /**
      * 生命周期函数--监听页面卸载
@@ -170,7 +175,9 @@ Page({
                         });
                         var app =getApp()
                         //提交订单后清除购物车缓存
-                        wx.setStorageSync(app.globalData.shopNow._id, goodsLeft);
+                        if(this.data.goodTemp==undefined || this.data.goodTemp==null ){
+                            wx.setStorageSync(app.globalData.shopNow._id, goodsLeft);
+                        }
                     }
                 })
                 .catch(console.error);
@@ -263,7 +270,14 @@ Page({
     // 更新商品数据
     updateGoods: function () {
         var app = getApp();
-        let goodsList = wx.getStorageSync(app.globalData.shopNow._id);
+        let goodsList = []
+        
+        if(this.data.goodTemp){
+            this.data.goodTemp.isSelect=true
+            goodsList.push(this.data.goodTemp)
+        }else{
+            goodsList = wx.getStorageSync(app.globalData.shopNow._id);
+        }
         console.log(goodsList);
 
         let p = 0;

@@ -27,6 +27,8 @@ Page({
         }, //商品详情数据
         loop_image_height: 0, //轮播图高
         good_detail_image_height: 0, //商品详情图高
+        tmpBuyNum:1,
+        tmpNormal:1,
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
@@ -100,6 +102,78 @@ Page({
         this.setData({
             good_detail_image_height: imageHeight,
         });
+    },
+    rightBtnGroup:function(){
+
+    },
+    minus:function(){
+      var num = this.data.tmpBuyNum
+      var normal = this.data.tmpNormal
+      if(num>0){
+        num--
+      }
+      if(normal>0){
+        normal--
+      }
+      this.setData({
+        tmpBuyNum:num,
+        tmpNormal:normal
+      })
+    },
+    plus:function(){
+      var tmpbuy = this.data.tmpBuyNum
+      var tmpnormal = this.data.tmpNormal
+      var data = this.data.good_detail.product_info;
+      console.log(this.data)
+      if (tmpbuy < data.stock) {
+        tmpbuy += 1;
+        tmpnormal += 1;
+    } else {
+        wx.showToast({
+            title: "库存不足",
+            duration: 2000,
+        });
+        return;
+    }
+    this.setData({
+        tmpBuyNum: tmpbuy,
+        tmpNormal: tmpnormal,
+    });
+    },
+    changeSlider: function (e) {
+      this.setData({
+          tmpNormal: e.detail.value,
+      });
+    },
+    addToCar:function(){
+      var data = this.data.good_detail.product_info;
+      data.buy= this.data.tmpBuyNum
+      data.normal = this.data.tmpNormal
+      this.setData({
+        tmpBuyNum: 1,
+        tmpNormal: 1,
+    });
+   
+    var app = getApp();
+    app.addGoodToShopCar(data, true);
+
+    },
+    gotoShopCar:function(){
+      wx.switchTab({
+        url: '../../pages/shopCar/shopCar',
+      })
+    },
+    buyRightNow:function(){
+      var data = this.data.good_detail.product_info;
+      data.buy= this.data.tmpBuyNum
+      data.normal = this.data.tmpNormal
+      this.setData({
+        tmpBuyNum: 1,
+        tmpNormal: 1,
+    });
+    wx.redirectTo({
+      url: "../../pages/settlement/settlement?good=" + JSON.stringify(data),
+    });
     },
     previewImage: function (image) {
         var url = image.currentTarget.dataset.id;
