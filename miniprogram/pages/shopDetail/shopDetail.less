@@ -1,4 +1,81 @@
 @import url("../../utils/public.less");
+
+.bottomBar {
+    position: fixed;
+    z-index: 10;
+    bottom: 0rpx;
+    width: 100%;
+    height: @small_listHeight;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    .flexContainerRow;
+    .leftBtnGroup {
+        flex: 1;
+        .flexContainerRow;
+        .align_centerContainer;
+
+        justify-content: space-around;
+
+        .leftBtnGroupItem {
+            flex: 1;
+            height: @small_listHeight;
+            width: 100%;
+            .justify_centerContainer;
+            .flexContainerCol;
+            justify-content: center;
+            .allCenterContainer;
+            .itemImageView {
+                width: 100%;
+
+                .allCenterContainer;
+                .itemImage {
+                    width: 22px;
+                    // background-color: red;
+                }
+            }
+
+            text {
+                width: 100%;
+                .allCenterContainer;
+                // flex: 1;
+                font-size: 10px;
+                color: gray;
+            }
+        }
+        // .goShopCar {
+        //     flex: 1;
+        //     image {
+        //         width: 18px;
+        //     }
+        // }
+        // .goShopCar {
+        //     flex: 1;
+        //     image {
+        //         width: 18px;
+        //     }
+        // }
+    }
+
+    .rightBtnGroup {
+        color: white;
+        flex: 1;
+        .flexContainerRow;
+
+        font-size: smaller;
+        .addToCar {
+            flex: 1;
+            .allCenterContainer;
+            background-color: #f6bd41;
+        }
+
+        .buyNow {
+            flex: 1;
+            .allCenterContainer;
+            background-color: @theme_color;
+        }
+    }
+}
 .content {
     width: 100%;
     height: 100%;

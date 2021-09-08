@@ -1,4 +1,31 @@
 <view class="content">
+  <view class="bottomBar">
+    <view class="leftBtnGroup">
+      <view class="leftBtnGroupItem">
+        <view class="itemImageView">
+          <image class="itemImage" src="../resource/分享.png" mode="widthFix" />
+        </view>
+        <text>分享</text>
+      </view>
+      <view class="leftBtnGroupItem">
+        <view class="itemImageView">
+          <image class="itemImage" src="../resource/女客服.png" mode="widthFix" />
+        </view>
+        <text>客服</text>
+      </view>
+      <view class="leftBtnGroupItem">
+        <view class="itemImageView">
+          <image class="itemImage" src="../resource/购物车_线性.png" mode="widthFix" />
+        </view>
+        <text>购物车</text>
+      </view>
+    </view>
+
+    <view class="rightBtnGroup">
+      <view class="addToCar">加入购物车</view>
+      <view class="buyNow">立即购买</view>
+    </view>
+  </view>
   <scroll-view scroll-x="{{false}}" scroll-y="{{true}}">
     <swiper
       style="height:{{loop_image_height}}px"

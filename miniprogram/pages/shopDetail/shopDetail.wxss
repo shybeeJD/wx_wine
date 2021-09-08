@@ -43,6 +43,72 @@
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
 }
+.bottomBar {
+  position: fixed;
+  z-index: 10;
+  bottom: 0rpx;
+  width: 100%;
+  height: 42px;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.bottomBar .leftBtnGroup {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.bottomBar .leftBtnGroup .leftBtnGroupItem {
+  flex: 1;
+  height: 42px;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bottomBar .leftBtnGroup .leftBtnGroupItem .itemImageView {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bottomBar .leftBtnGroup .leftBtnGroupItem .itemImageView .itemImage {
+  width: 22px;
+}
+.bottomBar .leftBtnGroup .leftBtnGroupItem text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: gray;
+}
+.bottomBar .rightBtnGroup {
+  color: white;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  font-size: smaller;
+}
+.bottomBar .rightBtnGroup .addToCar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6bd41;
+}
+.bottomBar .rightBtnGroup .buyNow {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff585a;
+}
 .content {
   width: 100%;
   height: 100%;
