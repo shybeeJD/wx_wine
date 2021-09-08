@@ -14,8 +14,12 @@ exports.main = async (event, context) => {
   data={
     name:event.name,
     freight:event.freight,
+    category:event.category,
+    address:event.address,
+    postRange:event.maxrange,
     location: db.Geo.Point(longitude, latitude)
   }
+  console.log(data)
   if (event._id !=undefined && event._id!=null){
     return await db.collection('shop')
     .where({
