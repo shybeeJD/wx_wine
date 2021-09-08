@@ -178,7 +178,7 @@ Page({
       app.getUserBid(function(re){
         console.log("call")
         that.getCarouselIcon();
-        that.getHostGoodList(re);
+        //that.getHostGoodList(re);
       })
   },
   // 获取轮播图，iconn 信息

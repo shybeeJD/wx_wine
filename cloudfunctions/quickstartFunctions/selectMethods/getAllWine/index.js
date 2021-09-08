@@ -10,10 +10,19 @@ exports.main = async (event, context) => {
   // 返回数据库查询结果
   await updateStatus.main(event,context)
 
-  console.log(event)
+
   var wine=''
 
   var userInfo=cloud.getWXContext()
+  if(event._id){
+    wine=await db.collection('wine').where({
+      _id:event._id
+    }).get()
+    var data={
+      product_list:wine.data
+    }
+    return data
+  }
 
   wine=await db.collection('wine').where({
     shop:event.shopNow,
@@ -39,7 +48,6 @@ exports.main = async (event, context) => {
     var data={}
     data['product_list']=wine.data
     data['category_contitions']=[]
-    data['test']="test"
  
 
     console.log(data)

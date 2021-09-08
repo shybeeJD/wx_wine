@@ -185,11 +185,12 @@ Page({
         console.log(distance);
         var freight = app.globalData.shopNow.freight;
         var dprice = 0;
-        for (var key in freight) {
-            if (distance > parseFloat(key)) {
-                dprice = freight[key];
+        for (var i=0;i<freight.length;i++){
+            if (distance >freight[i].km) {
+                dprice = freight[i].cny;
             }
         }
+       
         this.setData({
             freight: dprice,
         });
