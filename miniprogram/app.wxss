@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import './stylesheet.wxss';
+@import './font-awesome.wxss';
 .container {
   display: flex;
   flex-direction: column;

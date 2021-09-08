@@ -1,0 +1,245 @@
+.roundedRectangle {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.flexContainerCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.align_centerContainer {
+  display: flex;
+  align-items: center;
+}
+.justify_centerContainer {
+  display: flex;
+  justify-content: center;
+}
+.allCenterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.justifyContentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+.justifyContentLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+.justifyContentRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.padding_l_10px {
+  padding: 0px 0px 0px 10px;
+}
+.padding_r_10px {
+  padding: 0px 10px 0px 0px;
+}
+.padding_l_r_10px {
+  padding: 0px 10px 0px 10px;
+}
+.container {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.454);
+}
+.container .searchBar {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.container .searchBar .arrow {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.container .searchBar .input {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+}
+.container .searchBar .input mp-searchbar {
+  width: 100%;
+}
+.container .searchBar .more {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.container .selectOrderStatus {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+.container .selectOrderStatus .statusNormal {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .selectOrderStatus .statusActive {
+  flex: 1;
+  font-size: large;
+  color: #ff585a;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .orderList {
+  width: 100%;
+}
+.container .orderList .orderItem {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 10px 10px 10px;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.container .orderList .orderItem .order_status {
+  height: 42px;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 10px 0px 10px;
+}
+.container .orderList .orderItem .order_status .leftText {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.container .orderList .orderItem .order_status .rightText {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  color: #ff585a;
+}
+.container .orderList .orderItem .good_list .gooditem {
+  display: flex;
+  flex-direction: row;
+}
+.container .orderList .orderItem .good_list .gooditem .img {
+  flex: 1;
+}
+.container .orderList .orderItem .good_list .gooditem .img image {
+  width: 100%;
+  border-radius: 20px;
+}
+.container .orderList .orderItem .good_list .gooditem .info {
+  flex: 3;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 10px 0px 10px;
+}
+.container .orderList .orderItem .good_list .gooditem .info .title {
+  width: 100%;
+  flex-direction: row;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.container .orderList .orderItem .good_list .gooditem .info .title .name {
+  flex: 3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.container .orderList .orderItem .good_list .gooditem .info .title .price {
+  flex: 1;
+  font-size: small;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+.container .orderList .orderItem .good_list .gooditem .info .Specifications {
+  width: 100%;
+  font-size: x-small;
+}
+.container .orderList .orderItem .good_list .gooditem .info .Specifications .temNumBold {
+  color: #5c93c9;
+}
+.container .orderList .orderItem .price_details {
+  display: flex;
+  flex-direction: column;
+  font-size: smaller;
+}
+.container .orderList .orderItem .price_details .price_details_item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.container .orderList .orderItem .price_details .price_details_item .name {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 10px 0px 0px;
+}
+.container .orderList .orderItem .price_details .price_details_item .explain {
+  flex: 2;
+  color: gray;
+}
+.container .orderList .orderItem .price_details .price_details_item .value {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 10px 0px 10px;
+}
+.container .orderList .orderItem .orderPrice {
+  font-size: medium;
+  height: 42px;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
+}
+.container .btnGroup {
+  font-size: small;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+}
+.container .btnGroup .more {
+  flex: 1;
+  color: gray;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
+}
+.container .btnGroup .btnItemView {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 5px 0 5px;
+}
+.container .btnGroup .btnItemView .text {
+  font-size: medium;
+  width: 82px;
+  border: 1px solid gray;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .btnGroup .btnItemView #pay {
+  color: #ff585a;
+  border: 1px solid #ff585a;
+}

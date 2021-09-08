@@ -11,7 +11,7 @@
         <view class = "order_title_back">
             <text class = "order_title">我的订单</text>
             <image src="../resource/rightTrangle.png" class = "order_image"></image>
-            <text class = "order_send_title">查看全部订单</text>
+            <text class = "order_send_title" bindtap="showAllOrder">查看全部订单</text>
         </view>
         <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
 
@@ -25,7 +25,7 @@
         <view class = "order_title_back">
             <text class = "order_title">我的钱包</text>
             <image src="../resource/rightTrangle.png" class = "order_image"></image>
-            <text class = "order_send_title">查看钱包</text>
+            <text class = "order_send_title" >查看钱包</text>
         </view>
         <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
 

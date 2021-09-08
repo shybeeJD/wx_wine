@@ -54,6 +54,18 @@
           "pathName": "pages/shopDetail/shopDetail",
           "query": "good_id=8937eaa961332b5808b4657835d39257",
           "scene": null
+        },
+        {
+          "name": "me",
+          "pathName": "pages/me/me",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "orderList",
+          "pathName": "pages/order/orderList/orderList",
+          "query": "",
+          "scene": null
         }
       ]
     }
