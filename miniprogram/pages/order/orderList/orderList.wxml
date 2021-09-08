@@ -14,8 +14,12 @@
     <!-- <view class="statusNormal"  wx:for="{{statusList}}" data-id="index">
       {{index}}{{item}}
     </view> -->
-    <view class="{{statusCheckIndex == index ? 'statusActive' : 'statusNormal'}}" wx:for="{{statusList}}"
-      data-index="{{index}}" bindtap="selectStatus">
+    <view
+      class="{{statusCheckIndex == index ? 'statusActive' : 'statusNormal'}}"
+      wx:for="{{statusList}}"
+      data-index="{{index}}"
+      bindtap="selectStatus"
+    >
       {{item}}
     </view>
   </view>
@@ -35,8 +39,11 @@
       <view class="good_list">
         <view class="gooditem">
           <view class="img">
-            <image class="" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
-              mode="widthFix">
+            <image
+              class=""
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
+              mode="widthFix"
+            >
             </image>
           </view>
           <view class="info">
@@ -44,14 +51,19 @@
               <view class="name">【39.9美刀包邮】上等23年拉菲</view>
               <view class="price">$ 39.9</view>
             </view>
-            <view class="Specifications">共 <span class="temNumBold">12</span> 罐,常温<span
-                class="temNumBold">12</span>罐,冷冻<span class="temNumBold">12</span>罐</view>
+            <view class="Specifications"
+              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
+              >罐,冷冻<span class="temNumBold">12</span>罐</view
+            >
           </view>
         </view>
         <view class="gooditem">
           <view class="img">
-            <image class="" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
-              mode="widthFix">
+            <image
+              class=""
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
+              mode="widthFix"
+            >
             </image>
           </view>
           <view class="info">
@@ -59,8 +71,10 @@
               <view class="name">【39.9美刀包邮】上等23年拉菲</view>
               <view class="price">$ 39.9</view>
             </view>
-            <view class="Specifications">共 <span class="temNumBold">12</span> 罐,常温<span
-                class="temNumBold">12</span>罐,冷冻<span class="temNumBold">12</span>罐</view>
+            <view class="Specifications"
+              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
+              >罐,冷冻<span class="temNumBold">12</span>罐</view
+            >
           </view>
         </view>
       </view>
@@ -84,14 +98,21 @@
       <!-- 按钮 -->
       <view class="btnGroup">
         <view class="more">更多</view>
+
         <view id="editAddress" class="btnItemView">
-          <view class="text">修改地址</view>
+          <view class="text">查看详情</view>
         </view>
-        <view class="btnItemView">
-          <view id="pay" class="text">支付</view>
+
+        <view class="btnItemView " wx:if="{{item.status ==1}}">
+          <view id="pay" class="text keyBtn">去支付</view>
+        </view>
+        <view class="btnItemView " wx:if="{{item.status ==2}}">
+          <view id="received" class="text keyBtn">确认收货</view>
+        </view>
+        <view class="btnItemView " wx:if="{{item.status ==3}}">
+          <view id="received" class="text keyBtn">去评价</view>
         </view>
       </view>
     </view>
-
   </view>
 </view>

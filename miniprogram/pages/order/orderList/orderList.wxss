@@ -239,7 +239,7 @@
   align-items: center;
   justify-content: center;
 }
-.container .btnGroup .btnItemView #pay {
+.container .btnGroup .btnItemView .keyBtn {
   color: #ff585a;
   border: 1px solid #ff585a;
 }

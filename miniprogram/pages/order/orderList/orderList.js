@@ -9,15 +9,15 @@ Page({
         statusCheckIndex: 0,
         statusList: {
             0: "全部",
-            1: "已接单",
-            2: "正在配送",
+            1: "待支付",
+            2: "配送中",
             3: "已完成",
         },
         orderList: {
             order1: {
                 id: "20210712162531", //string, N, 订单编号
                 userId: "asdf", //int, N, 用户id
-                status: 0, //int, N, 订单状态
+                status: 2, //int, N, 订单状态
                 goods: {
                     cbddf0af60fb6e8119051b276dd45d4f: {
                         num: 5, //下单数
