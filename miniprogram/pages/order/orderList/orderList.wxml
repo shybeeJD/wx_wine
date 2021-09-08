@@ -1,0 +1,118 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="searchBar">
+    <view class="arrow">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </view>
+    <view class="input">
+      <mp-searchbar model:value="{{search}}" confirmType="search"></mp-searchbar>
+    </view>
+    <view class="more"><i class="fa fa-ellipsis-h"></i></view>
+  </view>
+  <!-- 选择状态 -->
+  <view class="selectOrderStatus">
+    <!-- <view class="statusNormal"  wx:for="{{statusList}}" data-id="index">
+      {{index}}{{item}}
+    </view> -->
+    <view
+      class="{{statusCheckIndex == index ? 'statusActive' : 'statusNormal'}}"
+      wx:for="{{statusList}}"
+      data-index="{{index}}"
+      bindtap="selectStatus"
+    >
+      {{item}}
+    </view>
+  </view>
+  <!-- 订单列表 -->
+  <view class="orderList">
+    <view class="orderItem" wx:for="{{orderList}}">
+      <!-- 状态 -->
+      <view class="order_status">
+        <view class="leftText">
+          蜜雪冰城王(府井店)
+        </view>
+        <view class="rightText">
+          {{statusList[item.status]}}
+        </view>
+      </view>
+      <!-- 列表 -->
+      <view class="good_list">
+        <view class="gooditem">
+          <view class="img">
+            <image
+              class=""
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+          <view class="info">
+            <view class="title">
+              <view class="name">【39.9美刀包邮】上等23年拉菲</view>
+              <view class="price">$ 39.9</view>
+            </view>
+            <view class="Specifications"
+              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
+              >罐,冷冻<span class="temNumBold">12</span>罐</view
+            >
+          </view>
+        </view>
+        <view class="gooditem">
+          <view class="img">
+            <image
+              class=""
+              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
+              mode="widthFix"
+            >
+            </image>
+          </view>
+          <view class="info">
+            <view class="title">
+              <view class="name">【39.9美刀包邮】上等23年拉菲</view>
+              <view class="price">$ 39.9</view>
+            </view>
+            <view class="Specifications"
+              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
+              >罐,冷冻<span class="temNumBold">12</span>罐</view
+            >
+          </view>
+        </view>
+      </view>
+      <view class="price_details">
+        <view class="price_details_item">
+          <view class="name">运费险</view>
+          <view class="explain">退换货自动理赔</view>
+          <view class="value">$20 x 1</view>
+        </view>
+        <view class="price_details_item">
+          <view class="name">运费险2</view>
+          <view class="explain">退换货自动理赔</view>
+          <view class="value">$20 x 2</view>
+        </view>
+      </view>
+      <view class="orderPrice">
+        <span style="color:gray;font-size:xx-small;padding:0 5px 0 0;"> 总价格:$300</span>
+        <span>需付款$800</span>
+      </view>
+
+      <!-- 按钮 -->
+      <view class="btnGroup">
+        <view class="more">更多</view>
+
+        <view id="editAddress" class="btnItemView">
+          <view class="text">查看详情</view>
+        </view>
+
+        <view class="btnItemView " wx:if="{{item.status ==1}}">
+          <view id="pay" class="text keyBtn">去支付</view>
+        </view>
+        <view class="btnItemView " wx:if="{{item.status ==2}}">
+          <view id="received" class="text keyBtn">确认收货</view>
+        </view>
+        <view class="btnItemView " wx:if="{{item.status ==3}}">
+          <view id="received" class="text keyBtn">去评价</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

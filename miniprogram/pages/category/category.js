@@ -4,7 +4,7 @@ Page({
             //字符
         ],
         //rightDataSourceAll:[],
-        leftDataSource: ["啤酒","白酒","葡萄酒","洋酒"], //字符
+        leftDataSource: ["默认的"], //字符
         allDataSouce: null, 
         leftListSelectItem: 0, //字符
         rightItemWidth: 0,
