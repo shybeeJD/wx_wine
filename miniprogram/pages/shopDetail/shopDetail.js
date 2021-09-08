@@ -31,27 +31,26 @@ Page({
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
 
-        this.getGoodInfo(options);
-        // var data = JSON.parse(options.good);
-        // data.comment_count = 0;
-        // data.comment_scale = 0;
-        // let good_detail = {
-        //     product_info: data,
-        // };
-        // good_detail.comment_count = 0;
-        // good_detail.comment_scale = 0;
-        // this.setData({
-        //     good_detail: good_detail,
-        // });
-        // //
-        // wx.setNavigationBarTitle({
-        //     title: options.title,
-        //     success: function (res) {},
-        // });
-        // var that = this;
-        // app.getUserBid(function (res) {
-        //     that.requestFromService(res);
-        // });
+        var data = JSON.parse(options.good);
+        data.comment_count = 0;
+        data.comment_scale = 0;
+        let good_detail = {
+            product_info: data,
+        };
+        good_detail.comment_count = 0;
+        good_detail.comment_scale = 0;
+        this.setData({
+            good_detail: good_detail,
+        });
+        //
+        wx.setNavigationBarTitle({
+            title: options.title,
+            success: function (res) {},
+        });
+        var that = this;
+        app.getUserBid(function (res) {
+            that.requestFromService(res);
+        });
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成

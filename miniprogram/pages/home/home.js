@@ -129,9 +129,18 @@ Page({
     },
     // 跳转到商品详情
     pushGoodDetail: function (tap) {
-        var good_id = tap.currentTarget.dataset._id;
+        var index = tap.currentTarget.dataset.id;
+
+        var good = this.data.host_good_list[index];
+        console.log(
+            "---------------------------------------------------------------------------------------------------"
+        );
+        console.log(good);
         wx.navigateTo({
-            url: "../shopDetail/shopDetail?good_id=" + good_id,
+            url: "../shopDetail/shopDetail?good=" + JSON.stringify(good),
+            success: function (res) {},
+            fail: function () {},
+            complete: function () {},
         });
     },
     // 添加按钮被点击

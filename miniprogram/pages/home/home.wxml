@@ -69,7 +69,7 @@
           class="hot_good_img"
           mode="widthFix"
           src="{{host_good_list[index].thumb_url}}"
-          data-_id="{{host_good_list[index]._id}}"
+          data-id="{{index}}"
           bindtap="pushGoodDetail"
         />
         <view class="hot_good_name">{{host_good_list[index].title}}</view>
