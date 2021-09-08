@@ -81,6 +81,7 @@ Page({
         }
     },
     onHide: function () {
+      this.hideModal()
         // 生命周期函数--监听页面隐藏
     },
     onUnload: function () {
@@ -195,6 +196,7 @@ Page({
         var that = this;
 
         that.getCarouselIcon();
+
         app.getUserBid(function (re) {
             console.log("call");
             that.getCarouselIcon();
@@ -282,9 +284,7 @@ Page({
             .then((resp) => {
                 console.log(resp.result);
                 this.setData({
-                    host_good_list: resp.result.product_list.concat(
-                        resp.result.product_list
-                    ),
+                    host_good_list: resp.result.product_list,
                 });
                 wx.hideLoading();
             })

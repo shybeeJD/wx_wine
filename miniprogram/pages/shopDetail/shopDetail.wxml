@@ -13,7 +13,7 @@
         </view>
         <text>客服</text>
       </view>
-      <view class="leftBtnGroupItem">
+      <view class="leftBtnGroupItem" bindtap="gotoShopCar">
         <view class="itemImageView">
           <image class="itemImage" src="../resource/购物车_线性.png" mode="widthFix" />
         </view>
@@ -22,8 +22,8 @@
     </view>
 
     <view class="rightBtnGroup">
-      <view class="addToCar">加入购物车</view>
-      <view class="buyNow">立即购买</view>
+      <view class="addToCar" bindtap="addToCar">加入购物车</view>
+      <view class="buyNow" bindtap="buyRightNow">立即购买</view>
     </view>
   </view>
   <scroll-view scroll-x="{{false}}" scroll-y="{{true}}">

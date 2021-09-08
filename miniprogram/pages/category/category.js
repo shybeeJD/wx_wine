@@ -22,7 +22,7 @@ Page({
             this.setData({
                 envId: app.globalData.envId,
                 shopNow:app.globalData.shopNow,
-                leftDataSource:app.globalData.shopNow.category.split(',')
+                leftDataSource:app.globalData.shopNow.category
             });
             for (var i = 0; i < this.data.leftDataSource.length; i++) {
                 this.data.pageList.push(0)
@@ -35,7 +35,7 @@ Page({
                 this.setData({ 
                     envId: app.globalData.envId,
                     shopNow:app.globalData.shopNow,
-                    leftDataSource:app.globalData.shopNow.category.split(',')
+                    leftDataSource:app.globalData.shopNow.category
                 })
                 for (var i = 0; i < this.data.leftDataSource.length; i++) {
                     this.data.pageList.push(0)
@@ -66,7 +66,7 @@ Page({
             this.setData({
                 envId: app.globalData.envId,
                 shopNow:app.globalData.shopNow,
-                leftDataSource:app.globalData.shopNow.category.split(',')
+                leftDataSource:app.globalData.shopNow.category
             });
             var list=[]
             var pageList=[]
