@@ -22,8 +22,8 @@ Page({
         wx.showLoading({
             title: "加载中",
         });
-        if(options.good){
-            this.data.goodTemp= JSON.parse(options.good);
+        if (options.good) {
+            this.data.goodTemp = JSON.parse(options.good);
         }
 
         var app = getApp();
@@ -64,7 +64,7 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-        this.data.goodTemp=null
+        this.data.goodTemp = null;
     },
 
     /**
@@ -116,18 +116,23 @@ Page({
         });
 
         let goods = {};
-        let goodsLeft=[];
+        let goodsLeft = [];
         for (let i in this.data.goodsList) {
             if (this.data.goodsList[i].isSelect) {
                 let i_id = this.data.goodsList[i]._id;
                 let i_buy = this.data.goodsList[i].buy;
                 let i_normal = this.data.goodsList[i].normal;
-                let brand= this.data.goodsList[i].brand
-                let price = this.data.goodsList[i].price
-                goods[i_id] = { num: i_buy, normal: i_normal, brand:brand, price:price};
-            }
-            else{
-                goodsLeft.push(this.data.goodsList[i])
+                let brand = this.data.goodsList[i].brand;
+                let price = this.data.goodsList[i].price;
+                goods[i_id] = {
+                    num: i_buy,
+                    normal: i_normal,
+                    brand: brand,
+                    price: price,
+                    info: this.data.goodsList[i],
+                };
+            } else {
+                goodsLeft.push(this.data.goodsList[i]);
             }
         }
         // todo:添加订单时候选择的地址
@@ -141,7 +146,7 @@ Page({
             });
             return;
         } else {
-            console.log(this.data.freight)
+            console.log(this.data.freight);
             wx.cloud
                 .callFunction({
                     name: "quickstartFunctions",
@@ -173,10 +178,16 @@ Page({
                             dialogShow: true,
                             orderID: res.result.res._id,
                         });
-                        var app =getApp()
+                        var app = getApp();
                         //提交订单后清除购物车缓存
-                        if(this.data.goodTemp==undefined || this.data.goodTemp==null ){
-                            wx.setStorageSync(app.globalData.shopNow._id, goodsLeft);
+                        if (
+                            this.data.goodTemp == undefined ||
+                            this.data.goodTemp == null
+                        ) {
+                            wx.setStorageSync(
+                                app.globalData.shopNow._id,
+                                goodsLeft
+                            );
                         }
                     }
                 })
@@ -192,12 +203,12 @@ Page({
         console.log(distance);
         var freight = app.globalData.shopNow.freight;
         var dprice = 0;
-        for (var i=0;i<freight.length;i++){
-            if (distance >freight[i].km) {
+        for (var i = 0; i < freight.length; i++) {
+            if (distance > freight[i].km) {
                 dprice = freight[i].cny;
             }
         }
-       
+
         this.setData({
             freight: dprice,
         });
@@ -216,7 +227,7 @@ Page({
     // 然后显示默认的地址
     updateAddress: function () {
         var app = getApp();
-        var that=this
+        var that = this;
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -270,12 +281,12 @@ Page({
     // 更新商品数据
     updateGoods: function () {
         var app = getApp();
-        let goodsList = []
-        
-        if(this.data.goodTemp){
-            this.data.goodTemp.isSelect=true
-            goodsList.push(this.data.goodTemp)
-        }else{
+        let goodsList = [];
+
+        if (this.data.goodTemp) {
+            this.data.goodTemp.isSelect = true;
+            goodsList.push(this.data.goodTemp);
+        } else {
             goodsList = wx.getStorageSync(app.globalData.shopNow._id);
         }
         console.log(goodsList);

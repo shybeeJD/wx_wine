@@ -7,94 +7,33 @@ Page({
         envId: null,
         // statusList: ["全部": 0, "代付款", "代发货", "待收货", "待评价"],
         statusCheckIndex: 0,
-        statusList: {
+        selectStatusList: {
             0: "全部",
             1: "待支付",
-            2: "配送中",
+            2: "待收货",
             3: "已完成",
         },
-        orderList: {
-            order1: {
-                id: "20210712162531", //string, N, 订单编号
-                userId: "asdf", //int, N, 用户id
-                status: 2, //int, N, 订单状态
-                goods: {
-                    cbddf0af60fb6e8119051b276dd45d4f: {
-                        num: 5, //下单数
-                        cold: 1, //一瓶冰的
-                        normal: 2, //两瓶常温的
-                        Warm: 2, //两瓶温的}
-                    },
-                    good2: {
-                        num: 5, //下单数
-                        cold: 1, //一瓶冰的
-                        normal: 2, //两瓶常温的
-                        Warm: 2, //两瓶温的}
-                    },
-                },
-                packingsPrice: 10, //float, N, 打包费用
-                delivery_price: 5, //float, N, 外送费用
-                discount: 20, //float, N, 红包优惠
-                address: "address", //string, N, 配送地址id
-                deliveryMan: "man!!!s", //string, Y, 配送员
-                paymentChannels: 1, //int, N, 支付渠道
-                addTime: "2021-07-12 16:41:20", //Datetime, default=now
-            },
-            order2: {
-                id: "20210712162531", //string, N, 订单编号
-                userId: "asdf", //int, N, 用户id
-                status: 1, //int, N, 订单状态
-                goods: {
-                    cbddf0af60fb6e8119051b276dd45d4f: {
-                        num: 5, //下单数
-                        cold: 1, //一瓶冰的
-                        normal: 2, //两瓶常温的
-                        Warm: 2, //两瓶温的}
-                    },
-                    good2: {
-                        num: 5, //下单数
-                        cold: 1, //一瓶冰的
-                        normal: 2, //两瓶常温的
-                        Warm: 2, //两瓶温的}
-                    },
-                },
-                packingsPrice: 10, //float, N, 打包费用
-                delivery_price: 5, //float, N, 外送费用
-                discount: 20, //float, N, 红包优惠
-                address: "address", //string, N, 配送地址id
-                deliveryMan: "man!!!s", //string, Y, 配送员
-                paymentChannels: 1, //int, N, 支付渠道
-                addTime: "2021-07-12 16:41:20", //Datetime, default=now
-            },
+
+        orderStatusList: {
+            1: "订单已完成",
+            2: "正在配送",
+            3: "商家已接单",
+            4: "商家拒绝接单",
+            5: "等待支付",
+            6: "取消支付",
+            7: "正在退款",
         },
+        orderList: null,
+        priceList: null,
+        imgList: null,
+        defaultImg: "../../resource/暂无图片.jpeg",
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var app = getApp();
-        this.setData({
-            envId: app.globalData.envId,
-        });
-        wx.cloud
-            .callFunction({
-                name: "quickstartFunctions",
-                config: {
-                    env: this.envId,
-                },
-                data: {
-                    type: "getOrderInfo",
-                    num: 1,
-                    status: [1, 2, 3],
-                },
-            })
-            .then((resp) => {
-                console.log(resp);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        this.getOrderList();
     },
 
     /**
@@ -131,11 +70,93 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {},
+    // 去订单详情
+    orderDetail: function (e) {
+        console.log(e.currentTarget.dataset.order_id);
+        wx.navigateTo({
+            url: "../../pages/order/orderDetail/orderDetail",
+        });
+        // todo:订单列表去订单详情
+    },
     // 切换状态
     selectStatus: function (e) {
         let index = e.currentTarget.dataset.index;
         this.setData({
             statusCheckIndex: index,
         });
+    },
+    // 获取订单列表
+    getOrderList: function () {
+        var app = getApp();
+        this.setData({
+            envId: app.globalData.envId,
+        });
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: this.envId,
+                },
+                data: {
+                    type: "getOrderInfo",
+                    num: 100,
+                    status: [1, 2, 3, 4, 5, 6, 7],
+                },
+            })
+            .then((resp) => {
+                this.setData({
+                    orderList: resp.result.data,
+                });
+                this.getOrderPrice();
+                this.getGoodsImg();
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    },
+    // 获取订单价格
+    getOrderPrice: function () {
+        let orderList = this.data.orderList;
+        let priceList = [];
+        for (const i in orderList) {
+            let orderPrice = 0;
+            for (const j in orderList[i].goods) {
+                let good = orderList[i].goods[j];
+                orderPrice += good.price * good.num;
+            }
+            priceList[i] = orderPrice;
+        }
+        this.setData({
+            priceList: priceList,
+        });
+    },
+    getGoodsImg: function () {
+        let imgList = [];
+        let orderList = this.data.orderList;
+
+        for (const i in orderList) {
+            let goodsImg = {};
+            // let num = 0;
+            for (const j in orderList[i].goods) {
+                let good = orderList[i].goods[j];
+                goodsImg[j] = good.info.thumb_url;
+                // num += 1;
+            }
+            imgList[i] = goodsImg;
+        }
+        this.setData({
+            imgList: imgList,
+        });
+    },
+    imgErrorFunction: function (e) {
+        if (e.type == "error") {
+            var errorImgIndex = e.currentTarget.dataset.errorimg; //获取错误图片循环的下标
+            var errorOrderIndex = e.currentTarget.dataset.errororder; //获取错误图片循环的下标
+            var imgList = this.data.imgList; //将图片列表数据绑定到变量
+            imgList[errorOrderIndex][errorImgIndex] = this.data.defaultImg; //错误图片替换为默认图片
+            this.setData({
+                imgList: imgList,
+            });
+        }
     },
 });

@@ -11,12 +11,9 @@
   </view>
   <!-- 选择状态 -->
   <view class="selectOrderStatus">
-    <!-- <view class="statusNormal"  wx:for="{{statusList}}" data-id="index">
-      {{index}}{{item}}
-    </view> -->
     <view
       class="{{statusCheckIndex == index ? 'statusActive' : 'statusNormal'}}"
-      wx:for="{{statusList}}"
+      wx:for="{{selectStatusList}}"
       data-index="{{index}}"
       bindtap="selectStatus"
     >
@@ -25,60 +22,55 @@
   </view>
   <!-- 订单列表 -->
   <view class="orderList">
-    <view class="orderItem" wx:for="{{orderList}}">
+    <view class="orderItem" wx:for="{{orderList}}" wx:for-item="order" wx:for-index="orderIndex">
       <!-- 状态 -->
       <view class="order_status">
-        <view class="leftText">
+        <!-- <view class="leftText">
           蜜雪冰城王(府井店)
-        </view>
+        </view> -->
         <view class="rightText">
-          {{statusList[item.status]}}
+          {{orderStatusList[order.status]}}
         </view>
       </view>
       <!-- 列表 -->
       <view class="good_list">
-        <view class="gooditem">
+        <view class="gooditem" wx:for="{{order.goods}}" wx:for-item="good" wx:for-index="goodIndex">
           <view class="img">
             <image
-              class=""
-              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
+              src="{{imgList[orderIndex][goodIndex]}}"
               mode="widthFix"
+              binderror="imgErrorFunction"
+              data-errorimg="{{goodIndex}}"
+              data-errororder="{{orderIndex}}"
+
             >
             </image>
           </view>
           <view class="info">
             <view class="title">
-              <view class="name">【39.9美刀包邮】上等23年拉菲</view>
-              <view class="price">$ 39.9</view>
+              <view class="name">{{good.brand}}</view>
+              <view class="price">{{good.price}}</view>
             </view>
-            <view class="Specifications"
-              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
-              >罐,冷冻<span class="temNumBold">12</span>罐</view
-            >
-          </view>
-        </view>
-        <view class="gooditem">
-          <view class="img">
-            <image
-              class=""
-              src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ebbK6PdFaj7atmTyXm6vTgHaHa?pid=ImgDet&rs=1"
-              mode="widthFix"
-            >
-            </image>
-          </view>
-          <view class="info">
-            <view class="title">
-              <view class="name">【39.9美刀包邮】上等23年拉菲</view>
-              <view class="price">$ 39.9</view>
+            <view class="Specifications">
+              共
+              <span class="temNumBold">{{good.num}}</span>
+              罐,
+              <span wx:if="{{good.normal>0}}"
+                >常温
+                <span class="temNumBold">{{good.normal}}</span>
+                罐,
+              </span>
+              <span wx:if="{{good.num-good.normal>0}}">
+                冷冻
+                <span class="temNumBold">{{good.num-good.normal}}</span>
+                罐
+              </span>
             </view>
-            <view class="Specifications"
-              >共 <span class="temNumBold">12</span> 罐,常温<span class="temNumBold">12</span
-              >罐,冷冻<span class="temNumBold">12</span>罐</view
-            >
           </view>
         </view>
       </view>
-      <view class="price_details">
+      <!-- 附加费用 -->
+      <!-- <view class="price_details">
         <view class="price_details_item">
           <view class="name">运费险</view>
           <view class="explain">退换货自动理赔</view>
@@ -89,27 +81,34 @@
           <view class="explain">退换货自动理赔</view>
           <view class="value">$20 x 2</view>
         </view>
-      </view>
+      </view> -->
       <view class="orderPrice">
-        <span style="color:gray;font-size:xx-small;padding:0 5px 0 0;"> 总价格:$300</span>
-        <span>需付款$800</span>
+        <!-- <span class="total" style="color:gray;font-size:xx-small;padding:0 5px 0 0;">
+          总价格:$300
+        </span> -->
+        <span class="price">需付款：¥{{priceList[orderIndex]}}</span>
       </view>
 
       <!-- 按钮 -->
       <view class="btnGroup">
-        <view class="more">更多</view>
-
-        <view id="editAddress" class="btnItemView">
+        <view class="more">
+          更多
+        </view>
+        <view
+          id="orderDetail"
+          class="btnItemView"
+          bindtap="orderDetail"
+          data-order_id="{{order._id}}"
+        >
           <view class="text">查看详情</view>
         </view>
-
-        <view class="btnItemView " wx:if="{{item.status ==1}}">
+        <view class="btnItemView " wx:if="{{order.status ==5}}">
           <view id="pay" class="text keyBtn">去支付</view>
         </view>
-        <view class="btnItemView " wx:if="{{item.status ==2}}">
+        <view class="btnItemView " wx:if="{{order.status == 2 ||order.status == 3}}">
           <view id="received" class="text keyBtn">确认收货</view>
         </view>
-        <view class="btnItemView " wx:if="{{item.status ==3}}">
+        <view class="btnItemView " wx:if="{{order.status ==3}}">
           <view id="received" class="text keyBtn">去评价</view>
         </view>
       </view>

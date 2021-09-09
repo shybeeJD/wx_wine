@@ -87,7 +87,6 @@
 
     <view class="right-side">
       <view class="price">¥{{rightDataSource[selectedWineindex].price}}</view>
-      <!-- todo:已选不会显示 -->
       <view class="type">已选：{{tmpBuyNum}}</view>
       <view class="inventory">库存：{{rightDataSource[selectedWineindex].stock}}</view>
     </view>

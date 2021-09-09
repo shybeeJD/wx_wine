@@ -71,8 +71,7 @@
 }
 .container .searchBar .more {
   flex: 1;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 .container .selectOrderStatus {
   width: 100%;
@@ -135,7 +134,7 @@
 }
 .container .orderList .orderItem .good_list .gooditem .img image {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .container .orderList .orderItem .good_list .gooditem .info {
   flex: 3;
