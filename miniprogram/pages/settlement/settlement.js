@@ -163,7 +163,6 @@ Page({
                     },
                 })
                 .then((res) => {
-                    // todo:该写提交订单成功后的操作了,弹窗提示并跳转到待支付页面
                     console.log(res.result);
                     if (res.result.success == false) {
                         wx.showToast({

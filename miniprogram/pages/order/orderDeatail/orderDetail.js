@@ -103,7 +103,6 @@ Page({
                     goodsList.push(tmp)
                 }
                 this.setData({
-                    // todo:刚获取到了数据
                     orderInfo: res.result.data[0],
                     address: res.result.data[0].address,
                     packingsPrice: res.result.data[0].packingsPrice,

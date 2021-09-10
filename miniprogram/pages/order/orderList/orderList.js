@@ -81,7 +81,6 @@ Page({
         wx.navigateTo({
             url: "../orderDeatail/orderDetail?id=" + order_id,
         });
-        // todo:订单列表去订单详情
     },
     // 切换状态
     selectStatus: function (e) {
