@@ -1,8 +1,9 @@
 Page({
     data: {
-        carousel_list: [{ img: "../resource/logintop.png" }], //轮播头信息
-        icon_list: [
-            {
+        carousel_list: [{
+            img: "../resource/logintop.png"
+        }], //轮播头信息
+        icon_list: [{
                 name: "啤酒",
                 pic: "../resource/beer.png",
             },
@@ -19,8 +20,7 @@ Page({
                 pic: "../resource/yangjiu.png",
             },
         ], //icon
-        icon_list2: [
-            {
+        icon_list2: [{
                 name: "待开发",
                 pic: "../resource/开发中.jpg",
             },
@@ -48,6 +48,9 @@ Page({
         tmpNormal: 1,
     },
     onLoad: function (options) {
+        wx.showLoading({
+            title: "",
+        });
         // 获取轮播图等信息
         this.getDataFromServer();
         this.renderControl();
@@ -59,6 +62,7 @@ Page({
                 this.getHostGoodList();
             };
         }
+        wx.hideLoading();
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
@@ -81,7 +85,7 @@ Page({
         }
     },
     onHide: function () {
-      this.hideModal()
+        this.hideModal();
         // 生命周期函数--监听页面隐藏
     },
     onUnload: function () {
@@ -107,8 +111,7 @@ Page({
         var data = this.data.carousel_list[id];
         if (data.event_mark == 3) {
             wx.navigateTo({
-                url:
-                    "../group/group?title=" +
+                url: "../group/group?title=" +
                     data.product_group_title +
                     "&par=" +
                     data.event_memo,
@@ -133,15 +136,8 @@ Page({
         var index = tap.currentTarget.dataset.id;
 
         var good = this.data.host_good_list[index];
-        console.log(
-            "---------------------------------------------------------------------------------------------------"
-        );
-        console.log(good);
         wx.navigateTo({
             url: "../shopDetail/shopDetail?good=" + JSON.stringify(good),
-            success: function (res) {},
-            fail: function () {},
-            complete: function () {},
         });
     },
     // 添加按钮被点击
@@ -200,38 +196,13 @@ Page({
         app.getUserBid(function (re) {
             console.log("call");
             that.getCarouselIcon();
-            // that.getHostGoodList(re);
         });
     },
     // 获取轮播图，iconn 信息
     getCarouselIcon: function () {
         var that = this;
         wx.cloud.init();
-        wx.showLoading({
-            title: "",
-        });
-        /*
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: 'shybeejd-5gv8sqyv03b56093'
-      },
-      data: {
-        type: 'selectIcon'
-      }
-    }).then((resp) => {
-      this.setData({
-        "icon_list": resp.result.data
-      })
-      wx.hideLoading()
-    }).catch((e) => {
-      console.log(e)
-      this.setData({
-        showUploadTip: true
-      })
-      wx.hideLoading()
-    })
-    */
+
         wx.request({
             url: "http://www.jiuyunda.net:90/api/v2/home_page/index",
             data: {
@@ -253,18 +224,11 @@ Page({
             fail: function () {},
             complete: function () {},
         });
-        wx.hideLoading();
     }, ///获取轮播图 icon信息
     // 获取热卖商品列表
     getHostGoodList: function (re) {
         var app = getApp();
         var that = this;
-        // console.log(app.globalData)
-        // console.log(app.globalData.userInfo)
-        console.log(
-            "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
-        );
-        console.log(this.data.shopNow);
         wx.cloud
             .callFunction({
                 name: "quickstartFunctions",
@@ -275,7 +239,6 @@ Page({
                     type: "getAllWine",
                     userInfo: app.globalData.userInfo,
                     shopNow: that.data.shopNow._id,
-                    // shopNow: "8937eaa961332b5808b4657835d39257",
                     num: 30,
                     offset: 0,
                     recommend: true,
@@ -406,7 +369,9 @@ Page({
         var app = getApp();
         app.addGoodToShopCar(data, true);
 
-        // 调用自定义组件中的方法,更新底栏购物车
+        wx.showToast({
+            title: '已加入到购物车',
+        })
     },
     redirectToWine: function (e) {
         var app = getApp();
