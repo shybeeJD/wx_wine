@@ -24,7 +24,7 @@ Page({
             7: "正在退款",
         },
         orderList: null,
-        priceList: null,
+        priceList: [],
         imgList: null,
         defaultImg: "../../resource/暂无图片.jpeg",
     },
@@ -33,7 +33,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getOrderList();
+        wx.showLoading({
+            title: "加载中...",
+        });
+        this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
+        wx.hideLoading();
     },
 
     /**
@@ -72,21 +76,40 @@ Page({
     onShareAppMessage: function () {},
     // 去订单详情
     orderDetail: function (e) {
-        console.log(e.currentTarget.dataset.order_id);
+        let order_id = e.currentTarget.dataset.order_id;
+        // console.log(e.currentTarget.dataset.order_id);
         wx.navigateTo({
-            url: "../../pages/order/orderDetail/orderDetail",
+            url: "../orderDeatail/orderDetail?id=" + order_id,
         });
         // todo:订单列表去订单详情
     },
     // 切换状态
     selectStatus: function (e) {
+        wx.showLoading({
+            title: "加载中...",
+        });
         let index = e.currentTarget.dataset.index;
         this.setData({
             statusCheckIndex: index,
         });
+        // 根据状态重新加载数据
+        let selectStatusList = [];
+        if (index == 0) {
+            selectStatusList = [1, 2, 3, 4, 5, 6, 7];
+        } else if (index == 1) {
+            selectStatusList = [5];
+        } else if (index == 2) {
+            selectStatusList = [2, 3];
+        } else if (index == 3) {
+            selectStatusList = [1];
+        }
+        this.getOrderList(10, selectStatusList);
+        wx.hideLoading({
+            success: (res) => {},
+        });
     },
     // 获取订单列表
-    getOrderList: function () {
+    getOrderList: function (num, status) {
         var app = getApp();
         this.setData({
             envId: app.globalData.envId,
@@ -99,8 +122,8 @@ Page({
                 },
                 data: {
                     type: "getOrderInfo",
-                    num: 100,
-                    status: [1, 2, 3, 4, 5, 6, 7],
+                    num: num,
+                    status: status,
                 },
             })
             .then((resp) => {
@@ -126,21 +149,22 @@ Page({
             }
             priceList[i] = orderPrice;
         }
+        // todo: 上拉下拉刷新需要重构数据结构
+        // let thisData_priceList=this.data.price
         this.setData({
             priceList: priceList,
         });
     },
+    // 设置商品图片
     getGoodsImg: function () {
         let imgList = [];
         let orderList = this.data.orderList;
 
         for (const i in orderList) {
             let goodsImg = {};
-            // let num = 0;
             for (const j in orderList[i].goods) {
                 let good = orderList[i].goods[j];
                 goodsImg[j] = good.info.thumb_url;
-                // num += 1;
             }
             imgList[i] = goodsImg;
         }

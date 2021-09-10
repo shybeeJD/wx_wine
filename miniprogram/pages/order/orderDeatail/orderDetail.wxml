@@ -43,7 +43,7 @@
     </view>
     <view class="underLine"></view>
     <view class="c2_total">
-      <view class="text">共x件商品,小计:</view>
+      <view class="text">共{{goods_num}}件商品,小计:</view>
       <view class="block"></view>
       <view class="price">¥{{ money}}</view>
     </view>
@@ -77,12 +77,12 @@
         <view id="more" class="toolbar_item">更多</view>
       </view>
       <view id="c2">
-        <view id="editAddress" class="toolbar_item">修改地址</view>
+        <view id="editAddress" class="toolbar_item">联系商家</view>
+        <view wx:if="{{orderInfo.status==5}}" id="editAddress" class="toolbar_item">取消订单</view>
 
-        <view id="pay" class="toolbar_item" style="display: {{payed?'none':'flex'}};">付款</view>
-
-        <view id="viewLogistics" class="toolbar_item" style="display: {{payed?'flex':'none'}};">查看物流</view>
-        <view id="confirmReceipt" class="toolbar_item" style="display: {{payed?'flex':'none'}};">确认收货</view>
+        <view wx:if="{{orderInfo.status==5}}" id="pay" class="toolbar_item">付款</view>
+        <view wx:if="{{orderInfo.status==2 || orderInfo.status==3}}" id="confirmReceipt" class="toolbar_item">确认收货
+        </view>
       </view>
     </view>
   </view>

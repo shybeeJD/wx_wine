@@ -155,9 +155,6 @@ Page({
                     },
                     data: {
                         type: "createOrder",
-                        // goods: {
-                        //   "79550af260fb6de22905a79f046fe0c9": 1,
-                        // }, //购物车商品,key为wine._id, value为购买数量
                         goods: goods,
                         delivery_price: this.data.freight,
                         address: this.data.address,

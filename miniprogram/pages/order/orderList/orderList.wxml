@@ -42,14 +42,13 @@
               binderror="imgErrorFunction"
               data-errorimg="{{goodIndex}}"
               data-errororder="{{orderIndex}}"
-
             >
             </image>
           </view>
           <view class="info">
             <view class="title">
               <view class="name">{{good.brand}}</view>
-              <view class="price">{{good.price}}</view>
+              <view class="price">¥ {{good.price}}</view>
             </view>
             <view class="Specifications">
               共
@@ -86,7 +85,9 @@
         <!-- <span class="total" style="color:gray;font-size:xx-small;padding:0 5px 0 0;">
           总价格:$300
         </span> -->
-        <span class="price">需付款：¥{{priceList[orderIndex]}}</span>
+        <span class="price">
+          <span style="font-size:small;color:gray">需付款：</span> ¥ {{priceList[orderIndex]}}</span
+        >
       </view>
 
       <!-- 按钮 -->
@@ -94,23 +95,25 @@
         <view class="more">
           更多
         </view>
-        <view
-          id="orderDetail"
-          class="btnItemView"
-          bindtap="orderDetail"
-          data-order_id="{{order._id}}"
-        >
-          <view class="text">查看详情</view>
+        <view id="orderDetail" class="btnItemView">
+          <view class="text" bindtap="orderDetail" data-order_id="{{order._id}}">查看详情</view>
         </view>
+        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==5}}">
+          <view class="text">取消订单</view>
+        </view>
+        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==2||order.status ==3}}">
+          <view class="text">联系商家</view>
+        </view>
+
         <view class="btnItemView " wx:if="{{order.status ==5}}">
           <view id="pay" class="text keyBtn">去支付</view>
         </view>
         <view class="btnItemView " wx:if="{{order.status == 2 ||order.status == 3}}">
           <view id="received" class="text keyBtn">确认收货</view>
         </view>
-        <view class="btnItemView " wx:if="{{order.status ==3}}">
+        <!-- <view class="btnItemView " wx:if="{{order.status ==3}}">
           <view id="received" class="text keyBtn">去评价</view>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

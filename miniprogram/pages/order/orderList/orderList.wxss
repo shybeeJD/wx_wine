@@ -97,6 +97,7 @@
 }
 .container .orderList {
   width: 100%;
+  margin: 20px;
 }
 .container .orderList .orderItem {
   background-color: white;
@@ -128,16 +129,21 @@
 .container .orderList .orderItem .good_list .gooditem {
   display: flex;
   flex-direction: row;
+  height: 72px;
+  margin-bottom: 20px;
 }
 .container .orderList .orderItem .good_list .gooditem .img {
-  flex: 1;
+  width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container .orderList .orderItem .good_list .gooditem .img image {
   width: 100%;
   border-radius: 10px;
 }
 .container .orderList .orderItem .good_list .gooditem .info {
-  flex: 3;
+  flex: auto;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -206,7 +212,6 @@
   padding: 0px 10px 0px 10px;
 }
 .container .btnGroup {
-  font-size: small;
   width: 100%;
   height: 56px;
   display: flex;
@@ -227,11 +232,10 @@
   justify-content: center;
   display: flex;
   justify-content: flex-end;
-  margin: 0 5px 0 5px;
 }
 .container .btnGroup .btnItemView .text {
-  font-size: medium;
-  width: 82px;
+  font-size: smaller;
+  width: 72px;
   border: 1px solid gray;
   border-radius: 35px;
   display: flex;
