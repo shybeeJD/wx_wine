@@ -79,6 +79,9 @@ Page({
                 });
             };
         }
+        if(app.globalData.shopChanged){
+            this.getHostGoodList()
+        }
     },
     onHide: function () {
       this.hideModal()

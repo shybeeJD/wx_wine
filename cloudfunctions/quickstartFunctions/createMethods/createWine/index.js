@@ -25,6 +25,8 @@ exports.main = async (event, context) => {
     stock:event.stock,
     thumb_url:event.thumb_url,
     title:event.title,
+    product_desc_url:event.product_desc_url,
+    recommend:event.recommend
   }
   if (event._id !=undefined && event._id!=null){
 
