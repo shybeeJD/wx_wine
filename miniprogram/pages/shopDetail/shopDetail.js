@@ -3,32 +3,11 @@ Page({
     data: {
         product_id: "", //商品id
         good_id: "",
-        good_detail: {
-            product_info: {
-                pic_array: [
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/code.png",
-                    "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png",
-                ],
-                item: "青岛",
-                price: 1499,
-                marketPrice: 2099,
-                sale_count: 5,
-                brand: "青岛",
-                specification: "5o, 500mL",
-                origin: "青岛",
-                title: "青岛大啤酒",
-            },
-            comment_count: 500,
-            comment_scale: 500,
-            product_desc_url: [
-                "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png",
-                "cloud://shybeejd-5gv8sqyv03b56093.7368-shybeejd-5gv8sqyv03b56093-1306511324/my-photo.png",
-            ],
-        }, //商品详情数据
+        good_detail: {}, //商品详情数据
         loop_image_height: 0, //轮播图高
         good_detail_image_height: 0, //商品详情图高
-        tmpBuyNum:1,
-        tmpNormal:1,
+        tmpBuyNum: 1,
+        tmpNormal: 1,
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
@@ -103,77 +82,80 @@ Page({
             good_detail_image_height: imageHeight,
         });
     },
-    rightBtnGroup:function(){
+    rightBtnGroup: function () {
 
     },
-    minus:function(){
-      var num = this.data.tmpBuyNum
-      var normal = this.data.tmpNormal
-      if(num>0){
-        num--
-      }
-      if(normal>0){
-        normal--
-      }
-      this.setData({
-        tmpBuyNum:num,
-        tmpNormal:normal
-      })
+    minus: function () {
+        var num = this.data.tmpBuyNum
+        var normal = this.data.tmpNormal
+        if (num > 0) {
+            num--
+        }
+        if (normal > 0) {
+            normal--
+        }
+        this.setData({
+            tmpBuyNum: num,
+            tmpNormal: normal
+        })
     },
-    plus:function(){
-      var tmpbuy = this.data.tmpBuyNum
-      var tmpnormal = this.data.tmpNormal
-      var data = this.data.good_detail.product_info;
-      console.log(this.data)
-      if (tmpbuy < data.stock) {
-        tmpbuy += 1;
-        tmpnormal += 1;
-    } else {
-        wx.showToast({
-            title: "库存不足",
-            duration: 2000,
+    plus: function () {
+        var tmpbuy = this.data.tmpBuyNum
+        var tmpnormal = this.data.tmpNormal
+        var data = this.data.good_detail.product_info;
+        console.log(this.data)
+        if (tmpbuy < data.stock) {
+            tmpbuy += 1;
+            tmpnormal += 1;
+        } else {
+            wx.showToast({
+                title: "库存不足",
+                duration: 2000,
+            });
+            return;
+        }
+        this.setData({
+            tmpBuyNum: tmpbuy,
+            tmpNormal: tmpnormal,
         });
-        return;
-    }
-    this.setData({
-        tmpBuyNum: tmpbuy,
-        tmpNormal: tmpnormal,
-    });
     },
     changeSlider: function (e) {
-      this.setData({
-          tmpNormal: e.detail.value,
-      });
+        this.setData({
+            tmpNormal: e.detail.value,
+        });
     },
-    addToCar:function(){
-      var data = this.data.good_detail.product_info;
-      data.buy= this.data.tmpBuyNum
-      data.normal = this.data.tmpNormal
-      this.setData({
-        tmpBuyNum: 1,
-        tmpNormal: 1,
-    });
-   
-    var app = getApp();
-    app.addGoodToShopCar(data, true);
+    addToCar: function () {
+        var data = this.data.good_detail.product_info;
+        data.buy = this.data.tmpBuyNum
+        data.normal = this.data.tmpNormal
+        this.setData({
+            tmpBuyNum: 1,
+            tmpNormal: 1,
+        });
 
+        var app = getApp();
+        app.addGoodToShopCar(data, true);
+
+        wx.showToast({
+            title: '已加入购物车',
+        })
     },
-    gotoShopCar:function(){
-      wx.switchTab({
-        url: '../../pages/shopCar/shopCar',
-      })
+    gotoShopCar: function () {
+        wx.switchTab({
+            url: '../../pages/shopCar/shopCar',
+        })
     },
-    buyRightNow:function(){
-      var data = this.data.good_detail.product_info;
-      data.buy= this.data.tmpBuyNum
-      data.normal = this.data.tmpNormal
-      this.setData({
-        tmpBuyNum: 1,
-        tmpNormal: 1,
-    });
-    wx.redirectTo({
-      url: "../../pages/settlement/settlement?good=" + JSON.stringify(data),
-    });
+    buyRightNow: function () {
+        var data = this.data.good_detail.product_info;
+        data.buy = this.data.tmpBuyNum
+        data.normal = this.data.tmpNormal
+        this.setData({
+            tmpBuyNum: 1,
+            tmpNormal: 1,
+        });
+        wx.redirectTo({
+            url: "../../pages/settlement/settlement?good=" + JSON.stringify(data),
+        });
     },
     previewImage: function (image) {
         var url = image.currentTarget.dataset.id;
@@ -233,4 +215,18 @@ Page({
             },
         });
     },
+    // todo:商品页分享
+    share: function (params) {
+        console.log(666);
+        wx.showShareMenu()
+        // wx.showShareMenu()
+        // wx.updateShareMenu({
+        //     withShareTicket: true,
+        //     success() {}
+        // })
+        // wx.showShareMenu({
+        //     withShareTicket: true,
+        //     menus: ['shareAppMessage', 'shareTimeline']
+        // })
+    }
 });

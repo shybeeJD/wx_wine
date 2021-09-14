@@ -38,7 +38,10 @@
   justify-content: flex-end;
 }
 .padding_l_10px {
-  padding: 0px 10px 0px 10px;
+  padding: 0px 0px 0px 10px;
+}
+.padding_r_10px {
+  padding: 0px 10px 0px 0px;
 }
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
@@ -58,6 +61,7 @@
 }
 .hot_good .hot_good_card .hot_good_img {
   width: 100%;
+  height: 178px;
 }
 .hot_good .hot_good_card .hot_good_name {
   display: flex;
@@ -128,7 +132,7 @@
   flex: 4;
 }
 .shop_ui .shopTitle .block {
-  padding: 0px 10px 0px 10px;
+  padding: 0px 0px 0px 10px;
 }
 .shop_ui .shopInfo {
   flex: 2;
@@ -236,7 +240,7 @@ page {
 /*商品tags*/
 .host_good_tags {
   background-color: red;
-  font-size: 10px;
+  font-size: xx-small;
   color: white;
   border-radius: 3px;
   margin-left: 3px;

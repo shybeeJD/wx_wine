@@ -1,8 +1,8 @@
 <view style="background-color:#F5F5F5" bindtap="closeDetail">
   <!-- 底部小购物车 -->
-  <view wx:if="{{ showModalStatus ==false}}">
+  <!-- <view wx:if="{{ showModalStatus ==false}}">
     <miniShopCar id="myComponent" _id="{{ shopNow._id }}"></miniShopCar>
-  </view>
+  </view> -->
   <!-- 左侧分类 -->
   <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view
@@ -33,9 +33,15 @@
   <!-- 右详细 -->
   <scroll-view
     class="right_list_style"
-    style="width:{{rightItemWidth}}px"
+    style="width:{{rightItemWidth}}px;"
     scroll-x="{{false}}"
     scroll-y="{{true}}"
+    refresher-enabled="{{true}}"
+    refresher-threshold="{{100}}"
+    refresher-default-style="white"
+    refresher-triggered="{{triggered}}"
+    bindrefresherrefresh="onRefresh"
+    bindscrolltolower="ReachBottom"
   >
     <view wx:for-items="{{rightDataSource}}" wx:key="*this" class="right_list_item">
       <!-- 商品主图 -->
@@ -62,7 +68,8 @@
       <view class="shopCar">
         <image
           src="../resource/white_shopCar.png"
-          id="{{index}}" class="shopCarImage"
+          id="{{index}}"
+          class="shopCarImage"
           catchtap="openDetail"
           mode="widthFix"
         />
@@ -87,7 +94,6 @@
 
     <view class="right-side">
       <view class="price">¥{{rightDataSource[selectedWineindex].price}}</view>
-      <!-- todo:已选不会显示 -->
       <view class="type">已选：{{tmpBuyNum}}</view>
       <view class="inventory">库存：{{rightDataSource[selectedWineindex].stock}}</view>
     </view>

@@ -22,7 +22,8 @@
 
         .more {
             flex: 1;
-            .justify_centerContainer;
+            // .justify_centerContainer;
+            text-align: center;
         }
     }
 
@@ -49,7 +50,7 @@
 
     .orderList {
         width: 100%;
-
+        margin: 20px;
         .orderItem {
             background-color: white;
             // border-bottom: 5px solid gray;
@@ -78,17 +79,20 @@
             .good_list {
                 .gooditem {
                     .flexContainerRow;
-                    // margin-bottom: 5px;
+                    height: @title_listHeight;
+                    margin-bottom: 20px;
                     .img {
-                        flex: 1;
+                        // flex: 1;
+                        width: @title_listHeight;
+                        .allCenterContainer;
                         image {
                             width: 100%;
-                            border-radius: 20px;
+                            border-radius: 10px;
                         }
                     }
 
                     .info {
-                        flex: 3;
+                        flex: auto;
                         .flexContainerCol;
                         .align_centerContainer;
                         justify-content: space-around;
@@ -154,12 +158,13 @@
                 .justifyContentRight;
                 .align_centerContainer;
                 .padding_l_r_10px;
+                .price {
+                }
             }
         }
     }
 
     .btnGroup {
-        font-size: small;
         // margin-top: 5px;
         // margin-bottom: 5px;
         width: 100%;
@@ -177,10 +182,10 @@
             flex: 1;
             .allCenterContainer;
             .justifyContentRight;
-            margin: 0 5px 0 5px;
+            // margin: 0 5px 0 5px;
             .text {
-                font-size: medium;
-                width: 82px;
+                font-size: smaller;
+                width: 72px;
                 border: 1px solid gray;
                 border-radius: 35px;
                 .allCenterContainer;

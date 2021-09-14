@@ -2,5 +2,8 @@
     "usingComponents": {
         "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
     },
-    "navigationBarTitleText": "订单列表"
+    "backgroundColor": "#ffffff",
+    "navigationBarTitleText": "订单列表",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
 }

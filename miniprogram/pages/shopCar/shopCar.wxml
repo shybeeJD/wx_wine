@@ -27,6 +27,7 @@
               <span class="n" wx:if="{{item.normal>0}}"> 常温{{item.normal}}</span>
               <span wx:if="{{item.buy-item.normal>0 && item.normal>0}}">，</span>
               <span class="c" wx:if="{{item.buy-item.normal>0}}">冰冻{{item.buy-item.normal}}</span>
+            
             </view>
           </view>
           <!-- 价格 -->

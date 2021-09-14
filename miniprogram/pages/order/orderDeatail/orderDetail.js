@@ -1,4 +1,6 @@
 // pages/order/orderDeatail/orderDetail.js
+var util = require("../../../utils/utils.js");
+
 Page({
     /**
      * 页面的初始数据
@@ -6,37 +8,14 @@ Page({
     data: {
         orderId: null,
         enId: null,
-        orderInfo: null,
-        
-        address: {
-            receiver: "名字是啥",
-            phone: "13623711670",
-            title: "地球中国河南郑州",
-        },
-        goodsList: [{
-                title: "我是大烧饼",
-                buy: 10,
-                price: 3.5,
-            },
-            {
-                title: "我是中烧饼",
-                buy: 100,
-                price: 30.5,
-            },
-            {
-                title: "我是小烧饼",
-                buy: 1000,
-                price: 300.5,
-            },
-        ],
+        orderInfo: null, //下面那一大串,其实都包含在orderInfo里了,但我懒得改
+        goods_num: 0,
+
+        address: {},
+        goodsList: [],
         packingsPrice: 5, //打包费
         freight: 6, //配送费
         totalPrice: 1000, //总价格
-        orderDetail: {
-            _id: 123123123123,
-            createTime: "2020/1/29",
-        },
-        payed: true, //根据订单是否已经付过款,来决定底栏按钮的显示模式
     },
 
     /**
@@ -50,23 +29,26 @@ Page({
         let app = getApp();
         this.setData({
             orderId: options.id,
-            enId: app.globalData.envId
+            enId: app.globalData.envId,
         });
 
         this.getData();
-
-        wx.hideLoading();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {},
+    onReady: function () {
+        wx.hideLoading();
+    },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {},
+    onShow: function () {
+        // 暂时也没用上
+        this.getData();
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -110,62 +92,79 @@ Page({
                 },
             })
             .then((res) => {
-                var goodsList=[]
-                for(var key in res.result.data[0].goods){
-                    var tmp={
-                        title: res.result.data[0].goods[key].brand,
+                var goodsList = [];
+                for (var key in res.result.data[0].goods) {
+                    var tmp = {
+                        title: res.result.data[0].goods[key].info.title,
                         buy: res.result.data[0].goods[key].num,
                         price: res.result.data[0].goods[key].price,
-                        normal: res.result.data[0].goods[key].normal
-                    }
-                    goodsList.push(tmp)
+                        normal: res.result.data[0].goods[key].normal,
+                    };
+                    goodsList.push(tmp);
                 }
                 this.setData({
-                    // todo:刚获取到了数据
                     orderInfo: res.result.data[0],
                     address: res.result.data[0].address,
-                    packingsPrice : res.result.data[0].packingsPrice,
-                    freight : res.result.data[0].delivery_price,
-                    money:  res.result.data[0].money,
-                    goodsList:goodsList,
-                    id : res.result.data[0].id,
-                    createTime: res.result.data[0].addTime
-                })
+                    packingsPrice: res.result.data[0].packingsPrice,
+                    freight: res.result.data[0].delivery_price,
+                    money: res.result.data[0].money,
+                    goodsList: goodsList,
+                    id: res.result.data[0].id,
+                    createTime: res.result.data[0].addTime,
+                });
+                this.getGoodsNum();
                 console.log(res);
             })
             .catch((e) => {
                 console.log(e);
             });
-        // wx.cloud
-        //     .callFunction({
-        //         name: "quickstartFunctions",
-        //         config: {
-        //             env: this.data.envId,
-        //         },
-        //         data: {
-        //             type: "getAddress",
-        //         },
-        //     })
-        //     .then((resp) => {
-        //         wx.setStorageSync("address_list", resp.result.data);
-
-        //         // 下面这堆东西是设置默认的地址
-        //         for (let i in resp.result.data) {
-        //             let address_item = resp.result.data[i];
-        //             if (address_item.default == true) {
-        //                 wx.setStorageSync("address_id", address_item._id);
-        //                 this.setData({
-        //                     address: address_item,
-        //                 });
-        //             } else {
-        //                 console.log("未成功找到缓存中的地址id");
-        //             }
-        //         }
-        //     })
-        //     .catch((e) => {
-        //         console.log(e);
-
-        //         wx.hideLoading();
-        //     });
     },
+    getGoodsNum: function (params) {
+        let goodsNum = 0;
+        let goods = this.data.orderInfo.goods;
+        for (const i in goods) {
+            goodsNum += goods[i].info.buy;
+        }
+        this.setData({
+            goods_num: goodsNum,
+        });
+    },
+    Receiving: function (e) {
+        let order_id = this.data.orderInfo._id;
+        let status = 1;
+        util.changeOrderStatus(order_id, status);
+
+        let orderInfo = this.data.orderInfo;
+        orderInfo.status = status;
+        this.setData({
+            orderInfo: orderInfo,
+        });
+
+        wx.showToast({
+            title: "收货成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    cancelOrder: function (e) {
+        let order_id = this.data.orderInfo._id;
+        let status = 6;
+
+        util.changeOrderStatus(order_id, status);
+
+        let orderInfo = this.data.orderInfo;
+        orderInfo.status = status;
+        this.setData({
+            orderInfo: orderInfo,
+        });
+        wx.showToast({
+            title: "取消成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    // todo:联系商家
+    ContactShop: function (e) {},
+    // todo:支付
+    ContactShop: function (e) {},
 });

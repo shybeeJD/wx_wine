@@ -1,7 +1,7 @@
 <view class="content">
   <view class="bottomBar">
     <view class="leftBtnGroup">
-      <view class="leftBtnGroupItem">
+      <view class="leftBtnGroupItem" bindtap="share">
         <view class="itemImageView">
           <image class="itemImage" src="../resource/分享.png" mode="widthFix" />
         </view>

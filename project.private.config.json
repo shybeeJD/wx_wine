@@ -65,7 +65,13 @@
           "name": "orderList",
           "pathName": "pages/order/orderList/orderList",
           "query": "",
-          "scene": null
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/order/orderDeatail/orderDetail"
+            ]
+          }
         }
       ]
     }
