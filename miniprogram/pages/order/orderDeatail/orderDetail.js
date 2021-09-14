@@ -1,4 +1,6 @@
 // pages/order/orderDeatail/orderDetail.js
+var util = require("../../../utils/utils.js");
+
 Page({
     /**
      * 页面的初始数据
@@ -28,26 +30,25 @@ Page({
         this.setData({
             orderId: options.id,
             enId: app.globalData.envId,
-
         });
 
         this.getData();
-
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
         wx.hideLoading();
-
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {},
+    onShow: function () {
+        // 暂时也没用上
+        this.getData();
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -91,16 +92,15 @@ Page({
                 },
             })
             .then((res) => {
-
-                var goodsList = []
+                var goodsList = [];
                 for (var key in res.result.data[0].goods) {
                     var tmp = {
                         title: res.result.data[0].goods[key].info.title,
                         buy: res.result.data[0].goods[key].num,
                         price: res.result.data[0].goods[key].price,
-                        normal: res.result.data[0].goods[key].normal
-                    }
-                    goodsList.push(tmp)
+                        normal: res.result.data[0].goods[key].normal,
+                    };
+                    goodsList.push(tmp);
                 }
                 this.setData({
                     orderInfo: res.result.data[0],
@@ -110,9 +110,9 @@ Page({
                     money: res.result.data[0].money,
                     goodsList: goodsList,
                     id: res.result.data[0].id,
-                    createTime: res.result.data[0].addTime
-                })
-                this.getGoodsNum()
+                    createTime: res.result.data[0].addTime,
+                });
+                this.getGoodsNum();
                 console.log(res);
             })
             .catch((e) => {
@@ -121,12 +121,50 @@ Page({
     },
     getGoodsNum: function (params) {
         let goodsNum = 0;
-        let goods = this.data.orderInfo.goods
+        let goods = this.data.orderInfo.goods;
         for (const i in goods) {
-            goodsNum += goods[i].info.buy
+            goodsNum += goods[i].info.buy;
         }
         this.setData({
-            goods_num: goodsNum
-        })
-    }
+            goods_num: goodsNum,
+        });
+    },
+    Receiving: function (e) {
+        let order_id = this.data.orderInfo._id;
+        let status = 1;
+        util.changeOrderStatus(order_id, status);
+
+        let orderInfo = this.data.orderInfo;
+        orderInfo.status = status;
+        this.setData({
+            orderInfo: orderInfo,
+        });
+
+        wx.showToast({
+            title: "收货成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    cancelOrder: function (e) {
+        let order_id = this.data.orderInfo._id;
+        let status = 6;
+
+        util.changeOrderStatus(order_id, status);
+
+        let orderInfo = this.data.orderInfo;
+        orderInfo.status = status;
+        this.setData({
+            orderInfo: orderInfo,
+        });
+        wx.showToast({
+            title: "取消成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    // todo:联系商家
+    ContactShop: function (e) {},
+    // todo:支付
+    ContactShop: function (e) {},
 });

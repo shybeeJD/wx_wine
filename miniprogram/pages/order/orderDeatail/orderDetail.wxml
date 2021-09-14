@@ -77,11 +77,18 @@
         <view id="more" class="toolbar_item">更多</view>
       </view>
       <view id="c2">
-        <view id="editAddress" class="toolbar_item">联系商家</view>
-        <view wx:if="{{orderInfo.status==5}}" id="editAddress" class="toolbar_item">取消订单</view>
+        <view id="editAddress" class="toolbar_item" bindtap="ContactShop">联系商家</view>
+        <view wx:if="{{orderInfo.status==5}}" class="toolbar_item" bindtap="cancelOrder"> 取消订单</view>
 
-        <view wx:if="{{orderInfo.status==5}}" id="pay" class="toolbar_item">付款</view>
-        <view wx:if="{{orderInfo.status==2 || orderInfo.status==3}}" id="confirmReceipt" class="toolbar_item">确认收货
+        <view wx:if="{{orderInfo.status==5}}" id="pay" class="toolbar_item" bindtap="buy"
+          >付款</view
+        >
+        <view
+          wx:if="{{orderInfo.status==2 || orderInfo.status==3}}"
+          id="confirmReceipt"
+          class="toolbar_item"
+          bindtap="Receiving"
+          >确认收货
         </view>
       </view>
     </view>

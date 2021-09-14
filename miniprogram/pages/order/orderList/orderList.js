@@ -1,4 +1,5 @@
 // pages/order/orderList/orderList.js
+var util = require("../../../utils/utils.js");
 Page({
     /**
      * 页面的初始数据
@@ -48,7 +49,13 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {},
+    onShow: function () {
+        wx.showLoading({
+            title: "加载中...",
+        });
+        this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
+        wx.hideLoading();
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -63,11 +70,22 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {},
+    onPullDownRefresh: function () {
+        console.log("下拉刷新");
+        // 显示导航栏loading
+        wx.showNavigationBarLoading();
+        // 调用接口加载数据
+        this.onShow();
+        // 隐藏导航栏loading
+        wx.hideNavigationBarLoading();
+        // 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新
+        wx.stopPullDownRefresh();
+    },
 
     /**
      * 页面上拉触底事件的处理函数
      */
+    // todo:上拉加载
     onReachBottom: function () {},
 
     /**
@@ -82,6 +100,33 @@ Page({
             url: "../orderDeatail/orderDetail?id=" + order_id,
         });
     },
+    // 取消订单
+    cancelOrder: function (e) {
+        let order_id = e.currentTarget.dataset.order_id;
+
+        util.changeOrderStatus(order_id, 6);
+        this.onShow();
+        wx.showToast({
+            title: "取消成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    Receiving: function (e) {
+        let order_id = e.currentTarget.dataset.order_id;
+
+        util.changeOrderStatus(order_id, 1);
+        this.onShow();
+        wx.showToast({
+            title: "收货成功",
+            icon: "success",
+            duration: 2000,
+        });
+    },
+    // todo:联系商家
+    ContactShop: function (e) {},
+    // todo:支付
+    buy: function (e) {},
     // 切换状态
     selectStatus: function (e) {
         wx.showLoading({
@@ -148,7 +193,6 @@ Page({
             }
             priceList[i] = orderPrice;
         }
-        // todo: 上拉下拉刷新需要重构数据结构
         // let thisData_priceList=this.data.price
         this.setData({
             priceList: priceList,

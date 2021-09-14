@@ -1,6 +1,6 @@
 <view class="container">
   <!-- 搜索框 -->
-  <view class="searchBar">
+  <!-- <view class="searchBar">
     <view class="arrow">
       <i class="fa fa-angle-left" aria-hidden="true"></i>
     </view>
@@ -8,7 +8,7 @@
       <mp-searchbar model:value="{{search}}" confirmType="search"></mp-searchbar>
     </view>
     <view class="more"><i class="fa fa-ellipsis-h"></i></view>
-  </view>
+  </view> -->
   <!-- 选择状态 -->
   <view class="selectOrderStatus">
     <view
@@ -98,17 +98,28 @@
         <view id="orderDetail" class="btnItemView">
           <view class="text" bindtap="orderDetail" data-order_id="{{order._id}}">查看详情</view>
         </view>
-        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==5}}">
+        <view
+          id="orderDetail"
+          class="btnItemView"
+          wx:if="{{order.status ==5}}"
+          data-order_id="{{order._id}}"
+          bindtap="cancelOrder"
+        >
           <view class="text">取消订单</view>
         </view>
-        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==2||order.status ==3}}">
+        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==2||order.status ==3}}" bindtap="ContactShop">
           <view class="text">联系商家</view>
         </view>
 
-        <view class="btnItemView " wx:if="{{order.status ==5}}">
+        <view class="btnItemView " wx:if="{{order.status ==5}}" bindtap="pay">
           <view id="pay" class="text keyBtn">去支付</view>
         </view>
-        <view class="btnItemView " wx:if="{{order.status == 2 ||order.status == 3}}">
+        <view
+          class="btnItemView "
+          wx:if="{{order.status == 2 ||order.status == 3}}"
+          data-order_id="{{order._id}}"
+          bindtap="Receiving"
+        >
           <view id="received" class="text keyBtn">确认收货</view>
         </view>
         <!-- <view class="btnItemView " wx:if="{{order.status ==3}}">
