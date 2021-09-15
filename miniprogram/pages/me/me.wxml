@@ -16,7 +16,7 @@
         <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
 
         <view class = "order_list_style" >
-            <view  class = "order_list_item_style" wx:for-items = "{{order_list}}">
+            <view  class = "order_list_item_style" wx:for-items = "{{order_list}}" data-status="{{item.status}}" bindtap="goOrderList">
                 <image src="{{item.image}}" class = "order_item_image"></image>
                 <text class = "order_item_title">{{item.title}}</text>
             </view>

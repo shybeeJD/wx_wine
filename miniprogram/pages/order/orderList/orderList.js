@@ -39,6 +39,10 @@ Page({
         });
         this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
         wx.hideLoading();
+
+        if (options.status != null || options.status != undefined) {
+            this.selectStatus(options.status);
+        }
     },
 
     /**
@@ -132,7 +136,15 @@ Page({
         wx.showLoading({
             title: "加载中...",
         });
-        let index = e.currentTarget.dataset.index;
+
+        // 这里的异常处理是为了区分是点击顶栏切换选择的订单状态,还是使用函数传递的状态
+        let index;
+        try {
+            index = e.currentTarget.dataset.index;
+        } catch (error) {
+            console.log(error);
+            index = e;
+        }
         this.setData({
             statusCheckIndex: index,
         });
