@@ -80,9 +80,9 @@
           }
         },
         {
-          "name": "pages/bill/bill/bill",
-          "pathName": "pages/bill/bill/bill",
-          "query": "",
+          "name": "查看发票",
+          "pathName": "pages/bill/seeBill/seeBill",
+          "query": "_id=2d44d6c26139f5000b3a033d7620d383",
           "scene": null
         }
       ]

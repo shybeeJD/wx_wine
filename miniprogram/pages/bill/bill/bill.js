@@ -8,7 +8,7 @@ Page({
     billClass: 1,
     billContent: 1,
     riseClass: 1,
-    riseName: "",
+    riseName: "个人",
     tax: "",
     orderID: null
   },
@@ -87,10 +87,11 @@ Page({
   },
   riseClass: function (e) {
     let type = e.currentTarget.dataset.type
-    console.log(type);
+    let riseName = e.currentTarget.dataset.riseName
+    console.log(e);
     this.setData({
       riseClass: type,
-      riseName: "个人",
+      riseName: riseName,
       tax: ""
     })
   },
@@ -105,15 +106,28 @@ Page({
     })
   },
 
-  // #todo:申请开票出错
   Submit: function (params) {
     let header = this.data.riseName
     let tax = this.data.tax
-    this.updateBill(header)
+
+    if (this.data.riseClass == 1) {
+      this.updateBill(header, tax)
+    } else {
+      if (header == "" || tax == "") {
+        wx.showToast({
+          title: '请检查您的输入',
+          icon: 'error',
+          duration: 2000
+        })
+      } else {
+        this.updateBill(header, tax)
+
+      }
+    }
   },
   updateBill: function (header, tax) {
     let app = getApp()
-
+    let orderID = this.data.orderID
     if (tax == "") {
       wx.cloud
         .callFunction({
@@ -123,10 +137,35 @@ Page({
           },
           data: {
             type: "updateBill",
-            _id: this.data.orderId,
+            _id: orderID,
             header: header
           },
+        }).then((resp) => {
+          console.log(resp.result)
+
+          wx.showModal({
+            title: '申请成功',
+            content: '请等待商家确认,现在将返回上一级页面',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+
         })
+        .catch((e) => {
+          console.log(e);
+          wx.showToast({
+            title: '出错了',
+            icon: 'error',
+            duration: 2000
+          })
+        });
     } else {
       wx.cloud
         .callFunction({
@@ -136,11 +175,35 @@ Page({
           },
           data: {
             type: "updateBill",
-            _id: this.data.orderId,
+            _id: orderID,
             header: header,
             tax: tax
           },
+        }).then((resp) => {
+          console.log(resp.result)
+          wx.showModal({
+            title: '申请成功',
+            content: '请等待商家确认,现在将返回上一级页面',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+
         })
+        .catch((e) => {
+          console.log(e);
+          wx.showToast({
+            title: '出错了',
+            icon: 'error',
+            duration: 2000
+          })
+        });
     }
 
   }

@@ -1,1 +1,122 @@
-/* pages/order/bill/seeBill/seeBill.wxss */
+.roundedRectangle {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #fff;
+}
+.flexContainerCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.align_centerContainer {
+  display: flex;
+  align-items: center;
+}
+.justify_centerContainer {
+  display: flex;
+  justify-content: center;
+}
+.allCenterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.justifyContentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+.justifyContentLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+.justifyContentRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.padding_l_10px {
+  padding: 0px 0px 0px 10px;
+}
+.padding_r_10px {
+  padding: 0px 10px 0px 0px;
+}
+.padding_l_r_10px {
+  padding: 0px 10px 0px 10px;
+}
+.c {
+  background-color: #ff585a;
+}
+.c .bill {
+  color: white;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.c .bill .title {
+  font-size: larger;
+  margin: 10px 0;
+}
+.c .bill .price {
+  font-size: smaller;
+  margin: 5px 0;
+}
+.c .bill_info {
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px 20px;
+}
+.c .bill_info .bill_info_title {
+  margin: 20px 0;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c .bill_info .bill_content {
+  font-size: smaller;
+}
+.c .bill_info .bill_content .bill_content_item {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+}
+.c .bill_info .bill_content .bill_content_item .item_title {
+  color: gray;
+  margin-right: 10px;
+}
+.bottom {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 42px;
+  width: 100%;
+  background-color: #fff;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+.bottom .btn_group {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+.bottom .btn_group .item {
+  border-radius: 20px;
+  border: 1px solid gray;
+  width: 72px;
+  font-size: small;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

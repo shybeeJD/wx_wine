@@ -18,7 +18,6 @@
     "pages/order/orderList/orderList",
     "pages/bill/bill/bill",
     "pages/bill/seeBill/seeBill"
-
   ],
   "permission": {
     "scope.userLocation": {

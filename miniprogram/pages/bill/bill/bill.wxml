@@ -13,10 +13,10 @@
   </view> -->
   <view class="riseType type">
     <view>抬头类型</view>
-    <view  data-type="1" bindtap="riseClass" class="{{riseClass == 1?'itemSelected' : 'item'}}">
+    <view  data-type="1" data-riseName="个人" bindtap="riseClass" class="{{riseClass == 1?'itemSelected' : 'item'}}">
       个人
     </view>
-    <view  data-type="2" bindtap="riseClass" class="{{riseClass == 2?'itemSelected' : 'item'}}">
+    <view  data-type="2" data-riseName="" bindtap="riseClass" class="{{riseClass == 2?'itemSelected' : 'item'}}">
       单位
     </view>
   </view>

@@ -79,7 +79,7 @@
           <view class="title" bindtap="more">更多</view>
           <view class="list" wx:if="{{more}}">
             <view class="item" bindtap="bill">开具发票</view>
-            <view class="item">删除订单</view>
+            <view class="item" bindtap="seeBill">查看发票</view>
           </view>
         </view>
       </view>

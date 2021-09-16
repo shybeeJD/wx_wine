@@ -1,0 +1,84 @@
+@import "../../../utils/public.less";
+
+.c {
+  background-color: @theme_color;
+  .bill {
+    color: white;
+    .flexContainerCol;
+    .allCenterContainer;
+    padding: 10px 0;
+    .title {
+      font-size: larger;
+      margin: 10px 0;
+    }
+
+    .price {
+      font-size: smaller;
+      margin: 5px 0;
+    }
+  }
+
+  .bill_info {
+    background-color: @white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+
+    .bill_info_title {
+      margin: 20px 0;
+      .flexContainerCol;
+
+      .allCenterContainer;
+
+      .bill_class {
+      }
+
+      .bill_status {
+      }
+    }
+
+    .bill_content {
+      font-size: smaller;
+      .bill_content_item {
+        .flexContainerRow;
+        margin: 5px 0;
+        .item_title {
+          color: gray;
+          margin-right: 10px;
+        }
+
+        .bill_value {
+        }
+      }
+    }
+  }
+}
+
+.bottom {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: @small_listHeight;
+  width: 100%;
+  background-color: @white;
+  overflow: visible;
+  .align_centerContainer;
+  .btn_group {
+    width: 100%;
+    .flexContainerRow;
+    .justifyContentRight;
+    margin-right: 20px;
+    .item {
+      border-radius: 20px;
+
+      border: 1px solid gray;
+      width: 72px;
+      font-size: small;
+      margin-left: 5px;
+
+      .allCenterContainer;
+    }
+  }
+}

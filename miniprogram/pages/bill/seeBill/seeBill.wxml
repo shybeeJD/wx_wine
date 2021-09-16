@@ -1,2 +1,65 @@
-<!--pages/order/bill/seeBill/seeBill.wxml-->
-<text>pages/order/bill/seeBill/seeBill.wxml</text>
+<view class="c">
+  <view class="bill">
+    <view class="title">
+      <view class="title_item" wx:if="{{orderInfo.bill==1}}">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        未开票
+      </view>
+      <view class="title_item" wx:if="{{orderInfo.bill==2}}">
+        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        已开票
+      </view>
+    </view>
+    <view class="price">
+      <span wx:if="{{orderInfo.bill==2}}"> 已开发票的金额：￥ </span>
+      <span wx:else> 未开发票的金额：￥ </span>
+      {{orderInfo.money}}
+    </view>
+  </view>
+
+  <view class="bill_info">
+    <!-- <view class="bill_info_title">
+      <view class="bill_class">
+        <view>
+          {{orderInfo.status==1}}
+        </view>
+        我这里是发票类型
+      </view>
+      <view class="bill_status">这里应该显示订单状态</view>
+    </view> -->
+
+    <view class="bill_content">
+      <!-- <view class="bill_content_item">
+        <view class="item_title">发票类型</view>
+        <view class="billvalue">电子普通</view>
+      </view> -->
+      <view class="bill_content_item" wx:if="{{orderInfo.header=='个人'}}">
+        <view class="item_title">抬头类型</view>
+        <view class="bill_value">个人</view>
+      </view>
+      <view class="bill_content_item" wx:if="{{orderInfo.header!='个人'}}">
+        <view class="item_title">抬头类型</view>
+        <view class="bill_value">单位</view>
+      </view>
+      <view class="bill_content_item" wx:if="{{orderInfo.header!='个人'}}">
+        <view class="item_title">抬头名称</view>
+        <view class="bill_value">{{orderInfo.header}}</view>
+      </view>
+      <view class="bill_content_item" wx:if="{{orderInfo.header!='个人'}}">
+        <view class="item_title">单位税号</view>
+        <view class="bill_value">{{orderInfo.tax}}</view>
+      </view>
+      <view class="bill_content_item">
+        <view class="item_title">开票金额</view>
+        <view class="bill_value">{{ orderInfo.money }}</view>
+      </view>
+    </view>
+
+    <view class="bottom">
+      <view class="btn_group">
+        <view class="item" bindtap="bill">开具发票</view>
+        <!-- <view class="item">发到邮箱</view> -->
+      </view>
+    </view>
+  </view>
+</view>

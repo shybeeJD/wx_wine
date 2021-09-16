@@ -187,4 +187,10 @@ Page({
             url: "../../bill/bill/bill?_id=" + this.data.orderId,
         });
     },
+    // seebill
+    seeBill: function () {
+        wx.navigateTo({
+            url: "../../bill/seeBill/seeBill?_id=" + this.data.orderId,
+        });
+    },
 });

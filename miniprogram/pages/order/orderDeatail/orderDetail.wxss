@@ -2,7 +2,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .flexContainerCol {
   display: flex;
@@ -55,7 +55,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
 }
@@ -98,7 +98,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 224px;
@@ -188,7 +188,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
@@ -234,7 +234,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
   overflow: visible;
   display: flex;
   align-items: center;
@@ -280,7 +280,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .container .toolbar .content #c1 #more .list .item {
   display: flex;
