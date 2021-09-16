@@ -7,15 +7,19 @@ Page({
   data: {
     billClass: 1,
     billContent: 1,
-    riseClass: 2,
-    riseName: null,
-    company: null
+    riseClass: 1,
+    riseName: "",
+    tax: "",
+    orderID: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      orderID: options._id
+    })
 
   },
 
@@ -85,7 +89,9 @@ Page({
     let type = e.currentTarget.dataset.type
     console.log(type);
     this.setData({
-      riseClass: type
+      riseClass: type,
+      riseName: "个人",
+      tax: ""
     })
   },
   inputRiseName: function (e) {
@@ -93,12 +99,49 @@ Page({
       riseName: e.detail.value
     })
   },
-  inputCompany: function (e) {
+  tax: function (e) {
     this.setData({
-      company: e.detail.value
+      tax: e.detail.value
     })
   },
+
+  // #todo:申请开票出错
   Submit: function (params) {
-    
+    let header = this.data.riseName
+    let tax = this.data.tax
+    this.updateBill(header)
+  },
+  updateBill: function (header, tax) {
+    let app = getApp()
+
+    if (tax == "") {
+      wx.cloud
+        .callFunction({
+          name: "quickstartFunctions",
+          config: {
+            env: app.enId,
+          },
+          data: {
+            type: "updateBill",
+            _id: this.data.orderId,
+            header: header
+          },
+        })
+    } else {
+      wx.cloud
+        .callFunction({
+          name: "quickstartFunctions",
+          config: {
+            env: app.enId,
+          },
+          data: {
+            type: "updateBill",
+            _id: this.data.orderId,
+            header: header,
+            tax: tax
+          },
+        })
+    }
+
   }
 })

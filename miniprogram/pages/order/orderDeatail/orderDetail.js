@@ -184,7 +184,7 @@ Page({
     // bill
     bill: function () {
         wx.navigateTo({
-            url: '../bill/bill',
-        })
-    }
+            url: "../../bill/bill/bill?_id=" + this.data.orderId,
+        });
+    },
 });

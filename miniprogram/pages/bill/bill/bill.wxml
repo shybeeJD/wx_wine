@@ -1,6 +1,6 @@
 <view class="c">
 
-  <view class="billType type">
+  <!-- <view class="billType type">
     <view>发票类型</view>
 
     <view data-type="1" bindtap="billType" class="{{billClass == 1?'itemSelected' : 'item'}}">电子普通发票</view>
@@ -10,7 +10,7 @@
     <view>发票内容</view>
     <view data-type="1" bindtap="billContent" class="{{billContent == 1?'itemSelected' : 'item'}}">商品明细</view>
     <view  data-type="2" bindtap="billContent" class="{{billContent == 2?'itemSelected' : 'item'}}">商品类型</view>
-  </view>
+  </view> -->
   <view class="riseType type">
     <view>抬头类型</view>
     <view  data-type="1" bindtap="riseClass" class="{{riseClass == 1?'itemSelected' : 'item'}}">
@@ -36,7 +36,7 @@
       <view class="class2_item">
         <view class="title">单位税号</view>
         <view class="content">
-          <input class="weui-input" maxlength="1000" bindinput="inputCompany" placeholder="请输入单位税号" />
+          <input class="weui-input" maxlength="1000" bindinput="tax" placeholder="请输入单位税号" />
         </view>
 
         

@@ -80,8 +80,8 @@
           }
         },
         {
-          "name": "bill",
-          "pathName": "pages/order/bill/bill",
+          "name": "pages/bill/bill/bill",
+          "pathName": "pages/bill/bill/bill",
           "query": "",
           "scene": null
         }

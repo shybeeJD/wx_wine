@@ -16,7 +16,9 @@
     "pages/shopMap/shopMap",
     "pages/shopList/shopList",
     "pages/order/orderList/orderList",
-    "pages/order/bill/bill"
+    "pages/bill/bill/bill",
+    "pages/bill/seeBill/seeBill"
+
   ],
   "permission": {
     "scope.userLocation": {
@@ -30,8 +32,7 @@
   },
   "tabBar": {
     "selectedColor": "#FF6261",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "pages/resource/homeNormal.png",
