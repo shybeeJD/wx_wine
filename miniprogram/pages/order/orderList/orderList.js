@@ -37,12 +37,13 @@ Page({
         wx.showLoading({
             title: "加载中...",
         });
-        this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
-        wx.hideLoading();
-
+        // this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
         if (options.status != null || options.status != undefined) {
             this.selectStatus(options.status);
+        } else {
+            this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
         }
+        wx.hideLoading();
     },
 
     /**
@@ -53,13 +54,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
-        wx.showLoading({
-            title: "加载中...",
-        });
-        this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
-        wx.hideLoading();
-    },
+    onShow: function () {},
 
     /**
      * 生命周期函数--监听页面隐藏

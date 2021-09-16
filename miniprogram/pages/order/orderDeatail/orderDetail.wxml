@@ -68,17 +68,26 @@
       </view>
     </view>
   </view>
+  <view class="mask" wx:if="{{more}}" bindtap="more"></view>
   <!-- 底栏占位 -->
   <view class="bottom_block"></view>
   <!-- 底部工具栏 -->
   <view class="toolbar">
     <view class="content">
       <view id="c1">
-        <view id="more" class="toolbar_item">更多</view>
+        <view id="more" class="toolbar_item">
+          <view class="title" bindtap="more">更多</view>
+          <view class="list" wx:if="{{more}}">
+            <view class="item" bindtap="bill">开具发票</view>
+            <view class="item">删除订单</view>
+          </view>
+        </view>
       </view>
       <view id="c2">
         <view id="editAddress" class="toolbar_item" bindtap="ContactShop">联系商家</view>
-        <view wx:if="{{orderInfo.status==5}}" class="toolbar_item" bindtap="cancelOrder"> 取消订单</view>
+        <view wx:if="{{orderInfo.status==5}}" class="toolbar_item" bindtap="cancelOrder">
+          取消订单</view
+        >
 
         <view wx:if="{{orderInfo.status==5}}" id="pay" class="toolbar_item" bindtap="buy"
           >付款</view

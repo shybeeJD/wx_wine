@@ -15,7 +15,8 @@
     "pages/order/orderDeatail/orderDetail",
     "pages/shopMap/shopMap",
     "pages/shopList/shopList",
-    "pages/order/orderList/orderList"
+    "pages/order/orderList/orderList",
+    "pages/order/bill/bill"
   ],
   "permission": {
     "scope.userLocation": {

@@ -39,22 +39,22 @@
         <view  class = "other_list_item" bindtap="manageAddress">
             <text class = "other_item_tile">地址管理</text>
             <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;rihgt:0px;"></view>
+            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
         </view>
         <view  class = "other_list_item">
             <text class = "other_item_tile">客服热线</text>
             <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;rihgt:0px;"></view>
+            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
         </view>
         <view  class = "other_list_item">
             <text class = "other_item_tile">意见反馈</text>
             <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;rihgt:0px;"></view>
+            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
         </view>
         <view  class = "other_list_item">
             <text class = "other_item_tile">推荐有奖</text>
             <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;rihgt:0px;"></view>
+            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
         </view>
     </scroll-view>
 </view>

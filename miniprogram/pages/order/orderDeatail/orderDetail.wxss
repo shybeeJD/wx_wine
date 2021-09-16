@@ -219,6 +219,13 @@
 .container .bottom_block {
   min-height: 56px;
 }
+.container .mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .container .toolbar {
   position: fixed;
   bottom: 0;
@@ -228,6 +235,7 @@
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
   background-color: #ffffff;
+  overflow: visible;
   display: flex;
   align-items: center;
 }
@@ -257,6 +265,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.container .toolbar .content #c1 #more .list {
+  z-index: 1000;
+  width: 80px;
+  background: #fff;
+  position: absolute;
+  /*子元素>绝对定位*/
+  bottom: 45px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #ffffff;
+}
+.container .toolbar .content #c1 #more .list .item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
 }
 .container .toolbar .content #c2 {
   display: flex;

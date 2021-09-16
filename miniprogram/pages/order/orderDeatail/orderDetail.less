@@ -1,240 +1,266 @@
 @import "../../../utils/public.less";
 
 .container {
-  padding: 10px 10px 0 10px;
-  .addressContainer {
-    width: 100%;
-    min-height: @title_listHeight;
-    .roundedRectangle;
-    .flexContainerRow;
-
-    .content {
-      flex: 10;
-      .flexContainerCol;
-
-      .padding_l_r_10px;
-
-      .info {
-        flex: 1;
+    padding: 10px 10px 0 10px;
+    .addressContainer {
+        width: 100%;
+        min-height: @title_listHeight;
+        .roundedRectangle;
         .flexContainerRow;
-        .align_centerContainer;
 
-        .name {
-          .align_centerContainer;
+        .content {
+            flex: 10;
+            .flexContainerCol;
+
+            .padding_l_r_10px;
+
+            .info {
+                flex: 1;
+                .flexContainerRow;
+                .align_centerContainer;
+
+                .name {
+                    .align_centerContainer;
+                }
+                .tel {
+                    font-size: small;
+                    .align_centerContainer;
+                    color: gray;
+                }
+            }
+            .address {
+                display: flex;
+                flex: 1;
+                font-size: small;
+            }
         }
-        .tel {
-          font-size: small;
-          .align_centerContainer;
-          color: gray;
+        .arrow {
+            flex: 1;
+            .align_centerContainer;
+            color: gray;
         }
-      }
-      .address {
-        display: flex;
-        flex: 1;
-        font-size: small;
-      }
-    }
-    .arrow {
-      flex: 1;
-      .align_centerContainer;
-      color: gray;
-    }
-  }
-
-  .goodsContainer {
-    width: 100%;
-    min-height: @title_listHeight;
-    .roundedRectangle;
-    display: flex;
-    flex-direction: column;
-    min-height: 224px; // 56*4
-    margin: 10px;
-
-    .c2_title {
-      flex: 1;
-      padding: 0px 10px 0px 10px;
-      display: flex;
-      align-items: center;
-
-      font-weight: bold;
-      min-height: @list_height;
     }
 
-    .c2_goodsList {
-      display: flex;
-      align-items: center;
-      flex: 1;
-
-      .list {
+    .goodsContainer {
+        width: 100%;
+        min-height: @title_listHeight;
+        .roundedRectangle;
         display: flex;
         flex-direction: column;
-        min-height: @list_height;
-        padding: 0 10px 0 10px;
-        margin-bottom: 10px;
+        min-height: 224px; // 56*4
+        margin: 10px;
+
+        .c2_title {
+            flex: 1;
+            padding: 0px 10px 0px 10px;
+            display: flex;
+            align-items: center;
+
+            font-weight: bold;
+            min-height: @list_height;
+        }
+
+        .c2_goodsList {
+            display: flex;
+            align-items: center;
+            flex: 1;
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                min-height: @list_height;
+                padding: 0 10px 0 10px;
+                margin-bottom: 10px;
+                width: 100%;
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    flex: 1;
+                    min-height: @small_listHeight;
+
+                    .title {
+                        flex: 2;
+                        font-size: medium;
+                    }
+
+                    .num {
+                        flex: 1;
+                        text-align: right;
+                        font-size: smaller;
+                    }
+
+                    .price {
+                        flex: 1;
+                        text-align: right;
+                        font-size: medium;
+                    }
+                }
+            }
+        }
+
+        .c2_discount {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            padding: 0px 10px 0px 10px;
+
+            height: @small_listHeight;
+
+            display: flex;
+            flex-direction: row;
+
+            font-size: small;
+
+            .title {
+                flex: 1;
+            }
+
+            .value {
+                flex: 1;
+                text-align: right;
+                color: gray;
+            }
+        }
+
+        .c2_total {
+            display: flex;
+            height: @list_height;
+            align-items: center;
+            flex: 1;
+            padding: 0px 10px 0px 10px;
+
+            min-height: @list_height;
+            margin-left: auto;
+
+            .text {
+                font-size: small;
+                color: gray;
+            }
+
+            .block {
+                width: 10px;
+            }
+            .price {
+                color: red;
+                font-size: large;
+            }
+        }
+    }
+
+    .orderContainer {
         width: 100%;
-
-        .item {
-          display: flex;
-          align-items: center;
-          flex: 1;
-          min-height: @small_listHeight;
-
-          .title {
-            flex: 2;
-            font-size: medium;
-          }
-
-          .num {
-            flex: 1;
-            text-align: right;
-            font-size: smaller;
-          }
-
-          .price {
-            flex: 1;
-            text-align: right;
-            font-size: medium;
-          }
-        }
-      }
-    }
-
-    .c2_discount {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      padding: 0px 10px 0px 10px;
-
-      height: @small_listHeight;
-
-      display: flex;
-      flex-direction: row;
-
-      font-size: small;
-
-      .title {
-        flex: 1;
-      }
-
-      .value {
-        flex: 1;
-        text-align: right;
-        color: gray;
-      }
-    }
-
-    .c2_total {
-      display: flex;
-      height: @list_height;
-      align-items: center;
-      flex: 1;
-      padding: 0px 10px 0px 10px;
-
-      min-height: @list_height;
-      margin-left: auto;
-
-      .text {
-        font-size: small;
-        color: gray;
-      }
-
-      .block {
-        width: 10px;
-      }
-      .price {
-        color: red;
-        font-size: large;
-      }
-    }
-  }
-
-  .orderContainer {
-    width: 100%;
-    min-height: @title_listHeight;
-    .roundedRectangle;
-    .flexContainerCol;
-
-    padding-bottom: 10px;
-    .title {
-      // flex: 1;
-
-      .padding_l_r_10px;
-      .align_centerContainer;
-
-      font-weight: bold;
-      min-height: @list_height;
-    }
-    .orderDetail {
-      .flexContainerRow;
-      font-size: small;
-
-      .orderDetail_title {
-        flex: 1;
-        .padding_l_r_10px;
-        // .justify_centerContainer;
+        min-height: @title_listHeight;
+        .roundedRectangle;
         .flexContainerCol;
-        // text-align: left;
-      }
-      .orderDetail_value {
-        flex: 2;
-        .flexContainerCol;
-      }
+
+        padding-bottom: 10px;
+        .title {
+            // flex: 1;
+
+            .padding_l_r_10px;
+            .align_centerContainer;
+
+            font-weight: bold;
+            min-height: @list_height;
+        }
+        .orderDetail {
+            .flexContainerRow;
+            font-size: small;
+
+            .orderDetail_title {
+                flex: 1;
+                .padding_l_r_10px;
+                // .justify_centerContainer;
+                .flexContainerCol;
+                // text-align: left;
+            }
+            .orderDetail_value {
+                flex: 2;
+                .flexContainerCol;
+            }
+        }
     }
-  }
 
-  .bottom_block {
-    min-height: @list_height;
-  }
-
-  .toolbar {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    height: @small_listHeight;
-    width: 100%;
-    .roundedRectangle;
-
-    .align_centerContainer;
-
-    .content {
-      width: 100%;
-      height: @smaller_listHeight;
-      .flexContainerRow;
-
-      .toolbar_item {
-        border-radius: 20px;
-
-        // background-color: gray;
-        border: 1px solid gray;
-        width: 72px;
-        font-size: small;
-        margin-left: 5px;
-
-        .allCenterContainer;
-      }
-
-      #c1 {
-        flex: 1;
-        #more {
-          color: gray;
-          border: 0px;
-          height: 24px;
-          .allCenterContainer;
-        }
-      }
-      #c2 {
-        .flexContainerRow;
-        padding-left: 10px;
-
-        #pay {
-          border: 1px solid @theme_color;
-          color: @theme_color;
-        }
-        #confirmReceipt {
-          border: 1px solid @theme_color;
-          color: @theme_color;
-        }
-      }
+    .bottom_block {
+        min-height: @list_height;
     }
-  }
+
+    .mask {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        // background-color: #999;
+        // z-index: 500;
+        top: 0;
+        left: 0;
+        // opacity: 1;
+    }
+    .toolbar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        height: @small_listHeight;
+        width: 100%;
+        .roundedRectangle;
+        overflow: visible;
+        .align_centerContainer;
+
+        .content {
+            width: 100%;
+            height: @smaller_listHeight;
+            .flexContainerRow;
+            .toolbar_item {
+                border-radius: 20px;
+
+                // background-color: gray;
+                border: 1px solid gray;
+                width: 72px;
+                font-size: small;
+                margin-left: 5px;
+
+                .allCenterContainer;
+            }
+
+            #c1 {
+                flex: 1;
+                #more {
+                    color: gray;
+                    border: 0px;
+                    height: 24px;
+                    .allCenterContainer;
+                    // position: relative; /*父元素>相对定位*/
+
+                    .list {
+                        z-index: 1000;
+                        width: 80px;
+                        background: #fff;
+                        position: absolute; /*子元素>绝对定位*/
+                        bottom: 45px;
+                        .flexContainerCol;
+                        .allCenterContainer;
+                        .roundedRectangle;
+                        .item {
+                            .allCenterContainer;
+
+                            min-height: 32px;
+                        }
+                    }
+                }
+            }
+            #c2 {
+                .flexContainerRow;
+                padding-left: 10px;
+
+                #pay {
+                    border: 1px solid @theme_color;
+                    color: @theme_color;
+                }
+                #confirmReceipt {
+                    border: 1px solid @theme_color;
+                    color: @theme_color;
+                }
+            }
+        }
+    }
 }

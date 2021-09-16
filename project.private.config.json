@@ -40,8 +40,14 @@
         {
           "name": "orderDetail",
           "pathName": "pages/order/orderDeatail/orderDetail",
-          "query": "id=cd045e7561337f270ac67ecb260e0452",
-          "scene": null
+          "query": "id=2d44d6c26139f5000b3a033d7620d383",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/order/bill/bill"
+            ]
+          }
         },
         {
           "name": "hopList",
@@ -72,6 +78,12 @@
               "pages/order/orderDeatail/orderDetail"
             ]
           }
+        },
+        {
+          "name": "bill",
+          "pathName": "pages/order/bill/bill",
+          "query": "",
+          "scene": null
         }
       ]
     }
