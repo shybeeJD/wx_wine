@@ -69,6 +69,7 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        // note:如果主页面出错,可能是这里造成的
         this.dataControl(this.data.host_good_list);
         var app = getApp();
         console.log(app.globalData);
@@ -373,6 +374,7 @@ Page({
             title: '已加入到购物车',
         })
     },
+    // 跳转到商品界面
     redirectToWine: function (e) {
         var app = getApp();
         app.globalData.cate = e.currentTarget.dataset.id;

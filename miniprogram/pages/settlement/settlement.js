@@ -13,6 +13,7 @@ Page({
         addressSelectState: 0, //地址选择状态,值为0创建订单的时候用的是默认地址,值为1用的是选择的地址
         dialogShow: false,
         orderID: null, //创建完成后生成的订单ID
+        shopNow: null,
     },
 
     /**
@@ -191,13 +192,14 @@ Page({
             wx.hideLoading();
         }
     },
+    // 计算配送费
     coumputeDeliveryPrice: function () {
         var distance = this.data.address.distance;
         var app = getApp();
-
-        console.log(app.globalData.shopNow);
-        console.log(distance);
-        var freight = app.globalData.shopNow.freight;
+        this.setData({
+            shopNow: app.globalData.shopNow,
+        });
+        var freight = this.data.shopNow.freight;
         var dprice = 0;
         for (var i = 0; i < freight.length; i++) {
             if (distance > freight[i].km) {

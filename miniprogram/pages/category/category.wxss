@@ -2,7 +2,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .flexContainerCol {
   display: flex;
@@ -147,7 +147,6 @@
   top: 30px;
   left: 90px;
   right: 5px;
-  height: 10px;
 }
 /*tags*/
 .tags {
@@ -171,7 +170,7 @@
   color: #b2b2b2;
   position: absolute;
   left: 90px;
-  bottom: 37px;
+  bottom: 35px;
 }
 /*已售*/
 .right_list_item_sale_count {
@@ -258,7 +257,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .tui-content {
   padding: 0px 10px 0px 10px;
