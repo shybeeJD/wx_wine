@@ -92,9 +92,9 @@
 
       <!-- 按钮 -->
       <view class="btnGroup">
-        <view class="more">
+        <!-- <view class="more">
           更多
-        </view>
+        </view> -->
         <view id="orderDetail" class="btnItemView">
           <view class="text" bindtap="orderDetail" data-order_id="{{order._id}}">查看详情</view>
         </view>
@@ -107,7 +107,12 @@
         >
           <view class="text">取消订单</view>
         </view>
-        <view id="orderDetail" class="btnItemView" wx:if="{{order.status ==2||order.status ==3}}" bindtap="ContactShop">
+        <view
+          id="orderDetail"
+          class="btnItemView"
+          wx:if="{{order.status ==2||order.status ==3}}"
+          bindtap="ContactShop"
+        >
           <view class="text">联系商家</view>
         </view>
 
@@ -127,5 +132,11 @@
         </view> -->
       </view>
     </view>
+  </view>
+
+  <!-- 如果没有订单就显示这个 -->
+  <view class="tips" wx:if="{{orderList.length == 0}}">
+    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    这里没有订单,去别处转转吧
   </view>
 </view>

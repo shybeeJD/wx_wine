@@ -16,6 +16,7 @@ Page({
         packingsPrice: 5, //打包费
         freight: 6, //配送费
         totalPrice: 1000, //总价格
+        more: false, //是否显示更多菜单列表
     },
 
     /**
@@ -167,4 +168,29 @@ Page({
     ContactShop: function (e) {},
     // todo:支付
     ContactShop: function (e) {},
+    // more
+    more: function () {
+        if (this.data.more == false) {
+            this.setData({
+                more: true,
+            });
+        } else {
+            this.setData({
+                more: false,
+            });
+        }
+        console.log("mask");
+    },
+    // bill
+    bill: function () {
+        wx.navigateTo({
+            url: "../../bill/bill/bill?_id=" + this.data.orderId,
+        });
+    },
+    // seebill
+    seeBill: function () {
+        wx.navigateTo({
+            url: "../../bill/seeBill/seeBill?_id=" + this.data.orderId,
+        });
+    },
 });

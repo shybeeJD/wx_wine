@@ -11,7 +11,7 @@
       <view class="text">更多信息</view>
     </view>
   </view>
-  <scroll-view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
+  <view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
     <!-- 轮播图的位置被设置成了absolute填满整个页面，所以只能暂时放在轮播图内 -->
     <!-- 轮播图 -->
     <swiper
@@ -101,7 +101,7 @@
         <view style="height:5px;width:100%"> </view>
       </view>
     </view>
-  </scroll-view>
+  </view>
 </view>
 
 <!-- 弹窗 -->

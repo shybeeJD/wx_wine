@@ -4,10 +4,14 @@ Page({
         user_nickname: null,
         avatar_url: null,
         order_list: [
-            { image: "../resource/ToBePaid.png", title: "待支付" },
-            { image: "../resource/Deliveries.png", title: "配送中" },
-            { image: "../resource/ItHasShipped.png", title: "已配送" },
-            { image: "../resource/Completed.png", title: "待评价" },
+            { image: "../resource/ToBePaid.png", title: "待支付", status: 1},
+            { image: "../resource/Deliveries.png", title: "配送中", status: 2 },
+            {
+                image: "../resource/ItHasShipped.png",
+                title: "待收货",
+                status: 2,
+            },
+            { image: "../resource/Completed.png", title: "已完成", status: 3 },
         ],
         money_list: [
             { image: "../resource/JKSetUpJiFen.png", title: "积分" },
@@ -61,10 +65,10 @@ Page({
         // 页面上拉触底事件的处理函数
     },
     showAllOrder: function () {
-      console.log("ck ");
-      wx.navigateTo({
-        url: "../../pages/order/orderList/orderList",
-    });
+        console.log("ck ");
+        wx.navigateTo({
+            url: "../../pages/order/orderList/orderList",
+        });
         // wx.navigateTo({
         //     url: "../order/orderList",
         // });
@@ -147,6 +151,14 @@ Page({
             complete: function () {
                 // complete
             },
+        });
+    },
+    goOrderList: function (e) {
+        let status = e.currentTarget.dataset.status;
+        console.log(status);
+        // wx.navigateTo("../order/orderList/orderList");
+        wx.navigateTo({
+            url: "../order/orderList/orderList?status=" + status,
         });
     },
 });

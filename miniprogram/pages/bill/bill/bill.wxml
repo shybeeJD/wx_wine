@@ -1,0 +1,49 @@
+<view class="c">
+
+  <!-- <view class="billType type">
+    <view>发票类型</view>
+
+    <view data-type="1" bindtap="billType" class="{{billClass == 1?'itemSelected' : 'item'}}">电子普通发票</view>
+    <view data-type="2" bindtap="billType" class="{{billClass == 2?'itemSelected' : 'item'}}">增值税专用发票</view>
+  </view>
+  <view class="billType type">
+    <view>发票内容</view>
+    <view data-type="1" bindtap="billContent" class="{{billContent == 1?'itemSelected' : 'item'}}">商品明细</view>
+    <view  data-type="2" bindtap="billContent" class="{{billContent == 2?'itemSelected' : 'item'}}">商品类型</view>
+  </view> -->
+  <view class="riseType type">
+    <view>抬头类型</view>
+    <view  data-type="1" data-riseName="个人" bindtap="riseClass" class="{{riseClass == 1?'itemSelected' : 'item'}}">
+      个人
+    </view>
+    <view  data-type="2" data-riseName="" bindtap="riseClass" class="{{riseClass == 2?'itemSelected' : 'item'}}">
+      单位
+    </view>
+  </view>
+  <view class="riseName type">
+    <view class="class1" wx:if="{{riseClass==1}}">
+      <view>抬头名称</view>
+      <view class="content"> 个人</view>
+    </view>
+    <view class="class2" wx:if="{{riseClass==2}}">
+      <view class="class2_item">
+        <view class="title">抬头名称</view>
+        <view class="content">
+          <input class="weui-input" maxlength="1000" bindinput="inputRiseName" placeholder="请输入抬头名称" />
+
+        </view>
+      </view>
+      <view class="class2_item">
+        <view class="title">单位税号</view>
+        <view class="content">
+          <input class="weui-input" maxlength="1000" bindinput="tax" placeholder="请输入单位税号" />
+        </view>
+
+        
+        <!-- <view class="more">更多喧天</view> -->
+      </view>
+    </view>
+  </view>
+  <view class="btn" bindtap="Submit">申请开票</view>
+
+</view>

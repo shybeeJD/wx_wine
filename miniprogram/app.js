@@ -17,7 +17,7 @@ App({
         shopNow: null,
         shopChanged: false,
         cate: null,
-        postRange:20
+        postRange: 20,
     },
     permission: {
         "scope.userLocation": {
@@ -37,7 +37,7 @@ App({
                 traceUser: true,
             });
             var that = this;
-            this.getAllType()
+            this.getAllType();
             // 获取用户定位信息
             this.getUserLocation(function (res) {});
 
@@ -173,7 +173,7 @@ App({
                             that.shopNowCallback(that.globalData.shopNow);
                         if (that.shopNowCallback2)
                             that.shopNowCallback2(that.globalData.shopNow);
-                        if (that.homeCallback){
+                        if (that.homeCallback) {
                             that.homeCallback(that.globalData.shopNow);
                         }
                     });
@@ -218,27 +218,28 @@ App({
 
         wx.hideLoading();
     },
-    getAllType:function(){
-        var that=this
-        wx.cloud.callFunction({
-            name: "quickstartFunctions",
-            config: {
-                env: "shybeejd-5gv8sqyv03b56093",
-            },
-            data: {
-                type: "getAllType",
-            },
-        })
-        .then((resp) => {
-            console.log(resp.result.data[0].type);
-            that.globalData.allType=resp.result.data[0].type.split(",")
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+    getAllType: function () {
+        var that = this;
+        wx.cloud
+            .callFunction({
+                name: "quickstartFunctions",
+                config: {
+                    env: "shybeejd-5gv8sqyv03b56093",
+                },
+                data: {
+                    type: "getAllType",
+                },
+            })
+            .then((resp) => {
+                console.log(resp.result.data[0].type);
+                that.globalData.allType = resp.result.data[0].type.split(",");
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     },
     // 添加商品到购物车
-    addGoodToShopCar: function (good,plus) {
+    addGoodToShopCar: function (good, plus) {
         let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
         let index = cart.findIndex((v) => v._id === good._id);
         // 如果缓存中没有,则push当前商品
@@ -246,13 +247,12 @@ App({
         if (index === -1) {
             cart.push(good);
         } else {
-            if(plus){
+            if (plus) {
                 cart[index].buy += good.buy;
-                cart[index].normal += good.normal
-            }else{
+                cart[index].normal += good.normal;
+            } else {
                 cart[index] = good;
             }
-            
         }
         wx.setStorageSync(this.globalData.shopNow._id, cart);
 
