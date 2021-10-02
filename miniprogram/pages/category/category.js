@@ -16,11 +16,10 @@ Page({
         page: 0,
         pageSize: 1,
         triggered: false, //下拉刷新标记
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {
-        wx.showLoading({
-            title: "加载中",
-        });
         var app = getApp();
         if (app.globalData.shopNow) {
             this.setData({
@@ -49,13 +48,33 @@ Page({
                 this.renderControl();
             };
         }
-        wx.hideLoading();
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
+
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
+
         var app = getApp();
         var cate = app.globalData.cate;
         for (var i = 0; i < this.data.leftDataSource.length; i++) {
@@ -100,7 +119,9 @@ Page({
             };
         }
 
-        // 调用自定义组件中的方法,更新底栏购物车
+        this.setData({
+            loaded: true
+        })
     },
     onHide: function () {
         this.hideModal();
@@ -202,11 +223,9 @@ Page({
                     userInfo: app.globalData.userInfo,
                     shopNow: that.data.shopNow._id,
                     num: that.data.pageSize,
-                    offset:
-                        that.data.pageList[that.data.leftListSelectItem] *
+                    offset: that.data.pageList[that.data.leftListSelectItem] *
                         that.data.pageSize,
-                    category:
-                        that.data.leftDataSource[that.data.leftListSelectItem],
+                    category: that.data.leftDataSource[that.data.leftListSelectItem],
                 },
             })
             .then((resp) => {
@@ -240,8 +259,8 @@ Page({
         var selectData = new Array();
         var app = getApp();
         for (var index in this.data.typeDataSource[
-            this.data.leftListSelectItem
-        ]) {
+                this.data.leftListSelectItem
+            ]) {
             var good =
                 this.data.typeDataSource[this.data.leftListSelectItem][index];
             var tempGood = app.globalData.shopCarGoods[good._id];
@@ -473,8 +492,7 @@ Page({
         let cart = wx.getStorageSync(this.data.shopNow._id) || [];
         for (let i in cart) {
             let index = rightDataSource.findIndex((v) => v._id === cart[i]._id);
-            if (index === -1) {
-            } else {
+            if (index === -1) {} else {
                 rightDataSource[index].buy = cart[i].buy;
                 rightDataSource[index].normal = cart[i].normal;
             }

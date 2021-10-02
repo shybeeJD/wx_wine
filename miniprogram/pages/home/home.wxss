@@ -46,6 +46,93 @@
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
 }
+/*
+此文件为开发者工具生成，生成时间: 2021/10/2 下午9:01:51
+
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/home/home.wxss 中引入样式
+```
+@import "./home.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+*/
+.sk-transparent {
+  color: transparent !important;
+}
+.sk-text-18-7500-565 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text {
+  background-origin: content-box !important;
+  background-clip: content-box !important;
+  background-color: transparent !important;
+  color: transparent !important;
+  background-repeat: repeat-y !important;
+}
+.sk-text-18-7500-48 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 42.6666rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-853 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 42.6666rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-22 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-975 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-603 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-144 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-731 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-321 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-216 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-718 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-image {
+  background: #EFEFEF !important;
+}
+.sk-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+}
 .hot_good {
   width: 100%;
   display: flex;

@@ -7,7 +7,6 @@
     "pages/shopDetail/shopDetail",
     "pages/me/me",
     "pages/login/login",
-    "pages/search/search",
     "pages/settlement/settlement",
     "pages/address/address",
     "pages/address/addressList",
@@ -17,8 +16,7 @@
     "pages/shopList/shopList",
     "pages/order/orderList/orderList",
     "pages/bill/bill/bill",
-    "pages/bill/seeBill/seeBill",
-    "pages/settlement/remarks/remarks"
+    "pages/bill/seeBill/seeBill"
   ],
   "permission": {
     "scope.userLocation": {

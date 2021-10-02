@@ -1,4 +1,7 @@
-<view>
+<import src="shopCar.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{!inited}}" />
+
+<view wx:else>
   <scroll-view class="scrol_view_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view wx:for-items="{{dataSource}}" wx:key="*this" class="list_item_style">
       <!-- 选择框 -->

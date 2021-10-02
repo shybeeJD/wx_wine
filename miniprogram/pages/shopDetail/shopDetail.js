@@ -8,6 +8,8 @@ Page({
         good_detail_image_height: 0, //商品详情图高
         tmpBuyNum: 1,
         tmpNormal: 1,
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
@@ -38,9 +40,31 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 1000);
         this.setData({
             loop_image_height: (app.globalData.systemInfo.windowWidth / 4) * 3,
         });
+        this.setData({
+            loaded: true
+        })
+
     },
     getGoodInfo: function (options) {
         let good_id = options.good_id;

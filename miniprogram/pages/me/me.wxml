@@ -1,4 +1,8 @@
-<view class = "content">
+
+<import src="me.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{!inited}}" />
+
+<view class = "content" wx:else>
     <scroll-view scroll-y = "{{true}}" scroll-x = "{{false}}">
         <view class = "user_info_view">
             <image src="../resource/JKMSYNoLoginUserImage.png" class = "image_user_image" wx:if="{{islogin == false}}" bindtap = "gotologin">
