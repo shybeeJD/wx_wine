@@ -31,7 +31,7 @@ Page({
   },
   onShow:function(){
     // 页面显示
-    console.log(this.data.dataSource)
+    // console.log(this.data.dataSource)
     
   },
   onHide:function(){

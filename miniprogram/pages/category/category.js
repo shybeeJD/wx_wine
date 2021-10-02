@@ -229,7 +229,7 @@ Page({
                 },
             })
             .then((resp) => {
-                console.log(resp.result);
+                // console.log(resp.result);
 
                 this.updateData(resp.result);
                 wx.hideLoading();
@@ -289,12 +289,12 @@ Page({
             data.buy = 0;
             data.normal = 0;
         }
-        console.log(data);
+        // console.log(data);
         var normal = data.normal || 0;
         if (!normal) {
             normal = 0;
         }
-        console.log(normal);
+        // console.log(normal);
         this.setData({
             selectedWineindex: index,
             tmpBuyNum: data.buy,
@@ -308,7 +308,7 @@ Page({
         var index = this.data.selectedWineindex;
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
-        console.log(data);
+        // console.log(data);
         // 比较是否超过库存
         if (data.buy < data.stock) {
             data.buy += 1;
@@ -324,7 +324,7 @@ Page({
         });
 
         var app = getApp();
-        console.log(data);
+        // console.log(data);
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -352,7 +352,7 @@ Page({
             tmpBuyNum: tmpbuy,
             tmpNormal: tmpnormal,
         });
-        console.log(this.data.tmpNormal);
+        // console.log(this.data.tmpNormal);
     },
     minus: function () {
         var tmpbuy = this.data.tmpBuyNum;
@@ -379,7 +379,7 @@ Page({
             rightDataSource: this.data.rightDataSource,
         });
         var data = this.data.rightDataSource[index];
-        console.log(data);
+        // console.log(data);
         this.hideModal();
 
         var app = getApp();
@@ -466,7 +466,7 @@ Page({
         var allData = new Array();
         for (var index in data.product_list) {
             var good = data.product_list[index];
-            console.log(data.product_list);
+            // console.log(data.product_list);
             good.buy = 0;
             allData.push(good);
         }
@@ -487,7 +487,7 @@ Page({
     upDataFromStorage: function () {
         let rightDataSource =
             this.data.typeDataSource[this.data.leftListSelectItem];
-        console.log("assssssssssssssssssss");
+        // console.log("assssssssssssssssssss");
 
         let cart = wx.getStorageSync(this.data.shopNow._id) || [];
         for (let i in cart) {

@@ -76,7 +76,7 @@
     "pages": {
       "pages/index/index": {},
       "pages/shopCar/shopCar": {
-        "empty": [".smallBtn"]
+        "empty": [".list_item_left",".item_good_title",".smallBtn",".price_back_view",".s2"]
       },
       "pages/me/me": {
         "excludes": [".user_nick_name"]

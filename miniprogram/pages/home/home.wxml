@@ -11,9 +11,9 @@
       <view class="shopInfo">
         <view class="distance">距离您{{shopNow.distance}}km</view>
       </view>
-      <view class="moreInfo">
+      <!-- <view class="moreInfo">
         <view class="text">更多信息</view>
-      </view>
+      </view> -->
     </view>
     <view class="scroll-content" scroll-y="{{true}}" scroll-x="{{flase}}">
       <!-- 轮播图的位置被设置成了absolute填满整个页面，所以只能暂时放在轮播图内 -->

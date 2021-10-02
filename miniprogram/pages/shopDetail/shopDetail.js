@@ -85,7 +85,7 @@ Page({
                 },
             })
             .then((resp) => {
-                console.log(resp);
+                // console.log(resp);
 
                 wx.hideLoading();
             })
@@ -98,7 +98,7 @@ Page({
     // 图片加载
     imageLoad: function (image) {
         var app = getApp();
-        console.log(image);
+        // console.log(image);
         var imageHeight =
             (app.globalData.systemInfo.windowWidth / image.detail.width) *
             image.detail.height;
@@ -127,7 +127,7 @@ Page({
         var tmpbuy = this.data.tmpBuyNum
         var tmpnormal = this.data.tmpNormal
         var data = this.data.good_detail.product_info;
-        console.log(this.data)
+        // console.log(this.data)
         if (tmpbuy < data.stock) {
             tmpbuy += 1;
             tmpnormal += 1;
@@ -241,7 +241,7 @@ Page({
     },
     // todo:商品页分享
     share: function (params) {
-        console.log(666);
+        // console.log(666);
         wx.showShareMenu()
         // wx.showShareMenu()
         // wx.updateShareMenu({

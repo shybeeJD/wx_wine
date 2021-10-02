@@ -1,7 +1,7 @@
 Page({
     data: {
         dataSource: null,
-        lower_price: 5000,
+        lower_price: 500,
         inited: false,
         loaded: false
     },
@@ -32,7 +32,7 @@ Page({
         }, 500);
 
         var app = getApp()
-        console.log(app.globalData)
+        // console.log(app.globalData)
         this.setData({
             shopNow: app.globalData.shopNow
         })
@@ -129,7 +129,7 @@ Page({
                 dataSource: this.data.dataSource,
             });
         }
-        console.log(good)
+        // console.log(good)
         var app = getApp();
         app.reduceGoodFromShopCar(good);
 
@@ -140,7 +140,7 @@ Page({
     getShopCarGoods: function (_id) {
 
         var data = this.data.dataSource
-        console.log(data)
+        // console.log(data)
         this.setData({
             dataSource: data,
         });
@@ -167,7 +167,7 @@ Page({
 
         price = price.toFixed(2);
         marketPrice = marketPrice.toFixed(2);
-        console.log(price)
+        // console.log(price)
 
         that.setData({
             num: num,
@@ -179,11 +179,11 @@ Page({
         let goodsNum = this.data.num;
         if (goodsNum <= 0) {
             wx.showToast({
-                title: "购物车为空",
+                title: "未选择商品",
                 icon: "error",
                 duration: 1000,
             });
-        } else if (this.data.price < this.data.lower_price) {
+        } else if (this.data.price < this.data.shopNow.min_fee) {
             wx.showToast({
                 title: "不够起送费",
                 icon: "error",
@@ -214,7 +214,7 @@ Page({
             dataSource: data,
             isAllSelect: isAllSelect
         });
-        console.log(this.data.dataSource)
+        // console.log(this.data.dataSource)
         wx.setStorageSync(this.data.shopNow._id, data);
         this.getShopCarGoods(this.data.shopNow._id);
 

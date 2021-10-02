@@ -78,7 +78,7 @@ Page({
   delAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
-    console.log(address)
+    // console.log(address)
     this.data.addressList.splice(id, 1);
 
     // 更新data数据对象  
@@ -97,7 +97,7 @@ Page({
         },
       })
       .then((resp) => {
-        console.log(resp.result)
+        // console.log(resp.result)
 
       })
       .catch((e) => {
@@ -108,7 +108,7 @@ Page({
   },
   getAddress: function () {
     var app = getApp()
-    console.log(app.globalData)
+    // console.log(app.globalData)
     wx.cloud.callFunction({
       name: "quickstartFunctions",
       config: {
@@ -121,11 +121,11 @@ Page({
       },
     })
     .then((resp) => {
-      console.log(resp.result)
+      // console.log(resp.result)
       this.setData({
         addressList: resp.result.list
       })
-      console.log(this.data.addressList)
+      // console.log(this.data.addressList)
     })
     .catch((e) => {
       console.log(e);

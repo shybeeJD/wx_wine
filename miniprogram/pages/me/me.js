@@ -82,7 +82,7 @@ Page({
         }, 500);
 
         var app = getApp();
-        console.log(app.globalData);
+        // console.log(app.globalData);
         if (app.globalData.islogin) {
             this.setData({
                 islogin: app.globalData.islogin,
@@ -111,7 +111,7 @@ Page({
         // 页面上拉触底事件的处理函数
     },
     showAllOrder: function () {
-        console.log("ck ");
+        // console.log("ck ");
         wx.navigateTo({
             url: "../../pages/order/orderList/orderList",
         });
@@ -146,8 +146,8 @@ Page({
                     avatar_url: res.userInfo.avatarUrl,
                 });
 
-                console.log(res);
-                console.log(app.data);
+                // console.log(res);
+                // console.log(app.data);
                 wx.cloud.callFunction({
                     name: "quickstartFunctions",
                     config: {
@@ -165,10 +165,10 @@ Page({
             },
         });
 
-        console.log(this.data);
+        // console.log(this.data);
     },
     imageloaderror: function (image) {
-        console.log(image);
+        // console.log(image);
         this.setData({
             avatar_url: "../resource/JKMSYDefaultUserImage.png",
         });
@@ -189,7 +189,7 @@ Page({
                     avatar_url: res.data.avatar_url,
                     user_nickname: res.data.nick_name,
                 });
-                console.log(res);
+                // console.log(res);
             },
             fail: function () {
                 // fail
@@ -201,7 +201,7 @@ Page({
     },
     goOrderList: function (e) {
         let status = e.currentTarget.dataset.status;
-        console.log(status);
+        // console.log(status);
         // wx.navigateTo("../order/orderList/orderList");
         wx.navigateTo({
             url: "../order/orderList/orderList?status=" + status,

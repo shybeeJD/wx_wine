@@ -73,14 +73,14 @@ Page({
   },
   billType: function (e) {
     let type = e.currentTarget.dataset.type
-    console.log(type);
+    // console.log(type);
     this.setData({
       billClass: type
     })
   },
   billContent: function (e) {
     let type = e.currentTarget.dataset.type
-    console.log(type);
+    // console.log(type);
     this.setData({
       billContent: type
     })
@@ -141,7 +141,7 @@ Page({
             header: header
           },
         }).then((resp) => {
-          console.log(resp.result)
+          // console.log(resp.result)
 
           wx.showModal({
             title: '申请成功',
@@ -180,7 +180,7 @@ Page({
             tax: tax
           },
         }).then((resp) => {
-          console.log(resp.result)
+          // console.log(resp.result)
           wx.showModal({
             title: '申请成功',
             content: '请等待商家确认,现在将返回上一级页面',

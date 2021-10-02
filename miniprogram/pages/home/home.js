@@ -69,44 +69,44 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-                // 骨架屏
-                wx.showLoading({
-                    // title: "",
+        // 骨架屏
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
+        // note:如果主页面出错,可能是这里造成的
+        this.dataControl(this.data.host_good_list);
+        var app = getApp();
+        // console.log(app.globalData);
+        if (app.globalData.shopNow) {
+            this.setData({
+                shopNow: app.globalData.shopNow,
+            });
+        } else {
+            app.shopNowCallback = (shopNow) => {
+                this.setData({
+                    shopNow: shopNow,
                 });
-                this.setData({
-                    inited: false,
-                    loaded: false
-                })
-                var that = this
-                var timer = setInterval(function () {
-                    if (that.data.loaded) {
-                        that.setData({
-                            inited: true
-                        })
-                        console.log('获取数据中...');
-                        wx.hideLoading();
-                        clearInterval(timer)
-                    }
-                }, 500);
-        
-                // note:如果主页面出错,可能是这里造成的
-                this.dataControl(this.data.host_good_list);
-                var app = getApp();
-                // console.log(app.globalData);
-                if (app.globalData.shopNow) {
-                    this.setData({
-                        shopNow: app.globalData.shopNow,
-                    });
-                } else {
-                    app.shopNowCallback = (shopNow) => {
-                        this.setData({
-                            shopNow: shopNow,
-                        });
-                    };
-                }
-                this.setData({
-                    loaded: true
-                })
+            };
+        }
+        this.setData({
+            loaded: true
+        })
     },
     onHide: function () {
         this.hideModal();
@@ -269,7 +269,7 @@ Page({
                 },
             })
             .then((resp) => {
-                console.log(resp.result);
+                // console.log(resp.result);
                 this.setData({
                     host_good_list: resp.result.product_list,
                 });
@@ -354,7 +354,7 @@ Page({
             tmpBuyNum: tmpbuy,
             tmpNormal: tmpnormal,
         });
-        console.log(this.data.tmpNormal);
+        // console.log(this.data.tmpNormal);
     },
     minus: function () {
         var tmpbuy = this.data.tmpBuyNum;
@@ -387,7 +387,7 @@ Page({
             tmpBuy: 1,
         });
         var data = this.data.host_good_list[index];
-        console.log(data);
+        // console.log(data);
         this.hideModal();
 
         var app = getApp();
