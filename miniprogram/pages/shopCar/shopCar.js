@@ -1,7 +1,9 @@
 Page({
     data: {
         dataSource: null,
-        lower_price:5000,
+        lower_price: 5000,
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {},
     onReady: function () {
@@ -9,16 +11,38 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-       
+
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
         var app = getApp()
         console.log(app.globalData)
         this.setData({
-            shopNow:app.globalData.shopNow
+            shopNow: app.globalData.shopNow
         })
         this.renderData();
 
         // 调用自定义组件中的方法,更新底栏购物车
         this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.setData({
+            loaded: true
+        })
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -72,11 +96,11 @@ Page({
     },
     // 减少按钮被点击
 
-    switchSelect: function(tap){
+    switchSelect: function (tap) {
         var id = parseInt(tap.currentTarget.dataset.id);
-        this.data.dataSource[id].isSelect=!this.data.dataSource[id].isSelect
+        this.data.dataSource[id].isSelect = !this.data.dataSource[id].isSelect
         this.setData({
-            dataSource:this.data.dataSource
+            dataSource: this.data.dataSource
         })
         var app = getApp();
         app.reduceGoodFromShopCar(this.data.dataSource[id]);
@@ -98,7 +122,7 @@ Page({
             if (good.buy > 1) {
                 good.buy--;
             }
-            if(good.normal>0){
+            if (good.normal > 0) {
                 good.normal--;
             }
             this.setData({
@@ -114,7 +138,7 @@ Page({
         this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
     getShopCarGoods: function (_id) {
-          
+
         var data = this.data.dataSource
         console.log(data)
         this.setData({
@@ -132,13 +156,13 @@ Page({
         let marketPrice = 0;
 
         for (var i = 0; i < DS.length; ++i) {
-          if(DS[i].isSelect){
-            let buy = 0;
-            num += DS[i].buy;
-            buy = DS[i].buy;
-            price += DS[i].price * buy;
-            marketPrice += DS[i].marketPrice * buy;
-          }  
+            if (DS[i].isSelect) {
+                let buy = 0;
+                num += DS[i].buy;
+                buy = DS[i].buy;
+                price += DS[i].price * buy;
+                marketPrice += DS[i].marketPrice * buy;
+            }
         }
 
         price = price.toFixed(2);
@@ -159,37 +183,36 @@ Page({
                 icon: "error",
                 duration: 1000,
             });
-        } else if(this.data.price<this.data.lower_price){
+        } else if (this.data.price < this.data.lower_price) {
             wx.showToast({
                 title: "不够起送费",
                 icon: "error",
                 duration: 1000,
             });
-        }
-        else {
+        } else {
             wx.navigateTo({
                 url: "../../pages/settlement/settlement",
             });
         }
     },
-    allSelect:function(){
+    allSelect: function () {
         var data = wx.getStorageSync(this.data.shopNow._id);
-        var isAllSelect=this.data.isAllSelect
-        if(isAllSelect){
-            isAllSelect=false
-            for(var i=0;i<data.length;i++){
-                data[i].isSelect=false
+        var isAllSelect = this.data.isAllSelect
+        if (isAllSelect) {
+            isAllSelect = false
+            for (var i = 0; i < data.length; i++) {
+                data[i].isSelect = false
             }
-        }else{
-            isAllSelect=true
-            for(var i=0;i<data.length;i++){
-                data[i].isSelect=true
+        } else {
+            isAllSelect = true
+            for (var i = 0; i < data.length; i++) {
+                data[i].isSelect = true
             }
         }
-       
+
         this.setData({
             dataSource: data,
-            isAllSelect:isAllSelect
+            isAllSelect: isAllSelect
         });
         console.log(this.data.dataSource)
         wx.setStorageSync(this.data.shopNow._id, data);

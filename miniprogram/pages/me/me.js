@@ -3,23 +3,47 @@ Page({
         islogin: false,
         user_nickname: null,
         avatar_url: null,
-        order_list: [
-            { image: "../resource/ToBePaid.png", title: "待支付", status: 1},
-            { image: "../resource/Deliveries.png", title: "配送中", status: 2 },
+        order_list: [{
+                image: "../resource/ToBePaid.png",
+                title: "待支付",
+                status: 1
+            },
+            {
+                image: "../resource/Deliveries.png",
+                title: "配送中",
+                status: 2
+            },
             {
                 image: "../resource/ItHasShipped.png",
                 title: "待收货",
                 status: 2,
             },
-            { image: "../resource/Completed.png", title: "已完成", status: 3 },
+            {
+                image: "../resource/Completed.png",
+                title: "已完成",
+                status: 3
+            },
         ],
-        money_list: [
-            { image: "../resource/JKSetUpJiFen.png", title: "积分" },
-            { image: "../resource/JKMSYSetUpWineLib.png", title: "酒库" },
-            { image: "../resource/JKMSYSetUpRecommend.png", title: "优惠券" },
-            { image: "../resource/JKMSYSetUpWineRecommend.png", title: "酒券" },
+        money_list: [{
+                image: "../resource/JKSetUpJiFen.png",
+                title: "积分"
+            },
+            {
+                image: "../resource/JKMSYSetUpWineLib.png",
+                title: "酒库"
+            },
+            {
+                image: "../resource/JKMSYSetUpRecommend.png",
+                title: "优惠券"
+            },
+            {
+                image: "../resource/JKMSYSetUpWineRecommend.png",
+                title: "酒券"
+            },
         ],
         other_list: ["推荐有奖", "地址管理", "客服热线", "意见反馈"],
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {
         // 如果用户没有登录需要用户登录
@@ -38,6 +62,25 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
         var app = getApp();
         console.log(app.globalData);
         if (app.globalData.islogin) {
@@ -51,6 +94,9 @@ Page({
         if (this.data.islogin) {
             this.requestServiceData();
         }
+        this.setData({
+            loaded: true
+        })
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏

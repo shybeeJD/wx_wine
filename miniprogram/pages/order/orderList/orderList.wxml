@@ -1,4 +1,8 @@
-<view class="container">
+<import src="orderList.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{!inited}}" />
+
+
+<view class="container" wx:else>
   <!-- 搜索框 -->
   <!-- <view class="searchBar">
     <view class="arrow">

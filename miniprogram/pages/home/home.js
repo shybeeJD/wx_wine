@@ -46,44 +46,67 @@ Page({
         },
         tmpBuyNum: 1,
         tmpNormal: 1,
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {
-        wx.showLoading({
-            title: "",
-        });
+
         // 获取轮播图等信息
         this.getDataFromServer();
         this.renderControl();
         var app = getApp();
         if (app.globalData.shopNow) {
-            this.getHostGoodList();
+            that.getHostGoodList();
         } else {
             app.homeCallback = (shopNow) => {
                 this.getHostGoodList();
             };
         }
-        wx.hideLoading();
+
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-        // note:如果主页面出错,可能是这里造成的
-        this.dataControl(this.data.host_good_list);
-        var app = getApp();
-        console.log(app.globalData);
-        if (app.globalData.shopNow) {
-            this.setData({
-                shopNow: app.globalData.shopNow,
-            });
-        } else {
-            app.shopNowCallback = (shopNow) => {
-                this.setData({
-                    shopNow: shopNow,
+                // 骨架屏
+                wx.showLoading({
+                    // title: "",
                 });
-            };
-        }
+                this.setData({
+                    inited: false,
+                    loaded: false
+                })
+                var that = this
+                var timer = setInterval(function () {
+                    if (that.data.loaded) {
+                        that.setData({
+                            inited: true
+                        })
+                        console.log('获取数据中...');
+                        wx.hideLoading();
+                        clearInterval(timer)
+                    }
+                }, 500);
+        
+                // note:如果主页面出错,可能是这里造成的
+                this.dataControl(this.data.host_good_list);
+                var app = getApp();
+                // console.log(app.globalData);
+                if (app.globalData.shopNow) {
+                    this.setData({
+                        shopNow: app.globalData.shopNow,
+                    });
+                } else {
+                    app.shopNowCallback = (shopNow) => {
+                        this.setData({
+                            shopNow: shopNow,
+                        });
+                    };
+                }
+                this.setData({
+                    loaded: true
+                })
     },
     onHide: function () {
         this.hideModal();
@@ -250,11 +273,11 @@ Page({
                 this.setData({
                     host_good_list: resp.result.product_list,
                 });
-                wx.hideLoading();
+                // wx.hideLoading();
             })
             .catch((e) => {
                 console.log(e);
-                wx.hideLoading();
+                // wx.hideLoading();
             });
     }, /// 获取热卖商品列表
     openDetail: function (par) {

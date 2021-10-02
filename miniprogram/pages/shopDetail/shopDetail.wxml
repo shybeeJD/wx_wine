@@ -1,4 +1,8 @@
-<view class="content">
+
+<import src="shopDetail.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{!inited}}" />
+
+<view class="content" wx:else>
   <view class="bottomBar">
     <view class="leftBtnGroup">
       <view class="leftBtnGroupItem" bindtap="share">
