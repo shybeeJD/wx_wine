@@ -23,6 +23,7 @@ const createShop  =require('./createMethods/createShop/index')
 const getShop = require('./selectMethods/getShop/index')
 const computeDistance = require('./selectMethods/computeDistance')
 const changeOrderStatus =require('./updateMethods/changeOrderStatus/index')
+const updateBill = require('./updateMethods/updateBill/index')
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log(event.type)
@@ -71,6 +72,8 @@ exports.main = async (event, context) => {
       return await createWine.main(event,context)
     case 'refuseOrder':
       return await refuseOrder.main(event,context)
+    case 'updateBill':
+      return await updateBill.main(event,context)
     case 'createShop':
       return await createShop.main(event,context)
     case 'getShop':

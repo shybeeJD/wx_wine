@@ -17,6 +17,7 @@ exports.main = async (event, context) => {
     category:event.category,
     address:event.address,
     postRange:event.maxrange,
+    min_fee:event.min_fee,
     location: db.Geo.Point(longitude, latitude)
   }
   console.log(data)
