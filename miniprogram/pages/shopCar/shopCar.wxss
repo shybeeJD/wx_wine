@@ -129,7 +129,8 @@
 }
 .mini_ShopCar .miniCar_c1 {
   height: 100%;
-  flex: 2;
+  flex: 4;
+  font-size: small;
   flex-direction: row;
   display: flex;
   align-items: center;
@@ -143,7 +144,7 @@
   padding-left: 5px;
 }
 .mini_ShopCar .miniCar_c1 .numView {
-  flex: 2;
+  flex: 3;
   padding-left: 5px;
   display: flex;
   flex-direction: row;
@@ -155,22 +156,24 @@
   justify-content: space-between;
 }
 .mini_ShopCar .miniCar_c1 .numView .min_fee {
-  font-size: small;
+  font-size: x-small;
   color: #888888;
 }
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice {
-  flex: 2;
+  flex: 3;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
 }
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice {
-  display: flex;
   flex-wrap: wrap;
+  font-size: medium;
+  display: flex;
+  align-items: center;
 }
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .marketPrice {
   margin-left: 10rpx;
-  font-size: small;
+  font-size: x-small;
   color: #888888;
   text-decoration: line-through;
 }
@@ -310,18 +313,6 @@
 /*商品名称*/
 .item_good_title {
   width: 100%;
-  text-align: left;
-  display: block;
-  font-size: 16px;
-  height: 20px;
-  line-height: 20px;
-  left: 100px;
-  top: 10px;
-  right: 5px;
-  white-space: nowrap;
-  word-break: keep-all;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .pay {
   width: 200rpx;

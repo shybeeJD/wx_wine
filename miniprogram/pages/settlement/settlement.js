@@ -14,6 +14,7 @@ Page({
         dialogShow: false,
         orderID: null, //创建完成后生成的订单ID
         shopNow: null,
+        msg: "",
     },
 
     /**
@@ -161,6 +162,7 @@ Page({
                         address: this.data.address,
                         discount: 2,
                         packingsPrice: 0,
+                        msg: this.data.msg,
                     },
                 })
                 .then((res) => {
@@ -317,5 +319,10 @@ Page({
                     "../order/orderDeatail/orderDetail?id=" + this.data.orderID,
             });
         }
+    },
+    marks: function (param) {
+        wx.navigateTo({
+            url: "../writemsg/writemsg?msg=" + this.data.msg,
+        });
     },
 });

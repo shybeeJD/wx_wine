@@ -90,6 +90,12 @@
           "pathName": "pages/shopCar/shopCar",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "备注",
+          "pathName": "pages/writemsg/writemsg",
+          "query": "msg=我是傻逼",
+          "scene": null
         }
       ]
     }
