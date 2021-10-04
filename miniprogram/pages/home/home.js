@@ -1,9 +1,12 @@
 Page({
     data: {
-        carousel_list: [{
-            img: "../resource/logintop.png"
-        }], //轮播头信息
-        icon_list: [{
+        carousel_list: [
+            {
+                img: "../resource/logintop.png",
+            },
+        ], //轮播头信息
+        icon_list: [
+            {
                 name: "啤酒",
                 pic: "../resource/beer.png",
             },
@@ -20,7 +23,8 @@ Page({
                 pic: "../resource/yangjiu.png",
             },
         ], //icon
-        icon_list2: [{
+        icon_list2: [
+            {
                 name: "待开发",
                 pic: "../resource/开发中.jpg",
             },
@@ -47,10 +51,9 @@ Page({
         tmpBuyNum: 1,
         tmpNormal: 1,
         inited: false,
-        loaded: false
+        loaded: false,
     },
     onLoad: function (options) {
-
         // 获取轮播图等信息
         this.getDataFromServer();
         this.renderControl();
@@ -62,7 +65,6 @@ Page({
                 this.getHostGoodList();
             };
         }
-
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
@@ -75,17 +77,17 @@ Page({
         });
         this.setData({
             inited: false,
-            loaded: false
-        })
-        var that = this
+            loaded: false,
+        });
+        var that = this;
         var timer = setInterval(function () {
             if (that.data.loaded) {
                 that.setData({
-                    inited: true
-                })
-                console.log('获取数据中...');
+                    inited: true,
+                });
+                console.log("获取数据中...");
                 wx.hideLoading();
-                clearInterval(timer)
+                clearInterval(timer);
             }
         }, 500);
 
@@ -105,8 +107,8 @@ Page({
             };
         }
         this.setData({
-            loaded: true
-        })
+            loaded: true,
+        });
     },
     onHide: function () {
         this.hideModal();
@@ -135,7 +137,8 @@ Page({
         var data = this.data.carousel_list[id];
         if (data.event_mark == 3) {
             wx.navigateTo({
-                url: "../group/group?title=" +
+                url:
+                    "../group/group?title=" +
                     data.product_group_title +
                     "&par=" +
                     data.event_memo,
@@ -174,6 +177,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 350,
+                icon: "error",
             });
             return;
         }
@@ -347,6 +351,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
+                icon: "error",
             });
             return;
         }
@@ -394,8 +399,8 @@ Page({
         app.addGoodToShopCar(data, true);
 
         wx.showToast({
-            title: '已加入到购物车',
-        })
+            title: "已加入到购物车",
+        });
     },
     // 跳转到商品界面
     redirectToWine: function (e) {

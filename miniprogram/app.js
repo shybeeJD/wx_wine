@@ -304,4 +304,38 @@ App({
         }
         //  console.log(this.globalData.shopCarGoods[good._id])
     },
+    seteGoodFromShopCar: function (good) {
+        let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
+        let index = cart.findIndex((v) => v._id === good._id);
+        // 如果缓存中没有,则push当前商品
+        // 否则更新对应位置的商品信息
+        if (index === -1) {
+            return;
+        } else {
+            if (good.buy == 0) {
+                cart.splice(index, 1);
+            } else {
+                cart[index] = good;
+            }
+        }
+        wx.setStorageSync(this.globalData.shopNow._id, cart);
+
+        //  console.log(this.globalData.shopCarGoods)
+        // 若数量=0则删除它
+        if (good.buy == 0) {
+            delete this.globalData.shopCarGoods[good._id];
+            //  console.log("删除")
+            //  console.log(this.globalData.shopCarGoods)
+            return;
+        }
+        //  不等于0则修改数量
+        var tempGood = this.globalData.shopCarGoods[good._id];
+        if (tempGood) {
+            tempGood.buy = good.buy;
+            this.globalData.shopCarGoods[good._id] = tempGood;
+        } else {
+            this.globalData.shopCarGoods[good._id] = good;
+        }
+        //  console.log(this.globalData.shopCarGoods[good._id])
+    },
 });

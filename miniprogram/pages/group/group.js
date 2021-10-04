@@ -86,6 +86,8 @@ Page({
        wx.showToast({
          title:"库存不足",
           duration:2000,
+          icon:'error',
+
        });
        return;
      }

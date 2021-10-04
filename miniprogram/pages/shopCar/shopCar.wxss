@@ -127,6 +127,58 @@
   align-items: center;
   display: flex;
 }
+.mini_ShopCar .miniCar_c1 {
+  height: 100%;
+  flex: 2;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .miniCar_c1 .selectView {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .miniCar_c1 .selectView .selectAllBtn {
+  padding-left: 5px;
+}
+.mini_ShopCar .miniCar_c1 .numView {
+  flex: 2;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewText {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.mini_ShopCar .miniCar_c1 .numView .min_fee {
+  font-size: small;
+  color: #888888;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice {
+  flex: 2;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .marketPrice {
+  margin-left: 10rpx;
+  font-size: small;
+  color: #888888;
+  text-decoration: line-through;
+}
+.mini_ShopCar .content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
 .item-allselect {
   width: 40rpx;
   height: 40rpx;
@@ -149,11 +201,6 @@
 .mini_ShopCar .img_view .img {
   width: 65rpx;
 }
-.mini_ShopCar .content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
 .mini_ShopCar .content .priceView {
   flex: 3;
   display: flex;
@@ -162,14 +209,6 @@
 }
 .mini_ShopCar .content .priceView .price {
   font-size: large;
-}
-.mini_ShopCar .content .priceView .marketPriceView {
-  display: flex;
-  align-items: center;
-  margin-left: 10rpx;
-  font-size: small;
-  color: #888888;
-  text-decoration: line-through;
 }
 .mini_ShopCar .content .buyButton {
   flex: 2;
@@ -334,8 +373,4 @@
   color: #333333;
   margin-left: 3px;
   text-decoration: line-through;
-}
-.small_text {
-  padding-left: 5px;
-  display: inline;
 }
