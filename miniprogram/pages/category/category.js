@@ -14,7 +14,7 @@ Page({
         pageList: [],
         typeDataSource: [],
         page: 0,
-        pageSize: 1,
+        pageSize: 5,
         triggered: false, //下拉刷新标记
     },
     onLoad: function (options) {

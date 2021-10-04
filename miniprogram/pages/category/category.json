@@ -4,5 +4,6 @@
         "miniShopCar":"../../components/miniShopCar/miniShopCar"
     },
     "enablePullDownRefresh": true,
-    "onReachBottom":true
+    "onReachBottom":true,
+    "onReachBottomDistance":100
 }
