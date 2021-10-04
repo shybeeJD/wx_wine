@@ -55,7 +55,7 @@ Page({
             longitude: longitude
           },
           success: function (res) {
-            console.log(res)
+            // console.log(res)
             self.setData({
               latitude: latitude,
               longitude: longitude,

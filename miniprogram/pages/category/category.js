@@ -16,11 +16,10 @@ Page({
         page: 0,
         pageSize: 5,
         triggered: false, //下拉刷新标记
+        inited: false,
+        loaded: false
     },
     onLoad: function (options) {
-        wx.showLoading({
-            title: "加载中",
-        });
         var app = getApp();
         if (app.globalData.shopNow) {
             this.setData({
@@ -49,13 +48,33 @@ Page({
                 this.renderControl();
             };
         }
-        wx.hideLoading();
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
+
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
+
         var app = getApp();
         var cate = app.globalData.cate;
         for (var i = 0; i < this.data.leftDataSource.length; i++) {
@@ -100,7 +119,9 @@ Page({
             };
         }
 
-        // 调用自定义组件中的方法,更新底栏购物车
+        this.setData({
+            loaded: true
+        })
     },
     onHide: function () {
         this.hideModal();
@@ -202,15 +223,13 @@ Page({
                     userInfo: app.globalData.userInfo,
                     shopNow: that.data.shopNow._id,
                     num: that.data.pageSize,
-                    offset:
-                        that.data.pageList[that.data.leftListSelectItem] *
+                    offset: that.data.pageList[that.data.leftListSelectItem] *
                         that.data.pageSize,
-                    category:
-                        that.data.leftDataSource[that.data.leftListSelectItem],
+                    category: that.data.leftDataSource[that.data.leftListSelectItem],
                 },
             })
             .then((resp) => {
-                console.log(resp.result);
+                // console.log(resp.result);
 
                 this.updateData(resp.result);
                 wx.hideLoading();
@@ -240,8 +259,8 @@ Page({
         var selectData = new Array();
         var app = getApp();
         for (var index in this.data.typeDataSource[
-            this.data.leftListSelectItem
-        ]) {
+                this.data.leftListSelectItem
+            ]) {
             var good =
                 this.data.typeDataSource[this.data.leftListSelectItem][index];
             var tempGood = app.globalData.shopCarGoods[good._id];
@@ -270,12 +289,12 @@ Page({
             data.buy = 0;
             data.normal = 0;
         }
-        console.log(data);
+        // console.log(data);
         var normal = data.normal || 0;
         if (!normal) {
             normal = 0;
         }
-        console.log(normal);
+        // console.log(normal);
         this.setData({
             selectedWineindex: index,
             tmpBuyNum: data.buy,
@@ -289,7 +308,7 @@ Page({
         var index = this.data.selectedWineindex;
         // 在右侧数据里搜索对应索引的商品
         var data = this.data.rightDataSource[index];
-        console.log(data);
+        // console.log(data);
         // 比较是否超过库存
         if (data.buy < data.stock) {
             data.buy += 1;
@@ -297,6 +316,8 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
+                icon:'error',
+
             });
             return;
         }
@@ -305,7 +326,7 @@ Page({
         });
 
         var app = getApp();
-        console.log(data);
+        // console.log(data);
         app.addGoodToShopCar(data);
 
         // 调用自定义组件中的方法,更新底栏购物车
@@ -325,6 +346,8 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
+                icon:'error',
+
             });
             return;
         }
@@ -333,7 +356,7 @@ Page({
             tmpBuyNum: tmpbuy,
             tmpNormal: tmpnormal,
         });
-        console.log(this.data.tmpNormal);
+        // console.log(this.data.tmpNormal);
     },
     minus: function () {
         var tmpbuy = this.data.tmpBuyNum;
@@ -360,7 +383,7 @@ Page({
             rightDataSource: this.data.rightDataSource,
         });
         var data = this.data.rightDataSource[index];
-        console.log(data);
+        // console.log(data);
         this.hideModal();
 
         var app = getApp();
@@ -447,7 +470,7 @@ Page({
         var allData = new Array();
         for (var index in data.product_list) {
             var good = data.product_list[index];
-            console.log(data.product_list);
+            // console.log(data.product_list);
             good.buy = 0;
             allData.push(good);
         }
@@ -468,13 +491,12 @@ Page({
     upDataFromStorage: function () {
         let rightDataSource =
             this.data.typeDataSource[this.data.leftListSelectItem];
-        console.log("assssssssssssssssssss");
+        // console.log("assssssssssssssssssss");
 
         let cart = wx.getStorageSync(this.data.shopNow._id) || [];
         for (let i in cart) {
             let index = rightDataSource.findIndex((v) => v._id === cart[i]._id);
-            if (index === -1) {
-            } else {
+            if (index === -1) {} else {
                 rightDataSource[index].buy = cart[i].buy;
                 rightDataSource[index].normal = cart[i].normal;
             }

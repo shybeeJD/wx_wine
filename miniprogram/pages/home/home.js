@@ -1,9 +1,12 @@
 Page({
     data: {
-        carousel_list: [{
-            img: "../resource/logintop.png"
-        }], //轮播头信息
-        icon_list: [{
+        carousel_list: [
+            {
+                img: "../resource/logintop.png",
+            },
+        ], //轮播头信息
+        icon_list: [
+            {
                 name: "啤酒",
                 pic: "../resource/beer.png",
             },
@@ -20,7 +23,8 @@ Page({
                 pic: "../resource/yangjiu.png",
             },
         ], //icon
-        icon_list2: [{
+        icon_list2: [
+            {
                 name: "待开发",
                 pic: "../resource/开发中.jpg",
             },
@@ -46,33 +50,51 @@ Page({
         },
         tmpBuyNum: 1,
         tmpNormal: 1,
+        inited: false,
+        loaded: false,
     },
     onLoad: function (options) {
-        wx.showLoading({
-            title: "",
-        });
         // 获取轮播图等信息
         this.getDataFromServer();
         this.renderControl();
         var app = getApp();
         if (app.globalData.shopNow) {
-            this.getHostGoodList();
+            that.getHostGoodList();
         } else {
             app.homeCallback = (shopNow) => {
                 this.getHostGoodList();
             };
         }
-        wx.hideLoading();
     },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        // 骨架屏
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false,
+        });
+        var that = this;
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true,
+                });
+                console.log("获取数据中...");
+                wx.hideLoading();
+                clearInterval(timer);
+            }
+        }, 500);
+
         // note:如果主页面出错,可能是这里造成的
         this.dataControl(this.data.host_good_list);
         var app = getApp();
-        console.log(app.globalData);
+        // console.log(app.globalData);
         if (app.globalData.shopNow) {
             this.setData({
                 shopNow: app.globalData.shopNow,
@@ -84,9 +106,15 @@ Page({
                 });
             };
         }
+
         if(app.globalData.shopChanged){
             this.getHostGoodList()
         }
+
+        this.setData({
+            loaded: true,
+        });
+
     },
     onHide: function () {
         this.hideModal();
@@ -115,7 +143,8 @@ Page({
         var data = this.data.carousel_list[id];
         if (data.event_mark == 3) {
             wx.navigateTo({
-                url: "../group/group?title=" +
+                url:
+                    "../group/group?title=" +
                     data.product_group_title +
                     "&par=" +
                     data.event_memo,
@@ -154,6 +183,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 350,
+                icon: "error",
             });
             return;
         }
@@ -249,15 +279,15 @@ Page({
                 },
             })
             .then((resp) => {
-                console.log(resp.result);
+                // console.log(resp.result);
                 this.setData({
                     host_good_list: resp.result.product_list,
                 });
-                wx.hideLoading();
+                // wx.hideLoading();
             })
             .catch((e) => {
                 console.log(e);
-                wx.hideLoading();
+                // wx.hideLoading();
             });
     }, /// 获取热卖商品列表
     openDetail: function (par) {
@@ -327,6 +357,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
+                icon: "error",
             });
             return;
         }
@@ -334,7 +365,7 @@ Page({
             tmpBuyNum: tmpbuy,
             tmpNormal: tmpnormal,
         });
-        console.log(this.data.tmpNormal);
+        // console.log(this.data.tmpNormal);
     },
     minus: function () {
         var tmpbuy = this.data.tmpBuyNum;
@@ -367,15 +398,15 @@ Page({
             tmpBuy: 1,
         });
         var data = this.data.host_good_list[index];
-        console.log(data);
+        // console.log(data);
         this.hideModal();
 
         var app = getApp();
         app.addGoodToShopCar(data, true);
 
         wx.showToast({
-            title: '已加入到购物车',
-        })
+            title: "已加入到购物车",
+        });
     },
     // 跳转到商品界面
     redirectToWine: function (e) {

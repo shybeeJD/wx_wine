@@ -31,7 +31,7 @@ Page({
    */
   onLoad: function (options) {
     let data = JSON.parse(options.current)
-    console.log(data)
+    // console.log(data)
     this.setData({
       _id:data._id,
       region:data.region,
@@ -125,7 +125,7 @@ Page({
     this.setData({
       isChecked:e.detail.value
     })
-      console.log(this.data.isChecked)
+      // console.log(this.data.isChecked)
   },
 
 
@@ -184,9 +184,9 @@ Page({
 
   submit: function() {
     var consigneeName = this.data.consigneeName;
-    console.log(consigneeName)
+    // console.log(consigneeName)
     var phone = this.data.phone;
-    console.log(phone)
+    // console.log(phone)
     var region = this.data.region;
 
     var detailedAddress = this.data.detailedAddress
@@ -222,7 +222,7 @@ Page({
     else {
       var app =getApp()
       var region = [this.data.storeAddress.province,this.data.storeAddress.city,this.data.storeAddress.district]
-      console.log(this.data.storeAddress)
+      // console.log(this.data.storeAddress)
       wx.cloud.callFunction({
                   name: "quickstartFunctions",
                   config: {

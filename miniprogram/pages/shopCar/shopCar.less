@@ -1,4 +1,5 @@
 @import "../../utils/public.less";
+@import "./shopCar.skeleton.wxss";
 
 /*输入框背景样式*/
 .mini_ShopCar {
@@ -10,6 +11,65 @@
     background-color: #eff0ef;
     align-items: center;
     display: flex;
+
+    // .small_text {
+    //     min-width: 50px;
+    // }
+    .miniCar_c1 {
+        height: 100%;
+        flex: 4;
+        font-size: small;
+        .flexContainerRow;
+        .align_centerContainer;
+
+        .selectView {
+            flex: 1;
+            .align_centerContainer;
+            .selectAllBtn {
+                padding-left: 5px;
+            }
+        }
+        .numView {
+            flex: 3;
+            padding-left: 5px;
+            .flexContainerRow;
+            .numViewText {
+                flex: 1;
+                .flexContainerCol;
+                .justifyContentSpaceBetween;
+            }
+            .min_fee {
+                font-size: x-small;
+                color: #888888;
+            }
+            .numViewPrice {
+                flex: 3;
+                .flexContainerCol;
+                .justifyContentSpaceBetween;
+
+                .totalPrice {
+                    display: flex;
+                    flex-wrap: wrap;
+                    font-size: medium;
+
+                    .align_centerContainer;
+                    .marketPrice {
+                        // display: flex;
+                        // align-items: center;
+                        margin-left: 10rpx;
+                        font-size: x-small;
+                        color: #888888;
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+    .content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
 }
 .item-allselect {
     width: 40rpx;
@@ -33,11 +93,11 @@
 .mini_ShopCar .img_view .img {
     width: 65rpx;
 }
-.mini_ShopCar .content {
-    flex: 84;
-    display: flex;
-    align-items: center;
-}
+// .mini_ShopCar .content {
+//   flex: 1;
+//   display: flex;
+//   align-items: center;
+// }
 .mini_ShopCar .content .priceView {
     flex: 3;
     display: flex;
@@ -47,14 +107,7 @@
 .mini_ShopCar .content .priceView .price {
     font-size: large;
 }
-.mini_ShopCar .content .priceView .marketPriceView {
-    display: flex;
-    align-items: center;
-    margin-left: 10rpx;
-    font-size: small;
-    color: #888888;
-    text-decoration: line-through;
-}
+
 .mini_ShopCar .content .buyButton {
     flex: 2;
     display: flex;
@@ -113,7 +166,7 @@
         flex: 10;
         .flexContainerRow;
 
-        .img{
+        .img {
             flex: 3s;
         }
 
@@ -124,7 +177,7 @@
             justify-content: center;
             padding-left: 10px;
 
-            .specification{
+            .specification {
                 font-size: xx-small;
                 width: 100%;
                 color: gray;
@@ -159,19 +212,19 @@
 /*商品名称*/
 .item_good_title {
     width: 100%;
-    text-align: left;
-    display: block;
-    font-size: 16px;
-    height: 20px;
-    line-height: 20px;
-    // position: absolute;
-    left: 100px;
-    top: 10px;
-    right: 5px;
-    white-space: nowrap;
-    word-break: keep-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // text-align: left;
+    // display: block;
+    // font-size: large;
+    // height: 20px;
+    // line-height: 20px;
+    // // position: absolute;
+    // left: 100px;
+    // top: 10px;
+    // right: 5px;
+    // white-space: nowrap;
+    // word-break: keep-all;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
 }
 .pay {
     width: 200rpx;
@@ -228,6 +281,7 @@
     margin-left: 3px;
     text-decoration: line-through;
 }
-.small_text{
-    padding-left: 5px;
-}
+// .small_text {
+//     padding-left: 5px;
+//     display: inline;
+// }

@@ -2,7 +2,7 @@
   overflow: auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .flexContainerCol {
   display: flex;
@@ -38,10 +38,83 @@
   justify-content: flex-end;
 }
 .padding_l_10px {
-  padding: 0px 10px 0px 10px;
+  padding: 0px 0px 0px 10px;
+}
+.padding_r_10px {
+  padding: 0px 10px 0px 0px;
 }
 .padding_l_r_10px {
   padding: 0px 10px 0px 10px;
+}
+/*
+此文件为开发者工具生成，生成时间: 2021/10/3 上午12:01:45
+
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/shopCar/shopCar.wxss 中引入样式
+```
+@import "./shopCar.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+*/
+.sk-transparent {
+  color: transparent !important;
+}
+.sk-text-18-7500-509 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 38.4rpx;
+  position: relative !important;
+}
+.sk-text {
+  background-origin: content-box !important;
+  background-clip: content-box !important;
+  background-color: transparent !important;
+  color: transparent !important;
+  background-repeat: repeat-y !important;
+}
+.sk-text-18-7500-720 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-379 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-61 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-981 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-opacity {
+  opacity: 0 !important;
+}
+.sk-text-18-7500-449 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-605 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-image {
+  background: #EFEFEF !important;
+}
+.sk-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
 }
 /*输入框背景样式*/
 .mini_ShopCar {
@@ -53,6 +126,61 @@
   background-color: #eff0ef;
   align-items: center;
   display: flex;
+}
+.mini_ShopCar .miniCar_c1 {
+  height: 100%;
+  flex: 4;
+  font-size: small;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .miniCar_c1 .selectView {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .miniCar_c1 .selectView .selectAllBtn {
+  padding-left: 5px;
+}
+.mini_ShopCar .miniCar_c1 .numView {
+  flex: 3;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewText {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.mini_ShopCar .miniCar_c1 .numView .min_fee {
+  font-size: x-small;
+  color: #888888;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice {
+  flex: 3;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice {
+  flex-wrap: wrap;
+  font-size: medium;
+  display: flex;
+  align-items: center;
+}
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .marketPrice {
+  margin-left: 10rpx;
+  font-size: x-small;
+  color: #888888;
+  text-decoration: line-through;
+}
+.mini_ShopCar .content {
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 .item-allselect {
   width: 40rpx;
@@ -76,11 +204,6 @@
 .mini_ShopCar .img_view .img {
   width: 65rpx;
 }
-.mini_ShopCar .content {
-  flex: 84;
-  display: flex;
-  align-items: center;
-}
 .mini_ShopCar .content .priceView {
   flex: 3;
   display: flex;
@@ -89,14 +212,6 @@
 }
 .mini_ShopCar .content .priceView .price {
   font-size: large;
-}
-.mini_ShopCar .content .priceView .marketPriceView {
-  display: flex;
-  align-items: center;
-  margin-left: 10rpx;
-  font-size: small;
-  color: #888888;
-  text-decoration: line-through;
 }
 .mini_ShopCar .content .buyButton {
   flex: 2;
@@ -198,18 +313,6 @@
 /*商品名称*/
 .item_good_title {
   width: 100%;
-  text-align: left;
-  display: block;
-  font-size: 16px;
-  height: 20px;
-  line-height: 20px;
-  left: 100px;
-  top: 10px;
-  right: 5px;
-  white-space: nowrap;
-  word-break: keep-all;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .pay {
   width: 200rpx;
@@ -261,7 +364,4 @@
   color: #333333;
   margin-left: 3px;
   text-decoration: line-through;
-}
-.small_text {
-  padding-left: 5px;
 }

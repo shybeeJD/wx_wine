@@ -84,6 +84,18 @@
           "pathName": "pages/bill/seeBill/seeBill",
           "query": "_id=2d44d6c26139f5000b3a033d7620d383",
           "scene": null
+        },
+        {
+          "name": "购物车",
+          "pathName": "pages/shopCar/shopCar",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "备注",
+          "pathName": "pages/writemsg/writemsg",
+          "query": "msg=我是傻逼",
+          "scene": null
         }
       ]
     }

@@ -14,6 +14,7 @@ Page({
         dialogShow: false,
         orderID: null, //创建完成后生成的订单ID
         shopNow: null,
+        msg: "",
     },
 
     /**
@@ -47,7 +48,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log(this.data.address_list);
+        // console.log(this.data.address_list);
         this.updateSelectedAddress();
         this.updateGoods();
         if (this.data.address_list) {
@@ -102,7 +103,7 @@ Page({
                 this.setData({
                     freight: resp.result.data[0].price,
                 });
-                console.log(resp.result.data[0].price);
+                // console.log(resp.result.data[0].price);
             })
             .catch((e) => {
                 console.log(e);
@@ -147,7 +148,7 @@ Page({
             });
             return;
         } else {
-            console.log(this.data.freight);
+            // console.log(this.data.freight);
             wx.cloud
                 .callFunction({
                     name: "quickstartFunctions",
@@ -161,10 +162,11 @@ Page({
                         address: this.data.address,
                         discount: 2,
                         packingsPrice: 0,
+                        msg: this.data.msg,
                     },
                 })
                 .then((res) => {
-                    console.log(res.result);
+                    // console.log(res.result);
                     if (res.result.success == false) {
                         wx.showToast({
                             title: res.result.msg,
@@ -210,7 +212,7 @@ Page({
         this.setData({
             freight: dprice,
         });
-        console.log(this.data.freight);
+        // console.log(this.data.freight);
     },
 
     selectAddress: function () {
@@ -244,7 +246,7 @@ Page({
                 var app = getApp();
                 for (let i in resp.result.list) {
                     let address_item = resp.result.list[i];
-                    console.log(address_item);
+                    // console.log(address_item);
                     if (
                         address_item.distance > app.globalData.shopNow.postRange
                     ) {
@@ -267,7 +269,7 @@ Page({
                 }
 
                 that.coumputeDeliveryPrice();
-                console.log(that.data);
+                // console.log(that.data);
             })
             .catch((e) => {
                 console.log(e);
@@ -287,18 +289,18 @@ Page({
         } else {
             goodsList = wx.getStorageSync(app.globalData.shopNow._id);
         }
-        console.log(goodsList);
+        // console.log(goodsList);
 
         let p = 0;
         let pack = 0;
         for (let i in goodsList) {
             if (goodsList[i].isSelect) {
-                console.log(goodsList[i].packingsPrice);
+                // console.log(goodsList[i].packingsPrice);
                 p += goodsList[i].price * goodsList[i].buy;
                 pack += goodsList[i].packingsPrice * goodsList[i].buy;
             }
         }
-        console.log(this.data.freight);
+        // console.log(this.data.freight);
         this.setData({
             goodsList: goodsList,
             packingsPrice: pack,
@@ -306,8 +308,8 @@ Page({
         });
     },
     tapDialogButton: function (e) {
-        console.log("dialog", e.detail);
-        console.log("dialog", e.detail.index);
+        // console.log("dialog", e.detail);
+        // console.log("dialog", e.detail.index);
         if (e.detail.index == 1) {
             console.log("点击确认按钮啦", "");
         } else {
@@ -317,5 +319,10 @@ Page({
                     "../order/orderDeatail/orderDetail?id=" + this.data.orderID,
             });
         }
+    },
+    marks: function (param) {
+        wx.navigateTo({
+            url: "../writemsg/writemsg?msg=" + this.data.msg,
+        });
     },
 });

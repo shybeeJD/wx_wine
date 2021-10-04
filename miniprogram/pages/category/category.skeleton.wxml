@@ -1,0 +1,50 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/10/2 下午10:57:04
+使用方法：
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/category/category.wxml 引入模板
+
+```
+<import src="category.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/category/category.wxss 中引入样式
+```
+@import "./category.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="sk-container">
+      <view class="sk-container">
+        <view class="container">
+          <view style="background-color:#F5F5F5">
+            <scroll-view class="left_scrol_style" scroll-y="true">
+              <view class="left_list_item_style" id="0">
+                <view class="flag_line_color_size flag_line_select"></view>
+                <text class="left_list_text left_list_text_select sk-transparent sk-text-32-9545-949 sk-text" style="background-position-x: 50%;">白酒</text>
+                <view class="line_color_size"></view>
+                <view class="flag_line_color_size" style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;"></view>
+              </view>
+              <view class="left_list_item_style" id="1">
+                <view class="flag_line_color_size flag_line_nomal"></view>
+                <text class="left_list_text left_list_text_nomal sk-transparent sk-text-32-9545-546 sk-text" style="background-position-x: 50%;">啤酒</text>
+                <view class="line_color_size"></view>
+                <view class="flag_line_color_size" style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;"></view>
+              </view>
+              <view class="left_list_item_style" id="2">
+                <view class="flag_line_color_size flag_line_nomal"></view>
+                <text class="left_list_text left_list_text_nomal sk-transparent sk-text-32-9545-756 sk-text" style="background-position-x: 50%;">狗屎</text>
+                <view class="line_color_size"></view>
+                <view class="flag_line_color_size" style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;"></view>
+              </view>
+            </scroll-view>
+            <scroll-view class="right_list_style" refresher-default-style="white" refresher-enabled="true" refresher-threshold="100" scroll-y="true" style="width:300px;"></scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

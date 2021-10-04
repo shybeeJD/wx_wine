@@ -69,7 +69,7 @@ App({
             key: "globalData",
             data: this.globalData,
             success: function (res) {
-                console.log(res);
+                // console.log(res);
             },
             fail: function () {},
             complete: function () {},
@@ -85,7 +85,7 @@ App({
                 } else {
                     that.globalData.islogin = true;
                 }
-                console.log(that.globalData.islogin);
+                // console.log(that.globalData.islogin);
             },
             fail: function () {},
             complete: function () {},
@@ -101,7 +101,7 @@ App({
                 } else {
                     this.globalData.islogin = true;
                 }
-                console.log(this.globalData.islogin);
+                // console.log(this.globalData.islogin);
             },
             fail: function () {},
             complete: function () {},
@@ -142,7 +142,7 @@ App({
             type: "wgs84", // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
             success: function (location) {
                 that.globalData.location = location;
-                console.log(location);
+                // console.log(location);
                 wx.cloud
                     .callFunction({
                         name: "quickstartFunctions",
@@ -156,7 +156,7 @@ App({
                         },
                     })
                     .then((resp) => {
-                        console.log(resp.result.list);
+                        // console.log(resp.result.list);
                         that.globalData.shopList = resp.result.list;
                         that.globalData.shopNow = resp.result.list[0];
 
@@ -206,7 +206,7 @@ App({
                 },
             })
             .then((resp) => {
-                console.log(resp.result);
+                // console.log(resp.result);
                 if (resp.result.data.length > 0) {
                     that.globalData.islogin = true;
                     that.globalData.userInfo = resp.result.data[0];
@@ -231,7 +231,7 @@ App({
                 },
             })
             .then((resp) => {
-                console.log(resp.result.data[0].type);
+                // console.log(resp.result.data[0].type);
                 that.globalData.allType = resp.result.data[0].type.split(",");
             })
             .catch((e) => {
@@ -267,10 +267,44 @@ App({
         } else {
             this.globalData.shopCarGoods[good._id] = good;
         }
-        console.log(this.globalData.shopCarGoods);
+        // console.log(this.globalData.shopCarGoods);
     },
     // 从购物车减少商品
     reduceGoodFromShopCar: function (good) {
+        let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
+        let index = cart.findIndex((v) => v._id === good._id);
+        // 如果缓存中没有,则push当前商品
+        // 否则更新对应位置的商品信息
+        if (index === -1) {
+            return;
+        } else {
+            if (good.buy == 0) {
+                cart.splice(index, 1);
+            } else {
+                cart[index] = good;
+            }
+        }
+        wx.setStorageSync(this.globalData.shopNow._id, cart);
+
+        //  console.log(this.globalData.shopCarGoods)
+        // 若数量=0则删除它
+        if (good.buy == 0) {
+            delete this.globalData.shopCarGoods[good._id];
+            //  console.log("删除")
+            //  console.log(this.globalData.shopCarGoods)
+            return;
+        }
+        //  不等于0则修改数量
+        var tempGood = this.globalData.shopCarGoods[good._id];
+        if (tempGood) {
+            tempGood.buy = good.buy;
+            this.globalData.shopCarGoods[good._id] = tempGood;
+        } else {
+            this.globalData.shopCarGoods[good._id] = good;
+        }
+        //  console.log(this.globalData.shopCarGoods[good._id])
+    },
+    seteGoodFromShopCar: function (good) {
         let cart = wx.getStorageSync(this.globalData.shopNow._id) || [];
         let index = cart.findIndex((v) => v._id === good._id);
         // 如果缓存中没有,则push当前商品

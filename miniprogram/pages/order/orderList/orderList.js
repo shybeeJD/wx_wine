@@ -28,6 +28,8 @@ Page({
         priceList: [],
         imgList: null,
         defaultImg: "../../resource/暂无图片.jpeg",
+        inited: false,
+        loaded: false
     },
 
     /**
@@ -35,15 +37,33 @@ Page({
      */
     onLoad: function (options) {
         wx.showLoading({
-            title: "加载中...",
+            // title: "",
         });
+        this.setData({
+            inited: false,
+            loaded: false
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
         // this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
         if (options.status != null || options.status != undefined) {
             this.selectStatus(options.status);
         } else {
             this.getOrderList(10, [1, 2, 3, 4, 5, 6, 7]);
         }
-        wx.hideLoading();
+        this.setData({
+            loaded: true
+        })
     },
 
     /**

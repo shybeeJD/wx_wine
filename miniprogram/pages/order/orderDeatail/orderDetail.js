@@ -114,7 +114,7 @@ Page({
                     createTime: res.result.data[0].addTime,
                 });
                 this.getGoodsNum();
-                console.log(res);
+                // console.log(res);
             })
             .catch((e) => {
                 console.log(e);
@@ -179,7 +179,7 @@ Page({
                 more: false,
             });
         }
-        console.log("mask");
+        // console.log("mask");
     },
     // bill
     bill: function () {

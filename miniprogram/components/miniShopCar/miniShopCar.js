@@ -27,7 +27,7 @@ Component({
         getShopCarGoods: function (_id) {
             
             var data = wx.getStorageSync(_id);
-            console.log(data)
+            // console.log(data)
             this.setData({
                 dataSource: data,
             });

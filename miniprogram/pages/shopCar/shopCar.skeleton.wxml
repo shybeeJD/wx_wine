@@ -1,0 +1,63 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/10/3 上午12:01:45
+使用方法：
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/shopCar/shopCar.wxml 引入模板
+
+```
+<import src="shopCar.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/shopCar/shopCar.wxss 中引入样式
+```
+@import "./shopCar.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view>
+      <scroll-view class="scrol_view_style" scroll-y="true">
+        <view class="list_item_style" style="border: none;">
+          <view class="list_item_left"></view>
+          <view class="list_item_right">
+            <view class="img">
+              <image class="good_main_image sk-image" mode="scaleToFill"></image>
+            </view>
+            <view class="info_text">
+              <text class="item_good_title"></text>
+              <view class="specification">
+                <view class="s1 sk-transparent sk-text-18-7500-509 sk-text">
+                  5o度， 500mLmL度，mL
+                </view>
+                <view class="s2"></view>
+              </view>
+              <view class="price_back_view"></view>
+            </view>
+            <view class="smallBtn"></view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="mini_ShopCar">
+        <image class="item-allselect sk-image"></image>
+        <text class="small_text sk-transparent sk-text-18-7500-720 sk-text">全选</text>
+        <text class="small_text sk-transparent sk-text-18-7500-379 sk-text">合计: </text>
+        <text class="price"></text>
+        <view class="content" hover-class="none" hover-stop-propagation="true">
+          <view class="priceView">
+            <text class="sk-transparent sk-text-18-7500-61 sk-text">￥</text>
+            <text class="price sk-transparent sk-text-18-7500-981 sk-text">560.00</text>
+            <view class="marketPriceView" style="text-decoration-color: transparent;">
+              <text class="RMB_marketPrice sk-transparent sk-opacity">￥</text>
+              <text class="marketPrice sk-transparent sk-text-18-7500-449 sk-text">58772.00</text>
+            </view>
+          </view>
+          <view class="buyButton sk-transparent sk-text-18-7500-605 sk-text">
+            结算
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -76,7 +76,7 @@ Page({
   editAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
-    console.log(address)
+    // console.log(address)
     wx.redirectTo({
       url: 'address?current=' + JSON.stringify(address),
     })
@@ -84,7 +84,7 @@ Page({
   delAddress: function (e) {
     var id = e.currentTarget.dataset.id
     var address = this.data.addressList[id]
-    console.log(address)
+    // console.log(address)
     this.data.addressList.splice(e.target.id.substring(3), 1);
     // 更新data数据对象  
     this.setData({
@@ -102,7 +102,7 @@ Page({
         },
       })
       .then((resp) => {
-        console.log(resp.result)
+        // console.log(resp.result)
 
       })
       .catch((e) => {
@@ -113,7 +113,7 @@ Page({
   },
   getAddress: function () {
     var app = getApp()
-    console.log(app.globalData)
+    // console.log(app.globalData)
     wx.cloud.callFunction({
         name: "quickstartFunctions",
         config: {
@@ -126,11 +126,11 @@ Page({
         },
       })
       .then((resp) => {
-        console.log(resp.result)
+        // console.log(resp.result)
         this.setData({
           addressList: resp.result.list
         })
-        console.log(this.data.addressList)
+        // console.log(this.data.addressList)
       })
       .catch((e) => {
         console.log(e);
@@ -146,7 +146,7 @@ Page({
       address: this.data.addressList[e.currentTarget.dataset.id],
       address_list:this.data.addressList
     })
-    console.log(prevPage.data)
+    // console.log(prevPage.data)
     wx.setStorageSync("address_id", e.currentTarget.dataset.id)
     wx.navigateBack({
       delta: 1

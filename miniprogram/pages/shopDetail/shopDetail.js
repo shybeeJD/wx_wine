@@ -8,6 +8,8 @@ Page({
         good_detail_image_height: 0, //商品详情图高
         tmpBuyNum: 1,
         tmpNormal: 1,
+        inited: false,
+        loaded: false,
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
@@ -38,8 +40,29 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false,
+        });
+        var that = this;
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true,
+                });
+                console.log("获取数据中...");
+                wx.hideLoading();
+                clearInterval(timer);
+            }
+        }, 1000);
         this.setData({
             loop_image_height: (app.globalData.systemInfo.windowWidth / 4) * 3,
+        });
+        this.setData({
+            loaded: true,
         });
     },
     getGoodInfo: function (options) {
@@ -61,7 +84,7 @@ Page({
                 },
             })
             .then((resp) => {
-                console.log(resp);
+                // console.log(resp);
 
                 wx.hideLoading();
             })
@@ -74,7 +97,7 @@ Page({
     // 图片加载
     imageLoad: function (image) {
         var app = getApp();
-        console.log(image);
+        // console.log(image);
         var imageHeight =
             (app.globalData.systemInfo.windowWidth / image.detail.width) *
             image.detail.height;
@@ -82,34 +105,34 @@ Page({
             good_detail_image_height: imageHeight,
         });
     },
-    rightBtnGroup: function () {
-
-    },
+    rightBtnGroup: function () {},
     minus: function () {
-        var num = this.data.tmpBuyNum
-        var normal = this.data.tmpNormal
+        var num = this.data.tmpBuyNum;
+        var normal = this.data.tmpNormal;
         if (num > 0) {
-            num--
+            num--;
         }
         if (normal > 0) {
-            normal--
+            normal--;
         }
         this.setData({
             tmpBuyNum: num,
-            tmpNormal: normal
-        })
+            tmpNormal: normal,
+        });
     },
     plus: function () {
-        var tmpbuy = this.data.tmpBuyNum
-        var tmpnormal = this.data.tmpNormal
+        var tmpbuy = this.data.tmpBuyNum;
+        var tmpnormal = this.data.tmpNormal;
         var data = this.data.good_detail.product_info;
-        console.log(this.data)
+        // console.log(this.data)
         if (tmpbuy < data.stock) {
             tmpbuy += 1;
             tmpnormal += 1;
         } else {
             wx.showToast({
                 title: "库存不足",
+                icon: "error",
+
                 duration: 2000,
             });
             return;
@@ -126,8 +149,8 @@ Page({
     },
     addToCar: function () {
         var data = this.data.good_detail.product_info;
-        data.buy = this.data.tmpBuyNum
-        data.normal = this.data.tmpNormal
+        data.buy = this.data.tmpBuyNum;
+        data.normal = this.data.tmpNormal;
         this.setData({
             tmpBuyNum: 1,
             tmpNormal: 1,
@@ -137,24 +160,26 @@ Page({
         app.addGoodToShopCar(data, true);
 
         wx.showToast({
-            title: '已加入购物车',
-        })
+            title: "已加入购物车",
+        });
     },
     gotoShopCar: function () {
         wx.switchTab({
-            url: '../../pages/shopCar/shopCar',
-        })
+            url: "../../pages/shopCar/shopCar",
+        });
     },
     buyRightNow: function () {
         var data = this.data.good_detail.product_info;
-        data.buy = this.data.tmpBuyNum
-        data.normal = this.data.tmpNormal
+        data.buy = this.data.tmpBuyNum;
+        data.normal = this.data.tmpNormal;
         this.setData({
             tmpBuyNum: 1,
             tmpNormal: 1,
         });
         wx.redirectTo({
-            url: "../../pages/settlement/settlement?good=" + JSON.stringify(data),
+            url:
+                "../../pages/settlement/settlement?good=" +
+                JSON.stringify(data),
         });
     },
     previewImage: function (image) {
@@ -217,8 +242,8 @@ Page({
     },
     // todo:商品页分享
     share: function (params) {
-        console.log(666);
-        wx.showShareMenu()
+        // console.log(666);
+        wx.showShareMenu();
         // wx.showShareMenu()
         // wx.updateShareMenu({
         //     withShareTicket: true,
@@ -228,5 +253,5 @@ Page({
         //     withShareTicket: true,
         //     menus: ['shareAppMessage', 'shareTimeline']
         // })
-    }
+    },
 });

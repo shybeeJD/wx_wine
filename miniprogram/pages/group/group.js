@@ -31,7 +31,7 @@ Page({
   },
   onShow:function(){
     // 页面显示
-    console.log(this.data.dataSource)
+    // console.log(this.data.dataSource)
     
   },
   onHide:function(){
@@ -86,6 +86,8 @@ Page({
        wx.showToast({
          title:"库存不足",
           duration:2000,
+          icon:'error',
+
        });
        return;
      }

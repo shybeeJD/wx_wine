@@ -44,11 +44,11 @@ Page({
                 let money = orderInfo.money;
                 money = money.toFixed(2);
                 orderInfo.money = money;
-                console.log(orderInfo);
+                // console.log(orderInfo);
                 this.setData({
                     orderInfo: orderInfo,
                 });
-                console.log(res);
+                // console.log(res);
             })
             .catch((e) => {
                 console.log(e);

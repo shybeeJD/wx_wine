@@ -1,4 +1,7 @@
-<view>
+<import src="shopCar.skeleton.wxml" />
+<template is="skeleton" wx:if="{{!inited}}" />
+
+<view wx:else>
   <scroll-view class="scrol_view_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view wx:for-items="{{dataSource}}" wx:key="*this" class="list_item_style">
       <!-- 选择框 -->
@@ -27,7 +30,6 @@
               <span class="n" wx:if="{{item.normal>0}}"> 常温{{item.normal}}</span>
               <span wx:if="{{item.buy-item.normal>0 && item.normal>0}}">，</span>
               <span class="c" wx:if="{{item.buy-item.normal>0}}">冰冻{{item.buy-item.normal}}</span>
-            
             </view>
           </view>
           <!-- 价格 -->
@@ -43,9 +45,10 @@
             class="reduce_image_style"
             id="{{index}}"
             bindtap="reduceButtonClick"
-          ></image>
+          >
+          </image>
 
-          <input class="good_buy_number" value="{{item.buy}}" />
+          <input id="{{index}}"  bindblur="inputBuyNum" type="number" class="good_buy_number" value="{{item.buy}}" />
           <image
             src="../resource/add.png"
             class="add_image_style"
@@ -61,28 +64,53 @@
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
+  <!-- 底栏 -->
   <view class="mini_ShopCar">
-    <image
-      class="item-allselect"
-      bindtap="allSelect"
-      src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}"
-    />
-    <text class="small_text">全选</text>
-    <text class="small_text">合计: </text>
-    <text class="price">{{totalMoney}}</text>
-    <!-- 价格结算区 -->
-    <view class="content" hover-class="none" hover-stop-propagation="false">
-      <view class="priceView">
-        <!-- 实付金额 -->
-        <text>￥</text>
-        <text class="price">{{price}}</text>
-        <!-- 市场价 -->
-        <view class="marketPriceView">
-          <text class="RMB_marketPrice">￥</text>
-          <text class="marketPrice">{{marketPrice}}</text>
-        </view>
+    <view class="miniCar_c1">
+      <view class="selectView">
+        <image
+          class="item-allselect"
+          bindtap="allSelect"
+          src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}"
+        />
+        <text class="selectAllBtn">全选</text>
       </view>
-      <!-- 结算按钮 -->
+      <!-- 价格 -->
+      <view class="numView">
+        <view class="numViewText">
+          <view class="small_text">合计:</view>
+          <view class="min_fee">起送费: </view>
+        </view>
+        <view class="numViewPrice">
+          <view class="totalPrice">
+            <text class="price">￥{{price}}</text>
+            <text class="marketPrice">￥{{marketPrice}}</text>
+          </view>
+          <text class="min_fee">￥{{shopNow.min_fee}}</text>
+        </view>
+        <!-- <view class="totalPrice">
+          <text class="small_text">合计:</text>
+          <view class="priceView">
+            <text>￥</text>
+            <text class="price">{{price}}</text>
+            <view class="marketPriceView">
+              <text class="RMB_marketPrice">￥</text>
+              <text class="marketPrice">{{marketPrice}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="min_fee">
+          <text class="small_text">起送费: </text>
+          <view class="priceView">
+            <text>￥</text>
+            <text class="price">{{shopNow.min_fee}}</text>
+          </view>
+        </view> -->
+      </view>
+    </view>
+
+    <!-- 结算按钮 -->
+    <view class="content" hover-class="none" hover-stop-propagation="false">
       <view class="buyButton" bindtap="buyButton">
         结算
       </view>

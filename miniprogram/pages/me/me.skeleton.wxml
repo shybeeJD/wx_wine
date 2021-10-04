@@ -1,0 +1,95 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/10/2 下午10:56:21
+使用方法：
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/me/me.wxml 引入模板
+
+```
+<import src="me.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 /Users/slime/Desktop/wx_wine/miniprogram/pages/me/me.wxss 中引入样式
+```
+@import "./me.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="content">
+      <scroll-view scroll-y="true">
+        <view class="user_info_view">
+          <image class="image_user_image sk-image"></image>
+          <text class="user_nick_name">你猜猜我是谁</text>
+        </view>
+        <view class="order_title_back">
+          <text class="order_title sk-transparent sk-text-18-7500-3 sk-text">我的订单</text>
+          <image class="order_image sk-image"></image>
+          <text class="order_send_title sk-transparent sk-text-0-0000-295 sk-text">查看全部订单</text>
+        </view>
+        <view style="background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <view class="order_list_style">
+          <view class="order_list_item_style" data-status="1">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-839 sk-text" style="background-position-x: 50%;">待支付</text>
+          </view>
+          <view class="order_list_item_style" data-status="2">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-482 sk-text" style="background-position-x: 50%;">配送中</text>
+          </view>
+          <view class="order_list_item_style" data-status="2">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-503 sk-text" style="background-position-x: 50%;">待收货</text>
+          </view>
+          <view class="order_list_item_style" data-status="3">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-172 sk-text" style="background-position-x: 50%;">已完成</text>
+          </view>
+        </view>
+        <view style="background-color:#F5F5F5;height:10px;width:100%;"></view>
+        <view class="order_title_back">
+          <text class="order_title sk-transparent sk-text-18-7500-443 sk-text">我的钱包</text>
+          <image class="order_image sk-image"></image>
+          <text class="order_send_title sk-transparent sk-text-0-0000-149 sk-text">查看钱包</text>
+        </view>
+        <view style="background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <view class="order_list_style">
+          <view class="order_list_item_style">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-158 sk-text" style="background-position-x: 50%;">积分</text>
+          </view>
+          <view class="order_list_item_style">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-264 sk-text" style="background-position-x: 50%;">酒库</text>
+          </view>
+          <view class="order_list_item_style">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-943 sk-text" style="background-position-x: 50%;">优惠券</text>
+          </view>
+          <view class="order_list_item_style">
+            <image class="order_item_image sk-image"></image>
+            <text class="order_item_title sk-transparent sk-text-3-3333-650 sk-text" style="background-position-x: 50%;">酒券</text>
+          </view>
+        </view>
+        <view style="background-color:#F5F5F5;height:10px;width:100%;"></view>
+        <view class="other_list_item">
+          <text class="other_item_tile sk-transparent sk-text-0-0000-611 sk-text">地址管理</text>
+          <image class="order_image other_list_image sk-image"></image>
+          <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        </view>
+        <view class="other_list_item">
+          <text class="other_item_tile sk-transparent sk-text-0-0000-29 sk-text">客服热线</text>
+          <image class="order_image other_list_image sk-image"></image>
+          <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        </view>
+        <view class="other_list_item">
+          <text class="other_item_tile sk-transparent sk-text-0-0000-45 sk-text">意见反馈</text>
+          <image class="order_image other_list_image sk-image"></image>
+          <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        </view>
+        <view class="other_list_item"></view>
+      </scroll-view>
+    </view>
+  </view>
+</template>

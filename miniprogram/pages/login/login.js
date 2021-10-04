@@ -135,8 +135,8 @@ Page({
       var app = getApp();
       app.globalData.islogin = true;
       app.globalData.user_mobile = mobile;
-      console.log("登录状态")
-      console.log(app.globalData.islogin)
+      // console.log("登录状态")
+      // console.log(app.globalData.islogin)
       wx.navigateBack({
         delta: 1,
         success: function(res){
