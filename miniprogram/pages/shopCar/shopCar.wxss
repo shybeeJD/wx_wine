@@ -143,7 +143,7 @@
 }
 /*输入框背景样式*/
 .mini_ShopCar {
-  height: 120rpx;
+  height: 140rpx;
   width: 100%;
   position: absolute;
   bottom: 0px;
@@ -180,9 +180,13 @@
   display: flex;
   justify-content: space-between;
 }
+.mini_ShopCar .miniCar_c1 .numView .numViewText .small_text {
+  line-height: 20px;
+}
 .mini_ShopCar .miniCar_c1 .numView .min_fee {
   font-size: x-small;
   color: #888888;
+  line-height: 20px;
 }
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice {
   flex: 3;
@@ -196,7 +200,11 @@
   display: flex;
   align-items: center;
 }
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .price {
+  line-height: 20px;
+}
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .marketPrice {
+  line-height: 20px;
   margin-left: 10rpx;
   font-size: x-small;
   color: #888888;

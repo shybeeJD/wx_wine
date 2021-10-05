@@ -2,7 +2,7 @@
 @import "./shopCar.skeleton.wxss";
 .tool {
   height: @small_listHeight;
-//   background-color: @white;
+  //   background-color: @white;
   .padding_l_r_10px;
   .align_centerContainer;
   .flexContainerRow;
@@ -20,14 +20,14 @@
       border: 1px solid @theme_color;
       color: @theme_color;
       border-radius: 10px;
-    //   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+      //   box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
       background-color: @white;
     }
   }
 }
 /*输入框背景样式*/
 .mini_ShopCar {
-  height: 120rpx;
+  height: 140rpx;
   width: 100%;
   position: absolute;
   bottom: 0px;
@@ -61,10 +61,14 @@
         flex: 1;
         .flexContainerCol;
         .justifyContentSpaceBetween;
+        .small_text {
+          line-height: 20px;
+        }
       }
       .min_fee {
         font-size: x-small;
         color: #888888;
+        line-height: 20px;
       }
       .numViewPrice {
         flex: 3;
@@ -77,7 +81,12 @@
           font-size: medium;
 
           .align_centerContainer;
+          .price {
+            line-height: 20px;
+          }
           .marketPrice {
+            line-height: 20px;
+
             // display: flex;
             // align-items: center;
             margin-left: 10rpx;
