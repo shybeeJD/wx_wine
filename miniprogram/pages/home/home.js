@@ -52,6 +52,7 @@ Page({
         tmpNormal: 1,
         inited: false,
         loaded: false,
+        moreInfo: false,
     },
     onLoad: function (options) {
         // 获取轮播图等信息
@@ -107,14 +108,13 @@ Page({
             };
         }
 
-        if(app.globalData.shopChanged){
-            this.getHostGoodList()
+        if (app.globalData.shopChanged) {
+            this.getHostGoodList();
         }
 
         this.setData({
             loaded: true,
         });
-
     },
     onHide: function () {
         this.hideModal();
@@ -432,6 +432,11 @@ Page({
         }
         this.setData({
             host_good_list: data,
+        });
+    },
+    showMoreInfo: function (param) {
+        this.setData({
+            moreInfo: !this.data.moreInfo,
         });
     },
 });

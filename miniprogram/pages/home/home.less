@@ -71,43 +71,86 @@
         }
     }
 }
-.shop_ui {
-    height: @list_height;
-    font-size: medium;
-    margin: 10px 0 10px 0;
+.shopCntainer {
+    .roundedRectangle;
 
-    .flexContainerCol;
-    .justify_centerContainer;
-    .padding_l_r_10px;
+    .flexContainerRow;
+    height: @small_listHeight;
+    padding: 10px 0 10px 0;
+    .shop_ui {
+        flex: 8;
+        // height: @list_height;
+        font-size: medium;
 
-    .shopTitle {
-        .align_centerContainer;
-        flex: 4;
-        .block {
-            .padding_l_10px;
+        .flexContainerCol;
+        .justify_centerContainer;
+        .padding_l_r_10px;
+
+        .shopTitle {
+            .align_centerContainer;
+            flex: 4;
+            .block {
+                .padding_l_10px;
+            }
         }
-    }
-    .shopInfo {
-        flex: 2;
+        .shopInfo {
+            flex: 2;
+            .align_centerContainer;
+            font-size: smaller;
+            .address {
+                flex: 1;
+                color: gray;
+                width: 50px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+            }
+        }
+        // .moreInfo {
+        //     flex: 1;
 
-        .align_centerContainer;
-        font-size: smaller;
-        color: gray;
+        //     // .align_centerContainer;
+        //     .flexContainerCol;
+        //     .justifyContentLeft;
+        //     align-items: flex-end;
+        //     font-size: smaller;
+        //     color: gray;
+
+        //     .text {
+        //         width: 100%;
+        //         text-align: right;
+        //     }
+        // }
     }
     .moreInfo {
-        flex: 1;
-
-        .align_centerContainer;
-        font-size: smaller;
+        flex: 4;
+        .allCenterContainer;
+        align-items: flex-end;
         color: gray;
-
-        .text {
-            width: 100%;
-            text-align: right;
+        font-size: smaller;
+        .moreInfoBtn {
+            .allCenterContainer;
+            height: @smaller_listHeight;
+            .padding_l_r_10px;
+            border-radius: 50rpx;
         }
     }
 }
-
+.info {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    .roundedRectangle;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0px 0px 0px, 1px 1px 5px #cdcfcf;
+    .weui-form-preview__label {
+        font-size: small;
+    }
+    .weui-form-preview__value {
+        font-size: small;
+    }
+}
 page {
     height: 100%;
 }

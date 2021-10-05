@@ -47,7 +47,7 @@
   padding: 0px 10px 0px 10px;
 }
 /*
-此文件为开发者工具生成，生成时间: 2021/10/2 下午9:01:51
+此文件为开发者工具生成，生成时间: 2021/10/2 下午10:58:12
 
 在 /Users/slime/Desktop/wx_wine/miniprogram/pages/home/home.wxss 中引入样式
 ```
@@ -59,7 +59,7 @@
 .sk-transparent {
   color: transparent !important;
 }
-.sk-text-18-7500-565 {
+.sk-text-18-7500-73 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 51.2rpx;
   position: relative !important;
@@ -71,52 +71,52 @@
   color: transparent !important;
   background-repeat: repeat-y !important;
 }
-.sk-text-18-7500-48 {
+.sk-text-18-7500-488 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 42.6666rpx;
   position: relative !important;
 }
-.sk-text-18-7500-853 {
+.sk-text-18-7500-688 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 42.6666rpx;
   position: relative !important;
 }
-.sk-text-18-7500-22 {
+.sk-text-18-7500-330 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-975 {
+.sk-text-18-7500-471 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-603 {
+.sk-text-18-7500-560 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-144 {
+.sk-text-18-7500-946 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-731 {
+.sk-text-18-7500-205 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-321 {
+.sk-text-18-7500-937 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-216 {
+.sk-text-18-7500-831 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-18-7500-718 {
+.sk-text-18-7500-774 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
@@ -203,40 +203,80 @@
 .hot_good .hot_good_card .hot_good_info .hot_info_shopcar .img_back .hot_info_shopcar_img {
   width: 18px;
 }
-.shop_ui {
-  height: 56px;
+.shopCntainer {
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+  padding: 10px 0 10px 0;
+}
+.shopCntainer .shop_ui {
+  flex: 8;
   font-size: medium;
-  margin: 10px 0 10px 0;
   flex-direction: column;
   display: flex;
   justify-content: center;
   padding: 0px 10px 0px 10px;
 }
-.shop_ui .shopTitle {
+.shopCntainer .shop_ui .shopTitle {
   display: flex;
   align-items: center;
   flex: 4;
 }
-.shop_ui .shopTitle .block {
+.shopCntainer .shop_ui .shopTitle .block {
   padding: 0px 0px 0px 10px;
 }
-.shop_ui .shopInfo {
+.shopCntainer .shop_ui .shopInfo {
   flex: 2;
   display: flex;
   align-items: center;
   font-size: smaller;
-  color: gray;
 }
-.shop_ui .moreInfo {
+.shopCntainer .shop_ui .shopInfo .address {
   flex: 1;
+  color: gray;
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shopCntainer .moreInfo {
+  flex: 4;
   display: flex;
   align-items: center;
-  font-size: smaller;
+  justify-content: center;
+  align-items: flex-end;
   color: gray;
+  font-size: smaller;
 }
-.shop_ui .moreInfo .text {
+.shopCntainer .moreInfo .moreInfoBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 50rpx;
+}
+.info {
+  position: fixed;
   width: 100%;
-  text-align: right;
+  z-index: 99;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #cdcfcf, 1px 1px 5px #cdcfcf;
+  background-color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0px 0px 0px, 1px 1px 5px #cdcfcf;
+}
+.info .weui-form-preview__label {
+  font-size: small;
+}
+.info .weui-form-preview__value {
+  font-size: small;
 }
 page {
   height: 100%;
