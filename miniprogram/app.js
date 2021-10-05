@@ -191,7 +191,7 @@ App({
     // 获取用户信息
     getUserInfo: function (cb) {
         wx.showLoading({
-            title: "",
+            // title: "",
         });
         var that = this;
         wx.cloud

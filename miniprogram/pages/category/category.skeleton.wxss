@@ -1,5 +1,5 @@
 /*
-此文件为开发者工具生成，生成时间: 2021/10/2 下午10:57:04
+此文件为开发者工具生成，生成时间: 2021/10/5 下午10:33:53
 
 在 /Users/slime/Desktop/wx_wine/miniprogram/pages/category/category.wxss 中引入样式
 ```
@@ -11,9 +11,9 @@
 .sk-transparent {
     color: transparent !important;
   }
-.sk-text-32-9545-949 {
+.sk-text-32-9545-823 {
     background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
-    background-size: 100% 88.0000rpx;
+    background-size: 100% 77.1028rpx;
     position: absolute !important;
   }
 .sk-text {
@@ -23,14 +23,14 @@
     color: transparent !important;
     background-repeat: repeat-y !important;
   }
-.sk-text-32-9545-546 {
+.sk-text-32-9545-22 {
     background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
-    background-size: 100% 88.0000rpx;
+    background-size: 100% 77.1028rpx;
     position: absolute !important;
   }
-.sk-text-32-9545-756 {
+.sk-text-32-9545-819 {
     background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
-    background-size: 100% 88.0000rpx;
+    background-size: 100% 77.1028rpx;
     position: absolute !important;
   }
 .sk-container {
