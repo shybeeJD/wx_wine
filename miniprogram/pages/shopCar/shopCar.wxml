@@ -65,7 +65,7 @@
     这里是他妈的空的
   </view>
   <!-- 底栏 -->
-  <view class="mini_ShopCar">
+  <view class="mini_ShopCar" wx:if="{{!empty}}">
     <view class="miniCar_c1">
       <view class="selectView" bindtap="allSelect">
         <image class="item-allselect"
