@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "首页",
     "usingComponents": {
-        "mp-preview": "weui-miniprogram/preview/preview"
+        "mp-loading": "weui-miniprogram/loading/loading"
     }
 }
