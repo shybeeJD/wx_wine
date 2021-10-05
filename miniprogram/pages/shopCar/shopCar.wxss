@@ -148,7 +148,7 @@
   position: absolute;
   bottom: 0px;
   z-index: 100;
-  background-color: #eff0ef;
+  background-color: white;
   align-items: center;
   display: flex;
 }
