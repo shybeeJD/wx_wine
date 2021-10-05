@@ -61,6 +61,9 @@
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
+  <view class="empty" wx:if="{{empty}}">
+    这里是他妈的空的
+  </view>
   <!-- 底栏 -->
   <view class="mini_ShopCar">
     <view class="miniCar_c1">

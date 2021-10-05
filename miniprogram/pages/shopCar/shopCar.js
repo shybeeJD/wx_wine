@@ -4,7 +4,8 @@ Page({
         lower_price: 500,
         inited: false,
         loaded: false,
-        btn1Selected: false
+        btn1Selected: false,
+        empty: false
     },
     onLoad: function (options) {},
     onReady: function () {
@@ -42,6 +43,22 @@ Page({
         this.setData({
             loaded: true,
         });
+        this.isEmpty()
+    },
+    isEmpty: function (params) {
+        let that = this
+        if (this.data.dataSource.length == 0) {
+            console.log(0);
+            that.setData({
+                empty: true
+            })
+        } else {
+            console.log(1);
+
+            that.setData({
+                empty: false
+            })
+        }
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -302,6 +319,8 @@ Page({
         })
         // 调用自定义组件中的方法,更新底栏购物车
         this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.isEmpty()
+
         wx.showToast({
             title: "已删除",
             duration: 350,
