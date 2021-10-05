@@ -8,58 +8,26 @@
   </view> -->
     <!-- 左侧分类 -->
     <scroll-view class="left_scrol_style" scroll-x="{{false}}" scroll-y="{{true}}">
-      <view
-        wx:for-items="{{leftDataSource}}"
-        wx:key="*this"
-        class="left_list_item_style"
-        id="{{index}}"
-        bindtap="rightListClick"
-      >
-        <view
-          class="flag_line_color_size flag_line_select"
-          wx:if="{{leftListSelectItem == index}}"
-        />
+      <view wx:for-items="{{leftDataSource}}" wx:key="*this" class="left_list_item_style" id="{{index}}"
+        bindtap="rightListClick">
+        <view class="flag_line_color_size flag_line_select" wx:if="{{leftListSelectItem == index}}" />
 
-        <view
-          class="flag_line_color_size flag_line_nomal"
-          wx:if="{{leftListSelectItem != index}}"
-        />
+        <view class="flag_line_color_size flag_line_nomal" wx:if="{{leftListSelectItem != index}}" />
 
-        <text class="left_list_text left_list_text_select" wx:if="{{leftListSelectItem == index}}"
-          >{{item}}</text
-        >
-        <text class="left_list_text left_list_text_nomal" wx:if="{{leftListSelectItem != index}}"
-          >{{item}}</text
-        >
+        <text class="left_list_text left_list_text_select" wx:if="{{leftListSelectItem == index}}">{{item}}</text>
+        <text class="left_list_text left_list_text_nomal" wx:if="{{leftListSelectItem != index}}">{{item}}</text>
         <view class="line_color_size" />
-        <view
-          class="flag_line_color_size"
-          style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;"
-        />
+        <view class="flag_line_color_size" style="background-color:#e5e5e5;width:1px;bottom:0px;left:74px;" />
       </view>
     </scroll-view>
 
     <!-- 右详细 -->
-    <scroll-view
-      class="right_list_style"
-      style="width:{{rightItemWidth}}px;"
-      scroll-x="{{false}}"
-      scroll-y="{{true}}"
-      refresher-enabled="{{true}}"
-      refresher-threshold="{{100}}"
-      refresher-default-style="white"
-      refresher-triggered="{{triggered}}"
-      bindrefresherrefresh="onRefresh"
-      bindscrolltolower="ReachBottom"
-    >
+    <scroll-view class="right_list_style" style="width:{{rightItemWidth}}px;" scroll-x="{{false}}" scroll-y="{{true}}"
+      refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="white"
+      refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="ReachBottom">
       <view wx:for-items="{{rightDataSource}}" wx:key="*this" class="right_list_item">
         <!-- 商品主图 -->
-        <image
-          src="{{item.thumb_url}}"
-          class="right_list_item_image"
-          id="{{index}}"
-          bindtap="pushGoodDetail"
-        />
+        <image src="{{item.thumb_url}}" class="right_list_item_image" id="{{index}}" bindtap="pushGoodDetail" />
         <text class="right_list_item_title">{{item.title}}</text>
         <view class="tags_back_view">
           <text class="tags">精选</text>
@@ -75,13 +43,8 @@
 
         <!-- 加减号 -->
         <view class="shopCar">
-          <image
-            src="../resource/white_shopCar.png"
-            id="{{index}}"
-            class="shopCarImage"
-            catchtap="openDetail"
-            mode="widthFix"
-          />
+          <image src="../resource/white_shopCar.png" id="{{index}}" class="shopCarImage" catchtap="openDetail"
+            mode="widthFix" />
           <!-- <text class="good_buy_number">{{item.buy}}</text> -->
           <!-- <image
           src="../resource/reduce.png"
@@ -92,6 +55,9 @@
         </view>
         <view class="right_line" />
       </view>
+
+      <mp-loading type="circle" show="{{true}}" wx:if="{{reachBottom}}"></mp-loading>
+
     </scroll-view>
   </view>
   <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
@@ -122,11 +88,8 @@
       <view class="tui-slider-head">
         <view class="temText">温度</view>
         <view class="temNum">
-          共<span class="temNumBold"> {{tmpBuyNum}}</span>瓶,冰冻<span class="temNumBold"
-            >{{ tmpBuyNum - tmpNormal }}</span
-          >
-          瓶,常温<span class="temNumBold"> {{tmpNormal}}</span>瓶</view
-        >
+          共<span class="temNumBold"> {{tmpBuyNum}}</span>瓶,冰冻<span class="temNumBold">{{ tmpBuyNum - tmpNormal }}</span>
+          瓶,常温<span class="temNumBold"> {{tmpNormal}}</span>瓶</view>
       </view>
       <!-- 滑动条控制数量 -->
       <view class="sliderBox">

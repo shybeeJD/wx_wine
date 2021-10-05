@@ -47,7 +47,7 @@
   padding: 0px 10px 0px 10px;
 }
 /*
-此文件为开发者工具生成，生成时间: 2021/10/2 下午10:10:23
+此文件为开发者工具生成，生成时间: 2021/10/2 下午10:57:04
 
 在 /Users/slime/Desktop/wx_wine/miniprogram/pages/category/category.wxss 中引入样式
 ```
@@ -59,7 +59,7 @@
 .sk-transparent {
   color: transparent !important;
 }
-.sk-text-32-9545-30 {
+.sk-text-32-9545-949 {
   background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
   background-size: 100% 88rpx;
   position: absolute !important;
@@ -71,12 +71,12 @@
   color: transparent !important;
   background-repeat: repeat-y !important;
 }
-.sk-text-32-9545-59 {
+.sk-text-32-9545-546 {
   background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
   background-size: 100% 88rpx;
   position: absolute !important;
 }
-.sk-text-32-9545-698 {
+.sk-text-32-9545-756 {
   background-image: linear-gradient(transparent 32.9545%, #EEEEEE 0%, #EEEEEE 67.0455%, transparent 0%) !important;
   background-size: 100% 88rpx;
   position: absolute !important;
@@ -90,12 +90,16 @@
   overflow: hidden;
   background-color: transparent;
 }
+.container {
+  background-color: white;
+}
 /*左侧分类视图*/
 .left_scrol_style {
   position: absolute;
   top: 0px;
   left: 0px;
   bottom: 0px;
+  height: 100%;
   width: 75px;
   display: block;
   background-color: #f5f5f5;
@@ -103,7 +107,6 @@
 /*左侧列表样式*/
 .left_list_item_style {
   height: 45px;
-  width: 100%;
   position: relative;
 }
 .line_color_size {
@@ -152,7 +155,8 @@
   top: 0;
   bottom: 0;
   left: 75px;
-  background-color: #f5f5f5;
+  background-color: white;
+  height: 100%;
 }
 /*右侧列表item*/
 .right_list_item {
