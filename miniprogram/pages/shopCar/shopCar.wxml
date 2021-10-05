@@ -2,7 +2,7 @@
 <template is="skeleton" wx:if="{{!inited}}" />
 
 <view wx:else>
-  <view class="tool">
+  <view class="tool" wx:if="{{!empty}}">
 
     <view class="btn1" bindtap="selectedBtn">
       <view id="btn1" class="noSelectedBtn" wx:if="{{!btn1Selected}}">
@@ -62,7 +62,12 @@
         </view> -->
   </scroll-view>
   <view class="empty" wx:if="{{empty}}">
-    这里是他妈的空的
+
+    <image class="emptyCar" src="../../pages/resource/空的购物车.png" mode="widthFix"></image>
+    <view class="emptyText">
+      购物车是空的哟
+    </view>
+
   </view>
   <!-- 底栏 -->
   <view class="mini_ShopCar" wx:if="{{!empty}}">

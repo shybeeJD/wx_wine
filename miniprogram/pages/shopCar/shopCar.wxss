@@ -116,6 +116,19 @@
   overflow: hidden;
   background-color: transparent;
 }
+.empty {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.empty .emptyCar {
+  width: 50%;
+  margin-bottom: 50rpx;
+}
 .tool {
   height: 42px;
   padding: 0px 10px 0px 10px;
