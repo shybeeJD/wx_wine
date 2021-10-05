@@ -100,12 +100,12 @@
   padding: 0 20rpx;
 }
 .defaul-setting-left view:nth-child(1){
-  font-size: 28.68rpx;
+  font-size: medium;
   color: #333333;
   margin-bottom: 25rpx;
 }
 .defaul-setting-left view:nth-child(2) {
-  font-size: 20rpx;
+  font-size: small;
   color: #333333;
 }
 .defaul-setting-right {

@@ -116,14 +116,52 @@
   overflow: hidden;
   background-color: transparent;
 }
+.empty {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.empty .emptyCar {
+  width: 50%;
+  margin-bottom: 50rpx;
+}
+.tool {
+  height: 42px;
+  padding: 0px 10px 0px 10px;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  font-size: small;
+}
+.tool .btn1 .noSelectedBtn {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool .btn1 .selectedBtn {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ff585a;
+  color: #ff585a;
+  border-radius: 10px;
+  background-color: #fff;
+}
 /*输入框背景样式*/
 .mini_ShopCar {
-  height: 120rpx;
+  height: 140rpx;
   width: 100%;
   position: absolute;
   bottom: 0px;
   z-index: 100;
-  background-color: #eff0ef;
+  background-color: white;
   align-items: center;
   display: flex;
 }
@@ -155,9 +193,13 @@
   display: flex;
   justify-content: space-between;
 }
+.mini_ShopCar .miniCar_c1 .numView .numViewText .small_text {
+  line-height: 20px;
+}
 .mini_ShopCar .miniCar_c1 .numView .min_fee {
   font-size: x-small;
   color: #888888;
+  line-height: 20px;
 }
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice {
   flex: 3;
@@ -171,7 +213,11 @@
   display: flex;
   align-items: center;
 }
+.mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .price {
+  line-height: 20px;
+}
 .mini_ShopCar .miniCar_c1 .numView .numViewPrice .totalPrice .marketPrice {
+  line-height: 20px;
   margin-left: 10rpx;
   font-size: x-small;
   color: #888888;
@@ -246,11 +292,6 @@
 }
 /*list样式*/
 .scrol_view_style {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
   background: #f5f5f5;
 }
 /*item*/
@@ -260,7 +301,7 @@
   width: 100%;
   background: white;
   border-bottom: 1px solid #d3d3d3;
-  padding: 5px 0 5px 0;
+  padding: 15px 0 15px 0;
   display: flex;
   flex-direction: row;
 }

@@ -1,5 +1,5 @@
 <!--
-此文件为开发者工具生成，生成时间: 2021/10/2 下午10:58:12
+此文件为开发者工具生成，生成时间: 2021/10/5 下午10:34:03
 使用方法：
 在 /Users/slime/Desktop/wx_wine/miniprogram/pages/home/home.wxml 引入模板
 
@@ -19,16 +19,23 @@
   <view class="sk-container">
     <view class="container">
       <view class="content">
-        <view class="shop_ui">
-          <view class="shopTitle sk-transparent">
-            创业测试
-            <view class="block sk-transparent sk-text-18-7500-73 sk-text">&gt;</view>
-          </view>
-          <view class="shopInfo">
-            <view class="distance sk-transparent sk-text-18-7500-488 sk-text">距离您23.76km</view>
+        <view class="shopCntainer">
+          <view class="shop_ui">
+            <view class="shopTitle sk-transparent">
+              创业测试
+              <view class="block sk-transparent sk-text-18-7500-179 sk-text">&gt;</view>
+            </view>
+            <view class="shopInfo">
+              <view class="distance sk-transparent sk-text-18-7500-22 sk-text">距离您23.76km</view>
+              <view class="address sk-transparent sk-text-18-7500-439 sk-text"> |河南省郑州市新郑市龙湖镇敏行环路河南工程学院龙湖校区南区</view>
+            </view>
           </view>
           <view class="moreInfo">
-            <view class="text sk-transparent sk-text-18-7500-688 sk-text" style="background-position-x: 100%;">更多信息</view>
+            <view class="moreInfoBtn sk-transparent">
+              更多信息
+              <text decode="true" class="sk-transparent"></text>
+              <i class="fa fa-angle-down sk-pseudo sk-pseudo-circle"></i>
+            </view>
           </view>
         </view>
         <view class="scroll-content">
@@ -41,37 +48,37 @@
             <view class="icon_back_size">
               <view class="one_icon_back_view" data-id="啤酒">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-330 sk-text" style="background-position-x: 50%;">啤酒</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-971 sk-text" style="background-position-x: 50%;">啤酒</text>
               </view>
               <view class="one_icon_back_view" data-id="白酒">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-471 sk-text" style="background-position-x: 50%;">白酒</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-892 sk-text" style="background-position-x: 50%;">白酒</text>
               </view>
               <view class="one_icon_back_view" data-id="葡萄酒">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-560 sk-text" style="background-position-x: 50%;">葡萄酒</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-192 sk-text" style="background-position-x: 50%;">葡萄酒</text>
               </view>
               <view class="one_icon_back_view" data-id="洋酒">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-946 sk-text" style="background-position-x: 50%;">洋酒</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-226 sk-text" style="background-position-x: 50%;">洋酒</text>
               </view>
             </view>
             <view class="icon_back_size">
               <view class="one_icon_back_view" data-id="待开发">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-205 sk-text" style="background-position-x: 50%;">待开发</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-977 sk-text" style="background-position-x: 50%;">待开发</text>
               </view>
               <view class="one_icon_back_view" data-id="待开发">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-937 sk-text" style="background-position-x: 50%;">待开发</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-821 sk-text" style="background-position-x: 50%;">待开发</text>
               </view>
               <view class="one_icon_back_view" data-id="待开发">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-831 sk-text" style="background-position-x: 50%;">待开发</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-706 sk-text" style="background-position-x: 50%;">待开发</text>
               </view>
               <view class="one_icon_back_view" data-id="待开发">
                 <image class="icon_size sk-image"></image>
-                <text class="icon_title sk-transparent sk-text-18-7500-774 sk-text" style="background-position-x: 50%;">待开发</text>
+                <text class="icon_title sk-transparent sk-text-18-7500-257 sk-text" style="background-position-x: 50%;">待开发</text>
               </view>
             </view>
           </view>

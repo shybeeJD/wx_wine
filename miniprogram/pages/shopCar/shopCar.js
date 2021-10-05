@@ -4,6 +4,8 @@ Page({
         lower_price: 500,
         inited: false,
         loaded: false,
+        btn1Selected: false,
+        empty: false
     },
     onLoad: function (options) {},
     onReady: function () {
@@ -41,6 +43,22 @@ Page({
         this.setData({
             loaded: true,
         });
+        this.isEmpty()
+    },
+    isEmpty: function (params) {
+        let that = this
+        if (this.data.dataSource.length == 0) {
+            console.log(0);
+            that.setData({
+                empty: true
+            })
+        } else {
+            console.log(1);
+
+            that.setData({
+                empty: false
+            })
+        }
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏
@@ -276,4 +294,36 @@ Page({
         var miniShopCar = this.selectComponent("#miniShopCar");
         this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
     },
+    selectedBtn: function (params) {
+        let btn1Selected = this.data.btn1Selected
+        this.setData({
+            btn1Selected: !btn1Selected
+        })
+    },
+    deleteButton: function (params) {
+        var app = getApp();
+        var goods = this.data.dataSource;
+
+
+        for (let i = 0, len = goods.length; i < len; i++) {
+            console.log(i);
+            if (goods[0].isSelect == true) {
+                goods[0].buy = 0
+                app.reduceGoodFromShopCar(goods[0]);
+                goods.splice(0, 1);
+            }
+        }
+
+        this.setData({
+            dataSource: goods
+        })
+        // 调用自定义组件中的方法,更新底栏购物车
+        this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+        this.isEmpty()
+
+        wx.showToast({
+            title: "已删除",
+            duration: 350,
+        });
+    }
 });

@@ -2,17 +2,24 @@
 <template is="skeleton" wx:if="{{!inited}}" />
 
 <view wx:else>
+  <view class="tool" wx:if="{{!empty}}">
+
+    <view class="btn1" bindtap="selectedBtn">
+      <view id="btn1" class="noSelectedBtn" wx:if="{{!btn1Selected}}">
+        管理
+      </view>
+      <view class="selectedBtn" wx:else>
+        管理x
+      </view>
+    </view>
+
+  </view>
   <scroll-view class="scrol_view_style" scroll-x="{{false}}" scroll-y="{{true}}">
     <view wx:for-items="{{dataSource}}" wx:key="*this" class="list_item_style">
       <!-- 选择框 -->
-      <view class="list_item_left">
-        <image
-          class="item-select"
-          bindtap="switchSelect"
-          data-index="{{index}}"
-          data-id="{{index}}"
-          src="{{item.isSelect?'../resource/selected.png':'../resource/unchecked-checkbox.png'}}"
-        />
+      <view class="list_item_left" data-index="{{index}}" data-id="{{index}}" bindtap="switchSelect">
+        <image class="item-select"
+          src="{{item.isSelect?'../resource/selected.png':'../resource/unchecked-checkbox.png'}}" />
       </view>
       <!-- 商品详情 -->
       <view class="list_item_right">
@@ -40,21 +47,11 @@
         </view>
 
         <view class="smallBtn">
-          <image
-            src="../resource/reduce.png"
-            class="reduce_image_style"
-            id="{{index}}"
-            bindtap="reduceButtonClick"
-          >
+          <image src="../resource/reduce.png" class="reduce_image_style" id="{{index}}" bindtap="reduceButtonClick">
           </image>
 
-          <input id="{{index}}"  bindblur="inputBuyNum" type="number" class="good_buy_number" value="{{item.buy}}" />
-          <image
-            src="../resource/add.png"
-            class="add_image_style"
-            id="{{index}}"
-            bindtap="addButtonClick"
-          ></image>
+          <input id="{{index}}" bindblur="inputBuyNum" type="number" class="good_buy_number" value="{{item.buy}}" />
+          <image src="../resource/add.png" class="add_image_style" id="{{index}}" bindtap="addButtonClick"></image>
         </view>
       </view>
     </view>
@@ -64,19 +61,24 @@
             <input placeholder="给的留言(选填、45字以内)" maxlength="45" class = "input_class"/>
         </view> -->
   </scroll-view>
+  <view class="empty" wx:if="{{empty}}">
+
+    <image class="emptyCar" src="../../pages/resource/空的购物车.png" mode="widthFix"></image>
+    <view class="emptyText">
+      购物车是空的哟
+    </view>
+
+  </view>
   <!-- 底栏 -->
-  <view class="mini_ShopCar">
+  <view class="mini_ShopCar" wx:if="{{!empty}}">
     <view class="miniCar_c1">
-      <view class="selectView">
-        <image
-          class="item-allselect"
-          bindtap="allSelect"
-          src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}"
-        />
+      <view class="selectView" bindtap="allSelect">
+        <image class="item-allselect"
+          src="{{isAllSelect?'../../pages/resource/selected.png':'../../pages/resource/unchecked-checkbox.png'}}" />
         <text class="selectAllBtn">全选</text>
       </view>
       <!-- 价格 -->
-      <view class="numView">
+      <view class="numView" wx:if="{{!btn1Selected}}">
         <view class="numViewText">
           <view class="small_text">合计:</view>
           <view class="min_fee">起送费: </view>
@@ -111,9 +113,13 @@
 
     <!-- 结算按钮 -->
     <view class="content" hover-class="none" hover-stop-propagation="false">
-      <view class="buyButton" bindtap="buyButton">
+      <view wx:if="{{btn1Selected}}" class="buyButton" bindtap="deleteButton">
+        删除
+      </view>
+      <view wx:else class="buyButton" bindtap="buyButton">
         结算
       </view>
+
     </view>
   </view>
 </view>

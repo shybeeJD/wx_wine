@@ -17,7 +17,9 @@ Page({
         pageSize: 5,
         triggered: false, //下拉刷新标记
         inited: false,
-        loaded: false
+        loaded: false,
+        reachBottom: false,
+        have_loaded :false
     },
     onLoad: function (options) {
         var app = getApp();
@@ -31,7 +33,10 @@ Page({
                 this.data.pageList.push(0);
                 this.data.typeDataSource.push(null);
             }
+
             this.getAllwines(this.data.leftListSelectItem);
+            this.data.have_loaded = true
+
             this.renderControl();
         } else {
             app.shopNowCallback = (shopNow) => {
@@ -44,7 +49,10 @@ Page({
                     this.data.pageList.push(0);
                     this.data.typeDataSource.push(null);
                 }
+
                 this.getAllwines(this.data.leftListSelectItem);
+                this.data.have_loaded = true
+
                 this.renderControl();
             };
         }
@@ -86,7 +94,7 @@ Page({
                 break;
             }
         }
-        if (app.globalData.shopChanged) {
+        if (app.globalData.shopChanged && !this.data.have_loaded) {
             this.setData({
                 envId: app.globalData.envId,
                 shopNow: app.globalData.shopNow,
@@ -126,6 +134,7 @@ Page({
     },
     onHide: function () {
         this.hideModal();
+        this.data.have_loaded=false
         // 生命周期函数--监听页面隐藏
     },
     onUnload: function () {
@@ -244,7 +253,7 @@ Page({
         this.data.pageList[that.data.leftListSelectItem] += 1;
         this.updataRightData(that.data.leftListSelectItem);
     },
-    // 右侧列表被点击
+    // 左侧列表被点击
     rightListClick(par) {
         //更新rightdatasource
         var index = parseInt(par.currentTarget.id);
@@ -318,7 +327,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
-                icon:'error',
+                icon: 'error',
 
             });
             return;
@@ -348,7 +357,7 @@ Page({
             wx.showToast({
                 title: "库存不足",
                 duration: 2000,
-                icon:'error',
+                icon: 'error',
 
             });
             return;
@@ -421,48 +430,29 @@ Page({
         this.setData({
             triggered: false,
         });
-        // this.data.pageList = [];
-        // this.data.typeDataSource = [];
-        // for (var i = 0; i < this.data.leftDataSource.length; i++) {
-        //     this.data.pageList.push(0);
-        //     this.data.typeDataSource.push(null);
-        // }
-        // this.getAllwines();
     },
     // todo:上拉加载
     ReachBottom() {
         console.log("上拉加载");
+
+
+        this.setData({
+            reachBottom: true
+        })
+        let that = this
+        var timer = setInterval(function () {
+
+            that.setData({
+                reachBottom: false
+            })
+            console.log("上拉加载数据中...");
+            clearInterval(timer);
+        }, 500);
         this.getAllwines(this.data.leftListSelectItem);
+
+
     },
 
-    // 获取数据
-    // requestDataFromServe() {
-    //     var that = this;
-    //     wx.showLoading({
-    //         title: "",
-    //     });
-    //     // console.log(this.data.envId);
-    //     // 从云函数获取数据
-    //     // wx.cloud.callFunction({
-    //     //   name: 'quickstartFunctions',
-    //     //   config: {
-    //     //     env: this.data.envId
-    //     //   },
-    //     //   data: {
-    //     //     type: 'getAllWine',
-    //     //     userInfo:{
-    //     //       openId:'ojVpU5XXun_ZlsmtOJKIJktiTNjc'
-    //     //     }
-    //     //   }
-    //     // }).then((res) => {
-    //     //   console.log("res.result")
-    //     //   console.log(res.result)
-    //     //   that.updateData(res.result);
-    //     wx.hideLoading();
-    //     // }).catch((e) => {
-    //     //   console.log(e)
-    //     // })
-    // },
     //更新数据
     updateData: function (data,ind) {
         //更新左侧数据

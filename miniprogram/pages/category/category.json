@@ -1,9 +1,11 @@
 {
     "navigationBarTitleText": "分类",
-    "usingComponents":{
-        "miniShopCar":"../../components/miniShopCar/miniShopCar"
+    "usingComponents": {
+        "miniShopCar": "../../components/miniShopCar/miniShopCar",
+        "mp-loading": "weui-miniprogram/loading/loading"
+
     },
     "enablePullDownRefresh": true,
-    "onReachBottom":true,
-    "onReachBottomDistance":100
+    "onReachBottom": true,
+    "onReachBottomDistance": 100
 }

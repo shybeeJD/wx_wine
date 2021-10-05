@@ -1,402 +1,407 @@
 @import "../../utils/public.less";
 @import "./category.skeleton.wxss";
-
+.container {
+  background-color: white;
+}
 /*左侧分类视图*/
 .left_scrol_style {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    width: 75px;
-    display: block;
-    background-color: #f5f5f5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 75px;
+  display: block;
+  background-color: #f5f5f5;
 }
 /*左侧列表样式*/
 .left_list_item_style {
-    height: 45px;
-    width: 100%;
-    position: relative;
+  height: 45px;
+  // width: 100%;
+  position: relative;
 }
 .line_color_size {
-    width: 100%;
-    height: 1px;
-    background-color: #d2d2d2;
-    position: absolute;
-    bottom: 0px;
+  width: 100%;
+  height: 1px;
+  background-color: #d2d2d2;
+  position: absolute;
+  bottom: 0px;
 }
 .flag_line_color_size {
-    height: 100%;
-    width: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .flag_line_select {
-    background-color: #ff6261;
+  background-color: #ff6261;
 }
 .flag_line_nomal {
-    background-color: #e5e5e5;
+  background-color: #e5e5e5;
 }
 /*左侧侧列表字体*/
 .left_list_text {
-    text-align: center;
-    font-size: 15px;
-    line-height: 44px;
-    position: absolute;
-    top: 0px;
-    bottom: 1px;
-    left: 2px;
-    right: 0px;
-    display: block;
+  text-align: center;
+  font-size: 15px;
+  line-height: 44px;
+  position: absolute;
+  top: 0px;
+  bottom: 1px;
+  left: 2px;
+  right: 0px;
+  display: block;
 }
 .left_list_text_nomal {
-    color: #787878;
-    background-color: #e5e5e5;
+  color: #787878;
+  background-color: #e5e5e5;
 }
 .left_list_text_select {
-    color: #ff6261;
-    background-color: white;
+  color: #ff6261;
+  background-color: white;
 }
 /*右侧列表样式*/
 .right_list_style {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 75px;
-    background-color: #f5f5f5;
-    // height: 750rpx;
+  //   height: 80px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 75px;
+  width: 100%;
+  background-color: white;
+  height: 100%;
 }
 /*右侧列表item*/
 .right_list_item {
-    height: 90px;
-    width: 100%;
-    position: relative;
-    background-color: white;
+  height: 90px;
+  width: 100%;
+  position: relative;
+  background-color: white;
 }
 /*商品主图*/
 .right_list_item_image {
-    position: absolute;
-    height: 80px;
-    width: 80px;
-    top: 5px;
-    left: 5px;
-    right: 5px;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  top: 5px;
+  left: 5px;
+  right: 5px;
 }
 /*商品名称*/
 .right_list_item_title {
-    text-align: left;
-    font-size: 16px;
-    position: absolute;
-    left: 90px;
-    top: 5px;
-    right: 5px;
-    height: 20px;
-    line-height: 20px;
-    color: #323232;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  text-align: left;
+  font-size: 16px;
+  position: absolute;
+  left: 90px;
+  top: 5px;
+  right: 5px;
+  height: 20px;
+  line-height: 20px;
+  color: #323232;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 /*tags*/
 .tags_back_view {
-    position: absolute;
-    top: 30px;
-    left: 90px;
-    right: 5px;
+  position: absolute;
+  top: 30px;
+  left: 90px;
+  right: 5px;
 }
 /*tags*/
 .tags {
-    background-color: red;
-    font-size: 10px;
-    color: white;
-    line-height: 10px;
-    border-radius: 3px;
-    margin-left: 5px;
-    /* 我加的,为了好看点 */
-    padding: 2px;
-    text-align: center;
-    /* 我加的,为了好看点 */
-    height: 10px;
-    float: left;
+  background-color: red;
+  font-size: 10px;
+  color: white;
+  line-height: 10px;
+  border-radius: 3px;
+  margin-left: 5px;
+  /* 我加的,为了好看点 */
+  padding: 2px;
+  text-align: center;
+  /* 我加的,为了好看点 */
+  height: 10px;
+  float: left;
 }
 /*规格*/
 .right_list_item_specification {
-    font-size: 10px;
-    line-height: 10px;
-    color: #b2b2b2;
-    position: absolute;
-    left: 90px;
-    bottom: 35px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #b2b2b2;
+  position: absolute;
+  left: 90px;
+  bottom: 35px;
 }
 /*已售*/
 .right_list_item_sale_count {
-    font-size: 10px;
-    line-height: 10px;
-    color: #b2b2b2;
-    position: absolute;
-    left: 90px;
-    bottom: 23px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #b2b2b2;
+  position: absolute;
+  left: 90px;
+  bottom: 23px;
 }
 /*价钱的背景试图*/
 .price_back_view {
-    height: 20px;
-    position: absolute;
-    bottom: 5px;
-    left: 90px;
+  height: 20px;
+  position: absolute;
+  bottom: 5px;
+  left: 90px;
 }
 /*售价*/
 .right_list_item_price {
-    color: #ff6261;
-    font-size: 16px;
+  color: #ff6261;
+  font-size: 16px;
 }
 /*市场价*/
 .right_list_item_market_price {
-    font-size: 13px;
-    color: #333333;
-    margin-left: 3px;
-    text-decoration: line-through;
+  font-size: 13px;
+  color: #333333;
+  margin-left: 3px;
+  text-decoration: line-through;
 }
 /*+号按钮*/
 .shopCar {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 60px;
-    right: 5px;
-    float: right;
-    background-color: red;
-    border-radius: 50px;
-    margin: 5px;
-    .allCenterContainer;
-    .shopCarImage {
-        width: 18px;
-    }
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 60px;
+  right: 5px;
+  float: right;
+  background-color: red;
+  border-radius: 50px;
+  margin: 5px;
+  .allCenterContainer;
+  .shopCarImage {
+    width: 18px;
+  }
 }
 /*——号按钮*/
 .reduce_image_style {
-    width: 15px;
-    height: 15px;
-    position: relative;
-    top: 60px;
-    right: 12px;
-    float: right;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: 60px;
+  right: 12px;
+  float: right;
 }
 /*购买数量*/
 .good_buy_number {
-    height: 30px;
-    line-height: 30px;
-    position: relative;
-    top: 55px;
-    right: 10px;
-    float: right;
-    font-size: 16px;
-    margin-right: 3px;
-    margin-left: 3px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  top: 55px;
+  right: 10px;
+  float: right;
+  font-size: 16px;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 .right_line {
-    height: 1px;
-    width: 100%;
-    background-color: #f5f5f5;
-    position: absolute;
-    bottom: 0px;
+  height: 1px;
+  width: 100%;
+  background-color: #f5f5f5;
+  position: absolute;
+  bottom: 0px;
 }
 .detail-box {
-    position: fixed;
-    z-index: 10;
-    bottom: 0rpx;
-    // height: 980rpx;
-    width: 100%;
-    background-color: rgb(252, 246, 246);
-    .flexContainerCol;
-    .roundedRectangle;
+  position: fixed;
+  z-index: 10;
+  bottom: 0rpx;
+  // height: 980rpx;
+  width: 100%;
+  background-color: rgb(252, 246, 246);
+  .flexContainerCol;
+  .roundedRectangle;
 }
 .tui-content {
-    .padding_l_r_10px;
-    font-size: smaller;
+  .padding_l_r_10px;
+  font-size: smaller;
 }
 .tui-slider-head {
-    height: 80rpx;
-    line-height: 80rpx;
-    color: #666;
-    width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #666;
+  width: 100%;
 
-    .flexContainerRow;
+  .flexContainerRow;
 
-    .temText {
-        flex: 1;
-        .allCenterContainer;
-        .justifyContentLeft;
+  .temText {
+    flex: 1;
+    .allCenterContainer;
+    .justifyContentLeft;
+  }
+  .temNum {
+    flex: 1;
+    .justifyContentRight;
+    .temNumBold {
+      color: @cold;
     }
-    .temNum {
-        flex: 1;
-        .justifyContentRight;
-        .temNumBold {
-            color: @cold;
-        }
-    }
+  }
 }
 .sliderBox {
-    .flexContainerRow;
-    .tui-slider-left {
-        flex: 1;
-    }
-    .tui-slider-box {
-        flex: 3;
-        width: 100%;
-    }
-    .tui-slider-right {
-        flex: 1;
-        .justifyContentRight;
-    }
+  .flexContainerRow;
+  .tui-slider-left {
+    flex: 1;
+  }
+  .tui-slider-box {
+    flex: 3;
+    width: 100%;
+  }
+  .tui-slider-right {
+    flex: 1;
+    .justifyContentRight;
+  }
 }
 .tui-slider-left {
-    height: 80rpx;
-    line-height: 80rpx;
-    float: left;
-    color: #666;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: left;
+  color: #666;
 }
 .tui-slider-right {
-    height: 80rpx;
-    line-height: 80rpx;
-    float: right;
-    color: #666;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: right;
+  color: #666;
 }
 .tui-slider-box {
-    height: 80rpx;
-    line-height: 80rpx;
-    font-size: 35rpx;
-    color: #666;
-    margin: auto;
-    width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #666;
+  margin: auto;
+  width: 50%;
 }
 
 .numLine {
-    .padding_l_r_10px;
+  .padding_l_r_10px;
+  .flexContainerRow;
+
+  justify-content: space-between;
+  .text {
+    flex: 1;
+    white-space: nowrap;
+    .allCenterContainer;
+    font-size: small;
+    .justifyContentLeft;
+  }
+  .number-box {
+    flex: 1;
     .flexContainerRow;
+    // text-align: right;
+    .justifyContentRight;
 
-    justify-content: space-between;
-    .text {
-        flex: 1;
-        white-space: nowrap;
-        .allCenterContainer;
-        font-size: small;
-        .justifyContentLeft;
+    #tmpBuyNum {
+      .allCenterContainer;
     }
-    .number-box {
-        flex: 1;
-        .flexContainerRow;
-        // text-align: right;
-        .justifyContentRight;
-
-        #tmpBuyNum {
-            .allCenterContainer;
-        }
-    }
+  }
 }
 .number-box {
-    padding-left: 24rpx;
-    padding-right: 24rpx;
-    height: 80rpx;
-    box-sizing: border-box;
-    border-top: solid 1rpx #e3e3e3;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  border-top: solid 1rpx #e3e3e3;
 }
 .control {
-    margin-top: 14rpx;
-    float: right;
-    height: 52rpx;
-    width: 52rpx;
-    background-color: #e3e3e3;
-    text-align: center;
-    line-height: 52rpx;
-    color: #666;
-    font-size: 36rpx;
-    border-radius: 5rpx;
-    margin-left: 4rpx;
+  margin-top: 14rpx;
+  float: right;
+  height: 52rpx;
+  width: 52rpx;
+  background-color: #e3e3e3;
+  text-align: center;
+  line-height: 52rpx;
+  color: #666;
+  font-size: 36rpx;
+  border-radius: 5rpx;
+  margin-left: 4rpx;
 }
 .ban {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 .num {
-    width: 100rpx;
-    font-size: 26rpx;
-    background-color: #f0f0f0;
-    font-family: Arial, Helvetica, sans-serif;
+  width: 100rpx;
+  font-size: 26rpx;
+  background-color: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .btnGroup {
-    .flexContainerRow;
+  .flexContainerRow;
 }
 .confirm-btn {
-    flex: 1;
-    height: 100rpx;
-    background-color: #e40112;
-    text-align: center;
-    line-height: 100rpx;
-    float: right;
-    color: #fff;
-    width: 50%;
-    font-size: 30rpx;
+  flex: 1;
+  height: 100rpx;
+  background-color: #e40112;
+  text-align: center;
+  line-height: 100rpx;
+  float: right;
+  color: #fff;
+  width: 50%;
+  font-size: 30rpx;
 }
 .cancel-btn {
-    flex: 1;
-    height: 100rpx;
-    background-color: #f1a43e;
-    text-align: center;
-    line-height: 100rpx;
-    float: left;
-    color: #fff;
-    width: 50%;
-    font-size: 30rpx;
+  flex: 1;
+  height: 100rpx;
+  background-color: #f1a43e;
+  text-align: center;
+  line-height: 100rpx;
+  float: left;
+  color: #fff;
+  width: 50%;
+  font-size: 30rpx;
 }
 .goods-img-box {
-    height: 240rpx;
-    box-sizing: border-box;
-    padding: 24rpx;
-    border-bottom: solid 1rpx #e3e3e3;
+  height: 240rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  border-bottom: solid 1rpx #e3e3e3;
 }
 .goods-img {
-    height: 192rpx;
-    width: 192rpx;
-    float: left;
+  height: 192rpx;
+  width: 192rpx;
+  float: left;
 }
 .right-side {
-    float: left;
-    padding-top: 10rpx;
-    padding-left: 20rpx;
+  float: left;
+  padding-top: 10rpx;
+  padding-left: 20rpx;
 }
 .price {
-    font-size: 32rpx;
-    color: #e40112;
-    font-weight: bold;
+  font-size: 32rpx;
+  color: #e40112;
+  font-weight: bold;
 }
 .type {
-    font-size: 24rpx;
-    color: #333;
-    margin-top: 8rpx;
-    margin-bottom: 8rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .inventory {
-    font-size: 24rpx;
-    color: #999;
+  font-size: 24rpx;
+  color: #999;
 }
 
 .detail-box.number-box {
-    padding-left: 24rpx;
-    padding-right: 24rpx;
-    height: 80rpx;
-    box-sizing: border-box;
-    border-top: solid 1rpx #e3e3e3;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  border-top: solid 1rpx #e3e3e3;
 }
 .ban {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 .num {
-    width: 100rpx;
-    font-size: 26rpx;
-    background-color: #f0f0f0;
-    font-family: Arial, Helvetica, sans-serif;
+  width: 100rpx;
+  font-size: 26rpx;
+  background-color: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
 }

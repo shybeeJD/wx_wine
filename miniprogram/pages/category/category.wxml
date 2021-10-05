@@ -55,6 +55,9 @@
         </view>
         <view class="right_line" />
       </view>
+
+      <mp-loading type="circle" show="{{true}}" wx:if="{{reachBottom}}"></mp-loading>
+
     </scroll-view>
   </view>
   <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>

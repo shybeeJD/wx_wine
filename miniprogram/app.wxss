@@ -1,28 +1,27 @@
 /**app.wxss**/
-@import './stylesheet.wxss';
-@import './font-awesome.wxss';
+@import "./stylesheet.wxss";
+@import "./font-awesome.wxss";
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-} 
+}
 
 button {
   background: initial;
 }
 
-button:focus{
+button:focus {
   outline: 0;
 }
 
-button::after{
+button::after {
   border: none;
 }
 
-
 page {
-  background: #f6f6f6;
+  background-color: var(--weui-BG-1);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

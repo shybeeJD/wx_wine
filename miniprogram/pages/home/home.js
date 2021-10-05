@@ -1,12 +1,9 @@
 Page({
     data: {
-        carousel_list: [
-            {
-                img: "../resource/logintop.png",
-            },
-        ], //轮播头信息
-        icon_list: [
-            {
+        carousel_list: [{
+            img: "../resource/logintop.png",
+        }, ], //轮播头信息
+        icon_list: [{
                 name: "啤酒",
                 pic: "../resource/beer.png",
             },
@@ -23,8 +20,7 @@ Page({
                 pic: "../resource/yangjiu.png",
             },
         ], //icon
-        icon_list2: [
-            {
+        icon_list2: [{
                 name: "待开发",
                 pic: "../resource/开发中.jpg",
             },
@@ -52,6 +48,7 @@ Page({
         tmpNormal: 1,
         inited: false,
         loaded: false,
+        moreInfo: false,
     },
     onLoad: function (options) {
         // 获取轮播图等信息
@@ -107,14 +104,13 @@ Page({
             };
         }
 
-        if(app.globalData.shopChanged){
-            this.getHostGoodList()
+        if (app.globalData.shopChanged) {
+            this.getHostGoodList();
         }
 
         this.setData({
             loaded: true,
         });
-
     },
     onHide: function () {
         this.hideModal();
@@ -143,8 +139,7 @@ Page({
         var data = this.data.carousel_list[id];
         if (data.event_mark == 3) {
             wx.navigateTo({
-                url:
-                    "../group/group?title=" +
+                url: "../group/group?title=" +
                     data.product_group_title +
                     "&par=" +
                     data.event_memo,
@@ -432,6 +427,11 @@ Page({
         }
         this.setData({
             host_good_list: data,
+        });
+    },
+    showMoreInfo: function (param) {
+        this.setData({
+            moreInfo: !this.data.moreInfo,
         });
     },
 });

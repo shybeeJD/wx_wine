@@ -34,12 +34,13 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
+    "disableUseStrict": false,
     "showES6CompileOption": false,
-    "skeletonGenerateFilesWithoutConfirm": true
+    "useCompilerPlugins": false
   },
   "appid": "wx63d8c34b231cc106",
   "projectname": "wx_wine",
-  "libVersion": "2.14.1",
+  "libVersion": "2.19.6",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "skeleton-config": {
     "global": {
@@ -76,14 +77,28 @@
     "pages": {
       "pages/index/index": {},
       "pages/shopCar/shopCar": {
-        "empty": [".list_item_left",".item_good_title",".smallBtn",".price_back_view",".s2"]
+        "empty": [
+          ".list_item_left",
+          ".item_good_title",
+          ".smallBtn",
+          ".price_back_view",
+          ".s2"
+        ]
       },
       "pages/me/me": {
-        "excludes": [".user_nick_name"]
+        "excludes": [
+          ".user_nick_name"
+        ]
       },
       "pages/order/orderList/orderList": {
-        "excludes": [".selectOrderStatus"],
-        "empty": [".order_status", ".price", ".btnGroup"]
+        "excludes": [
+          ".selectOrderStatus"
+        ],
+        "empty": [
+          ".order_status",
+          ".price",
+          ".btnGroup"
+        ]
       }
     }
   },
@@ -101,11 +116,13 @@
       "list": []
     },
     "miniprogram": {
-      "list": [{
-        "id": -1,
-        "name": "db guide",
-        "pathName": "pages/databaseGuide/databaseGuide"
-      }]
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide"
+        }
+      ]
     }
   }
 }
