@@ -116,6 +116,31 @@
   overflow: hidden;
   background-color: transparent;
 }
+.tool {
+  height: 42px;
+  padding: 0px 10px 0px 10px;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  font-size: small;
+}
+.tool .btn1 .noSelectedBtn {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool .btn1 .selectedBtn {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ff585a;
+  color: #ff585a;
+  border-radius: 10px;
+  background-color: #fff;
+}
 /*输入框背景样式*/
 .mini_ShopCar {
   height: 120rpx;
@@ -246,11 +271,6 @@
 }
 /*list样式*/
 .scrol_view_style {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
   background: #f5f5f5;
 }
 /*item*/
