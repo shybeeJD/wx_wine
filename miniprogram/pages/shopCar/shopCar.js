@@ -167,6 +167,8 @@ Page({
         // 调用自定义组件中的方法,更新底栏购物车
         var miniShopCar = this.selectComponent("#miniShopCar");
         this.getShopCarGoods(this.data.shopNow._id); // 调用自定义组件中的方法
+
+        this.isEmpty()
     },
     getShopCarGoods: function (_id) {
         var data = this.data.dataSource;
