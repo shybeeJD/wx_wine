@@ -31,7 +31,7 @@ Page({
                 this.data.pageList.push(0);
                 this.data.typeDataSource.push(null);
             }
-            this.getAllwines();
+            this.getAllwines(this.data.leftListSelectItem);
             this.renderControl();
         } else {
             app.shopNowCallback = (shopNow) => {
@@ -44,7 +44,7 @@ Page({
                     this.data.pageList.push(0);
                     this.data.typeDataSource.push(null);
                 }
-                this.getAllwines();
+                this.getAllwines(this.data.leftListSelectItem);
                 this.renderControl();
             };
         }
@@ -60,7 +60,8 @@ Page({
         });
         this.setData({
             inited: false,
-            loaded: false
+            loaded: false,
+            leftListSelectItem :0
         })
         var that = this
         var timer = setInterval(function () {
@@ -101,10 +102,10 @@ Page({
                 typeDataSource: list,
                 pageList: pageList,
             });
-            this.getAllwines();
+            this.getAllwines(this.data.leftListSelectItem);
             app.globalData.shopChanged = false;
         }
-        this.updataRightData();
+        this.updataRightData(this.data.leftListSelectItem);
         this.renderControl();
         if (app.globalData.shopNow) {
             // let myComponent = this.selectComponent("#myComponent");
@@ -206,11 +207,12 @@ Page({
         });
     },
 
-    getAllwines: function () {
+    getAllwines: function (index) {
         var app = getApp();
         var that = this;
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
+        console.log(that.data.pageList[that.data.leftListSelectItem] )
 
         wx.cloud
             .callFunction({
@@ -231,7 +233,7 @@ Page({
             .then((resp) => {
                 // console.log(resp.result);
 
-                this.updateData(resp.result);
+                this.updateData(resp.result,index);
                 wx.hideLoading();
             })
             .catch((e) => {
@@ -240,7 +242,7 @@ Page({
                 wx.hideLoading();
             });
         this.data.pageList[that.data.leftListSelectItem] += 1;
-        this.updataRightData();
+        this.updataRightData(that.data.leftListSelectItem);
     },
     // 右侧列表被点击
     rightListClick(par) {
@@ -250,19 +252,19 @@ Page({
             leftListSelectItem: index,
         });
         if (this.data.typeDataSource[this.data.leftListSelectItem] == null) {
-            this.getAllwines();
+            this.getAllwines(this.data.leftListSelectItem);
         }
-        this.updataRightData();
+        this.updataRightData(this.data.leftListSelectItem);
     },
     //更新右侧数据
-    updataRightData: function () {
+    updataRightData: function (ind) {
         var selectData = new Array();
         var app = getApp();
         for (var index in this.data.typeDataSource[
-                this.data.leftListSelectItem
+                ind
             ]) {
             var good =
-                this.data.typeDataSource[this.data.leftListSelectItem][index];
+                this.data.typeDataSource[ind][index];
             var tempGood = app.globalData.shopCarGoods[good._id];
             if (tempGood != null) {
                 good["buy"] = tempGood.buy;
@@ -430,7 +432,7 @@ Page({
     // todo:上拉加载
     ReachBottom() {
         console.log("上拉加载");
-        this.getAllwines();
+        this.getAllwines(this.data.leftListSelectItem);
     },
 
     // 获取数据
@@ -462,7 +464,7 @@ Page({
     //     // })
     // },
     //更新数据
-    updateData: function (data) {
+    updateData: function (data,ind) {
         //更新左侧数据
         var app = getApp();
 
@@ -475,22 +477,22 @@ Page({
             allData.push(good);
         }
         var product_list = data.product_list;
-        if (this.data.typeDataSource[this.data.leftListSelectItem] != null) {
+        if (this.data.typeDataSource[ind] != null) {
             product_list =
-                this.data.typeDataSource[this.data.leftListSelectItem].concat(
+                this.data.typeDataSource[ind].concat(
                     product_list
                 );
         }
-        var key = "typeDataSource[" + this.data.leftListSelectItem + "]";
+        var key = "typeDataSource[" + ind + "]";
         this.setData({
             [key]: product_list,
         });
-        this.updataRightData();
-        this.upDataFromStorage();
+        this.updataRightData(ind);
+        this.upDataFromStorage(ind);
     },
-    upDataFromStorage: function () {
+    upDataFromStorage: function (ind) {
         let rightDataSource =
-            this.data.typeDataSource[this.data.leftListSelectItem];
+            this.data.typeDataSource[ind];
         // console.log("assssssssssssssssssss");
 
         let cart = wx.getStorageSync(this.data.shopNow._id) || [];
