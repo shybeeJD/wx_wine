@@ -42,8 +42,8 @@ Page({
             },
         ],
         other_list: ["推荐有奖", "地址管理", "客服热线", "意见反馈"],
-        inited: false,
-        loaded: false
+        // inited: false,
+        // loaded: false
     },
     onLoad: function (options) {
         // 如果用户没有登录需要用户登录
@@ -62,24 +62,24 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-        wx.showLoading({
-            // title: "",
-        });
-        this.setData({
-            inited: false,
-            loaded: false
-        })
-        var that = this
-        var timer = setInterval(function () {
-            if (that.data.loaded) {
-                that.setData({
-                    inited: true
-                })
-                console.log('获取数据中...');
-                wx.hideLoading();
-                clearInterval(timer)
-            }
-        }, 500);
+        // wx.showLoading({
+        //     // title: "",
+        // });
+        // this.setData({
+        //     inited: false,
+        //     loaded: false
+        // })
+        // var that = this
+        // var timer = setInterval(function () {
+        //     if (that.data.loaded) {
+        //         that.setData({
+        //             inited: true
+        //         })
+        //         console.log('获取数据中...');
+        //         wx.hideLoading();
+        //         clearInterval(timer)
+        //     }
+        // }, 500);
 
         var app = getApp();
         // console.log(app.globalData);
@@ -94,9 +94,9 @@ Page({
         if (this.data.islogin) {
             this.requestServiceData();
         }
-        this.setData({
-            loaded: true
-        })
+        // this.setData({
+        //     loaded: true
+        // })
     },
     onHide: function () {
         // 生命周期函数--监听页面隐藏

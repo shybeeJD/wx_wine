@@ -1,8 +1,12 @@
+scroll-view {
+  background-color: white;
+}
 .user_info_view {
   height: 180px;
   width: 100%;
   overflow: hidden;
   position: relative;
+  background-color: white;
 }
 .image_user_image {
   width: 60px;
@@ -55,6 +59,7 @@
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
+  background-color: white;
 }
 .order_list_item_style {
   width: 25%;
@@ -83,6 +88,7 @@
   width: 100%;
   position: relative;
   display: block;
+  background-color: white;
 }
 .other_item_tile {
   font-size: 16px;

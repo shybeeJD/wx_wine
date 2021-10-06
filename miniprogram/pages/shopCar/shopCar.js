@@ -2,35 +2,42 @@ Page({
     data: {
         dataSource: null,
         lower_price: 500,
-        inited: false,
-        loaded: false,
+        // inited: false,
+        // loaded: false,
         btn1Selected: false,
         empty: false
     },
-    onLoad: function (options) {},
+    onLoad: function (options) {
+
+        // wx.showLoading({
+        //     // title: "",
+        // });
+        // this.setData({
+        //     inited: false,
+        //     loaded: false,
+        // });
+        // var that = this;
+        // var timer = setInterval(function () {
+        //     if (that.data.loaded) {
+        //         that.setData({
+        //             inited: true,
+        //         });
+        //         console.log("获取数据中...");
+        //         wx.hideLoading();
+        //         clearInterval(timer);
+        //     }
+        // }, 500);
+
+        // this.setData({
+        //     loaded: true,
+        // });
+    },
     onReady: function () {
         // 生命周期函数--监听页面初次渲染完成
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-        wx.showLoading({
-            // title: "",
-        });
-        this.setData({
-            inited: false,
-            loaded: false,
-        });
-        var that = this;
-        var timer = setInterval(function () {
-            if (that.data.loaded) {
-                that.setData({
-                    inited: true,
-                });
-                console.log("获取数据中...");
-                wx.hideLoading();
-                clearInterval(timer);
-            }
-        }, 500);
+
 
         var app = getApp();
         // console.log(app.globalData)
@@ -40,9 +47,7 @@ Page({
         this.renderData();
         this.isAllSelect();
 
-        this.setData({
-            loaded: true,
-        });
+
         this.isEmpty()
     },
     isEmpty: function (params) {

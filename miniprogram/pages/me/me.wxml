@@ -1,65 +1,72 @@
+<import src="me.skeleton.wxml" />
+<!-- <template is="skeleton" wx:if="{{!inited}}" />
 
-<import src="me.skeleton.wxml"/>
-<template is="skeleton" wx:if="{{!inited}}" />
+<view class="content" wx:else> -->
+<view class="content">
 
-<view class = "content" wx:else>
-    <scroll-view scroll-y = "{{true}}" scroll-x = "{{false}}">
-        <view class = "user_info_view">
-            <image src="../resource/JKMSYNoLoginUserImage.png" class = "image_user_image" wx:if="{{islogin == false}}" bindtap = "gotologin">
+    <scroll-view scroll-y="{{true}}" scroll-x="{{false}}">
+        <view class="user_info_view">
+            <image src="../resource/JKMSYNoLoginUserImage.png" class="image_user_image" wx:if="{{islogin == false}}"
+                bindtap="gotologin">
             </image>
-            <image src="{{avatar_url}}" class = "image_user_image" wx:if="{{islogin == true}}" binderror="imageloaderror">
+            <image src="{{avatar_url}}" class="image_user_image" wx:if="{{islogin == true}}" binderror="imageloaderror">
             </image>
-            <text class = "user_nick_name"  wx:if="{{islogin == true}}">{{user_nickname}}</text>
+            <text class="user_nick_name" wx:if="{{islogin == true}}">{{user_nickname}}</text>
         </view>
+        <view style="background-color:#F5F5F5;height:1px;width:100%;"></view>
 
-        <view class = "order_title_back">
-            <text class = "order_title">我的订单</text>
-            <image src="../resource/rightTrangle.png" class = "order_image"></image>
-            <text class = "order_send_title" bindtap="showAllOrder">查看全部订单</text>
+        <view class="order_title_back">
+            <text class="order_title">我的订单</text>
+            <image src="../resource/rightTrangle.png" class="order_image"></image>
+            <text class="order_send_title" bindtap="showAllOrder">查看全部订单</text>
         </view>
-        <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <!-- <view style="background-color:#F5F5F5;height:1px;width:100%;"></view> -->
 
-        <view class = "order_list_style" >
-            <view  class = "order_list_item_style" wx:for-items = "{{order_list}}" data-status="{{item.status}}" bindtap="goOrderList">
-                <image src="{{item.image}}" class = "order_item_image"></image>
-                <text class = "order_item_title">{{item.title}}</text>
+        <view class="order_list_style">
+            <view class="order_list_item_style" wx:for-items="{{order_list}}" data-status="{{item.status}}"
+                bindtap="goOrderList">
+                <image src="{{item.image}}" class="order_item_image"></image>
+                <text class="order_item_title">{{item.title}}</text>
             </view>
         </view>
-        <view style = "background-color:#F5F5F5;height:10px;width:100%;"></view>
-        <view class = "order_title_back">
-            <text class = "order_title">我的钱包</text>
-            <image src="../resource/rightTrangle.png" class = "order_image"></image>
-            <text class = "order_send_title" >查看钱包</text>
+        <view style="background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <view class="order_title_back">
+            <text class="order_title">我的钱包</text>
+            <image src="../resource/rightTrangle.png" class="order_image"></image>
+            <text class="order_send_title">查看钱包</text>
         </view>
-        <view style = "background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <!-- <view style="background-color:#F5F5F5;height:1px;width:100%;"></view> -->
 
-        <view class = "order_list_style" >
-            <view  class = "order_list_item_style" wx:for-items = "{{money_list}}">
-                <image src="{{item.image}}" class = "order_item_image"></image>
-                <text class = "order_item_title">{{item.title}}</text>
+        <view class="order_list_style">
+            <view class="order_list_item_style" wx:for-items="{{money_list}}">
+                <image src="{{item.image}}" class="order_item_image"></image>
+                <text class="order_item_title">{{item.title}}</text>
             </view>
         </view>
-        <view style = "background-color:#F5F5F5;height:10px;width:100%;"></view>
-        <view  class = "other_list_item" bindtap="manageAddress">
-            <text class = "other_item_tile">地址管理</text>
-            <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        <view style="background-color:#F5F5F5;height:1px;width:100%;"></view>
+        <view class="other_list_item" bindtap="manageAddress">
+            <text class="other_item_tile">地址管理</text>
+            <image src="../resource/rightTrangle.png" class="order_image other_list_image"></image>
+            <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;">
+            </view>
         </view>
-        <view  class = "other_list_item">
-            <text class = "other_item_tile">客服热线</text>
-            <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        <view class="other_list_item">
+            <text class="other_item_tile">客服热线</text>
+            <image src="../resource/rightTrangle.png" class="order_image other_list_image"></image>
+            <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;">
+            </view>
         </view>
-        <view  class = "other_list_item">
-            <text class = "other_item_tile">意见反馈</text>
-            <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        <view class="other_list_item">
+            <text class="other_item_tile">意见反馈</text>
+            <image src="../resource/rightTrangle.png" class="order_image other_list_image"></image>
+            <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;">
+            </view>
         </view>
-        <view  class = "other_list_item">
-            <text class = "other_item_tile">推荐有奖</text>
-            <image src="../resource/rightTrangle.png" class = "order_image other_list_image"></image>
-            <view style = "position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;"></view>
+        <view class="other_list_item">
+            <text class="other_item_tile">推荐有奖</text>
+            <image src="../resource/rightTrangle.png" class="order_image other_list_image"></image>
+            <view style="position:absolute;background-color:#F5F5F5;height:1px;width:100%;bottom:0px;right:0px;">
+            </view>
         </view>
     </scroll-view>
 </view>
-

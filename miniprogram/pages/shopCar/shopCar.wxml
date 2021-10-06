@@ -1,7 +1,9 @@
 <import src="shopCar.skeleton.wxml" />
-<template is="skeleton" wx:if="{{!inited}}" />
+<!-- <template is="skeleton" wx:if="{{!inited}}" />
 
-<view wx:else>
+<view wx:else> -->
+  <view>
+
   <view class="tool" wx:if="{{!empty}}">
 
     <view class="btn1" bindtap="selectedBtn">

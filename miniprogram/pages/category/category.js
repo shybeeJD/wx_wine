@@ -19,9 +19,30 @@ Page({
         inited: false,
         loaded: false,
         reachBottom: false,
-        have_loaded :false
+        have_loaded: false
     },
     onLoad: function (options) {
+        wx.showLoading({
+            // title: "",
+        });
+        this.setData({
+            inited: false,
+            loaded: false,
+            leftListSelectItem: 0
+        })
+        var that = this
+        var timer = setInterval(function () {
+            if (that.data.loaded) {
+                that.setData({
+                    inited: true
+                })
+                console.log('获取数据中...');
+                wx.hideLoading();
+                clearInterval(timer)
+            }
+        }, 500);
+
+
         var app = getApp();
         if (app.globalData.shopNow) {
             this.setData({
@@ -63,25 +84,6 @@ Page({
     },
     onShow: function () {
         // 生命周期函数--监听页面显示
-        wx.showLoading({
-            // title: "",
-        });
-        this.setData({
-            inited: false,
-            loaded: false,
-            leftListSelectItem :0
-        })
-        var that = this
-        var timer = setInterval(function () {
-            if (that.data.loaded) {
-                that.setData({
-                    inited: true
-                })
-                console.log('获取数据中...');
-                wx.hideLoading();
-                clearInterval(timer)
-            }
-        }, 500);
 
 
         var app = getApp();
@@ -95,6 +97,27 @@ Page({
             }
         }
         if (app.globalData.shopChanged && !this.data.have_loaded) {
+
+            wx.showLoading({
+                // title: "",
+            });
+            this.setData({
+                inited: false,
+                loaded: false,
+                leftListSelectItem: 0
+            })
+            var that = this
+            var timer = setInterval(function () {
+                if (that.data.loaded) {
+                    that.setData({
+                        inited: true
+                    })
+                    console.log('获取数据中...');
+                    wx.hideLoading();
+                    clearInterval(timer)
+                }
+            }, 500);
+
             this.setData({
                 envId: app.globalData.envId,
                 shopNow: app.globalData.shopNow,
@@ -134,7 +157,7 @@ Page({
     },
     onHide: function () {
         this.hideModal();
-        this.data.have_loaded=false
+        this.data.have_loaded = false
         // 生命周期函数--监听页面隐藏
     },
     onUnload: function () {
@@ -221,7 +244,7 @@ Page({
         var that = this;
         // console.log(app.globalData)
         // console.log(app.globalData.userInfo)
-        console.log(that.data.pageList[that.data.leftListSelectItem] )
+        console.log(that.data.pageList[that.data.leftListSelectItem])
 
         wx.cloud
             .callFunction({
@@ -242,7 +265,7 @@ Page({
             .then((resp) => {
                 // console.log(resp.result);
 
-                this.updateData(resp.result,index);
+                this.updateData(resp.result, index);
                 wx.hideLoading();
             })
             .catch((e) => {
@@ -454,7 +477,7 @@ Page({
     },
 
     //更新数据
-    updateData: function (data,ind) {
+    updateData: function (data, ind) {
         //更新左侧数据
         var app = getApp();
 
